@@ -1,0 +1,77 @@
+{
+  "recorded_at_utc": "2026-11-14T09:15:51.256097+00:00",
+  "client_timezone": "Australia/Sydney",
+  "requested_scope": "Execute milestone 1",
+  "execution_freeze": null,
+  "experimental_calls": 0,
+  "human_participation_observed": false,
+  "milestones": [
+    {
+      "number": 1,
+      "name": "Audit",
+      "status": "local_acceptance_passed_commit_pending_push_blocked",
+      "artifacts": [
+        "README.md",
+        "AGENTS.md",
+        "research/protocol.md",
+        "research/source_manifest.json",
+        "research/audit.md",
+        "research/requirements.csv",
+        "research/baseline.json",
+        "research/decisions.md",
+        "scripts/verify_audit.py"
+      ],
+      "acceptance": {
+        "full_design_read": true,
+        "requirements_mapped": true,
+        "existing_work_preserved": true,
+        "runtime_baseline_attempted": true,
+        "paid_prerequisites_identified": true,
+        "audit_checks": "passed: 55 audit checks; T1-T8 remain absent",
+        "diff_secret_claim_review": "passed: staged diff review and selected credential checks; no scientific result claims"
+      },
+      "commit": {
+        "status": "ready",
+        "intended_message": "audit: establish authoritative design and milestone 1 baseline",
+        "identity_reference": "Use git log; no circular self-hash in committed artifacts"
+      },
+      "push": {
+        "status": "blocked",
+        "reason": "No remote/upstream or verified intended existing repository URL/branch",
+        "remote_head_verified": false
+      },
+      "unresolved": [
+        "Intended existing repository URL/branch",
+        "NUMERIC disposition information before dependent implementation",
+        "Paid cap/credential/model/provider/settings/limits before real calls",
+        "Explicit pre-freeze analysis and scheduling conventions",
+        "Actual human participation"
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Implementation",
+      "status": "not_started"
+    },
+    {
+      "number": 3,
+      "name": "Validation",
+      "status": "not_started"
+    },
+    {
+      "number": 4,
+      "name": "Smoke/pilot/freeze",
+      "status": "not_started"
+    },
+    {
+      "number": 5,
+      "name": "Main execution",
+      "status": "not_started"
+    },
+    {
+      "number": 6,
+      "name": "Analysis/report/reproduction",
+      "status": "not_started"
+    }
+  ]
+}

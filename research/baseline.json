@@ -1,0 +1,223 @@
+{
+  "scope": "M1 intake and audit; no experiment implemented",
+  "recorded_at_utc": "2026-11-14T09:15:51.088393+00:00",
+  "client_timezone": "Australia/Sydney",
+  "intake": {
+    "branch": "master",
+    "unborn": true,
+    "commits": 0,
+    "remotes": [],
+    "upstream": null,
+    "working_tree_entries": [
+      ".git"
+    ],
+    "tracked_files": 0,
+    "user_changes_found": false,
+    "ancestor_agents_files_found": [],
+    "project_inputs_present": false,
+    "incomplete_runs_found": 0
+  },
+  "source_review": {
+    "all_lines_read": 581,
+    "original_bytes": 27751,
+    "sha256": "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b",
+    "human_review_observed": false,
+    "independent_ai_review": true
+  },
+  "runtime": {
+    "python": "3.14.7",
+    "platform": "Windows",
+    "shell": "PowerShell",
+    "packages_observed": {
+      "pydantic": "2.13.4",
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "pandas": "3.0.3",
+      "matplotlib": "3.11.0",
+      "PyYAML": "6.0.3",
+      "python-dotenv": "1.2.2",
+      "pytest": "9.1.0",
+      "httpx": "0.28.1",
+      "openai": "3.35.1"
+    },
+    "package_imports": {
+      "pydantic": "passed",
+      "numpy": "passed",
+      "scipy": "passed",
+      "pandas": "passed",
+      "matplotlib": "passed",
+      "yaml": "passed",
+      "dotenv": "passed",
+      "pytest": "passed",
+      "httpx": "passed",
+      "openai": "passed"
+    },
+    "project_environment_locked": false,
+    "gh_on_path": false,
+    "soffice_on_path": false,
+    "libreoffice_on_path": false,
+    "pandoc_on_path": false,
+    "microsoft_word_assessed": false
+  },
+  "credential_presence_only": {
+    "OPENROUTER_API_KEY": false,
+    "OPENAI_API_KEY": false,
+    "ANTHROPIC_API_KEY": false,
+    "ADAPTION_API_KEY": false
+  },
+  "provider": {
+    "routing_service_from_design": "OpenRouter",
+    "model_id": null,
+    "upstream_provider": null,
+    "reasoning_setting": null,
+    "max_output_tokens": null,
+    "actual_temperature": null,
+    "temperature_rule": "0 where supported otherwise fixed recorded default",
+    "fallbacks_allowed": false,
+    "parallel_tool_calls": false,
+    "tool_choice": "model-selected",
+    "rate_limit": null,
+    "concurrency": null,
+    "provider_pricing_verified": false,
+    "network_delivery_tested": false
+  },
+  "spending": {
+    "authorized_cap": null,
+    "currency": null,
+    "source_estimate": "Under US$20 for one mid-priced model; explicitly estimate only",
+    "source_estimate_is_authorization": false,
+    "experimental_provider_calls": 0,
+    "experimental_provider_spend_incurred_by_audit": 0,
+    "provider_billing_queried": false,
+    "key_limit_verified": false
+  },
+  "pytest_baseline": {
+    "command": "python -m pytest -q",
+    "process_exit_code": 5,
+    "stdout": "no tests ran in 0.01s",
+    "stderr": "",
+    "interpretation": "No tests exist; not a passing suite",
+    "initial_shell_wrapper_exit_code": 1,
+    "exit_code_confirmation": "subprocess.run captured actual pytest exit code 5"
+  },
+  "completed_checks": [
+    {
+      "command": "git --version",
+      "exit_code": 0,
+      "stdout": "git version 2.55.0.windows.5",
+      "stderr": ""
+    },
+    {
+      "command": "uv --version",
+      "exit_code": 0,
+      "stdout": "uv 0.12.5 (210d1f678 2026-08-14 x86_64-pc-windows-msvc)",
+      "stderr": ""
+    },
+    {
+      "command": "git fsck --full",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "git diff --cached --check",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "other_check_outcomes": [
+    {
+      "command": "git status --porcelain=v1 -uall; git ls-files",
+      "phase": "initial intake before generated files",
+      "outcome": "Both outputs empty"
+    },
+    {
+      "command": "git symbolic-ref --short HEAD; git remote",
+      "phase": "initial intake",
+      "outcome": "master; no remotes"
+    },
+    {
+      "command": "git log -6 --oneline",
+      "phase": "initial intake",
+      "outcome": "fatal: current branch master has no commits; expected on unborn branch"
+    },
+    {
+      "command": "Get-ChildItem -Force",
+      "phase": "initial intake",
+      "outcome": "Only .git present"
+    },
+    {
+      "command": "Read each ancestor AGENTS.md if present",
+      "phase": "initial intake",
+      "outcome": "None from C:/ through the workspace"
+    },
+    {
+      "command": "Get-Content final_design.txt in chunks 1-220 and 221-end; Get-FileHash -Algorithm SHA256",
+      "outcome": "Entire 581-line design read; source SHA recorded"
+    },
+    {
+      "command": "Python importlib.import_module for ten modules listed in runtime.package_imports",
+      "outcome": "All imports passed; no compatibility/scientific-suite claim"
+    },
+    {
+      "command": "GitHub search_installed_repositories_v2 query=beyond-the-label limit=20 include_archived=true",
+      "outcome": "Zero returned repositories; not proof of nonexistence"
+    },
+    {
+      "command": "git config --get user.name and user.email (presence only)",
+      "outcome": "Both configured; values not stored"
+    }
+  ],
+  "required_experiment_tests": {
+    "T1": "absent; not run or passed",
+    "T2": "absent; not run or passed",
+    "T3": "absent; not run or passed",
+    "T4": "absent; not run or passed",
+    "T5": "absent; not run or passed",
+    "T6": "absent; not run or passed",
+    "T7": "absent; not run or passed",
+    "T8": "absent; not run or passed"
+  },
+  "audit_acceptance": {
+    "status": "passed",
+    "command": "python scripts/verify_audit.py",
+    "exit_code": 0,
+    "result": {
+      "status": "passed",
+      "scope": "M1 audit artifacts only; not T1-T8 or experimental validation",
+      "checks_passed": 55,
+      "requirements_mapped": 37,
+      "files_scanned": 12,
+      "source_sha256": "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b",
+      "secret_scan_limit": "Selected token patterns, credential filenames, and checked current environment values; manual diff review also required.",
+      "failures": []
+    },
+    "recorded_at_utc": "2026-11-14T09:17:11.088446+00:00"
+  },
+  "git_delivery": {
+    "commit": "ready for authorized local milestone commit",
+    "push": "blocked: no verified intended remote/branch",
+    "remote_commit_comparison": "not possible without destination",
+    "staging": "Initial .git/index.lock permission denied under read-only sandbox; authorized escalation succeeded; 12 intended files staged"
+  },
+  "analytic_reference_check": {
+    "rows_checked": 7,
+    "method": "Python fractions.Fraction using the formulas in research/audit.md",
+    "all_match_source": true,
+    "main_initial": 704,
+    "main_decision": 448,
+    "main_max_planned": 1152,
+    "pilot_initial": 160,
+    "pilot_decision": 128,
+    "pilot_max_planned": 288,
+    "empirical_observations": false,
+    "human_review": false
+  }
+}
