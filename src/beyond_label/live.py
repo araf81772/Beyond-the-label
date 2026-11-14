@@ -8,51 +8,21 @@ import json
 import os
 from pathlib import Path
 import time
-from typing import Any, Callable
+from typing import Any
 
 import httpx
 import yaml
 
-from .budget import BudgetLedger
-from .controls import AttemptBound, ControlError, GuardedTransport
+from .attempts import (AttemptLimit, AttemptLimitError, MAX_ATTEMPTS,
+                       CappedFreeAttempts, ExecutionSuspended, FreeQuota)
+from .budget import BudgetError, BudgetLedger, _unique_object
+from .controls import AttemptBound, GuardedTransport
 from .gates import require_real_execution
 from .openrouter import OpenRouterFreeTransport, free_account_preflight
 from .provider import PinnedProvider, ProviderFailure, ProviderSettings
 from .rate_limit import RateLimiter
-from .run import ROOT, _writer_lock, build_manifest, run_manifest
-
-
-class ExecutionSuspended(RuntimeError):
-    """Fixed operational reason; no model decision is generated or resampled."""
-
-
-def _utc_day() -> str:
-    return datetime.now(timezone.utc).date().isoformat()
-
-
-class FreeQuota:
-    """Conservative local ceiling from the account's current UTC-day allowance.
-
-    Claim before attempt_started, including retries. Other key users can still
-    consume account quota; a provider rejection is retained as infrastructure
-    evidence. A new day requires a fresh read-only account preflight.
-    """
-
-    def __init__(self, remaining: int, *, utc_day: Callable[[], str] = _utc_day):
-        if type(remaining) is not int or remaining < 0:
-            raise ExecutionSuspended("invalid_free_quota_evidence")
-        self.remaining, self.utc_day, self.day = remaining, utc_day, utc_day()
-
-    def claim(self) -> None:
-        if self.utc_day() != self.day:
-            raise ExecutionSuspended("free_quota_day_changed")
-        if self.remaining <= 0:
-            raise ExecutionSuspended("free_daily_quota_exhausted")
-        self.remaining -= 1
-
-    def check_dispatch_day(self) -> None:
-        if self.utc_day() != self.day:
-            raise ControlError("free_quota_day_changed_before_dispatch")
+from .run import (ROOT, Journal, _hash, _validate_journal, _validate_manifest,
+                  _writer_lock, build_manifest, run_manifest)
 
 
 def account_configuration(config: dict[str, Any], evidence: dict[str, Any]) -> dict[str, Any]:
@@ -94,6 +64,43 @@ def _record_preflight(session_dir: Path, evidence: dict[str, Any]) -> None:
         os.fsync(stream.fileno())
 
 
+def open_attempt_limit(session: Path, runs_root: Path, ledger: BudgetLedger) -> AttemptLimit:
+    """Reconcile the shared counter under the caller's project ownership lock.
+
+    A missing counter cannot silently reset an earlier run's allowance. Extra
+    reservations are valid after a crash before attempt_started; they stay used.
+    Trace starts and monetary reservations are cross-checks, not additive counts.
+    """
+    path = session / "attempts.jsonl"
+    try:
+        calls = sorted(runs_root.glob("**/calls.jsonl"))
+        manifests = sorted(runs_root.glob("**/manifest.json"))
+        money_attempts = len(ledger.snapshot()["attempts"])
+        if not path.exists() and (calls or manifests or money_attempts):
+            raise AttemptLimitError("attempt_limit_history_missing")
+        counter = AttemptLimit(path)
+        if {p.parent for p in calls} != {p.parent for p in manifests}:
+            raise AttemptLimitError("attempt_limit_history_inconsistent")
+        starts = 0
+        for trace in calls:
+            stored = json.loads((trace.parent / "manifest.json").read_text("utf-8"),
+                                object_pairs_hook=_unique_object)
+            plan, config = stored["plan"], stored["run_config"]
+            if (stored["run_config_hash"] != _hash({"plan": plan, "config": config})
+                    or config.get("evidence_kind") != "empirical"
+                    or config.get("transport_provenance") != "openrouter_free_https_v1"):
+                raise AttemptLimitError("attempt_limit_history_inconsistent")
+            _validate_manifest(plan)
+            journal = Journal(trace)
+            _validate_journal(journal, plan, config)
+            starts += sum(event["event"] == "attempt_started" for event in journal.events)
+        if money_attempts > starts or starts > counter.snapshot()["reserved_attempts"]:
+            raise AttemptLimitError("attempt_limit_history_inconsistent")
+        return counter
+    except (OSError, ValueError, KeyError, TypeError, AttributeError, BudgetError):
+        raise AttemptLimitError("attempt_limit_history_unreadable") from None
+
+
 def run_free(config_path: Path, dataset: str, output: Path, *, load: int | None = None,
              freeze_path: Path | None = None, max_cells: int | None = None) -> dict[str, Any]:
     config = yaml.safe_load(config_path.read_text("utf-8"))
@@ -103,6 +110,9 @@ def run_free(config_path: Path, dataset: str, output: Path, *, load: int | None 
         raise ExecutionSuspended("offline_execution_disabled")
     if config.get("paid_calls_authorized") is not False or config.get("authorized_spend_cap") != 0:
         raise ExecutionSuspended("paid_execution_forbidden")
+    if (type(config.get("maximum_inference_attempts")) is not int
+            or config["maximum_inference_attempts"] != MAX_ATTEMPTS):
+        raise ExecutionSuspended("fixed_ten_attempt_limit_required")
     runs_root = (ROOT / "runs").resolve()
     output = output.resolve()
     try:
@@ -126,6 +136,7 @@ def run_free(config_path: Path, dataset: str, output: Path, *, load: int | None 
         require_real_execution(config, stage=dataset, freeze=freeze)
         ledger = BudgetLedger(session / "budget.jsonl", "0", "USD")
         reconcile_ledger(ledger, runs_root)
+        attempt_limit = open_attempt_limit(session, runs_root, ledger)
         fields = ("model", "provider", "provider_route", "provider_identity_source", "require_parameters",
                   "free_only", "temperature", "reasoning", "max_output_tokens")
         settings = ProviderSettings(**{field: config[field] for field in fields})
@@ -135,9 +146,10 @@ def run_free(config_path: Path, dataset: str, output: Path, *, load: int | None 
         limiter = RateLimiter(config["operator_requests_per_minute"], config["operator_tokens_per_minute"])
         transport = OpenRouterFreeTransport(settings.model, settings.provider_route)
         quota = FreeQuota(evidence["free_model_daily_requests"]["remaining"])
+        policy = CappedFreeAttempts(attempt_limit, quota)
         guard = GuardedTransport(transport, ledger, limiter, lambda payload: AttemptBound("0", token_bound),
                                  before_dispatch=quota.check_dispatch_day)
-        provider = PinnedProvider(settings, guard, sleep=time.sleep, before_attempt=quota.claim)
+        provider = PinnedProvider(settings, guard, sleep=time.sleep, before_attempt=policy)
         return run_manifest(plan, output, provider, synthetic=False, max_cells=max_cells,
                             execution_config=config, freeze=freeze)
 
@@ -166,7 +178,7 @@ def main() -> int:
                               freeze_path=args.freeze, max_cells=args.max_cells)
     except httpx.HTTPStatusError as error:
         result = {"status": "blocked", "reason": "openrouter_http_error", "http_status": error.response.status_code}
-    except (ExecutionSuspended, ProviderFailure) as error:
+    except (ExecutionSuspended, ProviderFailure, AttemptLimitError) as error:
         result = {"status": "blocked", "reason": str(error)}
     except Exception as error:
         # Never print arbitrary config values, credential material or HTTP context.

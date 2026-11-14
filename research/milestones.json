@@ -1,7 +1,7 @@
 {
-  "recorded_at_utc": "2026-11-14T13:17:07.842757+00:00",
+  "recorded_at_utc": "2026-11-14T13:49:52.892836+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "Recheck key; free-only M4 through M6 only if hard limit USD 0; maximum 10 aggregate inference attempts including retries, re-prompts and continuations; no paid calls; test/log/commit/push",
+  "requested_scope": "Implement durable 10-attempt aggregate attempt cap; recheck key; start free-only M4 only if hard limit USD 0; tests/logs/commit/push; no paid calls",
   "execution_freeze": null,
   "experimental_calls": 0,
   "human_participation_observed": false,
@@ -227,7 +227,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "Latest authenticated key check still returns zero_hard_limit:false; conditional authorization remains unmet. The new 10-attempt ceiling would permit only partial smoke.",
+      "reason": "Durable 10-attempt attempt cap implemented; latest authenticated key check still reports zero_hard_limit:false, so no real smoke calls authorized",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -245,13 +245,14 @@
         "Free-mode zero budget/key cap/settings/rate gates; shipped free config disabled",
         "Guarded manifest execution and empirical reporting with explicit unknown-cost attempts",
         "Quota suspension before new attempts and safe interrupted-continuation resume",
-        "Empirical pilot summaries and read-only freeze preparation/verification against retained traces and Git blobs"
+        "Empirical pilot summaries and read-only freeze preparation/verification against retained traces and Git blobs",
+        "Durable 10-attempt attempt cap across all runs/restarts with crash/corruption/concurrent-writer tests and real-entry-point bypass regression"
       ],
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
       "minimum_next_action": "Set the hard spending limit on the OpenRouter key in the ignored .env to exactly USD 0 and request a recheck. Existing conditional authorization is capped at 10 total inference attempts; completing M4 later requires a separately authorized larger call allowance.",
-      "offline_preparation_status": "Full offline suite rechecked: 901 passed; real smoke/pilot/freeze blocked by unmet USD 0 hard-key-limit condition",
+      "offline_preparation_status": "Durable ten-attempt implementation validated by949 offline tests; real smoke/pilot/freeze blocked by unverified USD0 hard key limit",
       "offline_validation": [
         {
           "command": "python -m pytest -q",
@@ -349,6 +350,30 @@
           "exit_code": 0,
           "summary": "652 audit checks before final evidence files; dependencies/diff/input invariance passed; smoke has80initialcells",
           "evidence": "research/checks/free_10_call_cap_validation.json"
+        },
+        {
+          "command": "python -m pytest -q tests/test_attempt_limit.py tests/test_attempt_limit_live.py tests/test_live.py tests/test_free_run.py",
+          "exit_code": 0,
+          "summary": "60 passed in 13.99s after real-entry-point bypass fix",
+          "evidence": "research/checks/durable_cap_regressions.json"
+        },
+        {
+          "command": "python -m pytest -q tests/test_attempt_limit.py tests/test_attempt_limit_live.py tests/test_live.py tests/test_free_run.py",
+          "exit_code": 0,
+          "summary": "61 passed in13.88s after CLI identity repair; cap checks preserved",
+          "evidence": "research/checks/durable_cap_regressions.json"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "949 passed in207.29s after both regressions repaired; network blocked and real credentials excluded",
+          "evidence": "research/checks/durable_cap_suite_final.json"
+        },
+        {
+          "command": "python scripts/verify_audit.py; python -m pip check; git diff --check; unchanged scientific-input and ignored-env checks",
+          "exit_code": 0,
+          "summary": "Audit/source/selected-secret checks, dependencies and diff passed; authoritative protocol and scientific inputs unchanged; both execution flags disabled",
+          "evidence": "research/checks/durable_cap_validation_final.json"
         }
       ],
       "recorded_test_fix_retest": [
@@ -357,7 +382,9 @@
         "Initial stricter replay failed with local OSError opening scores.csv; all 15 file hashes unchanged; isolated retest passed",
         "Ledger cwd stability: 1 failed before path resolution fix; 46 passed afterward",
         "Provider metadata/optional reasoning: 3 failed before repair; 33 focused then 86 provider tests passed",
-        "Accounting/rate interactions: 4 failed before repair; final 208 focused tests passed including 22 controls tests"
+        "Accounting/rate interactions: 4 failed before repair; final 208 focused tests passed including 22 controls tests",
+        "Durablecap bypass regression:1 failed before real-entry-point enforcement;60 targeted tests passed after repair",
+        "Python -m CLI policy identity regression:1 failed before moving shared types to canonical module;1 focused then61 targeted tests passed; full suite repeated"
       ],
       "offline_artifacts": [
         "evaluation/synthetic_m4_rehearsal/rehearsal.json",
@@ -368,7 +395,10 @@
         "research/execution_readiness.md",
         "src/beyond_label/budget.py",
         "src/beyond_label/rate_limit.py",
-        "src/beyond_label/controls.py"
+        "src/beyond_label/controls.py",
+        "src/beyond_label/attempts.py",
+        "tests/test_attempt_limit.py",
+        "tests/test_attempt_limit_live.py"
       ],
       "offline_preparation_push": {
         "status": "succeeded",
@@ -381,7 +411,7 @@
       },
       "local_credential_setup": {
         "status": "authenticated_but_zero_hard_limit_not_verified",
-        "evidence": "research/checks/free_account_recheck_10_call_cap.json",
+        "evidence": "research/checks/durable_cap_account_preflight.json",
         "credential_source_evidence": "research/checks/free_key_source_10_call_cap.json",
         "env_file_ignored": true,
         "credential_values_recorded": false,
@@ -466,6 +496,18 @@
           "free_quota_used": 0,
           "free_quota_limit": 50,
           "free_quota_remaining": 50
+        },
+        {
+          "status": "authenticated_but_zero_hard_limit_not_verified",
+          "evidence": "research/checks/free_account_recheck_10_call_cap.json",
+          "credential_source_evidence": "research/checks/free_key_source_10_call_cap.json",
+          "env_file_ignored": true,
+          "credential_values_recorded": false,
+          "paid_calls_authorized": false,
+          "provider_inference_calls": 0,
+          "free_quota_used": 0,
+          "free_quota_limit": 50,
+          "free_quota_remaining": 50
         }
       ],
       "current_execution_authorization": {
@@ -474,8 +516,8 @@
         "condition_satisfied": false,
         "paid_calls_authorized": false,
         "configured_execution_enabled": false,
-        "source_config_changed": false,
-        "evidence": "research/checks/free_account_recheck_10_call_cap.json",
+        "source_config_changed": true,
+        "evidence": "research/checks/durable_cap_account_preflight.json",
         "maximum_aggregate_inference_attempts": 10,
         "attempt_count_includes": [
           "initial_requests",
@@ -483,23 +525,17 @@
           "no_tool_reprompts",
           "continuations"
         ],
-        "cap_readiness": "No inference enabled. Existing max_cells is not an aggregate call cap; durable attempt accounting must enforce this ceiling before future execution."
+        "cap_readiness": "Implemented: shared append-only hash-linked fsynced integer reservations, no refunds/reset; both real entry points require the fixed 10-attempt policy",
+        "durable_cap_implemented": true
       },
       "current_checkpoint": {
-        "status": "committed_and_pushed_real_execution_blocked",
-        "account_evidence": "research/checks/free_account_recheck_10_call_cap.json",
-        "credential_source_evidence": "research/checks/free_key_source_10_call_cap.json",
+        "status": "offline_validation_passed_real_execution_blocked",
+        "account_evidence": "research/checks/durable_cap_account_preflight.json",
+        "regression_evidence": "research/checks/durable_cap_regressions.json",
         "commit_reference": "Resolve final identity through Git; no circular self-hash",
-        "push_status": "succeeded",
-        "test_evidence": "research/checks/free_10_call_cap_suite.json",
-        "verification_evidence": "research/checks/free_10_call_cap_validation.json",
-        "delivered_commit": "1c6f90fd7932310a41955e665fb3076af2ed4dac",
-        "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
-        "branch": "main",
-        "remote_head_verified": true,
-        "verification_command": "git ls-remote origin refs/heads/main",
-        "final_audit_checks": 658,
-        "final_status_checkpoint": "This follow-up records observed delivery; its own identity is resolved and verified through Git without a circular self-hash"
+        "push_status": "pending",
+        "test_evidence": "research/checks/durable_cap_suite_final.json",
+        "verification_evidence": "research/checks/durable_cap_validation_final.json"
       },
       "checkpoint_history": [
         {
@@ -516,6 +552,22 @@
           "remote_head_verified": true,
           "verification_command": "git ls-remote origin refs/heads/main",
           "staged_audit_checks": 646,
+          "final_status_checkpoint": "This follow-up records observed delivery; its own identity is resolved and verified through Git without a circular self-hash"
+        },
+        {
+          "status": "committed_and_pushed_real_execution_blocked",
+          "account_evidence": "research/checks/free_account_recheck_10_call_cap.json",
+          "credential_source_evidence": "research/checks/free_key_source_10_call_cap.json",
+          "commit_reference": "Resolve final identity through Git; no circular self-hash",
+          "push_status": "succeeded",
+          "test_evidence": "research/checks/free_10_call_cap_suite.json",
+          "verification_evidence": "research/checks/free_10_call_cap_validation.json",
+          "delivered_commit": "1c6f90fd7932310a41955e665fb3076af2ed4dac",
+          "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
+          "branch": "main",
+          "remote_head_verified": true,
+          "verification_command": "git ls-remote origin refs/heads/main",
+          "final_audit_checks": 658,
           "final_status_checkpoint": "This follow-up records observed delivery; its own identity is resolved and verified through Git without a circular self-hash"
         }
       ]

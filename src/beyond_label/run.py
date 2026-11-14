@@ -384,7 +384,9 @@ def _validate_execution_config(config: dict[str, Any], settings: ProviderSetting
 
 
 def _validate_live_transport(provider: PinnedProvider) -> None:
+    from .attempts import AttemptLimit, CappedFreeAttempts, FreeQuota
     from .controls import GuardedTransport
+    from .live import open_attempt_limit, reconcile_ledger
     from .openrouter import OpenRouterFreeTransport
     guard = provider.transport
     if (type(provider) is not PinnedProvider or type(guard) is not GuardedTransport
@@ -394,6 +396,17 @@ def _validate_live_transport(provider: PinnedProvider) -> None:
             or guard.transport.model != provider.settings.model
             or guard.transport.provider_route != provider.settings.provider_route):
         raise ValueError("Live execution requires the guarded free HTTPS transport; fixtures remain synthetic")
+    policy = provider.before_attempt
+    session = (ROOT / "runs/_free_session").resolve()
+    if (type(policy) is not CappedFreeAttempts
+            or type(policy.counter) is not AttemptLimit or type(policy.quota) is not FreeQuota
+            or policy.counter.path != session / "attempts.jsonl"
+            or guard.ledger.path != session / "budget.jsonl"
+            or getattr(guard.before_dispatch, "__self__", None) is not policy.quota
+            or getattr(guard.before_dispatch, "__func__", None) is not FreeQuota.check_dispatch_day):
+        raise ValueError("Live execution requires the shared durable ten-attempt policy")
+    reconcile_ledger(guard.ledger, ROOT / "runs")
+    open_attempt_limit(session, ROOT / "runs", guard.ledger)
 
 
 def _csv(path: Path, rows: list[dict[str, Any]], fields: list[str]) -> None:
@@ -648,6 +661,10 @@ def run_manifest(manifest: dict[str, Any], run_dir: Path | str, provider: Pinned
         _validate_execution_config(execution_config, provider.settings, manifest, freeze)
     if not synthetic:
         _validate_live_transport(provider)
+        from .attempts import MAX_ATTEMPTS
+        if (type(execution_config.get("maximum_inference_attempts")) is not int
+                or execution_config["maximum_inference_attempts"] != MAX_ATTEMPTS):
+            raise ValueError("Live execution requires the fixed ten-attempt allowance")
     run_dir = Path(run_dir)
     run_dir.mkdir(parents=True, exist_ok=True)
     with _writer_lock(run_dir):

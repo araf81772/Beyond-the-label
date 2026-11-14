@@ -8,7 +8,7 @@ from beyond_label.run import ScriptedPublicPolicy, build_manifest, rebuild_outpu
 
 def free_config():
     return dict(live_execution_enabled=True, free_only=True, paid_calls_authorized=False,
-        authorized_spend_cap=0, currency="USD", routing_service="OpenRouter",
+        authorized_spend_cap=0, maximum_inference_attempts=10, currency="USD", routing_service="OpenRouter",
         model="vendor/fixed:free", provider="Vendor", provider_route="vendor",
         provider_identity_source="openrouter_metadata", require_parameters=True,
         temperature=0, temperature_setting_verified=True, reasoning={"enabled": False},

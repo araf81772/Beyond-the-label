@@ -1,11 +1,12 @@
-# Free settings retained after the user returned to offline-only work.
-# Fresh authenticated preflight must establish hard key limit and daily quota.
+# Free execution stays disabled until the key's USD 0 hard limit is verified.
+# The shared durable allowance is ten attempts across all stages and restarts.
 schema_version: 1
 live_execution_enabled: false
 account_preflight_enabled: false
 free_only: true
 paid_calls_authorized: false
 authorized_spend_cap: 0
+maximum_inference_attempts: 10
 currency: USD
 routing_service: OpenRouter
 model: nvidia/nemotron-3.5-super-vl:free

@@ -1,0 +1,41 @@
+{
+  "classification": "offline_tests_not_empirical",
+  "recorded_at_utc": "2026-11-14T13:41:09.606710+00:00",
+  "initial_feature_tests": {
+    "command": "python -m pytest -q tests/test_attempt_limit_live.py tests/test_live.py",
+    "exit_code": 0,
+    "summary": "28 passed in 3.63s"
+  },
+  "reproduced_failure": {
+    "command": "python -m pytest -q tests/test_attempt_limit_live.py::test_real_transport_without_durable_cap_is_rejected",
+    "exit_code": 1,
+    "summary": "1 failed in 1.35s; expected rejection did not occur for a real transport without durable cap callback"
+  },
+  "repair": "Require concrete capped policy, exact shared attempt/USD ledger paths, matching daily quota callback and reconciled history in real run_manifest; validate fixed ten-attempt config",
+  "retest": {
+    "command": "python -m pytest -q tests/test_attempt_limit.py tests/test_attempt_limit_live.py tests/test_live.py tests/test_free_run.py",
+    "exit_code": 0,
+    "summary": "60 passed in 13.99s"
+  },
+  "inference_calls": 0,
+  "tests_weakened": false,
+  "review_participants": "Codex and AI subagent; no human research review",
+  "cli_regression": {
+    "command": "python -m pytest -q tests/test_attempt_limit_live.py::test_python_m_cli_uses_the_same_verified_policy_types",
+    "before_fix": {
+      "exit_code": 1,
+      "summary": "1 failed in 1.43s; python -m module identity caused correct capped provider to be rejected"
+    },
+    "repair": "Move shared quota/policy/operational-error classes into the canonical attempts module; preserve exact type/path checks",
+    "after_fix": {
+      "exit_code": 0,
+      "summary": "1 passed in 0.95s"
+    },
+    "targeted_retest": {
+      "command": "python -m pytest -q tests/test_attempt_limit.py tests/test_attempt_limit_live.py tests/test_live.py tests/test_free_run.py",
+      "exit_code": 0,
+      "summary": "61 passed in 13.88s"
+    }
+  },
+  "intermediate_full_suite": "research/checks/durable_cap_suite.json (948 passed before the additional CLI regression; superseded by final retest)"
+}
