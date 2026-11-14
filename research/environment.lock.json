@@ -1,0 +1,138 @@
+{
+  "python": "3.14.7",
+  "platform": "Windows",
+  "lock_method": "offline installed transitive dependency metadata",
+  "network_used": false,
+  "fresh_install_verified": false,
+  "wheelhouse_available": false,
+  "packages": {
+    "annotated-types": {
+      "version": "0.7.0",
+      "installed_record_sha256": "79b8716fafa3316d49b415e220ea737a5ecc76d2d4e55f9b2da4a58fd5d53a77"
+    },
+    "anyio": {
+      "version": "4.14.0",
+      "installed_record_sha256": "2d90786b675e56f3d1014ba72334302fdb41029cc124246faed4a9f9f3a8bdb1"
+    },
+    "certifi": {
+      "version": "2026.6.17",
+      "installed_record_sha256": "4a9b1738346d1f140114894512587179b97b9394c34240605489ac6f79b5f1cb"
+    },
+    "colorama": {
+      "version": "0.4.6",
+      "installed_record_sha256": "a31c9f5446069c678a462aa74430cabc651840ce3766266fa1075e206c3c092f"
+    },
+    "contourpy": {
+      "version": "1.3.3",
+      "installed_record_sha256": "4400c583ff6455c7e6c9b7e06c12ef295a2205be6bf4473c35bd5412266cb549"
+    },
+    "cycler": {
+      "version": "0.12.1",
+      "installed_record_sha256": "6f61e989a02f4ed5fa48f36f21f7464f6464436b5aeb24b1ae728eac368f3e2e"
+    },
+    "fonttools": {
+      "version": "4.63.0",
+      "installed_record_sha256": "1774b90a7f5484357ef78dd508bd48c83f22faa378c3fa96a26a11809b7bbbf5"
+    },
+    "h11": {
+      "version": "0.16.0",
+      "installed_record_sha256": "ba650296768ea16379435a7f3036b9543c0f36dda71a92a967f6472a7e06d121"
+    },
+    "httpcore": {
+      "version": "1.0.9",
+      "installed_record_sha256": "3b228a4b9eeaec831f19db85097f0ad8eb1c26290444a51c265f11433bee7e55"
+    },
+    "httpx": {
+      "version": "0.28.1",
+      "installed_record_sha256": "1f60a9b12bbb2ec14d2623d17de069b9845bbe7729dd08de7a741b9422f686fa"
+    },
+    "idna": {
+      "version": "3.18",
+      "installed_record_sha256": "e99a11514c3aadcd9b0465bbc2fb0c15680b588a3081eb42bea0426e3eec19cb"
+    },
+    "iniconfig": {
+      "version": "2.3.0",
+      "installed_record_sha256": "5f016cdf6301cfe86912c17f56d7027c77c16c57c0f7f587be68fdb6cacd7635"
+    },
+    "kiwisolver": {
+      "version": "1.5.0",
+      "installed_record_sha256": "ecffb62e118018ea964d1f443c1da4211c8d9f808345018116f4d6b0e5621722"
+    },
+    "matplotlib": {
+      "version": "3.11.0",
+      "installed_record_sha256": "8441fd528efbd3ebd69d52585258900e12d8f0fa2098edae8f5c0521bcee602f"
+    },
+    "numpy": {
+      "version": "2.4.6",
+      "installed_record_sha256": "f3081a42aa491cfe4a9211c4d7a5c0dd3aca63d3d39fbf80b7c837bfda08285c"
+    },
+    "packaging": {
+      "version": "26.2",
+      "installed_record_sha256": "171b3aa9767954279ea08012161895babad06bc4915c612074b740862bde4916"
+    },
+    "pandas": {
+      "version": "3.0.3",
+      "installed_record_sha256": "e07ef7749b5ff5e38c44a276d0f922129c6def0a9f64ededfe6efaf527315413"
+    },
+    "pillow": {
+      "version": "12.2.0",
+      "installed_record_sha256": "9003bbad8b71500ada07f688867dbfda6a2e777c497bccfcaaf78b75f7ccb62e"
+    },
+    "pluggy": {
+      "version": "1.6.0",
+      "installed_record_sha256": "54c3cedf1db8132466a9565ee919b617e9000911900161a5bed18c25b7819f27"
+    },
+    "pydantic": {
+      "version": "2.13.4",
+      "installed_record_sha256": "db498caad2a9e9d3832f5fa6d9e468ca40896a879664f14257da96174052099b"
+    },
+    "pydantic-core": {
+      "version": "2.46.4",
+      "installed_record_sha256": "7851db75a81a23abb98e1b81c063cf59caeb8e9bf3d1b853d2dc1bb5f404b245"
+    },
+    "pygments": {
+      "version": "2.20.0",
+      "installed_record_sha256": "26fb79a036bfcbdce1936540870f9107ef72b4ab8816d30a207cee35d89f964c"
+    },
+    "pyparsing": {
+      "version": "3.3.2",
+      "installed_record_sha256": "40e8221998a78a564ad1b9dbff6685e5ff780293d64e9a2f3b45b211aabdff6d"
+    },
+    "pytest": {
+      "version": "9.1.0",
+      "installed_record_sha256": "66298d74ccfbf29b975589ee4f8d8aae7cee863ff7fe4ff819da34dec21c2ae3"
+    },
+    "python-dateutil": {
+      "version": "2.9.0.post0",
+      "installed_record_sha256": "47612d7378143e5d3659ec57e09da22c84951c089305797865019fb26033205b"
+    },
+    "python-dotenv": {
+      "version": "1.2.2",
+      "installed_record_sha256": "6a028ed7425ab33803e616638ceb6fabe40ab3daeff06f4be2de7c4898a986fc"
+    },
+    "pyyaml": {
+      "version": "6.0.3",
+      "installed_record_sha256": "41bc98cd1de266aa765b7c2ad7547c4581e002d76c42221d707305c08617a3ad"
+    },
+    "scipy": {
+      "version": "1.17.1",
+      "installed_record_sha256": "782d8a65d457291a64b4e241f36ee627e33d8ac3269ae61d038234505e13e1d0"
+    },
+    "six": {
+      "version": "1.17.0",
+      "installed_record_sha256": "bec95e70cf123a3a9bbb56016f1305b77d294fd9cd78e6ef03819c49253fc6b8"
+    },
+    "typing-extensions": {
+      "version": "4.15.0",
+      "installed_record_sha256": "51ea3a4a410d62d8348a40fe67eace0b630bfb253694ef467acd0d23a9ee7925"
+    },
+    "typing-inspection": {
+      "version": "0.4.2",
+      "installed_record_sha256": "c63cab3f9e768c9307e98562af41eb8f90eedefdc844dae3c390f40705190d94"
+    },
+    "tzdata": {
+      "version": "2026.2",
+      "installed_record_sha256": "d0cab6593f943f82d4b36d9ba0a2ace762d29cf52ec8b763c8142d0c271b1e37"
+    }
+  }
+}

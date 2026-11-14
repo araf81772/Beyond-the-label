@@ -1,0 +1,3 @@
+Expected points lost for each first action:
+commit now: 50. Inspect {LOT_1}, then commit: {x}. Inspect {LOT_2}, then
+commit: {y}.

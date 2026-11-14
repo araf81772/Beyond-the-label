@@ -1,4 +1,8 @@
-"""Verify the M1 audit checkpoint; this is not an experiment test suite."""
+"""Verify source integrity and audit evidence as milestones advance.
+
+Historical M1 absence claims are checked against its retained baseline. Live
+status is checked against present files rather than freezing the project at M1.
+"""
 
 from __future__ import annotations
 
@@ -61,18 +65,24 @@ def main() -> int:
     check(all(set(row) == {"id", "source", "requirement", "status", "implementation",
                           "acceptance_check", "milestone", "notes"} and all(row.values())
               for row in rows), "complete and well-formed requirement rows")
-    check(all(row["status"] == "missing" for row in rows if row["id"] in {f"T{i}" for i in range(1, 9)}),
-          "absent experiment tests not claimed passed")
+    for row in rows:
+        if row["id"] in {f"T{i}" for i in range(1, 9)} and row["status"] == "existing":
+            check((ROOT / row["acceptance_check"]).is_file(), f"implemented test exists: {row['id']}")
 
     milestones = json.loads((ROOT / "research/milestones.json").read_text("utf-8"))
     check([item["number"] for item in milestones["milestones"]] == list(range(1, 7)),
           "exactly six ordered milestone records")
-    check(all(item["status"] == "not_started" for item in milestones["milestones"][1:]),
-          "M1 checkpoint does not claim later execution")
+    for item in milestones["milestones"][1:]:
+        if item["status"] == "complete":
+            checks_recorded = item.get("validation", [])
+            check(bool(checks_recorded) and all(c["exit_code"] == 0 for c in checks_recorded),
+                  f"milestone {item['number']} has passing acceptance evidence")
     check(milestones["execution_freeze"] is None, "no invented freeze tag")
     check(milestones["experimental_calls"] == 0, "no invented experimental calls")
 
     baseline = json.loads((ROOT / "research/baseline.json").read_text("utf-8"))
+    check(all(value == "absent; not run or passed" for value in baseline["required_experiment_tests"].values()),
+          "historical M1 experiment-test absence preserved")
     check(baseline["pytest_baseline"]["process_exit_code"] == 5,
           "pytest no-tests result recorded as non-passing")
     check(baseline["spending"]["authorized_cap"] is None,
@@ -109,7 +119,7 @@ def main() -> int:
 
     print(json.dumps({
         "status": "failed" if failures else "passed",
-        "scope": "M1 audit artifacts only; not T1-T8 or experimental validation",
+        "scope": "audit evidence and source integrity; experiment tests are separately recorded",
         "checks_passed": len(checks), "requirements_mapped": len(rows),
         "files_scanned": len(paths), "source_sha256": SOURCE_SHA256,
         "secret_scan_limit": "Selected token patterns, credential filenames, and checked current environment values; manual diff review also required.",

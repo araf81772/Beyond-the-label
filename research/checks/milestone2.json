@@ -1,0 +1,26 @@
+{
+  "kind": "offline_validation_not_observations",
+  "checks": [
+    {
+      "command": "python -m pytest -q",
+      "started_at_utc": "2026-11-14T09:32:59.914783+00:00",
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 34%]\n........................................................................ [ 68%]\n.................................................................        [100%]\n209 passed in 13.98s",
+      "stderr": ""
+    },
+    {
+      "command": "python -m pip check",
+      "started_at_utc": "2026-11-14T09:33:16.205570+00:00",
+      "exit_code": 0,
+      "stdout": "No broken requirements found.",
+      "stderr": ""
+    },
+    {
+      "command": "git diff --check",
+      "started_at_utc": "2026-11-14T09:33:17.634986+00:00",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it"
+    }
+  ]
+}

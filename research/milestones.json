@@ -1,7 +1,7 @@
 {
-  "recorded_at_utc": "2026-11-14T09:22:04.073134+00:00",
+  "recorded_at_utc": "2026-11-14T09:34:02.972603+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "Execute milestone 1",
+  "requested_scope": "Sequential offline milestones with test-fix-retest and commit/push; Git transport authorized",
   "execution_freeze": null,
   "experimental_calls": 0,
   "human_participation_observed": false,
@@ -49,10 +49,10 @@
         "remote_head": "57a440b1dd9aa6caa7b90194d6980246efb1dee7",
         "verified_at_utc": "2026-11-14T09:22:04.073134+00:00",
         "verification_command": "git ls-remote origin refs/heads/main",
-        "final_status_checkpoint": "A subsequent commit records this observed success; compare final Git HEAD with remote after that push"
+        "final_status_checkpoint": "A subsequent commit records this observed success; compare final Git HEAD with remote after that push",
+        "final_status_commit": "63deb35e84624447a22665502872551d20315464"
       },
       "unresolved": [
-        "NUMERIC disposition information before dependent implementation",
         "Paid cap/credential/model/provider/settings/limits before real calls",
         "Explicit pre-freeze analysis and scheduling conventions",
         "Actual human participation"
@@ -71,7 +71,53 @@
     {
       "number": 2,
       "name": "Implementation",
-      "status": "not_started"
+      "status": "local_complete_push_pending",
+      "validation": [
+        {
+          "command": "python -m pytest -q",
+          "started_at_utc": "2026-11-14T09:32:59.914783+00:00",
+          "exit_code": 0,
+          "stdout": "........................................................................ [ 34%]\n........................................................................ [ 68%]\n.................................................................        [100%]\n209 passed in 13.98s",
+          "stderr": ""
+        },
+        {
+          "command": "python -m pip check",
+          "started_at_utc": "2026-11-14T09:33:16.205570+00:00",
+          "exit_code": 0,
+          "stdout": "No broken requirements found.",
+          "stderr": ""
+        },
+        {
+          "command": "git diff --check",
+          "started_at_utc": "2026-11-14T09:33:17.634986+00:00",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it"
+        }
+      ],
+      "acceptance": {
+        "oracle_matches_hand_table": true,
+        "twin_scope_only_differences": true,
+        "exact_counterbalancing_and_mapping": true,
+        "sandbox_fees_dispositions_categories": true,
+        "hidden_state_leakage_tests": true,
+        "full_suite": "209 passed",
+        "human_review": false
+      },
+      "amendments": [
+        "A1: user-approved NUMERIC report facts"
+      ],
+      "execution_mode": "offline",
+      "experimental_calls": 0,
+      "push": {
+        "status": "pending",
+        "remote": "origin",
+        "branch": "main"
+      },
+      "limitations": [
+        "Fresh isolated dependency installation not verified; no cached wheelhouse",
+        "No human oracle/trace review"
+      ]
     },
     {
       "number": 3,

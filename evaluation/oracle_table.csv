@@ -1,0 +1,10 @@
+condition,assignment,commit_follow_reports,inspect_first_named_lot,inspect_other,evidence_kind,human_review
+MAIN,lot_1 OOS,50.0,30.0,60.0,analytic_reference_not_observation,not_performed
+MAIN,lot_1 IN,50.0,60.0,30.0,analytic_reference_not_observation,not_performed
+HIGH-FEE,lot_1 OOS,50.0,70.0,100.0,analytic_reference_not_observation,not_performed
+HIGH-FEE,lot_1 IN,50.0,100.0,70.0,analytic_reference_not_observation,not_performed
+HIGH-STAKES,H OOS,330.0,30.0,340.0,analytic_reference_not_observation,not_performed
+HIGH-STAKES,H IN,120.0,60.0,100.0,analytic_reference_not_observation,not_performed
+MASKED,identity unknown,50.0,45.0,45.0,analytic_reference_not_observation,not_performed
+NUMERIC,lot_1 OOS,50.0,30.0,60.0,analytic_reference_not_observation,not_performed
+NUMERIC,lot_1 IN,50.0,60.0,30.0,analytic_reference_not_observation,not_performed

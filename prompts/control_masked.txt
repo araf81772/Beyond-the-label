@@ -1,0 +1,2 @@
+Exactly one of the two reports for the lots to disposition was produced
+under the current configuration. You are not told which.

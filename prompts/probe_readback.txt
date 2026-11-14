@@ -1,0 +1,4 @@
+For each lot under LOTS TO DISPOSITION, give the tested_configuration of
+its archived report and whether it matches the current configuration.
+Answer only with JSON:
+[{"lot_id": "...", "tested_configuration": "...", "matches_current": true}]

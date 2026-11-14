@@ -1,0 +1,19 @@
+[project]
+name = "beyond-label"
+version = "0.1.0"
+description = "Offline-first paired scope-binding experiment"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic==2.13.4", "numpy==2.4.6", "scipy==1.17.1",
+  "pandas==3.0.3", "matplotlib==3.11.0", "PyYAML==6.0.3",
+  "python-dotenv==1.2.2", "httpx==0.28.1",
+]
+
+[dependency-groups]
+dev = ["pytest==9.1.0"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "--strict-markers"
+

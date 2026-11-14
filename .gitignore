@@ -8,11 +8,13 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.uv-cache/
 *.egg-info/
 build/
 dist/
 .coverage
 htmlcov/
+reproduction-work/
 *.pem
 *.key
 

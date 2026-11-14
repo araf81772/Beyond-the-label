@@ -1,0 +1,26 @@
+{
+  "generator_version": "btl-worlds-v1",
+  "classification": "research_only_synthetic_world_inputs_not_empirical_observations",
+  "contains_hidden_draws": true,
+  "model_visible": false,
+  "files": {
+    "worlds_pilot.jsonl": {
+      "sha256": "7988c4ca6e37ec461716a2c115255cd695f23cbc80a49d7aed0ddb47fca9749d",
+      "worlds": 8,
+      "seed_start": 1000,
+      "seed_end": 1007
+    },
+    "worlds_smoke.jsonl": {
+      "sha256": "0b6535a13db14112e3be88658e464ccb8773f34ae4ab5f0fd591a73b303fd229",
+      "worlds": 4,
+      "seed_start": 1100,
+      "seed_end": 1103
+    },
+    "worlds_main.jsonl": {
+      "sha256": "cb426cda261722bb4f189b9cfda183ab373e1b7473ddd4dcccf2d3d80918e573",
+      "worlds": 64,
+      "seed_start": 2000,
+      "seed_end": 2063
+    }
+  }
+}
