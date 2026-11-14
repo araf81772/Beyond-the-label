@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-14T13:49:52.892836+00:00",
+  "recorded_at_utc": "2026-11-14T13:50:54.974143+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "Implement durable 10-attempt aggregate attempt cap; recheck key; start free-only M4 only if hard limit USD 0; tests/logs/commit/push; no paid calls",
   "execution_freeze": null,
@@ -529,13 +529,20 @@
         "durable_cap_implemented": true
       },
       "current_checkpoint": {
-        "status": "offline_validation_passed_real_execution_blocked",
+        "status": "committed_and_pushed_real_execution_blocked",
         "account_evidence": "research/checks/durable_cap_account_preflight.json",
         "regression_evidence": "research/checks/durable_cap_regressions.json",
         "commit_reference": "Resolve final identity through Git; no circular self-hash",
-        "push_status": "pending",
+        "push_status": "succeeded",
         "test_evidence": "research/checks/durable_cap_suite_final.json",
-        "verification_evidence": "research/checks/durable_cap_validation_final.json"
+        "verification_evidence": "research/checks/durable_cap_validation_final.json",
+        "delivered_commit": "abf70deb3c0ebc4022334fa3c7a075431b13b74e",
+        "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
+        "branch": "main",
+        "remote_head_verified": true,
+        "verification_command": "git ls-remote origin refs/heads/main",
+        "final_audit_checks": 685,
+        "final_status_checkpoint": "This follow-up records observed delivery; its own identity is resolved and verified through Git without a circular self-hash"
       },
       "checkpoint_history": [
         {
