@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-14T09:56:18.541123+00:00",
+  "recorded_at_utc": "2026-11-14T09:59:23.192870+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "Sequential offline milestones with test-fix-retest and commit/push; Git transport authorized",
   "execution_freeze": null,
@@ -125,12 +125,12 @@
     {
       "number": 3,
       "name": "Validation",
-      "status": "local_validation_complete_clone_pending_push_pending",
+      "status": "complete",
       "execution_mode": "offline",
       "experimental_calls": 0,
       "planned_acceptance": [
         "T1-T8 full offline suite",
-        "704-cell main manifest plus at most448 continuations",
+        "704-cell main manifest plus at most 448 continuations",
         "Synthetic pipeline and interrupted-run resume",
         "Offline trace scoring analysis and figures",
         "Credential/header leakage and immutable-attempt review"
@@ -158,6 +158,18 @@
           "command": "python -m pytest -q tests/test_pilot_freeze_gates.py",
           "exit_code": 0,
           "summary": "13 passed after configuration whitespace fix"
+        },
+        {
+          "command": "python scripts/reproduce_offline.py",
+          "exit_code": 0,
+          "evidence": "research/checks/clean_clone.json",
+          "summary": "353 tests plus audit and clean tracked diff; local clone same host dependencies"
+        },
+        {
+          "command": "SHA-256 of committed Git input blobs versus final run manifest",
+          "exit_code": 0,
+          "evidence": "research/checks/committed_inputs.json",
+          "summary": "28 of 28 byte hashes match"
         }
       ],
       "acceptance": {
@@ -180,7 +192,8 @@
         "synthetic_missing": 0,
         "resume_and_trace_regeneration": true,
         "synthetic_excluded_from_empirical": true,
-        "real_provider_compatibility_verified": false
+        "real_provider_compatibility_verified": false,
+        "clean_code_clone": "passed 353 tests; same installed environment"
       },
       "artifacts": [
         "evaluation/synthetic_main_load2_final",
@@ -189,14 +202,25 @@
         "research/checks/milestone3_pipeline.json"
       ],
       "push": {
-        "status": "pending",
+        "status": "succeeded",
         "remote": "origin",
-        "branch": "main"
+        "branch": "main",
+        "delivered_commit": "a0fb58e619fb1036facb81ecb157db2c451adaac",
+        "remote_head_verified": true,
+        "verification_command": "git ls-remote origin refs/heads/main",
+        "status_checkpoint": "Follow-up status commit contains observed delivery evidence; final HEAD verified after push"
       },
       "limitations": [
         "Injected offline transport only; live wire compatibility unverified",
         "No actual model/upstream provider selected",
         "Fresh dependency installation unverified; wheelhouse unavailable"
+      ],
+      "completion_scope": "offline engineering and validation only; not live-provider readiness or empirical execution",
+      "recorded_failures": [
+        "Concurrent source edits triggered input_hashes_changed; guarded retests passed after source stabilized",
+        "Concurrent writer corruption reproduced then fixed with OS lock",
+        "Staged whitespace corrected with new synthetic run ID; original raw trace and input snapshot preserved",
+        "Windows sandbox prevented initial local clone; local-only escalation passed"
       ]
     },
     {
@@ -243,5 +267,6 @@
       "human_review_observed": false,
       "minimum_next_action": "Complete frozen main execution and provide or authorize retrieval of official template and cited sources"
     }
-  ]
+  ],
+  "human_participation_scope": "No H1-H5 oracle/trace/citation review observed; user separately approved NUMERIC amendment A1"
 }
