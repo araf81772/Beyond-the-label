@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-14T12:25:49.551859+00:00",
+  "recorded_at_utc": "2026-11-14T12:30:56.200745+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "Current instruction: finish offline work only; Git checkpoint delivery authorized; free-only inference was requested then disabled after HTTP401 preflight",
   "execution_freeze": null,
@@ -320,6 +320,12 @@
           "exit_code": 0,
           "summary": "75 passed after 33 cost/accounting regressions were repaired",
           "evidence": "research/checks/free_engineering_regressions.json"
+        },
+        {
+          "command": "python scripts/reproduce_offline.py --output research/checks/free_clean_clone.json",
+          "exit_code": 0,
+          "summary": "Clean local clone passed 901 tests in 202.81s, audit and clean tracked diff; same installed environment; credentials removed; no network",
+          "evidence": "research/checks/free_clean_clone.json"
         }
       ],
       "recorded_test_fix_retest": [
@@ -387,7 +393,7 @@
         "final_status_checkpoint": "This documentation-only follow-up records observed delivery; resolve its own commit from Git and verify remote separately"
       },
       "free_execution_checkpoint": {
-        "status": "offline_tests_passed_delivery_and_clean_clone_pending",
+        "status": "offline_validated_committed_and_pushed",
         "configuration": "configs/free.yaml",
         "readiness": "research/free_execution.md",
         "model": "nvidia/nemotron-3.5-super-vl:free",
@@ -403,7 +409,16 @@
         "freeze_created": false,
         "human_review_observed": false,
         "test_evidence": "research/checks/free_engineering_suite.json",
-        "regression_evidence": "research/checks/free_engineering_regressions.json"
+        "regression_evidence": "research/checks/free_engineering_regressions.json",
+        "delivered_commit": "9a25cbdb774cda1e5c2fc8d1ea5498371bc84298",
+        "remote": "origin",
+        "branch": "main",
+        "remote_head_verified": true,
+        "verification_command": "git ls-remote origin refs/heads/main",
+        "clean_clone_evidence": "research/checks/free_clean_clone.json",
+        "clean_clone_tests": 901,
+        "fresh_dependency_install": false,
+        "final_status_checkpoint": "This documentation-only follow-up records observed delivery; its own final identity is resolved and verified through Git"
       }
     },
     {

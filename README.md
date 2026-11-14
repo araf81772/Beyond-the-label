@@ -109,3 +109,5 @@ The helpers reserve funds and rate capacity for each attempt, retain unknown cos
 ## Current free-only engineering validation
 
 The stabilized full suite passed [901 tests](research/checks/free_engineering_suite.json); [regression records](research/checks/free_engineering_regressions.json) retain failures and repairs. The HTTP adapter uses local mocks in tests, and the full suite receives no real credentials. Both free execution and account preflight are disabled. Real smoke/pilot/main observations remain absent, with HTTP 401 authentication and the restored offline instruction recorded as blockers.
+
+The [clean local clone](research/checks/free_clean_clone.json) also passed all 901 tests, audit and clean tracked diff, using the same installed dependencies. [Invocation evidence](research/checks/free_clean_clone_command.json) records credential exclusion and no network. This does not establish a fresh dependency installation or real provider delivery.

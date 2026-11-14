@@ -1,0 +1,56 @@
+{
+  "classification": "offline_code_reproduction_not_empirical_execution",
+  "commit": "9a25cbdb774cda1e5c2fc8d1ea5498371bc84298",
+  "recorded_at_utc": "2026-11-14T12:30:06.407209+00:00",
+  "network_used": false,
+  "fresh_dependency_install": false,
+  "same_host_environment": true,
+  "checks": [
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.autocrlf=true",
+        "clone",
+        "--local",
+        "--no-hardlinks",
+        "C:\\Users\\tonmo\\OneDrive\\Documents\\ChatGPT\\beyond-the-label",
+        "C:\\Users\\tonmo\\AppData\\Local\\Temp\\btl-offline-clone-hxjlfloy\\repo"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Cloning into 'C:\\Users\\tonmo\\AppData\\Local\\Temp\\btl-offline-clone-hxjlfloy\\repo'...\ndone."
+    },
+    {
+      "command": [
+        "C:\\Users\\tonmo\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [  7%]\n........................................................................ [ 15%]\n........................................................................ [ 23%]\n........................................................................ [ 31%]\n........................................................................ [ 39%]\n........................................................................ [ 47%]\n........................................................................ [ 55%]\n........................................................................ [ 63%]\n........................................................................ [ 71%]\n........................................................................ [ 79%]\n........................................................................ [ 87%]\n........................................................................ [ 95%]\n.....................................                                    [100%]\n901 passed in 202.81s (0:03:22)",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\tonmo\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "scripts/verify_audit.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"passed\",\n  \"scope\": \"audit evidence and source integrity; experiment tests are separately recorded\",\n  \"checks_passed\": 432,\n  \"requirements_mapped\": 37,\n  \"files_scanned\": 196,\n  \"source_sha256\": \"f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b\",\n  \"secret_scan_limit\": \"Selected token patterns, credential filenames, and checked current environment values; manual diff review also required.\",\n  \"failures\": []\n}",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "passed": true
+}

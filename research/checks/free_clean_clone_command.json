@@ -1,0 +1,8 @@
+{
+  "command": "python scripts/reproduce_offline.py --output research/checks/free_clean_clone.json",
+  "exit_code": 0,
+  "stdout": "{\"passed\": true, \"commit\": \"9a25cbdb774cda1e5c2fc8d1ea5498371bc84298\", \"checks\": 4, \"fresh_dependency_install\": false}",
+  "stderr": "",
+  "child_received_real_credentials": false,
+  "network_used": false
+}
