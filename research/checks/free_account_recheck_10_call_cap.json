@@ -1,0 +1,18 @@
+{
+  "classification": "read_only_authenticated_account_check_not_inference",
+  "recorded_at_utc": "2026-11-14T13:12:11.903533+00:00",
+  "maximum_authorized_inference_attempts": 10,
+  "inference_calls": 0,
+  "account_settings_changed": false,
+  "credential_values_displayed": false,
+  "status": "verified",
+  "authentication": "accepted",
+  "evidence": {
+    "zero_hard_limit": false,
+    "free_model_daily_requests": {
+      "used": 0,
+      "limit": 50,
+      "remaining": 50
+    }
+  }
+}

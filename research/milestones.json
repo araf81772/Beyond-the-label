@@ -1,7 +1,7 @@
 {
-  "recorded_at_utc": "2026-11-14T13:09:49.216543+00:00",
+  "recorded_at_utc": "2026-11-14T13:16:34.671991+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "User renewed free-only M4 -> M5 -> M6 execution conditional on verified USD 0 hard key limit; paid calls prohibited; Git delivery and source verification authorized",
+  "requested_scope": "Recheck key; free-only M4 through M6 only if hard limit USD 0; maximum 10 aggregate inference attempts including retries, re-prompts and continuations; no paid calls; test/log/commit/push",
   "execution_freeze": null,
   "experimental_calls": 0,
   "human_participation_observed": false,
@@ -227,7 +227,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "Authenticated read-only key check succeeded, but zero_hard_limit is false. User authorization is conditional on a verified USD 0 hard key limit; no inference sent.",
+      "reason": "Latest authenticated key check still returns zero_hard_limit:false; conditional authorization remains unmet. The new 10-attempt ceiling would permit only partial smoke.",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -250,7 +250,7 @@
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
-      "minimum_next_action": "Set the OpenRouter hard spending limit to USD 0 on the exact key used by the ignored .env, then request a recheck. Conditional free-only authorization already exists; do not purchase credits or enable paid calls.",
+      "minimum_next_action": "Set the hard spending limit on the OpenRouter key in the ignored .env to exactly USD 0 and request a recheck. Existing conditional authorization is capped at 10 total inference attempts; completing M4 later requires a separately authorized larger call allowance.",
       "offline_preparation_status": "Full offline suite rechecked: 901 passed; real smoke/pilot/freeze blocked by unmet USD 0 hard-key-limit condition",
       "offline_validation": [
         {
@@ -337,6 +337,18 @@
           "exit_code": 0,
           "summary": "643 audit/source/selected-secret checks, dependencies, diff and unchanged experiment inputs passed; .env ignored and untracked",
           "evidence": "research/checks/free_limit_recheck_validation.json"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "901 passed in 195.17s; network blocked and real credentials excluded",
+          "evidence": "research/checks/free_10_call_cap_suite.json"
+        },
+        {
+          "command": "python scripts/verify_audit.py; python -m pip check; git diff --check; unchanged-input and ignored-env checks; build_manifest smoke count",
+          "exit_code": 0,
+          "summary": "652 audit checks before final evidence files; dependencies/diff/input invariance passed; smoke has80initialcells",
+          "evidence": "research/checks/free_10_call_cap_validation.json"
         }
       ],
       "recorded_test_fix_retest": [
@@ -369,7 +381,8 @@
       },
       "local_credential_setup": {
         "status": "authenticated_but_zero_hard_limit_not_verified",
-        "evidence": "research/checks/free_account_recheck.json",
+        "evidence": "research/checks/free_account_recheck_10_call_cap.json",
+        "credential_source_evidence": "research/checks/free_key_source_10_call_cap.json",
         "env_file_ignored": true,
         "credential_values_recorded": false,
         "paid_calls_authorized": false,
@@ -442,6 +455,17 @@
           "provider_calls": 0,
           "account_status_requests": 1,
           "provider_inference_calls": 0
+        },
+        {
+          "status": "authenticated_but_zero_hard_limit_not_verified",
+          "evidence": "research/checks/free_account_recheck.json",
+          "env_file_ignored": true,
+          "credential_values_recorded": false,
+          "paid_calls_authorized": false,
+          "provider_inference_calls": 0,
+          "free_quota_used": 0,
+          "free_quota_limit": 50,
+          "free_quota_remaining": 50
         }
       ],
       "current_execution_authorization": {
@@ -451,30 +475,49 @@
         "paid_calls_authorized": false,
         "configured_execution_enabled": false,
         "source_config_changed": false,
-        "evidence": "research/checks/free_account_recheck.json"
+        "evidence": "research/checks/free_account_recheck_10_call_cap.json",
+        "maximum_aggregate_inference_attempts": 10,
+        "attempt_count_includes": [
+          "initial_requests",
+          "infrastructure_retries",
+          "no_tool_reprompts",
+          "continuations"
+        ],
+        "cap_readiness": "No inference enabled. Existing max_cells is not an aggregate call cap; durable attempt accounting must enforce this ceiling before future execution."
       },
       "current_checkpoint": {
-        "status": "committed_and_pushed_real_execution_blocked",
+        "status": "offline_validation_passed_real_execution_blocked",
+        "account_evidence": "research/checks/free_account_recheck_10_call_cap.json",
+        "credential_source_evidence": "research/checks/free_key_source_10_call_cap.json",
         "commit_reference": "Resolve final identity through Git; no circular self-hash",
-        "push_status": "succeeded",
-        "test_evidence": "research/checks/free_limit_recheck_suite.json",
-        "account_evidence": "research/checks/free_account_recheck.json",
-        "source_verification": "research/checks/source_verification.json",
-        "verification_evidence": "research/checks/free_limit_recheck_validation.json",
-        "delivered_commit": "dac42551848155e2cfb47fd54da15725d1c891a0",
-        "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
-        "branch": "main",
-        "remote_head_verified": true,
-        "verification_command": "git ls-remote origin refs/heads/main",
-        "staged_audit_checks": 646,
-        "final_status_checkpoint": "This follow-up records observed delivery; its own identity is resolved and verified through Git without a circular self-hash"
-      }
+        "push_status": "pending",
+        "test_evidence": "research/checks/free_10_call_cap_suite.json",
+        "verification_evidence": "research/checks/free_10_call_cap_validation.json"
+      },
+      "checkpoint_history": [
+        {
+          "status": "committed_and_pushed_real_execution_blocked",
+          "commit_reference": "Resolve final identity through Git; no circular self-hash",
+          "push_status": "succeeded",
+          "test_evidence": "research/checks/free_limit_recheck_suite.json",
+          "account_evidence": "research/checks/free_account_recheck.json",
+          "source_verification": "research/checks/source_verification.json",
+          "verification_evidence": "research/checks/free_limit_recheck_validation.json",
+          "delivered_commit": "dac42551848155e2cfb47fd54da15725d1c891a0",
+          "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
+          "branch": "main",
+          "remote_head_verified": true,
+          "verification_command": "git ls-remote origin refs/heads/main",
+          "staged_audit_checks": 646,
+          "final_status_checkpoint": "This follow-up records observed delivery; its own identity is resolved and verified through Git without a circular self-hash"
+        }
+      ]
     },
     {
       "number": 5,
       "name": "Main execution",
       "status": "blocked",
-      "reason": "No validated real smoke/pilot or execution freeze; current hard-key-limit condition blocks inference",
+      "reason": "Real smoke/pilot and execution freeze absent; hard key-limit condition blocks inference, and the 10-attempt allowance cannot complete required M4 gates",
       "empirical_completed_cells": 0,
       "planned_cells": 704,
       "missingness_interpretation": "Not executed; no partial empirical run exists",
