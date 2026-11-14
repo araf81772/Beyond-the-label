@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-14T13:08:27.915396+00:00",
+  "recorded_at_utc": "2026-11-14T13:09:49.216543+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "User renewed free-only M4 -> M5 -> M6 execution conditional on verified USD 0 hard key limit; paid calls prohibited; Git delivery and source verification authorized",
   "execution_freeze": null,
@@ -454,13 +454,20 @@
         "evidence": "research/checks/free_account_recheck.json"
       },
       "current_checkpoint": {
-        "status": "offline_tests_passed_real_execution_blocked",
+        "status": "committed_and_pushed_real_execution_blocked",
         "commit_reference": "Resolve final identity through Git; no circular self-hash",
-        "push_status": "pending",
+        "push_status": "succeeded",
         "test_evidence": "research/checks/free_limit_recheck_suite.json",
         "account_evidence": "research/checks/free_account_recheck.json",
         "source_verification": "research/checks/source_verification.json",
-        "verification_evidence": "research/checks/free_limit_recheck_validation.json"
+        "verification_evidence": "research/checks/free_limit_recheck_validation.json",
+        "delivered_commit": "dac42551848155e2cfb47fd54da15725d1c891a0",
+        "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
+        "branch": "main",
+        "remote_head_verified": true,
+        "verification_command": "git ls-remote origin refs/heads/main",
+        "staged_audit_checks": 646,
+        "final_status_checkpoint": "This follow-up records observed delivery; its own identity is resolved and verified through Git without a circular self-hash"
       }
     },
     {
