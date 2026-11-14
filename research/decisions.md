@@ -24,3 +24,9 @@ Exact commands/outcomes are in `research/baseline.json`. Initial checks included
 Audit acceptance uses `python scripts/verify_audit.py` plus `git diff --check`; the script validates source integrity, mapping/status completeness, and selected credential patterns. Review covers the intended diff, all generated audit files, scientific wording, and secret exposure. The milestone record distinguishes local audit completion from a blocked remote push. Commit identity is recoverable from Git history instead of being embedded circularly in the files it hashes.
 
 Independent AI review identified three mapping omissions, repaired before acceptance: core T3/T4/T6 checks belong in milestone 2 with provider/harness revalidation in milestone 3; world integrity explicitly includes .90/.60 accuracy, conditional independence, shared twin draws and exactly one IN report; deterministic rendering includes the prescribed pre-materialized conversation prefix. These repairs change audit coverage, not the experiment design.
+
+## 2026-11-14 — M1: local commit and blocked delivery
+
+Local milestone commit: `762ff8a3b0bb1257636dfdf704e3e3c8de58ad16` on `master`. All 55 audit checks passed across 37 mapped requirements and 12 intended files; staged whitespace checks passed. The committed source blob matches the original SHA-256. Experiment tests remain absent (pytest process exit 5), and no human review or paid execution occurred.
+
+`git push` returned exit 128: `fatal: No configured push destination.` No remote branch exists to compare. The local commit is preserved; the minimum delivery action is to provide the intended existing repository URL and branch. A follow-up status commit records this outcome without circular commit hashes. Milestone 1 is locally complete but its push step is blocked; milestones 2–6 remain not started.

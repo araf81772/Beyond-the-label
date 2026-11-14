@@ -202,10 +202,20 @@
     "recorded_at_utc": "2026-11-14T09:17:11.088446+00:00"
   },
   "git_delivery": {
-    "commit": "ready for authorized local milestone commit",
-    "push": "blocked: no verified intended remote/branch",
+    "commit": "762ff8a3b0bb1257636dfdf704e3e3c8de58ad16",
+    "push": "blocked: no configured push destination",
     "remote_commit_comparison": "not possible without destination",
-    "staging": "Initial .git/index.lock permission denied under read-only sandbox; authorized escalation succeeded; 12 intended files staged"
+    "staging": "Initial .git/index.lock permission denied under read-only sandbox; authorized escalation succeeded; 12 intended files staged",
+    "branch": "master",
+    "push_attempt": {
+      "command": "git push",
+      "exit_code": 128,
+      "stdout": "",
+      "stderr": "fatal: No configured push destination.\nEither specify the URL from the command-line or configure a remote repository using\n\n    git remote add <name> <url>\n\nand then push using the remote name\n\n    git push <name>\n\nTo push to multiple remotes at once, configure a remote group using\n\n    git config remotes.<groupname> \"<remote1> <remote2>\"\n\nand then push using the group name\n\n    git push <groupname>",
+      "remote_head_verified": false
+    },
+    "archived_source_matches_committed_blob": true,
+    "final_status_checkpoint": "See current Git HEAD for the subsequent delivery-status commit"
   },
   "analytic_reference_check": {
     "rows_checked": 7,

@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-14T09:15:51.256097+00:00",
+  "recorded_at_utc": "2026-11-14T09:17:38.638390+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "Execute milestone 1",
   "execution_freeze": null,
@@ -9,7 +9,7 @@
     {
       "number": 1,
       "name": "Audit",
-      "status": "local_acceptance_passed_commit_pending_push_blocked",
+      "status": "local_complete_push_blocked",
       "artifacts": [
         "README.md",
         "AGENTS.md",
@@ -31,14 +31,19 @@
         "diff_secret_claim_review": "passed: staged diff review and selected credential checks; no scientific result claims"
       },
       "commit": {
-        "status": "ready",
+        "status": "committed",
         "intended_message": "audit: establish authoritative design and milestone 1 baseline",
-        "identity_reference": "Use git log; no circular self-hash in committed artifacts"
+        "identity_reference": "Use git log; no circular self-hash in committed artifacts",
+        "sha": "762ff8a3b0bb1257636dfdf704e3e3c8de58ad16",
+        "branch": "master",
+        "status_checkpoint": "A subsequent local commit records delivery outcome; resolve final HEAD with Git"
       },
       "push": {
         "status": "blocked",
-        "reason": "No remote/upstream or verified intended existing repository URL/branch",
-        "remote_head_verified": false
+        "reason": "No configured push destination; intended existing repository URL/branch still needed",
+        "remote_head_verified": false,
+        "command": "git push",
+        "exit_code": 128
       },
       "unresolved": [
         "Intended existing repository URL/branch",
