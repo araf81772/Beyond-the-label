@@ -1,0 +1,15 @@
+{
+  "classification": "offline_rehearsal_regression_not_empirical_observations",
+  "recorded_at_utc": "2026-11-14T10:57:52.363395+00:00",
+  "command": "python -m pytest -q tests/test_rehearsal_acceptance.py",
+  "before_fix": {
+    "exit_code": 1,
+    "observed_summary": "10 failed, 1 passed in 2.74s"
+  },
+  "after_fix": {
+    "exit_code": 0,
+    "observed_summary": "11 passed in 2.10s"
+  },
+  "output_kind": "observed_summary_not_reconstructed_verbatim_log",
+  "fix": "Require no missing/invalid cells or continuations and exact deterministic fixture call counts; a terminal error alone is not a passing rehearsal."
+}

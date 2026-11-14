@@ -35,6 +35,78 @@ def test_unauthorized_cap_and_missing_main_freeze_are_blocked():
         require_real_execution({"live_execution_enabled":True},stage="pilot")
     config={"live_execution_enabled":True,"authorized_spend_cap":1,"currency":"USD","model":"fixture",
             "provider":"fixture","routing_service":"fixture","reasoning":{},"temperature":0,
-            "allow_fallbacks":False,"parallel_tool_calls":False,"provider_docs_verified":True,"provider_rate_limit":1}
+            "allow_fallbacks":False,"parallel_tool_calls":False,"provider_docs_verified":True,"provider_rate_limit":1,
+            "max_output_tokens":512,"concurrency":1}
     with pytest.raises(ExecutionBlocked,match="Real smoke"):
         require_real_execution(config,stage="main")
+
+
+def necessary_config():
+    """Local gate fixture; neither authorization nor live-delivery evidence."""
+    return {"live_execution_enabled": True, "authorized_spend_cap": 1, "currency": "USD",
+            "model": "fixture", "provider": "fixture", "routing_service": "fixture",
+            "reasoning": {}, "temperature": 0, "max_output_tokens": 512, "concurrency": 1,
+            "allow_fallbacks": False, "parallel_tool_calls": False,
+            "provider_docs_verified": True, "provider_rate_limit": 60}
+
+
+def necessary_freeze():
+    """Bare metadata cannot establish a real freeze; these test required fields only."""
+    return {"real_smoke_passed": True, "real_pilot_passed": True, "hashes_verified": True,
+            "commit": "a" * 40, "tag": "fixture-only", "selected_load": 2}
+
+
+@pytest.mark.parametrize("field,value", [
+    ("authorized_spend_cap", float("nan")), ("authorized_spend_cap", float("inf")),
+    ("authorized_spend_cap", float("-inf")), ("authorized_spend_cap", True),
+    ("currency", " "), ("currency", 1),
+    ("model", " "), ("model", 1), ("provider", " "), ("routing_service", []),
+    ("temperature", float("nan")), ("temperature", float("inf")),
+    ("temperature", -1), ("temperature", True), ("reasoning", "off"),
+    ("max_output_tokens", None), ("max_output_tokens", 0), ("max_output_tokens", True),
+    ("max_output_tokens", 1.5), ("concurrency", None), ("concurrency", 0),
+    ("concurrency", True), ("concurrency", 1.5),
+    ("provider_docs_verified", "false"), ("provider_docs_verified", 1),
+    ("provider_rate_limit", float("nan")), ("provider_rate_limit", float("inf")),
+    ("provider_rate_limit", -1), ("provider_rate_limit", True),
+])
+def test_malformed_required_settings_fail_closed(field, value):
+    config = necessary_config()
+    config[field] = value
+    with pytest.raises(ExecutionBlocked):
+        require_real_execution(config, stage="smoke")
+
+
+@pytest.mark.parametrize("field", ["real_smoke_passed", "real_pilot_passed", "hashes_verified"])
+@pytest.mark.parametrize("value", ["false", 1, False, None])
+def test_freeze_requires_boolean_verification_fields(field, value):
+    config = {**necessary_config(), "load": 2}
+    freeze = necessary_freeze()
+    freeze[field] = value
+    with pytest.raises(ExecutionBlocked):
+        require_real_execution(config, stage="main", freeze=freeze)
+
+
+@pytest.mark.parametrize("field,value", [("commit", " "), ("commit", 1), ("tag", " "), ("tag", 1)])
+def test_freeze_requires_nonblank_string_identity(field, value):
+    config = {**necessary_config(), "load": 2}
+    freeze = necessary_freeze()
+    freeze[field] = value
+    with pytest.raises(ExecutionBlocked):
+        require_real_execution(config, stage="main", freeze=freeze)
+
+
+@pytest.mark.parametrize("field", ["load", "selected_load"])
+def test_main_load_requires_integer_not_float(field):
+    config = {**necessary_config(), "load": 2}
+    freeze = necessary_freeze()
+    (config if field == "load" else freeze)[field] = 2.0
+    with pytest.raises(ExecutionBlocked):
+        require_real_execution(config, stage="main", freeze=freeze)
+
+
+def test_well_typed_necessary_fields_do_not_claim_sufficient_readiness():
+    assert require_real_execution(necessary_config(), stage="smoke") is None
+    assert require_real_execution(necessary_config(), stage="pilot") is None
+    assert require_real_execution({**necessary_config(), "load": 2}, stage="main",
+                                  freeze=necessary_freeze()) is None

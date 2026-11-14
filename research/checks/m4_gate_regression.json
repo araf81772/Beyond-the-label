@@ -1,0 +1,45 @@
+{
+  "classification": "offline_gate_regression_tests_not_empirical_observations",
+  "recorded_at_utc": "2026-11-14T10:54:38.780691+00:00",
+  "files_changed": [
+    "src/beyond_label/gates.py",
+    "tests/test_pilot_freeze_gates.py"
+  ],
+  "experimental_calls": 0,
+  "checks": [
+    {
+      "command": "python -m pytest -q tests/test_pilot_freeze_gates.py",
+      "phase": "new_regressions_before_fix",
+      "exit_code": 1,
+      "observed_summary": "38 failed, 23 passed in 0.92s",
+      "output_kind": "summary_from_observed_tool_output_not_reconstructed_full_log"
+    },
+    {
+      "command": "python -m pytest -q tests/test_pilot_freeze_gates.py",
+      "phase": "after_fix",
+      "exit_code": 0,
+      "observed_summary": "61 passed in 0.19s",
+      "output_kind": "summary_from_observed_tool_output_not_reconstructed_full_log"
+    },
+    {
+      "command": "git diff --check -- src/beyond_label/gates.py tests/test_pilot_freeze_gates.py",
+      "phase": "after_fix",
+      "exit_code": 0,
+      "observed_summary": "No whitespace errors"
+    }
+  ],
+  "fixes": [
+    "Reject nonfinite or boolean numeric prerequisites",
+    "Require positive integer token and concurrency limits",
+    "Require nonblank identifier strings and mapping reasoning settings",
+    "Require exact True verification flags",
+    "Require integer main load matching integer frozen selected load"
+  ],
+  "unchanged": [
+    "Pilot thresholds",
+    "Empirical model and load remain unselected",
+    "Live transport disabled",
+    "No execution freeze"
+  ],
+  "limitation": "Field validation is necessary only; it does not authenticate spending authorization, pilot observations, hashes, commit, or tag."
+}

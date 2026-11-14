@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-14T09:59:23.192870+00:00",
+  "recorded_at_utc": "2026-11-14T11:00:23.560705+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "Sequential offline milestones with test-fix-retest and commit/push; Git transport authorized",
   "execution_freeze": null,
@@ -232,12 +232,53 @@
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
         "Full four-world smoke manifest and eight-world pilot manifest",
-        "Pre-freeze configuration templates"
+        "Pre-freeze configuration templates",
+        "Trace-verified pilot threshold aggregation with synthetic-only decisions",
+        "Finite and strict typed execution prerequisite checks",
+        "Smoke load-2, pilot load-2 and smoke load-8 fixture rehearsals",
+        "Regression against completed terminal failures being counted as passing rehearsal"
       ],
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
-      "minimum_next_action": "Authorize live execution with a spending cap/currency and model/provider settings; supply credentials through environment; verify provider docs/delivery before real smoke"
+      "minimum_next_action": "Authorize live execution with a spending cap/currency and model/provider settings; supply credentials through environment; verify provider docs/delivery before real smoke",
+      "offline_preparation_status": "validated; real milestone acceptance remains blocked",
+      "offline_validation": [
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "434 passed",
+          "evidence": "research/checks/m4_suite_final.json"
+        },
+        {
+          "command": "python scripts/rehearse_offline.py",
+          "exit_code": 0,
+          "summary": "320 fixture cells / 576 stored successful fixture calls; all 15 artifact hashes preserved on stricter replay",
+          "evidence": "research/checks/m4_rehearsal_final_retest.json"
+        },
+        {
+          "command": "python scripts/validate_offline.py --output evaluation/synthetic_main_load2_m4prep",
+          "exit_code": 0,
+          "summary": "704 fixture cells / 1152 successful fixture calls; replay and resume verified",
+          "evidence": "research/checks/m4_main_pipeline.json"
+        }
+      ],
+      "recorded_test_fix_retest": [
+        "Gate regressions: 38 failed / 23 passed before fix, 61 passed after fix",
+        "Rehearsal acceptance: 10 failed / 1 passed before fix, 11 passed after fix",
+        "Initial stricter replay failed with local OSError opening scores.csv; all 15 file hashes unchanged; isolated retest passed"
+      ],
+      "offline_artifacts": [
+        "evaluation/synthetic_m4_rehearsal/rehearsal.json",
+        "evaluation/synthetic_main_load2_m4prep",
+        "src/beyond_label/pilot.py",
+        "scripts/rehearse_offline.py"
+      ],
+      "offline_preparation_push": {
+        "status": "pending",
+        "remote": "origin",
+        "branch": "main"
+      }
     },
     {
       "number": 5,

@@ -1,0 +1,8 @@
+{
+  "classification": "offline_validation_not_empirical_observations",
+  "recorded_at_utc": "2026-11-14T10:56:54.551452+00:00",
+  "command": "python scripts/validate_offline.py --output evaluation/synthetic_main_load2_m4prep",
+  "exit_code": 0,
+  "stdout": "{\n  \"classification\": \"SYNTHETIC VALIDATION ONLY \\u2014 NOT EMPIRICAL RESULTS\",\n  \"empirical_observations\": 0,\n  \"actual_experimental_api_calls\": 0,\n  \"actual_experimental_api_spend\": 0,\n  \"planned_cells\": 704,\n  \"completed_cells\": 704,\n  \"synthetic_successful_calls\": 1152,\n  \"synthetic_retries\": 0,\n  \"synthetic_invalid_first_actions\": 0,\n  \"synthetic_missing_cells\": 0,\n  \"resume_issued_no_duplicate_calls\": true,\n  \"offline_regeneration_byte_identical\": true,\n  \"raw_trace_preserved\": true,\n  \"raw_trace_sha256\": \"b03f5dcc622a1813daf49380cd0e17dd4aa12b60b9f08a6b1255f2fb8d83ae7a\",\n  \"synthetic_provider\": {\n    \"model\": \"synthetic-public-policy-v1\",\n    \"provider\": \"synthetic-local\",\n    \"temperature\": 0.0,\n    \"reasoning\": {},\n    \"max_output_tokens\": 512\n  },\n  \"figures\": [\n    \"evaluation\\\\synthetic_main_load2_m4prep\\\\analysis\\\\figures\\\\allocation.csv\",\n    \"evaluation\\\\synthetic_main_load2_m4prep\\\\analysis\\\\figures\\\\agent_allocation_vs_oracle.png\",\n    \"evaluation\\\\synthetic_main_load2_m4prep\\\\analysis\\\\figures\\\\pair_switch_categories.png\"\n  ],\n  \"evidence\": {\n    \"artifact_label\": \"SYNTHETIC VALIDATION \\u2014 NOT EMPIRICAL RESULTS\",\n    \"matched_trace_status\": \"trace_derived\",\n    \"output\": \"evaluation\\\\synthetic_main_load2_m4prep\\\\analysis\"\n  }\n}",
+  "stderr": ""
+}

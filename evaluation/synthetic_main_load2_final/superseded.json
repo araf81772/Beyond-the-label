@@ -1,0 +1,9 @@
+{
+  "classification": "SYNTHETIC VALIDATION ONLY \u2014 NOT EMPIRICAL RESULTS",
+  "status": "historical_validation_preserved",
+  "reason": "Pre-freeze continuation fixes execution prerequisites and adds trace-derived pilot summaries; prior input bytes and traces remain unchanged.",
+  "replacement_run": "evaluation/synthetic_main_load2_m4prep",
+  "replacement_status": "validated_offline",
+  "original_input_snapshot": "input_snapshot.zip",
+  "empirical_observations": 0
+}

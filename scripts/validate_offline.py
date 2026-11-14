@@ -19,7 +19,7 @@ from beyond_label.run import ScriptedPublicPolicy, build_manifest, rebuild_outpu
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--output',type=Path,default=Path('evaluation/synthetic_main_load2_final'))
+    parser.add_argument('--output',type=Path,default=Path('evaluation/synthetic_main_load2_m4prep'))
     args=parser.parse_args()
     plans=ROOT/'data/plans';plans.mkdir(parents=True,exist_ok=True)
     for dataset,load in [('main',2),('main',8),('pilot',2),('smoke',2),('smoke',8)]:
