@@ -18,7 +18,7 @@ Codex performs engineering, execution, and machine checks. Independent agent rev
 - Use one pinned model and named provider, no fallback, fresh cell contexts, one sample per cell, and exact recorded settings.
 - Infrastructure retries are distinct from model samples. Never retry invalid model decisions. Freeze the single no-tool re-prompt verbatim.
 - Do not make paid calls until spending authorization, credentials, provider settings, limits, and required offline tests are established. Credits and price estimates are not authorization.
-- Never print, write, or commit credential values or authorization headers. Credentials come from environment variables; report presence only.
+- Never print, write, or commit credential values or authorization headers. Credentials come from environment variables; the user-authorized, Git-ignored project-root `.env` may populate known credential names without overriding existing process values. Never display or commit `.env`; report presence only. Loading credentials does not authorize paid calls.
 - Retain every planned condition and case, including MASKED and final-outcome analyses; the current user instruction supersedes the source's time-pressure cut order.
 - Routine milestone commits and pushes to the verified intended repository are authorized. No force-push, protected-branch merge, new public remote, visibility change, publication, or submission without the required approval.
 

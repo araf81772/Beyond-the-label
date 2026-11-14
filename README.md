@@ -36,7 +36,7 @@ The initial milestone-1 pytest attempt found no tests; that historical evidence 
 ## Synthetic offline pipeline
 
 ```powershell
-python scripts/validate_offline.py --output evaluation/synthetic_main_load2_m4prep
+python scripts/validate_offline.py --output evaluation/synthetic_main_load2_env
 python scripts/reproduce_offline.py
 ```
 
@@ -55,19 +55,37 @@ Milestone-3 validation evidence remains preserved: [353-test suite](research/che
 ```powershell
 python scripts/rehearse_offline.py
 $env:PYTHONPATH = 'src'
-python -m beyond_label.pilot evaluation/synthetic_m4_rehearsal/synthetic_pilot_load2 --allow-synthetic
+python -m beyond_label.pilot evaluation/synthetic_m4_rehearsal_env/synthetic_pilot_load2 --allow-synthetic
 ```
 
 The rehearsal covers four smoke worlds at load-2, all eight pilot worlds, and the four smoke worlds at load-8: 320 fixture cells and 576 successful local fixture calls. Each stage verifies trace-derived scoring, usage, byte-identical regeneration and zero additional calls on completed resume. Load-8 is exercised unconditionally for offline coverage; it is not an actual pilot selection.
 
 The pilot summary verifies the complete plan, raw journal and all derived files before computing the 16 paired MAIN outcomes and 16 NUMERIC outcomes. Altered scores, duplicate events and empirical relabeling fail verification. Invalid observations remain in the denominators; incomplete observations block threshold evaluation. The fixed first-target fixture produces 0/16 fully correct MAIN pairs and 8/16 optimal NUMERIC calls, which exercises the hypothetical floor-rule branch. It cannot decide an actual model change, select a load or authorize a freeze.
 
-Evidence: [rehearsal](evaluation/synthetic_m4_rehearsal/rehearsal.json), [gate regression cycle](research/checks/m4_gate_regression.json), [434-test integration suite](research/checks/m4_suite_final.json), and [renewed main-matrix validation](evaluation/synthetic_main_load2_m4prep/offline_validation.json). The [current clean-clone check](research/checks/m4_clean_clone.json) also passed all 434 tests; [all committed input hashes](research/checks/m4_committed_inputs.json) match. Necessary execution fields now reject non-finite caps/rates, malformed settings and truthy strings used as verification flags; those field checks do not authenticate real authorization or experimental evidence.
+Evidence: [rehearsal](evaluation/synthetic_m4_rehearsal/rehearsal.json), [gate regression cycle](research/checks/m4_gate_regression.json), [434-test integration suite](research/checks/m4_suite_final.json), and [renewed main-matrix validation](evaluation/synthetic_main_load2_m4prep/offline_validation.json). The [pre-loader clean-clone check](research/checks/m4_clean_clone.json) also passed all 434 tests; [all committed input hashes](research/checks/m4_committed_inputs.json) match. Necessary execution fields now reject non-finite caps/rates, malformed settings and truthy strings used as verification flags; those field checks do not authenticate real authorization or experimental evidence.
 
 ## Execution prerequisites
 
-OpenRouter is specified as the routing service. The model, upstream provider, reasoning setting, output-token limit, numeric spending cap, and provider rate/concurrency limits are not selected. No checked provider credential is present in the current process environment. The design's “under US$20” is a planning estimate, not authorization or measured expenditure. No paid calls were made during this audit.
+OpenRouter is specified as the routing service. The model, upstream provider, reasoning setting, output-token limit, numeric spending cap, and provider rate/concurrency limits are not selected. A local credential can now be loaded automatically from the ignored project-root `.env`; a presence check does not verify authentication or authorize spending. The design's “under US$20” is a planning estimate, not authorization or measured expenditure. No paid calls were made during this audit.
 
 Delivery uses the user-supplied existing repository, [araf81772/Beyond-the-label](https://github.com/araf81772/Beyond-the-label), on `main`. No GitHub repository was created or visibility changed. NUMERIC's information-sufficiency ambiguity was resolved by explicit user approval of amendment A1: retain report facts alongside the prescribed losses.
 
 The user requires offline research execution. Git delivery is the requested exception. There is no execution freeze, model observation, effect estimate, confidence interval, observed regret, pilot decision, human trace review, or empirical report. Synthetic world inputs and analytic references must not be counted as model results.
+
+
+## Local credential loading
+
+The provider loads known credential names from the project-root `.env` automatically when checking presence, constructing a provider, serializing a request or parsing a response. Existing process values take precedence, including explicit empty values. Other `.env` settings are ignored, interpolation is disabled, and importing a module does not load credentials. The user-authorized local `.env` is Git-ignored and never included in run manifests or input snapshots.
+
+Check presence only, without contacting a provider:
+
+```powershell
+$env:PYTHONPATH = 'src'
+python -m beyond_label.environment
+```
+
+The command emits booleans and fixed error codes only. Do not print the file or environment values. Both real execution guards remain disabled; a detected key is not a budget, model choice or permission to spend. Tests use temporary fake credentials and cannot read the user's real `.env`.
+
+Adding the loader changes source hashes. The earlier four synthetic runs retain their original bytes and are tied to commit `34c9438`; their 29 original inputs are archived in `evaluation/input_snapshots/34c9438_before_env_loading.zip` without credentials. Current commands use new output directories for future validation instead of rewriting historical traces. The full test suite exercises fresh synthetic runs under the current source.
+
+Credential-loading validation: [453-test suite](research/checks/env_loading_suite_final.json), [safe regression summaries](research/checks/env_loading_regressions.json), and [presence-only check](research/checks/env_presence.json). The key was detected locally; this does not establish online authentication. No paid calls were made.

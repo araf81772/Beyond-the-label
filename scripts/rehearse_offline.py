@@ -102,7 +102,7 @@ def rehearse(output: Path) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=Path("evaluation/synthetic_m4_rehearsal"))
+    parser.add_argument("--output", type=Path, default=Path("evaluation/synthetic_m4_rehearsal_env"))
     args = parser.parse_args()
     record = rehearse(args.output)
     print(json.dumps({

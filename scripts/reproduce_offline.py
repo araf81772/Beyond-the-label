@@ -17,7 +17,7 @@ import tempfile
 
 def main() -> int:
     parser=argparse.ArgumentParser()
-    parser.add_argument("--output",type=Path,default=Path("research/checks/m4_clean_clone.json"))
+    parser.add_argument("--output",type=Path,default=Path("research/checks/env_clean_clone.json"))
     args=parser.parse_args()
     root=Path(__file__).resolve().parents[1]
     head=subprocess.run(["git","rev-parse","HEAD"],cwd=root,capture_output=True,text=True,check=True).stdout.strip()

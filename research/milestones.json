@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-14T11:04:38.924286+00:00",
+  "recorded_at_utc": "2026-11-14T11:28:52.105800+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "Sequential offline milestones with test-fix-retest and commit/push; Git transport authorized",
   "execution_freeze": null,
@@ -137,7 +137,7 @@
       ],
       "real_run_blockers": [
         "User requires offline execution",
-        "No authorized paid-call budget or credentials",
+        "No authorized paid-call budget; local key presence detected without online authentication",
         "Actual model/upstream provider/settings and provider documentation unverified"
       ],
       "validation": [
@@ -236,12 +236,13 @@
         "Trace-verified pilot threshold aggregation with synthetic-only decisions",
         "Finite and strict typed execution prerequisite checks",
         "Smoke load-2, pilot load-2 and smoke load-8 fixture rehearsals",
-        "Regression against completed terminal failures being counted as passing rehearsal"
+        "Regression against completed terminal failures being counted as passing rehearsal",
+        "Automatic ignored .env loading with presence-only CLI and credential-isolated tests"
       ],
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
-      "minimum_next_action": "Authorize live execution with a spending cap/currency and model/provider settings; supply credentials through environment; verify provider docs/delivery before real smoke",
+      "minimum_next_action": "Authorize live execution with a spending cap/currency and model/provider settings; implement and verify live transport, budget enforcement and provider compatibility. Local key presence is detected but authentication is unverified.",
       "offline_preparation_status": "validated; real milestone acceptance remains blocked",
       "offline_validation": [
         {
@@ -273,6 +274,12 @@
           "exit_code": 0,
           "summary": "All 29 input hashes match in each of four current synthetic run manifests",
           "evidence": "research/checks/m4_committed_inputs.json"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "453 passed after credential loading, malformed-input rollback and session isolation fixes",
+          "evidence": "research/checks/env_loading_suite_final.json"
         }
       ],
       "recorded_test_fix_retest": [
@@ -294,6 +301,14 @@
         "remote_head_verified": true,
         "verification_command": "git ls-remote origin refs/heads/main",
         "status_checkpoint": "Follow-up commit records this evidence; final remote HEAD is verified after that push"
+      },
+      "local_credential_setup": {
+        "status": "detected_locally_without_authentication",
+        "evidence": "research/checks/env_presence.json",
+        "env_file_ignored": true,
+        "credential_values_recorded": false,
+        "paid_calls_authorized": false,
+        "provider_calls": 0
       }
     },
     {

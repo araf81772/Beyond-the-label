@@ -17,10 +17,15 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+from beyond_label.environment import CredentialLoadError, load_local_credentials
 SOURCE_SHA256 = "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b"
 
 
 def main() -> int:
+    # Load silently so the exact local key is included in leak checks; ignored
+    # .env contents are never scanned, printed, hashed or copied into evidence.
+    load_local_credentials()
     failures: list[str] = []
     checks: list[str] = []
 
@@ -131,7 +136,7 @@ def main() -> int:
 if __name__ == "__main__":
     try:
         sys.exit(main())
-    except (OSError, ValueError, KeyError, subprocess.CalledProcessError) as exc:
+    except (OSError, ValueError, KeyError, CredentialLoadError, subprocess.CalledProcessError) as exc:
         # Error class only: exception content could contain sensitive file contents.
         print(json.dumps({"status": "failed", "error_class": type(exc).__name__}))
         sys.exit(1)

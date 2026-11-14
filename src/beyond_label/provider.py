@@ -23,6 +23,7 @@ import httpx
 from pydantic import Field
 
 from .schemas import ModelReply, Request, StrictModel, ToolCall
+from .environment import CREDENTIAL_NAMES, load_local_credentials
 
 
 class ProviderSettings(StrictModel):
@@ -52,7 +53,7 @@ class ProviderFailure(RuntimeError):
         super().__init__(reason)
 
 
-_CREDENTIAL_ENV = ("OPENROUTER_API_KEY", "OPENAI_API_KEY", "ANTHROPIC_API_KEY", "ADAPTION_API_KEY")
+_CREDENTIAL_ENV = CREDENTIAL_NAMES
 _SENSITIVE_KEYS = {"authorization", "proxy-authorization", "headers", "api_key", "api-key", "x-api-key", "access_token", "refresh_token", "credentials"}
 _TOKEN_PATTERNS = (
     re.compile(r"sk-(?:or-v1-)?[A-Za-z0-9_-]{20,}"),
@@ -65,8 +66,8 @@ _EXPLICIT_REFUSAL = re.compile(r"\A\s*I (?:refuse\b|cannot comply\b|can't comply
 
 
 def credential_presence() -> dict[str, bool]:
-    """Read environment presence only; never return credential values."""
-    return {name: bool(os.environ.get(name)) for name in _CREDENTIAL_ENV}
+    """Automatically load local credentials; return presence booleans only."""
+    return load_local_credentials()
 
 
 def live_transport(*args: Any, **kwargs: Any) -> dict[str, Any]:
@@ -113,6 +114,7 @@ def request_hash(payload: dict[str, Any]) -> str:
 
 def serialize_request(request: Request, settings: ProviderSettings) -> dict[str, Any]:
     """Allowlist provider fields; no headers, credentials or research envelope."""
+    load_local_credentials()
     if request.parallel_tool_calls:
         raise ProviderFailure("parallel_tools_forbidden")
     for message in request.messages:
@@ -270,6 +272,7 @@ def _infrastructure_reason(exc: BaseException) -> str | None:
 def parse_response(raw: Any, payload: dict[str, Any], settings: ProviderSettings,
                    latency_seconds: float = 0.0) -> ProviderResult:
     """Replay saved safe response evidence without invoking any transport."""
+    load_local_credentials()
     if not math.isfinite(latency_seconds) or latency_seconds < 0:
         raise ProviderFailure("invalid_latency_measurement")
     if payload.get("model") != settings.model or payload.get("provider") != {
@@ -287,6 +290,7 @@ class PinnedProvider:
     def __init__(self, settings: ProviderSettings,
                  transport: Callable[[dict[str, Any]], dict[str, Any] | None],
                  sleep: Callable[[float], None] | None = None):
+        load_local_credentials()
         self.settings = settings
         self.transport = transport
         self.sleep = sleep or (lambda seconds: None)
