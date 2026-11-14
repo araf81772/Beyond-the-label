@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-14T13:16:34.671991+00:00",
+  "recorded_at_utc": "2026-11-14T13:17:07.842757+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "Recheck key; free-only M4 through M6 only if hard limit USD 0; maximum 10 aggregate inference attempts including retries, re-prompts and continuations; no paid calls; test/log/commit/push",
   "execution_freeze": null,
@@ -486,13 +486,20 @@
         "cap_readiness": "No inference enabled. Existing max_cells is not an aggregate call cap; durable attempt accounting must enforce this ceiling before future execution."
       },
       "current_checkpoint": {
-        "status": "offline_validation_passed_real_execution_blocked",
+        "status": "committed_and_pushed_real_execution_blocked",
         "account_evidence": "research/checks/free_account_recheck_10_call_cap.json",
         "credential_source_evidence": "research/checks/free_key_source_10_call_cap.json",
         "commit_reference": "Resolve final identity through Git; no circular self-hash",
-        "push_status": "pending",
+        "push_status": "succeeded",
         "test_evidence": "research/checks/free_10_call_cap_suite.json",
-        "verification_evidence": "research/checks/free_10_call_cap_validation.json"
+        "verification_evidence": "research/checks/free_10_call_cap_validation.json",
+        "delivered_commit": "1c6f90fd7932310a41955e665fb3076af2ed4dac",
+        "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
+        "branch": "main",
+        "remote_head_verified": true,
+        "verification_command": "git ls-remote origin refs/heads/main",
+        "final_audit_checks": 658,
+        "final_status_checkpoint": "This follow-up records observed delivery; its own identity is resolved and verified through Git without a circular self-hash"
       },
       "checkpoint_history": [
         {
