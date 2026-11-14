@@ -1,7 +1,7 @@
-"""Offline-only, manifest-driven execution with durable, replayable journals.
+"""Manifest-driven execution with durable, replayable journals.
 
 Synthetic fixtures exercise infrastructure; they are never empirical model
-observations. No network transport or live-execution path is exposed here.
+observations. Real execution requires the separate, verified free-only path.
 """
 
 from __future__ import annotations
@@ -24,6 +24,7 @@ from .render import decision_request, expected_readback, prompt_text, readback_r
 from .sandbox import Sandbox
 from .schemas import Case, ModelReply, Request, ScoreRow
 from .score import classify_action, score_episode, score_first_action
+from .gates import require_real_execution
 
 ROOT = Path(__file__).resolve().parents[2]
 PHASES = {"first", "first_reprompt", "continuation", "continuation_reprompt", "readback"}
@@ -363,6 +364,38 @@ def _score_cell(cell: dict[str, Any], manifest: dict[str, Any], journal: Journal
     return {**base, **score.model_dump()}
 
 
+def _validate_execution_config(config: dict[str, Any], settings: ProviderSettings, manifest: dict[str, Any],
+                               freeze: dict[str, Any] | None = None) -> None:
+    from .provider import _sanitized, canonical_json as provider_json
+    if not isinstance(config, dict) or provider_json(_sanitized(config)) != provider_json(config):
+        raise ValueError("Invalid or sensitive execution configuration")
+    if config.get("free_only") is not True or settings.free_only is not True:
+        raise ValueError("Only free execution is authorized")
+    require_real_execution(config, stage=manifest["dataset"], freeze=freeze)
+    for key in ("model", "provider", "provider_route", "provider_identity_source", "temperature",
+                "reasoning", "max_output_tokens", "require_parameters"):
+        if key not in config or config[key] != getattr(settings, key):
+            raise ValueError("Execution settings differ from pinned provider")
+    if config.get("load") != manifest["load"] or config.get("schedule_seed") != manifest["schedule_seed"]:
+        raise ValueError("Execution manifest factors differ from configuration")
+    if manifest["dataset"] == "main":
+        from .freeze import verify_freeze
+        verify_freeze(freeze, manifest, settings)
+
+
+def _validate_live_transport(provider: PinnedProvider) -> None:
+    from .controls import GuardedTransport
+    from .openrouter import OpenRouterFreeTransport
+    guard = provider.transport
+    if (type(provider) is not PinnedProvider or type(guard) is not GuardedTransport
+            or guard.ledger.cap != 0 or guard.ledger.currency != "USD"
+            or type(guard.transport) is not OpenRouterFreeTransport
+            or guard.transport._transport is not None
+            or guard.transport.model != provider.settings.model
+            or guard.transport.provider_route != provider.settings.provider_route):
+        raise ValueError("Live execution requires the guarded free HTTPS transport; fixtures remain synthetic")
+
+
 def _csv(path: Path, rows: list[dict[str, Any]], fields: list[str]) -> None:
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
@@ -456,9 +489,20 @@ def rebuild_outputs(run_dir: Path | str) -> dict[str, Any]:
         raise JournalIntegrityError("run_configuration_hash_mismatch")
     if stored["run_config"]["input_hashes"] != _inputs():
         raise JournalIntegrityError("input_hashes_changed")
+    run_config = stored["run_config"]
+    kind = run_config.get("evidence_kind")
+    if kind not in {"synthetic", "empirical"}:
+        raise JournalIntegrityError("invalid_evidence_kind")
+    if kind == "empirical":
+        if run_config.get("transport_provenance") != "openrouter_free_https_v1":
+            raise JournalIntegrityError("Empirical transport provenance is missing")
+        _validate_execution_config(run_config.get("execution_config"),
+            ProviderSettings.model_validate(run_config["provider_settings"]), manifest, run_config.get("freeze"))
     journal = Journal(run_dir / "calls.jsonl")
     _validate_journal(journal, manifest, stored["run_config"])
     scores = [_score_cell(cell, manifest, journal) for cell in manifest["cells"]]
+    for row in scores:
+        row["evidence_kind"] = kind
     fields = list(scores[0])
     _csv(run_dir / "scores.csv", scores, fields)
     usage = []
@@ -473,13 +517,28 @@ def rebuild_outputs(run_dir: Path | str) -> dict[str, Any]:
                       "provider": result.get("returned_provider"), "finish_reason": result.get("finish_reason"),
                       "latency_seconds": e.get("latency_seconds"), "prompt_tokens": metrics.get("prompt_tokens"),
                       "completion_tokens": metrics.get("completion_tokens"), "total_tokens": metrics.get("total_tokens"),
-                      "cost_usd": metrics.get("cost"), "cost_evidence": "synthetic_fixture_not_billed" if "cost" in metrics else "unavailable",
-                      "error": e.get("reason"), "evidence_kind": "synthetic"})
+                      "cost_usd": metrics.get("cost"), "cost_evidence": ("synthetic_fixture_not_billed" if kind == "synthetic" else "provider_usage_cost_usd") if "cost" in metrics else "unavailable",
+                      "error": e.get("reason"), "evidence_kind": kind})
+    if kind == "empirical":
+        finished = {(row["cell_id"], row["phase"], row["attempt"]) for row in usage}
+        starts = [e for e in journal.events if e["event"] == "attempt_started"]
+        order = {(e["cell_id"], e["phase"], e["attempt"]): i for i, e in enumerate(starts)}
+        for e in starts:
+            if (e["cell_id"], e["phase"], e["attempt"]) not in finished:
+                usage.append({"cell_id": e["cell_id"], "phase": e["phase"], "attempt": e["attempt"],
+                    "success": False, "request_hash": e["request_hash"], "request_id": None,
+                    "model": None, "provider": None, "finish_reason": None, "latency_seconds": None,
+                    "prompt_tokens": None, "completion_tokens": None, "total_tokens": None,
+                    "cost_usd": None, "cost_evidence": "unavailable",
+                    "error": "ambiguous_infrastructure_attempt", "evidence_kind": kind})
+        usage.sort(key=lambda row: order[(row["cell_id"], row["phase"], row["attempt"])])
     usage_fields = ["cell_id", "phase", "attempt", "success", "request_hash", "request_id", "model", "provider", "finish_reason",
                     "latency_seconds", "prompt_tokens", "completion_tokens", "total_tokens", "cost_usd", "cost_evidence", "error", "evidence_kind"]
     _csv(run_dir / "usage.csv", usage, usage_fields)
     summary = {
-        "evidence_kind": "synthetic", "empirical_observations": 0, "experimental_provider_spend": 0,
+        "evidence_kind": kind,
+        "empirical_observations": sum(not row["missing_reason"] for row in scores) if kind == "empirical" else 0,
+        "experimental_provider_spend": sum(row["cost_usd"] for row in usage if row["cost_usd"] is not None) if kind == "empirical" else 0,
         "run_config_hash": stored["run_config_hash"], "planned_cells": len(scores),
         "completed_cells": sum(row["cell_status"] == "completed" for row in scores),
         "pending_cells": sum(row["cell_status"] != "completed" for row in scores),
@@ -494,13 +553,23 @@ def rebuild_outputs(run_dir: Path | str) -> dict[str, Any]:
         "cells": [{"cell_id": row["cell_id"], "status": row["cell_status"], "missing_reason": row["missing_reason"],
                    "continuation_status": row["continuation_status"]} for row in scores],
     }
+    if kind == "empirical":
+        summary["spend_evidence_complete"] = all(row["cost_usd"] is not None for row in usage)
+        summary["known_provider_spend_usd"] = summary["experimental_provider_spend"]
+        if not summary["spend_evidence_complete"]:
+            summary["experimental_provider_spend"] = None
+        summary["unknown_cost_attempts"] = sum(row["cost_usd"] is None for row in usage)
+        summary["accounting_error_attempts"] = sum(bool(e.get("accounting_error")) for e in journal.events)
+        summary["nonzero_cost_attempts"] = sum(row["cost_usd"] is not None and row["cost_usd"] != 0 for row in usage)
     (run_dir / "analysis_manifest.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8", newline="\n")
     return summary
 
 
 def _run_manifest_locked(manifest: dict[str, Any], run_dir: Path | str, provider: PinnedProvider, *,
-                         synthetic: bool = True, max_cells: int | None = None) -> dict[str, Any]:
-    if not synthetic:
+                         synthetic: bool = True, max_cells: int | None = None,
+                         execution_config: dict[str, Any] | None = None,
+                         freeze: dict[str, Any] | None = None) -> dict[str, Any]:
+    if not synthetic and execution_config is None:
         raise ValueError("Live execution is disabled by the offline instruction")
     if max_cells is not None and (type(max_cells) is not int or max_cells < 0):
         raise ValueError("Invalid max_cells")
@@ -510,9 +579,15 @@ def _run_manifest_locked(manifest: dict[str, Any], run_dir: Path | str, provider
     serialize_request(Request(messages=[]), provider.settings)
     run_dir = Path(run_dir)
     run_dir.mkdir(parents=True, exist_ok=True)
-    config = {"evidence_kind": "synthetic", "provider_settings": provider.settings.model_dump(mode="json"),
+    kind = "synthetic" if synthetic else "empirical"
+    config = {"evidence_kind": kind, "provider_settings": provider.settings.model_dump(mode="json"),
               "input_hashes": _inputs(), "reprompt_limit_per_episode": 1,
               "ambiguous_attempt_policy": "explicit_missing_no_resampling"}
+    if execution_config is not None:
+        config["execution_config"] = copy.deepcopy(execution_config)
+        config["transport_provenance"] = "injected_fixture" if synthetic else "openrouter_free_https_v1"
+        if freeze is not None:
+            config["freeze"] = copy.deepcopy(freeze)
     stored = {"plan": manifest, "run_config": config, "run_config_hash": _hash({"plan": manifest, "config": config})}
     manifest_path = run_dir / "manifest.json"
     if manifest_path.exists():
@@ -529,10 +604,12 @@ def _run_manifest_locked(manifest: dict[str, Any], run_dir: Path | str, provider
     except JournalIntegrityError as error:
         raw = (run_dir / "calls.jsonl").read_bytes()
         blocker = {"status": "blocked", "reason": str(error), "raw_trace_sha256": hashlib.sha256(raw).hexdigest(),
-                   "raw_trace_preserved": True, "evidence_kind": "synthetic", "action": "Inspect preserved journal; do not resample ambiguous attempts"}
+                   "raw_trace_preserved": True, "evidence_kind": kind, "action": "Inspect preserved journal; do not resample ambiguous attempts"}
         (run_dir / "recovery_blocker.json").write_text(json.dumps(blocker, indent=2) + "\n", encoding="utf-8", newline="\n")
         raise
     complete = {e["cell_id"] for e in journal.events if e["event"] == "cell_completed"}
+    if not synthetic and any(e.get("accounting_error") for e in journal.events):
+        raise JournalIntegrityError("accounting_reconciliation_required_before_resume")
     processed = 0
     try:
         for cell in manifest["cells"]:
@@ -542,6 +619,12 @@ def _run_manifest_locked(manifest: dict[str, Any], run_dir: Path | str, provider
                 break
             _execute_cell(cell, manifest, journal, provider)
             processed += 1
+            if not synthetic:
+                # Stop on infrastructure/protocol/accounting failures. Invalid
+                # model actions remain completed observations and are not retried.
+                events = _cell_events(journal, cell["cell_id"])
+                if any(e.get("accounting_error") or e["event"] == "attempt_failed" for e in events):
+                    break
     finally:
         # Successful replies already fsynced remain scoreable after interruption.
         rebuild_outputs(run_dir)
@@ -549,18 +632,27 @@ def _run_manifest_locked(manifest: dict[str, Any], run_dir: Path | str, provider
 
 
 def run_manifest(manifest: dict[str, Any], run_dir: Path | str, provider: PinnedProvider, *,
-                 synthetic: bool = True, max_cells: int | None = None) -> dict[str, Any]:
+                 synthetic: bool = True, max_cells: int | None = None,
+                 execution_config: dict[str, Any] | None = None,
+                 freeze: dict[str, Any] | None = None) -> dict[str, Any]:
     """Execute or resume under an exclusive per-run writer lock."""
-    if not synthetic:
+    if type(synthetic) is not bool:
+        raise ValueError("Evidence mode must be explicit")
+    if not synthetic and execution_config is None:
         raise ValueError("Live execution is disabled by the offline instruction")
     if max_cells is not None and (type(max_cells) is not int or max_cells < 0):
         raise ValueError("Invalid max_cells")
     _validate_manifest(manifest)
     serialize_request(Request(messages=[]), provider.settings)
+    if execution_config is not None:
+        _validate_execution_config(execution_config, provider.settings, manifest, freeze)
+    if not synthetic:
+        _validate_live_transport(provider)
     run_dir = Path(run_dir)
     run_dir.mkdir(parents=True, exist_ok=True)
     with _writer_lock(run_dir):
-        return _run_manifest_locked(manifest, run_dir, provider, synthetic=synthetic, max_cells=max_cells)
+        return _run_manifest_locked(manifest, run_dir, provider, synthetic=synthetic, max_cells=max_cells,
+                                    execution_config=execution_config, freeze=freeze)
 
 
 class ScriptedPublicPolicy:

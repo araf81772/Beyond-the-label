@@ -1,8 +1,8 @@
-"""Trace-derived pilot threshold rehearsal; never authorizes a live run or freeze.
+"""Read-only pilot verification and exact, trace-derived threshold decisions.
 
-The current run harness supports synthetic traces only. Merely changing a label
-cannot convert a fixture into a real pilot. A future live path needs its own
-verified provenance and execution gates before empirical decisions are enabled.
+Synthetic rehearsals remain explicitly hypothetical. Empirical summaries require
+the free-only execution configuration and full raw-journal replay. Neither kind
+of summary establishes human participation or independently authorizes a freeze.
 """
 from __future__ import annotations
 
@@ -21,8 +21,12 @@ from .run import build_manifest, rebuild_outputs
 REQUIRED_FILES = ("manifest.json", "calls.jsonl", "scores.csv", "usage.csv", "analysis_manifest.json")
 
 
-def _summarize_verified(analysis: dict[str, Any], replay: dict[str, Any]) -> dict[str, Any]:
-    """Aggregate already verified scores; no externally supplied count override."""
+def _summarize_verified(analysis: dict[str, Any], replay: dict[str, Any], *,
+                        evidence_kind: str = "synthetic") -> dict[str, Any]:
+    """Aggregate verified scores; callers must establish provenance by replay."""
+    if evidence_kind not in {"synthetic", "empirical"}:
+        raise ValueError("Pilot evidence provenance must be synthetic or empirical")
+    empirical = evidence_kind == "empirical"
     layouts = analysis["main_by_layout"]
     pairs = [pair for layout in ("separate", "inline") for pair in layouts[layout]["pairs"]]
     numeric = analysis["conditions"]["NUMERIC"]
@@ -38,11 +42,16 @@ def _summarize_verified(analysis: dict[str, Any], replay: dict[str, Any]) -> dic
     thresholds = pilot_thresholds(correct_pairs, numeric_optimal) if complete else None
     return {
         "schema_version": 1,
-        "artifact_label": "SYNTHETIC PILOT REHEARSAL — NOT A REAL PILOT OR LOAD DECISION",
+        "artifact_label": ("EMPIRICAL PILOT OBSERVATIONS — EXCLUDED FROM MAIN RESULTS" if empirical
+                           else "SYNTHETIC PILOT REHEARSAL — NOT A REAL PILOT OR LOAD DECISION"),
         "dataset": "pilot", "load": 2, "seeds": list(range(1000, 1008)),
-        "evidence_kind": "synthetic", "empirical_observations": 0,
-        "actual_pilot_verified": False, "actual_selected_load": None,
-        "actual_model_change_decided": False, "freeze_eligible": False,
+        "evidence_kind": evidence_kind,
+        "empirical_observations": analysis["observed_cells"] if empirical else 0,
+        "actual_pilot_verified": empirical and complete,
+        "actual_selected_load": thresholds["selected_load"] if empirical and complete else None,
+        "actual_model_change_decided": bool(empirical and complete and thresholds["repeat_pilot_with_different_model"]),
+        "freeze_eligible": False,
+        "verification_scope": "Raw traces and derived counts only; smoke, human review and freeze requirements are separate.",
         "human_review_verified": False,
         "human_review_scope": "No H1/H2 participation is inferred from trace replay or this summary.",
         "counts": {
@@ -58,8 +67,11 @@ def _summarize_verified(analysis: dict[str, Any], replay: dict[str, Any]) -> dic
         },
         "missing_reasons": analysis["missing_reasons"],
         "pilot_observations_complete": complete,
-        "hypothetical_threshold_evaluation": thresholds,
-        "threshold_status": "synthetic_hypothetical_only" if complete else "blocked_incomplete_pilot",
+        "hypothetical_threshold_evaluation": thresholds if not empirical else None,
+        "actual_threshold_evaluation": ({**thresholds, "actual_pilot_verified": True}
+                                        if empirical and complete else None),
+        "threshold_status": ("empirical_thresholds_verified" if empirical else "synthetic_hypothetical_only")
+                            if complete else "blocked_incomplete_pilot",
         "threshold_note": "Exact 14/16 ceiling and 12/16 floor; invalid actions remain in denominators. "
                           "Incomplete pilots do not select a load or decide a model change.",
     }
@@ -83,9 +95,19 @@ def summarize_pilot(run_dir: Path | str, *, allow_synthetic: bool = False) -> di
         raise ValueError("Pilot summary requires the eight-world load-2 pilot manifest")
     if plan != build_manifest("pilot", 2, plan.get("schedule_seed")):
         raise ValueError("Pilot manifest differs from the complete deterministic design")
-    if stored.get("run_config", {}).get("evidence_kind") != "synthetic":
-        raise ValueError("Empirical pilot provenance is unsupported by the current offline harness")
-    if not allow_synthetic:
+    config = stored.get("run_config", {})
+    evidence_kind = config.get("evidence_kind")
+    if evidence_kind == "empirical":
+        execution_config = config.get("execution_config")
+        provider_settings = config.get("provider_settings")
+        if (not isinstance(execution_config, dict) or not execution_config
+                or not isinstance(provider_settings, dict) or provider_settings.get("free_only") is not True):
+            raise ValueError("Empirical pilot provenance requires a free-only execution configuration")
+        # rebuild_outputs below validates the captured execution gates, settings,
+        # journal and hashes; these metadata checks alone do not establish it.
+    elif evidence_kind != "synthetic":
+        raise ValueError("Pilot evidence provenance must be synthetic or empirical")
+    if evidence_kind == "synthetic" and not allow_synthetic:
         raise ValueError("Synthetic pilot rehearsal requires explicit allow_synthetic=True")
     with tempfile.TemporaryDirectory(prefix="btl-pilot-verification-") as temporary:
         verification = Path(temporary)
@@ -97,10 +119,10 @@ def summarize_pilot(run_dir: Path | str, *, allow_synthetic: bool = False) -> di
                 raise ValueError("Stored pilot outputs differ from raw-trace regeneration")
         with (verification / "scores.csv").open(encoding="utf-8", newline="") as stream:
             rows = list(csv.DictReader(stream))
-        analysis = analyze_rows(rows, {**plan, "evidence_kind": "synthetic"}, allow_synthetic=True)
+        analysis = analyze_rows(rows, {**plan, "evidence_kind": evidence_kind}, allow_synthetic=allow_synthetic)
     if any((run_dir / name).read_bytes() != data for name, data in raw.items()):
         raise ValueError("Pilot artifacts changed during verification")
-    result = _summarize_verified(analysis, replay)
+    result = _summarize_verified(analysis, replay, evidence_kind=evidence_kind)
     result["trace_verification"] = "raw_journal_integrity_and_all_derived_outputs_verified"
     result["provenance"] = {name: hashlib.sha256(data).hexdigest() for name, data in raw.items()}
     result["run_config_hash"] = stored["run_config_hash"]

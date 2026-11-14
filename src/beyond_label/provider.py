@@ -34,6 +34,7 @@ class ProviderSettings(StrictModel):
     provider_route: str | None = Field(default=None, min_length=1)
     provider_identity_source: Literal["provider", "openrouter_metadata"] = "provider"
     require_parameters: bool = Field(default=False, strict=True)
+    free_only: bool = Field(default=False, strict=True)
     temperature: float | None = 0
     reasoning: dict[str, Any] | None = Field(default_factory=dict)
     max_output_tokens: int = Field(default=512, gt=0)
@@ -138,6 +139,8 @@ def _provider_pin(settings: ProviderSettings) -> dict[str, Any]:
     pin = {"only": [route], "allow_fallbacks": False}
     if settings.require_parameters:
         pin["require_parameters"] = True
+    if settings.free_only:
+        pin["max_price"] = {"prompt": 0, "completion": 0, "request": 0, "image": 0}
     return pin
 
 
@@ -147,6 +150,10 @@ def _validate_settings_safety(settings: ProviderSettings) -> None:
     values = settings.model_dump(mode="json")
     if canonical_json(_sanitized(values)) != canonical_json(values):
         raise ProviderFailure("credential_or_header_in_request")
+    if settings.free_only and (not re.fullmatch(r"[A-Za-z0-9_-]+/[A-Za-z0-9_.-]+:free", settings.model)
+            or settings.model.startswith("openrouter/") or not settings.provider_route
+            or not settings.require_parameters or settings.provider_identity_source != "openrouter_metadata"):
+        raise ProviderFailure("invalid_free_provider_settings")
 
 
 def serialize_request(request: Request, settings: ProviderSettings) -> dict[str, Any]:
@@ -363,11 +370,13 @@ class PinnedProvider:
 
     def __init__(self, settings: ProviderSettings,
                  transport: Callable[[dict[str, Any]], dict[str, Any] | TransportOutcome | None],
-                 sleep: Callable[[float], None] | None = None):
+                 sleep: Callable[[float], None] | None = None,
+                 before_attempt: Callable[[], None] | None = None):
         load_local_credentials()
         self.settings = settings
         self.transport = transport
         self.sleep = sleep or (lambda seconds: None)
+        self.before_attempt = before_attempt
 
     def request(self, request: Request, *,
                 log_attempt: Callable[[dict[str, Any]], None] | None = None,
@@ -386,6 +395,10 @@ class PinnedProvider:
                              "payload": json.loads(encoded), **deepcopy(details)})
 
         for attempt in range(start_attempt, 5):
+            if self.before_attempt is not None:
+                # Quota suspension precedes attempt_started. Resuming cannot
+                # mistake an undispatched request for an ambiguous sample.
+                self.before_attempt()
             emit("attempt_started", attempt, usage={}, latency_seconds=0.0)
             started = time.perf_counter()
             local_accounting: dict[str, str] = {}
@@ -402,7 +415,7 @@ class PinnedProvider:
                     # Never include exception text, repr, request headers or body.
                     safe_codes = {"offline_only_live_transport_unavailable", "budget_control_blocked",
                                   "rate_control_blocked", "concurrent_dispatch_forbidden",
-                                  "attempt_bound_unavailable"}
+                                  "attempt_bound_unavailable", "free_quota_day_changed_before_dispatch"}
                     safe_reason = exc.reason if isinstance(exc, ProviderFailure) and exc.reason in safe_codes else "transport_failure"
                     emit("attempt_failed", attempt, reason=safe_reason, infrastructure=False,
                          retryable=False, usage={}, latency_seconds=latency)

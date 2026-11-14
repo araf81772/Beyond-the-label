@@ -1,5 +1,7 @@
 # Milestone 4: proposed settings and remaining prerequisites
 
+Historical paid-model proposal. The user later requested a free route and then returned to offline-only work following an HTTP 401 key preflight. See `research/free_execution.md` for the current configuration and blockers. No paid proposal was activated.
+
 Recorded 14 November 2026. The user delegated future configuration choices and authorized read-only public documentation/pricing research. This does not authorize inference, account requests using the key, credit purchases or spending. No model response or experimental cost was observed. Active pilot/main configs remain disabled and unset; `configs/proposed_m4.yaml` is a planning record only.
 
 ## Proposed choice

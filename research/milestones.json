@@ -1,7 +1,7 @@
 {
-  "recorded_at_utc": "2026-11-14T11:57:29.104818+00:00",
+  "recorded_at_utc": "2026-11-14T12:25:49.551859+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "Offline experimental execution; Git delivery and read-only public provider documentation/pricing research authorized",
+  "requested_scope": "Current instruction: finish offline work only; Git checkpoint delivery authorized; free-only inference was requested then disabled after HTTP401 preflight",
   "execution_freeze": null,
   "experimental_calls": 0,
   "human_participation_observed": false,
@@ -136,9 +136,9 @@
         "Credential/header leakage and immutable-attempt review"
       ],
       "real_run_blockers": [
-        "Paid execution remains explicitly disabled",
-        "No authorized paid-call cap; local key detected without authentication",
-        "Proposed model/settings and public docs recorded; live transport, verified bounds, account limits and delivery compatibility still required"
+        "Current user instruction restricts work to offline",
+        "Authenticated read-only key preflight returned HTTP401; hard key ceiling and actual free quota unverified",
+        "Real free-route wire compatibility, smoke and pilot remain unobserved"
       ],
       "validation": [
         {
@@ -211,8 +211,9 @@
         "status_checkpoint": "Follow-up status commit contains observed delivery evidence; final HEAD verified after push"
       },
       "limitations": [
-        "Injected offline transport only; live wire compatibility unverified",
-        "Model/settings proposed only; no actual pilot selection or execution freeze",
+        "Free-only HTTP adapter implemented and mock-tested; real delivery unverified",
+        "Free model/settings retained with execution and account preflight disabled",
+        "No execution freeze or empirical observations",
         "Fresh dependency installation unverified; wheelhouse unavailable"
       ],
       "completion_scope": "offline engineering and validation only; not live-provider readiness or empirical execution",
@@ -227,7 +228,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "User explicitly requires offline research; real smoke/pilot and actual model/load selection cannot occur",
+      "reason": "Read-only account preflight returned HTTP401; user then instructed offline work only. Real smoke/pilot/freeze cannot be completed.",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -240,13 +241,18 @@
         "Automatic ignored .env loading with presence-only CLI and credential-isolated tests",
         "Public documentation review and inactive proposed model/provider/settings/cap",
         "Durable decimal budget reservations and request/token rate accounting around injected transport",
-        "Separate routing slug and returned provider metadata identity with no fallback"
+        "Separate routing slug and returned provider metadata identity with no fallback",
+        "Free-only fixed-origin HTTP adapter and minimal account preflight with no paid route",
+        "Free-mode zero budget/key cap/settings/rate gates; shipped free config disabled",
+        "Guarded manifest execution and empirical reporting with explicit unknown-cost attempts",
+        "Quota suspension before new attempts and safe interrupted-continuation resume",
+        "Empirical pilot summaries and read-only freeze preparation/verification against retained traces and Git blobs"
       ],
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
-      "minimum_next_action": "Finish and mock-test live adapter/runner ownership, restart reconciliation, verified cost/token bounds and gate settings; then obtain explicit live spending authorization and account limit evidence. Only after those prerequisites may real smoke verify delivery.",
-      "offline_preparation_status": "607-test current safeguards/configuration checkpoint validated offline; real milestone acceptance remains blocked",
+      "minimum_next_action": "Provide a valid OpenRouter key with a USD0 hard limit and renew free-only execution authorization; verify actual quota and real delivery before smoke/pilot and freeze. No paid calls or purchases authorized.",
+      "offline_preparation_status": "Current free-only engineering validated by 901 offline tests; real smoke/pilot/freeze remain blocked",
       "offline_validation": [
         {
           "command": "python -m pytest -q",
@@ -302,6 +308,18 @@
           "summary": "583 staged audit/source/secret checks passed; dependencies and staged diff clean",
           "evidence": "research/checks/m4_safeguards_verification.json",
           "note": "Stored verification captures 580 checks before its own evidence file; the final staged scan included that file and passed 583 checks"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "901 passed in 196.42s after stabilized source/config; real credentials excluded and network blocked by test fixtures",
+          "evidence": "research/checks/free_engineering_suite.json"
+        },
+        {
+          "command": "python -m pytest -q tests/test_freeze.py",
+          "exit_code": 0,
+          "summary": "75 passed after 33 cost/accounting regressions were repaired",
+          "evidence": "research/checks/free_engineering_regressions.json"
         }
       ],
       "recorded_test_fix_retest": [
@@ -333,12 +351,14 @@
         "status_checkpoint": "Follow-up commit records this evidence; final remote HEAD is verified after that push"
       },
       "local_credential_setup": {
-        "status": "detected_locally_without_authentication",
-        "evidence": "research/checks/m4_key_presence.json",
+        "status": "detected_locally_but_authentication_rejected_http401",
+        "evidence": "research/checks/free_account_preflight.json",
         "env_file_ignored": true,
         "credential_values_recorded": false,
         "paid_calls_authorized": false,
-        "provider_calls": 0
+        "provider_calls": 0,
+        "account_status_requests": 1,
+        "provider_inference_calls": 0
       },
       "proposed_configuration": {
         "path": "configs/proposed_m4.yaml",
@@ -365,6 +385,25 @@
         "verification_command": "git ls-remote origin refs/heads/main",
         "verified_at_utc": "2026-11-14T11:57:29.104818+00:00",
         "final_status_checkpoint": "This documentation-only follow-up records observed delivery; resolve its own commit from Git and verify remote separately"
+      },
+      "free_execution_checkpoint": {
+        "status": "offline_tests_passed_delivery_and_clean_clone_pending",
+        "configuration": "configs/free.yaml",
+        "readiness": "research/free_execution.md",
+        "model": "nvidia/nemotron-3.5-super-vl:free",
+        "provider_route": "nvidia",
+        "returned_provider": "Nvidia",
+        "authorized_paid_spend": 0,
+        "currency": "USD",
+        "live_execution_enabled": false,
+        "account_preflight_enabled": false,
+        "account_preflight_http_status": 401,
+        "account_requests": 1,
+        "inference_calls": 0,
+        "freeze_created": false,
+        "human_review_observed": false,
+        "test_evidence": "research/checks/free_engineering_suite.json",
+        "regression_evidence": "research/checks/free_engineering_regressions.json"
       }
     },
     {

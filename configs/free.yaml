@@ -1,0 +1,49 @@
+# Free settings retained after the user returned to offline-only work.
+# Fresh authenticated preflight must establish hard key limit and daily quota.
+schema_version: 1
+live_execution_enabled: false
+account_preflight_enabled: false
+free_only: true
+paid_calls_authorized: false
+authorized_spend_cap: 0
+currency: USD
+routing_service: OpenRouter
+model: nvidia/nemotron-3.5-super-vl:free
+provider: Nvidia
+provider_route: nvidia
+provider_identity_source: openrouter_metadata
+require_parameters: true
+temperature: 0
+temperature_setting_verified: true
+reasoning:
+  enabled: false
+reasoning_mode: configured
+reasoning_setting_verified: true
+max_output_tokens: 512
+tool_choice: auto
+parallel_tool_calls: false
+allow_fallbacks: false
+concurrency: 1
+provider_docs_verified: true
+live_wire_compatibility_verified: false
+provider_requests_per_minute: 20
+provider_request_limit_verified: true
+provider_tokens_per_minute: null
+provider_token_limit_status: not_published
+operator_requests_per_minute: 10
+operator_tokens_per_minute: 10005120
+# Conservative whole-context-plus-output bound, not a prompt token estimate.
+total_token_bound: 1000512
+token_bound_verified: true
+token_bound_source: https://openrouter.ai/api/v1/models/nvidia/nemotron-3.5-super-vl:free/endpoints
+key_hard_limit_usd: null
+key_hard_limit_verified: false
+load: 2
+schedule_seed: 271828
+infrastructure_retries_after_initial: 3
+no_tool_reprompts: 1
+no_tool_reprompt: Respond with exactly one tool call.
+bootstrap_seed: 314159
+bootstrap_resamples: 10000
+human_audit_seed: 161803
+freeze_tag: null

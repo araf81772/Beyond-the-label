@@ -1,0 +1,11 @@
+{
+  "classification": "offline_configuration_checkpoint",
+  "recorded_at_utc": "2026-11-14T12:22:46.634271+00:00",
+  "live_execution_enabled": false,
+  "account_preflight_enabled": false,
+  "paid_calls_authorized": false,
+  "authorized_spend_cap": 0,
+  "currency": "USD",
+  "model": "nvidia/nemotron-3.5-super-vl:free",
+  "inference_calls": 0
+}

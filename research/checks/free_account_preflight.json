@@ -1,0 +1,10 @@
+{
+  "classification": "read_only_free_account_preflight_not_inference",
+  "recorded_at_utc": "2026-11-14T12:08:21.599560+00:00",
+  "inference_calls": 0,
+  "account_settings_changed": false,
+  "credential_values_recorded": false,
+  "status": "blocked",
+  "reason": "account_http_error",
+  "http_status": 401
+}

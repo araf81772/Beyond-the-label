@@ -71,12 +71,15 @@ class GuardedTransport:
     """
 
     def __init__(self, transport: Callable, ledger: BudgetLedger, limiter: RateLimiter,
-                 quote: Callable[[dict[str, Any]], AttemptBound]):
+                 quote: Callable[[dict[str, Any]], AttemptBound], *, before_dispatch: Callable[[], None] | None = None):
         if not callable(transport) or not callable(quote) or ledger.currency != "USD":
             raise ControlError("invalid_control_configuration")
         self.transport, self.ledger, self.limiter, self.quote = transport, ledger, limiter, quote
         self._dispatch = Lock()
         self._accounting_blocked = False
+        if before_dispatch is not None and not callable(before_dispatch):
+            raise ControlError("invalid_control_configuration")
+        self.before_dispatch = before_dispatch
 
     def __call__(self, payload: dict[str, Any]) -> Any:
         if not self._dispatch.acquire(blocking=False):
@@ -105,6 +108,8 @@ class GuardedTransport:
             # Cancellation here leaves a conservative hold, never a paid claim.
             outbound = deepcopy(payload)
             self.limiter.acquire(bound.token_bound)
+            if self.before_dispatch is not None:
+                self.before_dispatch()
             try:
                 raw = self.transport(outbound)
             except BaseException:

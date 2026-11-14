@@ -4,6 +4,8 @@
 
 Offline engineering checkpoint, 14 November 2026 (Australia/Sydney). Milestones 1–3 are complete within the offline scope and delivered. Milestone 4 preparation now adds trace-derived pilot summaries, stricter execution prerequisite checks and a synthetic smoke/pilot/load-8 rehearsal. Milestones 4–6 remain explicitly blocked by the offline instruction and absent real experimental inputs; they are not claimed complete. The repository was empty at intake; the remote's initial Git attributes commit was subsequently preserved. No pre-existing experiment code or observations were found.
 
+Current update: the free-only HTTP adapter, quota-aware manifest path, empirical pilot summaries and freeze verification are implemented for offline testing. One authorized read-only key-status request returned **HTTP 401**; no inference call occurred. The user then requested **offline work only**. Both execution and account preflight in [configs/free.yaml](configs/free.yaml) are disabled. See [free execution preparation and exact blockers](research/free_execution.md).
+
 The contribution specified for this project is: “A fixed-report scope-binding swap with audited delivery and enacted verification under changing payoffs.” This is a planned study, not a claim supported by collected results.
 
 - [Authoritative design](research/protocol.md): byte-for-byte archive of the supplied `final_design.txt`, all 581 lines reviewed. Its historical citation claims are not newly verified.
@@ -68,6 +70,8 @@ Evidence: [rehearsal](evaluation/synthetic_m4_rehearsal/rehearsal.json), [gate r
 
 OpenRouter is specified as the routing service. The [proposed M4 configuration](configs/proposed_m4.yaml) selects `openai/gpt-4.1-mini` through the `openai` route, temperature 0, reasoning omitted, 512 output tokens and concurrency 1. The proposed USD 20 M4 ceiling is **not spending authorization**. Active configs stay disabled; account limits and real compatibility remain unverified. [Readiness and sources](research/execution_readiness.md) records prices, the upstream January 2027 retirement schedule, limitations and remaining work. A local credential loads automatically from the ignored project-root `.env`; presence does not verify authentication or authorize spending. The design's “under US$20” remains a historical estimate. No paid calls were made.
 
+That paid-model proposal is retained as historical planning. The subsequent free-only candidate is `nvidia/nemotron-3.5-super-vl:free`, pinned to `nvidia`/`Nvidia`, with zero request price ceilings. Its settings are retained in a separate disabled configuration. The local key was rejected by authentication; replacing it does not by itself revoke the user's restored offline instruction.
+
 Delivery uses the user-supplied existing repository, [araf81772/Beyond-the-label](https://github.com/araf81772/Beyond-the-label), on `main`. No GitHub repository was created or visibility changed. NUMERIC's information-sufficiency ambiguity was resolved by explicit user approval of amendment A1: retain report facts alongside the prescribed losses.
 
 The user requires offline research execution. Git delivery and read-only public provider documentation/pricing research are the requested exceptions. There is no execution freeze, model observation, effect estimate, confidence interval, observed regret, pilot decision, human trace review, or empirical report. Synthetic world inputs and analytic references must not be counted as model results.
@@ -101,3 +105,7 @@ python scripts/verify_audit.py
 ```
 
 The helpers reserve funds and rate capacity for each attempt, retain unknown costs, and preserve returned decisions when local settlement fails. Live HTTP/runner integration, verified cost/token bounds, restart reconciliation, account limits and spending authorization remain required. See the [readiness record](research/execution_readiness.md); no live command is provided or enabled.
+
+## Current free-only engineering validation
+
+The stabilized full suite passed [901 tests](research/checks/free_engineering_suite.json); [regression records](research/checks/free_engineering_regressions.json) retain failures and repairs. The HTTP adapter uses local mocks in tests, and the full suite receives no real credentials. Both free execution and account preflight are disabled. Real smoke/pilot/main observations remain absent, with HTTP 401 authentication and the restored offline instruction recorded as blockers.

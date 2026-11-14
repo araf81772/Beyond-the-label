@@ -1,0 +1,53 @@
+{
+  "classification": "offline_free_engineering_regressions_not_empirical",
+  "recorded_at_utc": "2026-11-14T12:23:13.235860+00:00",
+  "inference_calls": 0,
+  "human_review": false,
+  "cycles": [
+    {
+      "area": "free provider serialization",
+      "before": "6 failed: missing free_only contract",
+      "after": "6 passed after exact free-ID pins and logged zero-price caps"
+    },
+    {
+      "area": "free HTTP adapter",
+      "before": "Initial missing-module collection error; later 5 malformed-input failures",
+      "after": "86 adapter tests passed; combined adapter/control/rate tests 162 passed in 3.70s"
+    },
+    {
+      "area": "free execution gates",
+      "before": "8 failed and 143 passed",
+      "after": "160 passed after strict zero budget/key cap, explicit reasoning, separate limits and type checks; later concurrency regression added and repaired"
+    },
+    {
+      "area": "pilot summaries",
+      "before": "8 failed and 6 passed on new empirical API",
+      "after": "36 pilot and empirical-summary tests passed in 24.61s"
+    },
+    {
+      "area": "free manifest plumbing",
+      "before": "4 failed due to missing execution_config support",
+      "after": "4 passed; synthetic fixtures retained labels and could not claim real transport"
+    },
+    {
+      "area": "unknown cost and origin provenance",
+      "before": "2 failed for unmatched attempt reporting and overriding HTTP subclass",
+      "after": "17 related tests passed after unknown-cost rows and concrete transport checks"
+    },
+    {
+      "area": "quota suspension and offline guards",
+      "before": "New live module collection error; midnight regression failed; disabled-config and concurrency regressions each failed",
+      "after": "180 related live/free/gate tests passed in 4.08s; quota resumes without resampling and disabled config blocks account access"
+    },
+    {
+      "area": "freeze validation",
+      "before": "42 initial tests passed; 33 new cost/accounting evidence regressions failed",
+      "after": "75 freeze tests passed in 11.66s"
+    },
+    {
+      "area": "combined fixture source integrity",
+      "before": "210 passed and 14 fixture errors due to concurrent source edits triggering input_hashes_changed",
+      "after": "Hash guard unchanged; full-suite retest launched after source and config stabilization; see free_engineering_suite.json"
+    }
+  ]
+}
