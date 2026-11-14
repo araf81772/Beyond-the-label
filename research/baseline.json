@@ -203,8 +203,8 @@
   },
   "git_delivery": {
     "commit": "762ff8a3b0bb1257636dfdf704e3e3c8de58ad16",
-    "push": "blocked: no configured push destination",
-    "remote_commit_comparison": "not possible without destination",
+    "push": "succeeded: verified origin/main",
+    "remote_commit_comparison": "Exact match: git ls-remote origin refs/heads/main and git rev-parse HEAD",
     "staging": "Initial .git/index.lock permission denied under read-only sandbox; authorized escalation succeeded; 12 intended files staged",
     "branch": "master",
     "push_attempt": {
@@ -215,7 +215,20 @@
       "remote_head_verified": false
     },
     "archived_source_matches_committed_blob": true,
-    "final_status_checkpoint": "See current Git HEAD for the subsequent delivery-status commit"
+    "final_status_checkpoint": "This follow-up record documents the verified delivery commit; resolve the final status-record commit using Git HEAD and verify its remote equality after push",
+    "current_branch": "main",
+    "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
+    "remote_default_branch": "main",
+    "remote_branch_protected_at_verification": false,
+    "successful_delivery": {
+      "command": "git push -u origin main",
+      "exit_code": 0,
+      "delivered_commit": "57a440b1dd9aa6caa7b90194d6980246efb1dee7",
+      "remote_head": "57a440b1dd9aa6caa7b90194d6980246efb1dee7",
+      "remote_head_verified": true,
+      "verified_at_utc": "2026-11-14T09:22:04.073134+00:00",
+      "preserved_remote_initial_commit": "661f3750f648cff25fbf88857b8fef430f461483"
+    }
   },
   "analytic_reference_check": {
     "rows_checked": 7,
