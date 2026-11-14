@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-14T11:56:21.579308+00:00",
+  "recorded_at_utc": "2026-11-14T11:57:29.104818+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "Offline experimental execution; Git delivery and read-only public provider documentation/pricing research authorized",
   "execution_freeze": null,
@@ -295,6 +295,13 @@
           "exit_code": 0,
           "summary": "Proposed settings serialize with fixed route and omitted reasoning; active execution remains blocked",
           "evidence": "research/checks/m4_proposal.json"
+        },
+        {
+          "command": "python scripts/verify_audit.py; python -m pip check; git diff --cached --check",
+          "exit_code": 0,
+          "summary": "583 staged audit/source/secret checks passed; dependencies and staged diff clean",
+          "evidence": "research/checks/m4_safeguards_verification.json",
+          "note": "Stored verification captures 580 checks before its own evidence file; the final staged scan included that file and passed 583 checks"
         }
       ],
       "recorded_test_fix_retest": [
@@ -347,12 +354,17 @@
         "upstream_shutdown_scheduled": "2027-01-14"
       },
       "safeguards_checkpoint": {
-        "status": "offline_tests_passed_delivery_pending",
+        "status": "committed_and_pushed",
         "test_evidence": "research/checks/m4_safeguards_suite.json",
         "regression_evidence": "research/checks/m4_safeguards_regressions.json",
         "commit_reference": "Resolve via Git; no circular self-hash",
         "remote": "origin",
-        "branch": "main"
+        "branch": "main",
+        "delivered_commit": "0fc71fefb16666ff62755f9e0cafb60b0deab860",
+        "remote_head_verified": true,
+        "verification_command": "git ls-remote origin refs/heads/main",
+        "verified_at_utc": "2026-11-14T11:57:29.104818+00:00",
+        "final_status_checkpoint": "This documentation-only follow-up records observed delivery; resolve its own commit from Git and verify remote separately"
       }
     },
     {
