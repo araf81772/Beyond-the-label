@@ -266,3 +266,151 @@ def test_full_provider_payload_twins_differ_only_in_two_scope_fields():
                         lines_b[index] = left
                     b["messages"][3]["content"] = "\n".join(lines_b)
                     assert json.dumps(a, sort_keys=True).encode() == json.dumps(b, sort_keys=True).encode()
+
+
+def metadata_settings(**overrides):
+    values = {"model": "synthetic/model", "provider": "Synthetic Provider",
+              "provider_route": "synthetic-provider", "provider_identity_source": "openrouter_metadata",
+              "reasoning": None, "require_parameters": True}
+    values.update(overrides)
+    return ProviderSettings(**values)
+
+
+def metadata_response(**overrides):
+    raw = response()
+    del raw["provider"]
+    raw["openrouter_metadata"] = {"endpoints": {"available": [
+        {"model": "synthetic/model", "provider": "Synthetic Provider", "selected": True},
+        {"model": "synthetic/model", "provider": "Unselected Provider", "selected": False},
+    ]}, "requested": "synthetic/model", "strategy": "direct"}
+    raw.update(overrides)
+    return raw
+
+
+def test_metadata_provider_route_and_returned_identity_are_distinct_and_replayable():
+    configured = metadata_settings()
+    request = decision_request(make_case(generate_world(2000)))
+    payload = serialize_request(request, configured)
+    assert payload["provider"] == {"only": ["synthetic-provider"], "allow_fallbacks": False,
+                                   "require_parameters": True}
+    assert "reasoning" not in payload
+    assert "headers" not in payload
+    events = []
+    raw = metadata_response()
+    result = PinnedProvider(configured, lambda payload: raw).request(request, log_attempt=events.append)
+    assert result.returned_provider == "Synthetic Provider"
+    assert "provider" not in result.raw_response
+    assert result.raw_response["openrouter_metadata"] == raw["openrouter_metadata"]
+    assert parse_response(result.raw_response, payload, configured, result.latency_seconds) == result
+    assert ProviderResult.model_validate(events[-1]["result"]) == result
+
+
+@pytest.mark.parametrize("metadata", [None, {}, {"endpoints": {}}, {"endpoints": {"available": None}},
+                                      {"endpoints": {"available": []}}])
+def test_missing_or_invalid_metadata_never_falls_back_to_top_level_provider(metadata):
+    events = []
+    raw = metadata_response(provider="Synthetic Provider", openrouter_metadata=metadata)
+    with pytest.raises(ProviderFailure, match="provider_metadata"):
+        PinnedProvider(metadata_settings(), lambda payload: raw).request(
+            decision_request(make_case(generate_world(2000))), log_attempt=events.append)
+    assert len(events) == 2 and events[-1]["retryable"] is False
+    assert events[-1]["raw_response"]["openrouter_metadata"] == metadata
+    del raw["openrouter_metadata"]
+    with pytest.raises(ProviderFailure, match="provider_metadata"):
+        parse_response(raw, serialize_request(decision_request(make_case(generate_world(2000))), metadata_settings()),
+                       metadata_settings())
+
+
+@pytest.mark.parametrize("selected", [None, "true", "false", "", 0, 1, [], {}])
+def test_metadata_selection_flags_require_strict_booleans(selected):
+    raw = metadata_response()
+    raw["openrouter_metadata"]["endpoints"]["available"][1]["selected"] = selected
+    with pytest.raises(ProviderFailure, match="protocol_invalid_provider_metadata"):
+        PinnedProvider(metadata_settings(), lambda payload: raw).request(decision_request(make_case(generate_world(2000))))
+
+
+@pytest.mark.parametrize("flags", [(False, False), (True, True)])
+def test_metadata_requires_exactly_one_selected_endpoint(flags):
+    raw = metadata_response()
+    for entry, flag in zip(raw["openrouter_metadata"]["endpoints"]["available"], flags):
+        entry["selected"] = flag
+    with pytest.raises(ProviderFailure, match="protocol_invalid_provider_metadata"):
+        PinnedProvider(metadata_settings(), lambda payload: raw).request(decision_request(make_case(generate_world(2000))))
+
+
+@pytest.mark.parametrize("field,value,reason", [("provider", "synthetic-provider", "provider_mismatch"),
+                                              ("model", "synthetic/model-alias", "model_mismatch")])
+def test_selected_metadata_identity_must_match_exactly(field, value, reason):
+    raw = metadata_response()
+    raw["openrouter_metadata"]["endpoints"]["available"][0][field] = value
+    with pytest.raises(ProviderFailure, match=reason):
+        PinnedProvider(metadata_settings(), lambda payload: raw).request(decision_request(make_case(generate_world(2000))))
+
+
+@pytest.mark.parametrize("top_level", [None, "synthetic-provider", "Other Provider", False])
+def test_conflicting_top_level_provider_is_rejected_in_metadata_mode(top_level):
+    raw = metadata_response(provider=top_level)
+    with pytest.raises(ProviderFailure, match="provider_mismatch"):
+        PinnedProvider(metadata_settings(), lambda payload: raw).request(decision_request(make_case(generate_world(2000))))
+
+
+def test_matching_optional_top_level_provider_is_preserved():
+    raw = metadata_response(provider="Synthetic Provider")
+    result = PinnedProvider(metadata_settings(), lambda payload: raw).request(decision_request(make_case(generate_world(2000))))
+    assert result.raw_response["provider"] == "Synthetic Provider"
+    assert parse_response(result.raw_response, result.payload, metadata_settings(), result.latency_seconds) == result
+
+
+@pytest.mark.parametrize("invalid", [None, "true", "false", 0, 1])
+def test_require_parameters_setting_requires_boolean(invalid):
+    with pytest.raises(ValidationError):
+        metadata_settings(require_parameters=invalid)
+
+
+def test_optional_reasoning_and_parameter_requirement_preserve_legacy_wire_defaults():
+    request = decision_request(make_case(generate_world(2000)))
+    default = ProviderSettings(model="synthetic/model", provider="synthetic-provider")
+    payload = serialize_request(request, default)
+    assert payload["reasoning"] == {}
+    assert payload["provider"] == {"only": ["synthetic-provider"], "allow_fallbacks": False}
+    configured = metadata_settings()
+    required = serialize_request(request, configured)
+    for changed in ({"only": ["Synthetic Provider"], "allow_fallbacks": False, "require_parameters": True},
+                    {"only": ["synthetic-provider"], "allow_fallbacks": False}):
+        mutated = deepcopy(required)
+        mutated["provider"] = changed
+        with pytest.raises(ProviderFailure, match="request_pin_mismatch"):
+            parse_response(metadata_response(), mutated, configured)
+
+
+@pytest.mark.parametrize("failure", [False, True])
+def test_metadata_is_sanitized_in_both_success_and_failure_logs(monkeypatch, failure):
+    secret = "synthetic-private-metadata-sentinel"
+    monkeypatch.setenv("OPENROUTER_API_KEY", secret)
+    raw = metadata_response()
+    raw["openrouter_metadata"].update({"summary": secret, "headers": {"Authorization": secret}})
+    if failure:
+        raw["openrouter_metadata"]["endpoints"]["available"][0]["provider"] = "Wrong Provider"
+    events = []
+    provider = PinnedProvider(metadata_settings(), lambda payload: raw)
+    if failure:
+        with pytest.raises(ProviderFailure, match="provider_mismatch"):
+            provider.request(decision_request(make_case(generate_world(2000))), log_attempt=events.append)
+        preserved = events[-1]["raw_response"]
+    else:
+        result = provider.request(decision_request(make_case(generate_world(2000))), log_attempt=events.append)
+        preserved = result.raw_response
+        assert parse_response(result.raw_response, result.payload, metadata_settings(), result.latency_seconds) == result
+    assert preserved["openrouter_metadata"]["summary"] == "[redacted]"
+    assert "headers" not in preserved["openrouter_metadata"]
+    assert secret not in json.dumps(events)
+
+
+def test_returned_provider_setting_cannot_hide_credentials_outside_wire_route(monkeypatch):
+    secret = "synthetic-private-display-name-sentinel"
+    monkeypatch.setenv("OPENROUTER_API_KEY", secret)
+    called = []
+    configured = metadata_settings(provider=secret)
+    with pytest.raises(ProviderFailure, match="credential_or_header_in_request"):
+        PinnedProvider(configured, lambda payload: called.append(payload)).request(decision_request(make_case(generate_world(2000))))
+    assert called == []

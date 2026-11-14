@@ -1,7 +1,7 @@
 {
-  "recorded_at_utc": "2026-11-14T11:28:52.105800+00:00",
+  "recorded_at_utc": "2026-11-14T11:56:21.579308+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "Sequential offline milestones with test-fix-retest and commit/push; Git transport authorized",
+  "requested_scope": "Offline experimental execution; Git delivery and read-only public provider documentation/pricing research authorized",
   "execution_freeze": null,
   "experimental_calls": 0,
   "human_participation_observed": false,
@@ -136,9 +136,9 @@
         "Credential/header leakage and immutable-attempt review"
       ],
       "real_run_blockers": [
-        "User requires offline execution",
-        "No authorized paid-call budget; local key presence detected without online authentication",
-        "Actual model/upstream provider/settings and provider documentation unverified"
+        "Paid execution remains explicitly disabled",
+        "No authorized paid-call cap; local key detected without authentication",
+        "Proposed model/settings and public docs recorded; live transport, verified bounds, account limits and delivery compatibility still required"
       ],
       "validation": [
         {
@@ -212,7 +212,7 @@
       },
       "limitations": [
         "Injected offline transport only; live wire compatibility unverified",
-        "No actual model/upstream provider selected",
+        "Model/settings proposed only; no actual pilot selection or execution freeze",
         "Fresh dependency installation unverified; wheelhouse unavailable"
       ],
       "completion_scope": "offline engineering and validation only; not live-provider readiness or empirical execution",
@@ -237,13 +237,16 @@
         "Finite and strict typed execution prerequisite checks",
         "Smoke load-2, pilot load-2 and smoke load-8 fixture rehearsals",
         "Regression against completed terminal failures being counted as passing rehearsal",
-        "Automatic ignored .env loading with presence-only CLI and credential-isolated tests"
+        "Automatic ignored .env loading with presence-only CLI and credential-isolated tests",
+        "Public documentation review and inactive proposed model/provider/settings/cap",
+        "Durable decimal budget reservations and request/token rate accounting around injected transport",
+        "Separate routing slug and returned provider metadata identity with no fallback"
       ],
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
-      "minimum_next_action": "Authorize live execution with a spending cap/currency and model/provider settings; implement and verify live transport, budget enforcement and provider compatibility. Local key presence is detected but authentication is unverified.",
-      "offline_preparation_status": "validated; real milestone acceptance remains blocked",
+      "minimum_next_action": "Finish and mock-test live adapter/runner ownership, restart reconciliation, verified cost/token bounds and gate settings; then obtain explicit live spending authorization and account limit evidence. Only after those prerequisites may real smoke verify delivery.",
+      "offline_preparation_status": "607-test current safeguards/configuration checkpoint validated offline; real milestone acceptance remains blocked",
       "offline_validation": [
         {
           "command": "python -m pytest -q",
@@ -280,18 +283,38 @@
           "exit_code": 0,
           "summary": "453 passed after credential loading, malformed-input rollback and session isolation fixes",
           "evidence": "research/checks/env_loading_suite_final.json"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "607 passed in 183.00s; fresh synthetic matrix/replay and current budget/rate/provider regressions",
+          "evidence": "research/checks/m4_safeguards_suite.json"
+        },
+        {
+          "command": "Offline proposed-config serialization and disabled-gate checks",
+          "exit_code": 0,
+          "summary": "Proposed settings serialize with fixed route and omitted reasoning; active execution remains blocked",
+          "evidence": "research/checks/m4_proposal.json"
         }
       ],
       "recorded_test_fix_retest": [
         "Gate regressions: 38 failed / 23 passed before fix, 61 passed after fix",
         "Rehearsal acceptance: 10 failed / 1 passed before fix, 11 passed after fix",
-        "Initial stricter replay failed with local OSError opening scores.csv; all 15 file hashes unchanged; isolated retest passed"
+        "Initial stricter replay failed with local OSError opening scores.csv; all 15 file hashes unchanged; isolated retest passed",
+        "Ledger cwd stability: 1 failed before path resolution fix; 46 passed afterward",
+        "Provider metadata/optional reasoning: 3 failed before repair; 33 focused then 86 provider tests passed",
+        "Accounting/rate interactions: 4 failed before repair; final 208 focused tests passed including 22 controls tests"
       ],
       "offline_artifacts": [
         "evaluation/synthetic_m4_rehearsal/rehearsal.json",
         "evaluation/synthetic_main_load2_m4prep",
         "src/beyond_label/pilot.py",
-        "scripts/rehearse_offline.py"
+        "scripts/rehearse_offline.py",
+        "configs/proposed_m4.yaml",
+        "research/execution_readiness.md",
+        "src/beyond_label/budget.py",
+        "src/beyond_label/rate_limit.py",
+        "src/beyond_label/controls.py"
       ],
       "offline_preparation_push": {
         "status": "succeeded",
@@ -304,11 +327,32 @@
       },
       "local_credential_setup": {
         "status": "detected_locally_without_authentication",
-        "evidence": "research/checks/env_presence.json",
+        "evidence": "research/checks/m4_key_presence.json",
         "env_file_ignored": true,
         "credential_values_recorded": false,
         "paid_calls_authorized": false,
         "provider_calls": 0
+      },
+      "proposed_configuration": {
+        "path": "configs/proposed_m4.yaml",
+        "readiness_evidence": "research/execution_readiness.md",
+        "model": "openai/gpt-4.1-mini",
+        "provider_route": "openai",
+        "returned_provider": "OpenAI",
+        "proposed_cap": "20.00",
+        "currency": "USD",
+        "authorized_cap": null,
+        "paid_calls_authorized": false,
+        "live_wire_compatibility_verified": false,
+        "upstream_shutdown_scheduled": "2027-01-14"
+      },
+      "safeguards_checkpoint": {
+        "status": "offline_tests_passed_delivery_pending",
+        "test_evidence": "research/checks/m4_safeguards_suite.json",
+        "regression_evidence": "research/checks/m4_safeguards_regressions.json",
+        "commit_reference": "Resolve via Git; no circular self-hash",
+        "remote": "origin",
+        "branch": "main"
       }
     },
     {

@@ -1,0 +1,9 @@
+{
+  "classification": "local_presence_only_not_authentication",
+  "recorded_at_utc": "2026-11-14T11:53:48.575438+00:00",
+  "OPENROUTER_API_KEY_detected": true,
+  "env_file_ignored": true,
+  "env_file_tracked": false,
+  "credential_values_recorded": false,
+  "provider_calls": 0
+}

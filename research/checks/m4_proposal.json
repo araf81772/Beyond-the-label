@@ -1,0 +1,9 @@
+{
+  "classification": "offline_proposal_serialization_not_delivery_verification",
+  "recorded_at_utc": "2026-11-14T11:52:18.905333+00:00",
+  "passed": true,
+  "active_execution_disabled": true,
+  "spending_authorized": false,
+  "credential_used": false,
+  "provider_calls": 0
+}

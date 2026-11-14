@@ -1,0 +1,39 @@
+{
+  "classification": "offline_regression_summaries_not_empirical",
+  "recorded_at_utc": "2026-11-14T11:53:17.840364+00:00",
+  "provider_calls": 0,
+  "cycles": [
+    {
+      "area": "budget ledger cwd stability",
+      "before": "1 failed, 45 deselected in 1.05s; relative path changed with cwd",
+      "fix": "Resolve ledger path at initialization",
+      "after": "python -m pytest -q tests/test_budget.py: 46 passed in 1.14s",
+      "before_command": "python -m pytest -q tests/test_budget.py -k working_directory"
+    },
+    {
+      "area": "rate accounting",
+      "command": "python -m pytest -q tests/test_rate_limit.py",
+      "after": "54 passed twice; final 0.73s",
+      "failed_checks_observed": false
+    },
+    {
+      "area": "provider metadata contract",
+      "before_command": "python -m pytest -q tests/test_provider.py -k 'metadata_provider_route_and_returned_identity or optional_reasoning_and_parameter_requirement or returned_provider_setting'",
+      "before": "3 failed, 83 deselected in 1.98s",
+      "fix": "Separate route/display pins; optional reasoning omission; strict parameter routing; verify selected metadata model/provider",
+      "after_command": "python -m pytest -q tests/test_provider.py -k 'metadata or require_parameters or optional_reasoning or returned_provider_setting or top_level_provider'",
+      "after": "33 passed, 53 deselected in 1.39s",
+      "broader_retest": "python -m pytest -q tests/test_provider.py: 86 passed in 37.76s"
+    },
+    {
+      "area": "guard accounting failure and delayed budget writes",
+      "before_command": "python -m pytest -q tests/test_controls.py -k 'settlement_failure or slow_budget or cancellation_while'",
+      "before": "4 failed, 14 deselected",
+      "fix": "Preserve delivered raw response with separate accounting marker and sticky dispatch stop; acquire rate after durable reservation; retain conservative undispatched holds",
+      "after": "18 controls tests passed; then added fsync, malformed/empty and manifest replay coverage",
+      "broader_retest": "python -m pytest -q tests/test_controls.py tests/test_provider.py tests/test_budget.py tests/test_rate_limit.py: 208 passed in 37.12s; 22 controls tests"
+    }
+  ],
+  "review": "Independent AI engineering review; no human H1-H5 review",
+  "raw_exception_text_recorded": false
+}

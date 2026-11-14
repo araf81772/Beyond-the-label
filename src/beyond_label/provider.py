@@ -1,22 +1,24 @@
 """Offline, injected-transport provider contract and immutable retry logging.
 
-No network implementation is supplied. OpenRouter field names and returned
-metadata assumptions are an offline contract pending official documentation
-verification before any live execution. Credentials never enter payloads,
-responses, exceptions, or logs returned by this module.
+No network implementation is supplied. OpenRouter routing slugs and returned
+provider display names are separate pins. Its documented metadata identity mode
+requires a future transport to request X-OpenRouter-Metadata: enabled; that
+noncredential HTTP header is not part of this module's JSON request payload.
+Credentials never enter payloads, responses, exceptions, or returned logs.
 """
 
 from __future__ import annotations
 
 from collections.abc import Callable
 from copy import deepcopy
+from dataclasses import dataclass
 import hashlib
 import json
 import math
 import os
 import re
 import time
-from typing import Any
+from typing import Any, Literal
 from urllib.error import HTTPError, URLError
 
 import httpx
@@ -29,8 +31,11 @@ from .environment import CREDENTIAL_NAMES, load_local_credentials
 class ProviderSettings(StrictModel):
     model: str = Field(min_length=1)
     provider: str = Field(min_length=1)
+    provider_route: str | None = Field(default=None, min_length=1)
+    provider_identity_source: Literal["provider", "openrouter_metadata"] = "provider"
+    require_parameters: bool = Field(default=False, strict=True)
     temperature: float | None = 0
-    reasoning: dict[str, Any] = Field(default_factory=dict)
+    reasoning: dict[str, Any] | None = Field(default_factory=dict)
     max_output_tokens: int = Field(default=512, gt=0)
 
 
@@ -51,6 +56,22 @@ class ProviderFailure(RuntimeError):
         # Only module-defined reason codes are ever passed by this module.
         self.reason = reason
         super().__init__(reason)
+
+
+@dataclass(frozen=True)
+class TransportOutcome:
+    """A delivered response plus separate, fixed local accounting evidence.
+
+    The local error is logged on the attempt, never inserted into upstream raw
+    response bytes or the replayed ProviderResult.
+    """
+
+    raw_response: Any
+    accounting_error: str
+
+    def __post_init__(self):
+        if self.accounting_error != "budget_settlement_failed":
+            raise ProviderFailure("invalid_transport_accounting_metadata")
 
 
 _CREDENTIAL_ENV = CREDENTIAL_NAMES
@@ -112,9 +133,26 @@ def request_hash(payload: dict[str, Any]) -> str:
     return hashlib.sha256(canonical_json(payload).encode("utf-8")).hexdigest()
 
 
+def _provider_pin(settings: ProviderSettings) -> dict[str, Any]:
+    route = settings.provider if settings.provider_route is None else settings.provider_route
+    pin = {"only": [route], "allow_fallbacks": False}
+    if settings.require_parameters:
+        pin["require_parameters"] = True
+    return pin
+
+
+def _validate_settings_safety(settings: ProviderSettings) -> None:
+    # The expected display identity may not appear in the wire payload when a
+    # distinct routing slug is used, but it is still recorded in run manifests.
+    values = settings.model_dump(mode="json")
+    if canonical_json(_sanitized(values)) != canonical_json(values):
+        raise ProviderFailure("credential_or_header_in_request")
+
+
 def serialize_request(request: Request, settings: ProviderSettings) -> dict[str, Any]:
     """Allowlist provider fields; no headers, credentials or research envelope."""
     load_local_credentials()
+    _validate_settings_safety(settings)
     if request.parallel_tool_calls:
         raise ProviderFailure("parallel_tools_forbidden")
     for message in request.messages:
@@ -124,12 +162,13 @@ def serialize_request(request: Request, settings: ProviderSettings) -> dict[str,
             raise ProviderFailure("invalid_message_role")
     payload: dict[str, Any] = {
         "model": settings.model,
-        "provider": {"only": [settings.provider], "allow_fallbacks": False},
+        "provider": _provider_pin(settings),
         "messages": deepcopy(request.messages),
         "max_tokens": settings.max_output_tokens,
-        "reasoning": deepcopy(settings.reasoning),
         "parallel_tool_calls": False,
     }
+    if settings.reasoning is not None:
+        payload["reasoning"] = deepcopy(settings.reasoning)
     if settings.temperature is not None:
         payload["temperature"] = settings.temperature
     if request.tools:
@@ -182,8 +221,41 @@ def _safe_response(raw: Any) -> dict[str, Any]:
     if not isinstance(raw, dict):
         return {}
     return _sanitized({key: raw[key] for key in
-                       ("id", "model", "provider", "choices", "usage", "error", "created", "object")
+                       ("id", "model", "provider", "openrouter_metadata", "choices", "usage", "error", "created", "object")
                        if key in raw})
+
+
+def _validate_provider_identity(raw: dict[str, Any], settings: ProviderSettings) -> None:
+    if settings.provider_identity_source == "provider":
+        if raw.get("provider") != settings.provider:
+            raise ProviderFailure("provider_mismatch")
+        return
+    # Metadata is opt-in. Never use the legacy top-level field as a fallback:
+    # absent or ambiguous routing evidence cannot establish a successful pin.
+    metadata = raw.get("openrouter_metadata")
+    if metadata is None:
+        raise ProviderFailure("provider_metadata_missing")
+    if not isinstance(metadata, dict) or not isinstance(metadata.get("endpoints"), dict):
+        raise ProviderFailure("protocol_invalid_provider_metadata")
+    available = metadata["endpoints"].get("available")
+    if not isinstance(available, list):
+        raise ProviderFailure("protocol_invalid_provider_metadata")
+    selected = []
+    for endpoint in available:
+        if (not isinstance(endpoint, dict) or type(endpoint.get("selected")) is not bool
+                or not isinstance(endpoint.get("provider"), str) or not endpoint["provider"]
+                or not isinstance(endpoint.get("model"), str) or not endpoint["model"]):
+            raise ProviderFailure("protocol_invalid_provider_metadata")
+        if endpoint["selected"]:
+            selected.append(endpoint)
+    if len(selected) != 1:
+        raise ProviderFailure("protocol_invalid_provider_metadata")
+    if selected[0]["model"] != settings.model:
+        raise ProviderFailure("model_mismatch")
+    if selected[0]["provider"] != settings.provider:
+        raise ProviderFailure("provider_mismatch")
+    if "provider" in raw and raw["provider"] != settings.provider:
+        raise ProviderFailure("provider_mismatch")
 
 
 def _parse(raw: Any, payload: dict[str, Any], settings: ProviderSettings, latency: float) -> ProviderResult:
@@ -191,8 +263,7 @@ def _parse(raw: Any, payload: dict[str, Any], settings: ProviderSettings, latenc
         raise ProviderFailure("protocol_invalid_response")
     if raw.get("model") != settings.model:
         raise ProviderFailure("model_mismatch")
-    if raw.get("provider") != settings.provider:
-        raise ProviderFailure("provider_mismatch")
+    _validate_provider_identity(raw, settings)
     choices = raw.get("choices")
     if not isinstance(choices, list) or len(choices) != 1 or not isinstance(choices[0], dict):
         raise ProviderFailure("protocol_invalid_response")
@@ -247,10 +318,14 @@ def _parse(raw: Any, payload: dict[str, Any], settings: ProviderSettings, latenc
     usage = _usage(raw.get("usage"))
     safe_raw = {
         "id": _redact_string(raw["id"]) if isinstance(raw.get("id"), str) else None,
-        "model": settings.model, "provider": settings.provider,
+        "model": settings.model,
         "choices": [{"message": safe_message, "finish_reason": _redact_string(finish_reason) if isinstance(finish_reason, str) else None}],
         "usage": usage,
     }
+    if "provider" in raw:
+        safe_raw["provider"] = settings.provider
+    if "openrouter_metadata" in raw:
+        safe_raw["openrouter_metadata"] = _sanitized(raw["openrouter_metadata"])
     return ProviderResult(
         reply=reply, raw_response=safe_raw, payload=deepcopy(payload), usage=usage,
         returned_model=settings.model, returned_provider=settings.provider,
@@ -273,11 +348,10 @@ def parse_response(raw: Any, payload: dict[str, Any], settings: ProviderSettings
                    latency_seconds: float = 0.0) -> ProviderResult:
     """Replay saved safe response evidence without invoking any transport."""
     load_local_credentials()
+    _validate_settings_safety(settings)
     if not math.isfinite(latency_seconds) or latency_seconds < 0:
         raise ProviderFailure("invalid_latency_measurement")
-    if payload.get("model") != settings.model or payload.get("provider") != {
-        "only": [settings.provider], "allow_fallbacks": False,
-    }:
+    if payload.get("model") != settings.model or payload.get("provider") != _provider_pin(settings):
         raise ProviderFailure("request_pin_mismatch")
     if canonical_json(_sanitized(payload)) != canonical_json(payload):
         raise ProviderFailure("credential_or_header_in_request")
@@ -288,7 +362,7 @@ class PinnedProvider:
     """Exactly one pinned provider/model; transport must be explicitly injected."""
 
     def __init__(self, settings: ProviderSettings,
-                 transport: Callable[[dict[str, Any]], dict[str, Any] | None],
+                 transport: Callable[[dict[str, Any]], dict[str, Any] | TransportOutcome | None],
                  sleep: Callable[[float], None] | None = None):
         load_local_credentials()
         self.settings = settings
@@ -314,6 +388,7 @@ class PinnedProvider:
         for attempt in range(start_attempt, 5):
             emit("attempt_started", attempt, usage={}, latency_seconds=0.0)
             started = time.perf_counter()
+            local_accounting: dict[str, str] = {}
             try:
                 raw = self.transport(json.loads(encoded))
             except Exception as exc:
@@ -325,16 +400,22 @@ class PinnedProvider:
                     raise ProviderFailure("invalid_latency_measurement") from None
                 if reason is None:
                     # Never include exception text, repr, request headers or body.
-                    safe_reason = exc.reason if isinstance(exc, ProviderFailure) and exc.reason == "offline_only_live_transport_unavailable" else "transport_failure"
+                    safe_codes = {"offline_only_live_transport_unavailable", "budget_control_blocked",
+                                  "rate_control_blocked", "concurrent_dispatch_forbidden",
+                                  "attempt_bound_unavailable"}
+                    safe_reason = exc.reason if isinstance(exc, ProviderFailure) and exc.reason in safe_codes else "transport_failure"
                     emit("attempt_failed", attempt, reason=safe_reason, infrastructure=False,
                          retryable=False, usage={}, latency_seconds=latency)
                     raise ProviderFailure(safe_reason) from None
             else:
+                if isinstance(raw, TransportOutcome):
+                    local_accounting = {"accounting_error": raw.accounting_error}
+                    raw = raw.raw_response
                 latency = _latency(started)
                 if latency is None:
                     emit("attempt_failed", attempt, reason="invalid_latency_measurement", infrastructure=False,
                          retryable=False, usage=_usage(raw.get("usage")) if isinstance(raw, dict) else {},
-                         latency_seconds=None, raw_response=_safe_response(raw))
+                         latency_seconds=None, raw_response=_safe_response(raw), **local_accounting)
                     raise ProviderFailure("invalid_latency_measurement")
                 reason = "empty_body" if raw is None or raw == "" or raw == b"" else None
                 if reason is None:
@@ -346,13 +427,16 @@ class PinnedProvider:
                              retryable=False, usage=_usage(raw.get("usage")) if isinstance(raw, dict) else {},
                              latency_seconds=latency, raw_response=safe_raw,
                              returned_model=safe_raw.get("model"), returned_provider=safe_raw.get("provider"),
-                             request_id=safe_raw.get("id"))
+                             request_id=safe_raw.get("id"), **local_accounting)
                         raise
                     emit("attempt_succeeded", attempt, usage=result.usage,
-                         latency_seconds=latency, result=result.model_dump(mode="json"))
+                         latency_seconds=latency, result=result.model_dump(mode="json"), **local_accounting)
                     return result
             emit("attempt_failed", attempt, reason=reason, infrastructure=True,
-                 retryable=attempt < 4, usage={}, latency_seconds=latency)
+                 retryable=attempt < 4 and not local_accounting, usage={}, latency_seconds=latency,
+                 **local_accounting)
+            if local_accounting:
+                raise ProviderFailure("budget_control_blocked")
             if attempt == 4:
                 raise ProviderFailure(f"infrastructure_exhausted:{reason}")
             self.sleep(float(2 ** (attempt - 1)))

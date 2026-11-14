@@ -1,0 +1,45 @@
+# Planning record only. This is not an executable run configuration or approval.
+schema_version: 1
+classification: proposed_m4_settings_not_spending_authorization
+reviewed_date: '2026-11-14'
+live_execution_enabled: false
+paid_calls_authorized: false
+authorized_spend_cap: null
+proposal:
+  milestone: 4
+  spend_cap: '20.00'
+  currency: USD
+  budget_scope: aggregate_smoke_pilot_optional_load8_smoke_and_permitted_retries
+  main_execution_included: false
+  credit_purchase_authorized: false
+  routing_service: OpenRouter
+  model: openai/gpt-4.1-mini
+  provider_route: openai
+  provider_returned_identity: OpenAI
+  provider_identity_source: openrouter_metadata
+  temperature: 0
+  reasoning_mode: not_applicable
+  reasoning: null
+  max_output_tokens: 512
+  tool_choice: auto
+  parallel_tool_calls: false
+  allow_fallbacks: false
+  require_parameters: true
+  concurrency: 1
+  infrastructure_retries_after_initial: 3
+  no_tool_reprompts: 1
+  no_tool_reprompt: Respond with exactly one tool call.
+  provider_requests_per_minute: null
+  provider_tokens_per_minute: null
+  provider_hard_key_limit_verified: false
+  live_wire_compatibility_verified: false
+  public_documentation_reviewed: true
+  upstream_scheduled_shutdown: '2027-01-14'
+  pilot_floor_repeat_candidate: openai/gpt-4.1
+  automatic_model_switching: false
+public_prices_usd_per_million_tokens:
+  input: '0.40'
+  output: '1.60'
+  cached_input: '0.10'
+  source: https://openrouter.ai/api/v1/models/openai/gpt-4.1-mini/endpoints
+readiness_record: research/execution_readiness.md

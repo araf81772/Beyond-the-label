@@ -44,7 +44,7 @@ The first command builds provisional manifests for both possible main loads, run
 
 Each synthetic run contains `manifest.json`, `calls.jsonl`, `scores.csv`, `usage.csv`, and `analysis_manifest.json`, plus labelled analysis artifacts. Its manifest hashes source, prompts, configuration and data inputs; changed inputs block resume/replay. Use a new output directory for a new code version and preserve prior raw traces. A torn or ambiguous interrupted attempt is recorded or blocked explicitly rather than resampled. No valid/invalid decision is resampled, and each decision episode permits at most one exact no-tool re-prompt.
 
-The second command tests a clean local Git clone against the same installed environment, without network or package installation; its result is separate from fresh-environment reproducibility. The pinned OpenRouter serializer has only an injected local transport. Official provider-field compatibility, real returned metadata, pricing and rate limits remain unverified; the live transport and real-run configs are disabled.
+The second command tests a clean local Git clone against the same installed environment, without network or package installation; its result is separate from fresh-environment reproducibility. The pinned OpenRouter serializer has only an injected local transport. Public provider-field and pricing documentation has now been reviewed; real delivery, returned metadata, account limits and authentication remain unverified. The live transport and real-run configs are disabled.
 
 Milestone-3 validation evidence remains preserved: [353-test suite](research/checks/milestone3_suite.json), [clean clone](research/checks/clean_clone.json) and [committed input hashes](research/checks/committed_inputs.json). The two earlier synthetic main runs retain their raw traces and original input snapshots. Continuing pre-freeze engineering uses a new synthetic run directory; none of these fixtures supplies empirical evidence.
 
@@ -66,11 +66,11 @@ Evidence: [rehearsal](evaluation/synthetic_m4_rehearsal/rehearsal.json), [gate r
 
 ## Execution prerequisites
 
-OpenRouter is specified as the routing service. The model, upstream provider, reasoning setting, output-token limit, numeric spending cap, and provider rate/concurrency limits are not selected. A local credential can now be loaded automatically from the ignored project-root `.env`; a presence check does not verify authentication or authorize spending. The design's “under US$20” is a planning estimate, not authorization or measured expenditure. No paid calls were made during this audit.
+OpenRouter is specified as the routing service. The [proposed M4 configuration](configs/proposed_m4.yaml) selects `openai/gpt-4.1-mini` through the `openai` route, temperature 0, reasoning omitted, 512 output tokens and concurrency 1. The proposed USD 20 M4 ceiling is **not spending authorization**. Active configs stay disabled; account limits and real compatibility remain unverified. [Readiness and sources](research/execution_readiness.md) records prices, the upstream January 2027 retirement schedule, limitations and remaining work. A local credential loads automatically from the ignored project-root `.env`; presence does not verify authentication or authorize spending. The design's “under US$20” remains a historical estimate. No paid calls were made.
 
 Delivery uses the user-supplied existing repository, [araf81772/Beyond-the-label](https://github.com/araf81772/Beyond-the-label), on `main`. No GitHub repository was created or visibility changed. NUMERIC's information-sufficiency ambiguity was resolved by explicit user approval of amendment A1: retain report facts alongside the prescribed losses.
 
-The user requires offline research execution. Git delivery is the requested exception. There is no execution freeze, model observation, effect estimate, confidence interval, observed regret, pilot decision, human trace review, or empirical report. Synthetic world inputs and analytic references must not be counted as model results.
+The user requires offline research execution. Git delivery and read-only public provider documentation/pricing research are the requested exceptions. There is no execution freeze, model observation, effect estimate, confidence interval, observed regret, pilot decision, human trace review, or empirical report. Synthetic world inputs and analytic references must not be counted as model results.
 
 
 ## Local credential loading
@@ -89,3 +89,15 @@ The command emits booleans and fixed error codes only. Do not print the file or 
 Adding the loader changes source hashes. The earlier four synthetic runs retain their original bytes and are tied to commit `34c9438`; their 29 original inputs are archived in `evaluation/input_snapshots/34c9438_before_env_loading.zip` without credentials. Current commands use new output directories for future validation instead of rewriting historical traces. The full test suite exercises fresh synthetic runs under the current source.
 
 Credential-loading validation: [453-test suite](research/checks/env_loading_suite_final.json), [safe regression summaries](research/checks/env_loading_regressions.json), and [presence-only check](research/checks/env_presence.json). The key was detected locally; this does not establish online authentication. No paid calls were made.
+
+## Offline budget, rate and provider safeguards
+
+The current checkpoint passes [607 tests](research/checks/m4_safeguards_suite.json). [Regression evidence](research/checks/m4_safeguards_regressions.json) records failures and repairs for ledger paths, provider identity, response preservation after settlement errors, and rate checks after slow durable writes. All use local fixtures.
+
+```powershell
+python -m pytest -q tests/test_budget.py tests/test_rate_limit.py tests/test_controls.py tests/test_provider.py
+python -m pytest -q
+python scripts/verify_audit.py
+```
+
+The helpers reserve funds and rate capacity for each attempt, retain unknown costs, and preserve returned decisions when local settlement fails. Live HTTP/runner integration, verified cost/token bounds, restart reconciliation, account limits and spending authorization remain required. See the [readiness record](research/execution_readiness.md); no live command is provided or enabled.
