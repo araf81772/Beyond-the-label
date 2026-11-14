@@ -1,7 +1,7 @@
 {
-  "recorded_at_utc": "2026-11-14T12:30:56.200745+00:00",
+  "recorded_at_utc": "2026-11-14T13:08:27.915396+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "Current instruction: finish offline work only; Git checkpoint delivery authorized; free-only inference was requested then disabled after HTTP401 preflight",
+  "requested_scope": "User renewed free-only M4 -> M5 -> M6 execution conditional on verified USD 0 hard key limit; paid calls prohibited; Git delivery and source verification authorized",
   "execution_freeze": null,
   "experimental_calls": 0,
   "human_participation_observed": false,
@@ -136,8 +136,7 @@
         "Credential/header leakage and immutable-attempt review"
       ],
       "real_run_blockers": [
-        "Current user instruction restricts work to offline",
-        "Authenticated read-only key preflight returned HTTP401; hard key ceiling and actual free quota unverified",
+        "Authenticated key check succeeded but zero_hard_limit is false; user condition for inference unmet",
         "Real free-route wire compatibility, smoke and pilot remain unobserved"
       ],
       "validation": [
@@ -228,7 +227,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "Read-only account preflight returned HTTP401; user then instructed offline work only. Real smoke/pilot/freeze cannot be completed.",
+      "reason": "Authenticated read-only key check succeeded, but zero_hard_limit is false. User authorization is conditional on a verified USD 0 hard key limit; no inference sent.",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -251,8 +250,8 @@
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
-      "minimum_next_action": "Provide a valid OpenRouter key with a USD0 hard limit and renew free-only execution authorization; verify actual quota and real delivery before smoke/pilot and freeze. No paid calls or purchases authorized.",
-      "offline_preparation_status": "Current free-only engineering validated by 901 offline tests; real smoke/pilot/freeze remain blocked",
+      "minimum_next_action": "Set the OpenRouter hard spending limit to USD 0 on the exact key used by the ignored .env, then request a recheck. Conditional free-only authorization already exists; do not purchase credits or enable paid calls.",
+      "offline_preparation_status": "Full offline suite rechecked: 901 passed; real smoke/pilot/freeze blocked by unmet USD 0 hard-key-limit condition",
       "offline_validation": [
         {
           "command": "python -m pytest -q",
@@ -326,6 +325,18 @@
           "exit_code": 0,
           "summary": "Clean local clone passed 901 tests in 202.81s, audit and clean tracked diff; same installed environment; credentials removed; no network",
           "evidence": "research/checks/free_clean_clone.json"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "901 passed in 202.03s; credential-isolated and network-blocked offline suite",
+          "evidence": "research/checks/free_limit_recheck_suite.json"
+        },
+        {
+          "command": "python scripts/verify_audit.py; python -m pip check; git diff --check; git diff --exit-code -- src prompts configs data research/protocol.md research/amendments.md; git check-ignore .env",
+          "exit_code": 0,
+          "summary": "643 audit/source/selected-secret checks, dependencies, diff and unchanged experiment inputs passed; .env ignored and untracked",
+          "evidence": "research/checks/free_limit_recheck_validation.json"
         }
       ],
       "recorded_test_fix_retest": [
@@ -357,14 +368,15 @@
         "status_checkpoint": "Follow-up commit records this evidence; final remote HEAD is verified after that push"
       },
       "local_credential_setup": {
-        "status": "detected_locally_but_authentication_rejected_http401",
-        "evidence": "research/checks/free_account_preflight.json",
+        "status": "authenticated_but_zero_hard_limit_not_verified",
+        "evidence": "research/checks/free_account_recheck.json",
         "env_file_ignored": true,
         "credential_values_recorded": false,
         "paid_calls_authorized": false,
-        "provider_calls": 0,
-        "account_status_requests": 1,
-        "provider_inference_calls": 0
+        "provider_inference_calls": 0,
+        "free_quota_used": 0,
+        "free_quota_limit": 50,
+        "free_quota_remaining": 50
       },
       "proposed_configuration": {
         "path": "configs/proposed_m4.yaml",
@@ -419,35 +431,69 @@
         "clean_clone_tests": 901,
         "fresh_dependency_install": false,
         "final_status_checkpoint": "This documentation-only follow-up records observed delivery; its own final identity is resolved and verified through Git"
+      },
+      "historical_credential_checks": [
+        {
+          "status": "detected_locally_but_authentication_rejected_http401",
+          "evidence": "research/checks/free_account_preflight.json",
+          "env_file_ignored": true,
+          "credential_values_recorded": false,
+          "paid_calls_authorized": false,
+          "provider_calls": 0,
+          "account_status_requests": 1,
+          "provider_inference_calls": 0
+        }
+      ],
+      "current_execution_authorization": {
+        "free_only": true,
+        "condition": "authenticated key hard limit exactly USD 0",
+        "condition_satisfied": false,
+        "paid_calls_authorized": false,
+        "configured_execution_enabled": false,
+        "source_config_changed": false,
+        "evidence": "research/checks/free_account_recheck.json"
+      },
+      "current_checkpoint": {
+        "status": "offline_tests_passed_real_execution_blocked",
+        "commit_reference": "Resolve final identity through Git; no circular self-hash",
+        "push_status": "pending",
+        "test_evidence": "research/checks/free_limit_recheck_suite.json",
+        "account_evidence": "research/checks/free_account_recheck.json",
+        "source_verification": "research/checks/source_verification.json",
+        "verification_evidence": "research/checks/free_limit_recheck_validation.json"
       }
     },
     {
       "number": 5,
       "name": "Main execution",
       "status": "blocked",
-      "reason": "Depends on real smoke/pilot and a valid execution freeze; offline instruction prohibits main calls",
+      "reason": "No validated real smoke/pilot or execution freeze; current hard-key-limit condition blocks inference",
       "empirical_completed_cells": 0,
       "planned_cells": 704,
       "missingness_interpretation": "Not executed; no partial empirical run exists",
-      "minimum_next_action": "Complete milestone 4 under explicit live authorization"
+      "minimum_next_action": "Satisfy the hard-key-limit condition, complete real milestone 4 gates and verify the freeze before main execution"
     },
     {
       "number": 6,
       "name": "Analysis/report/reproduction",
       "status": "blocked",
-      "reason": "Empirical traces and official template/source verification are unavailable under offline instruction",
+      "reason": "No empirical main traces; independent primary-source verification can proceed, but empirical analysis and an official-template results paper cannot be completed",
       "completed_offline_preparation": [
         "Analysis algorithms and synthetic tests",
         "Figure/table and matched-trace generation",
         "Numeric claim-evidence generator",
         "Reproduction commands and source-integrity checks",
-        "Citation and report prerequisite records"
+        "Citation and report prerequisite records",
+        "AI verification of the three requested arXiv identities/selected claims and official sprint guidelines/template link; template contents remain inaccessible"
       ],
       "empirical_estimate": null,
       "empirical_ci95": null,
       "paper_created": false,
       "human_review_observed": false,
-      "minimum_next_action": "Complete frozen main execution and provide or authorize retrieval of official template and cited sources"
+      "minimum_next_action": "Complete milestone 4 and frozen main execution; retrieve readable official template contents for final paper production",
+      "source_verification": "research/checks/source_verification.json",
+      "official_template_link_verified": true,
+      "official_template_contents_verified": false
     }
   ],
   "human_participation_scope": "No H1-H5 oracle/trace/citation review observed; user separately approved NUMERIC amendment A1"

@@ -1,6 +1,6 @@
 # Free-only execution preparation
 
-On 14 November 2026, the user requested free inference and no paid calls. A read-only OpenRouter key-status request returned **HTTP 401**. No inference request was sent. The user then instructed: **“Finish offline work only.”** That is the current execution boundary. `configs/free.yaml` disables both real execution and account preflight. No key or account setting was changed; the key remains local to the ignored `.env`.
+The user renewed authorization on the client date 15 November 2026: recheck the key, then continue milestones 4–6 using free calls only if the key hard limit is USD 0. The authenticated read-only check now succeeds, but reports **zero_hard_limit:false** and **50 of 50 free requests remaining**. This does not satisfy the condition, so no inference request was sent and both configuration execution flags remain disabled. Evidence: `research/checks/free_account_recheck.json`. The prior HTTP 401 and subsequent offline-only instruction remain historical records. No key or account setting was changed.
 
 ## Retained configuration
 
@@ -10,7 +10,7 @@ Native NVIDIA documentation supports parallel_tool_calls and reasoning disabled 
 
 The serialized request includes zero max_price for prompt, completion, request and image, one allowed provider and require_parameters:true. The HTTP adapter additionally rejects paid IDs, extra request features, server tools, non-text inputs and redirects. Provider metadata is requested and checked against the exact model/provider. No undocumented returned-model alias is accepted. [Provider routing](https://openrouter.ai/docs/guides/routing/provider-selection).
 
-OpenRouter documents a free limit of 20 requests/minute and daily tiers normally 50 or 1,000 requests. The actual daily used/limit/remaining counters must come from GET /api/v1/key, rather than an inference from is_free_tier. Our failed authentication established none of those account values. No purchase is authorized to obtain a higher tier. Provider TPM was not published in the reviewed sources; it remains null. The chosen local throttle is 10 RPM and 10,005,120 TPM, using a conservative whole-context-plus-512-output bound of 1,000,512 tokens per attempt. This is an operator throttle, not a claim about the provider's token limit. [Free model limits](https://openrouter.ai/collections/free-models), [Key status and limits](https://openrouter.ai/docs/api_reference/limits).
+OpenRouter documents a free limit of 20 requests/minute and daily tiers normally 50 or 1,000 requests. The actual daily used/limit/remaining counters must come from GET /api/v1/key, rather than an inference from is_free_tier. The latest successful check returned used 0, limit 50, remaining 50; it did not verify a zero hard spending limit. No purchase is authorized to obtain a higher tier. Provider TPM was not published in the reviewed sources; it remains null. The chosen local throttle is 10 RPM and 10,005,120 TPM, using a conservative whole-context-plus-512-output bound of 1,000,512 tokens per attempt. This is an operator throttle, not a claim about the provider's token limit. [Free model limits](https://openrouter.ai/collections/free-models), [Key status and limits](https://openrouter.ai/docs/api_reference/limits).
 
 ## Implementation and recovery
 
@@ -30,7 +30,7 @@ python scripts/verify_audit.py
 python -m pytest -q tests/test_openrouter.py tests/test_free_provider.py tests/test_free_run.py tests/test_live.py tests/test_freeze.py
 ```
 
-The following future commands are **blocked by the shipped configuration**. They are documented for renewed free-only authorization after the key is fixed; do not toggle flags merely because these commands exist.
+The following future commands are **blocked by the shipped configuration**. Conditional free-only authorization now exists, but the provider-side zero hard limit remains unmet; do not toggle flags merely because these commands exist.
 
 ```powershell
 $env:PYTHONPATH = 'src'
@@ -42,4 +42,4 @@ python -m beyond_label.pilot runs/free_pilot_load2
 
 If the real pilot selects load-8, run its required four-world smoke before freezing. If NUMERIC is below 12/16, record the attempt and repeat the pilot with a separately pinned available free model; never route automatically or discard individual outcomes. No main command can pass without verified freeze evidence. Real quota may require multiple UTC days; each restart checks fresh account evidence and preserves completed cells.
 
-The exact current blocker is rejected authentication plus the user's restored offline-only instruction. Minimum future actions: a valid OpenRouter key with a zero hard spending limit, renewed free-only execution authorization, and successful quota/delivery checks. Real smoke/pilot counts are zero, no load has been selected from observations, no humans performed H1-H5 review, and experimental API expenditure is USD 0.
+The exact current blocker is the absence of a verified USD 0 hard limit on the authenticated key. Set that limit on the same OpenRouter key used by the ignored `.env`, then request a recheck. Free-only authorization need not be requested again. After that condition is satisfied, actual quota/delivery checks and real smoke/pilot gates remain required. The observed quota of 50 requests per day is smaller than the 80 initial cells in the full smoke manifest, so completion may require multiple quota windows; do not shrink the design or buy credits to bypass this constraint. Real smoke/pilot counts are zero, no load has been selected from observations, no humans performed H1-H5 review, and experimental API expenditure is USD 0.

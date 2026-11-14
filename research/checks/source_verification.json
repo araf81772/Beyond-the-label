@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "classification": "public_primary_source_verification_not_experimental_results",
+  "recorded_at_utc": "2026-11-14T13:05:13Z",
+  "reviewer": "Codex",
+  "reviewer_type": "AI",
+  "method": "Read-only public web retrieval; identity and selected claim checks against source text.",
+  "human_h5_review_performed": false,
+  "credentials_used": false,
+  "inference_calls": 0,
+  "source_contents_archived": false,
+  "exhaustive_literature_review": false,
+  "novelty_verified": false,
+  "authoritative_source_archive_modified": false,
+  "sources": [
+    {
+      "id": "arxiv:2608.25553v3",
+      "url": "https://arxiv.org/html/2608.25553v3",
+      "title": "When Stale Constraints Go Unchecked: Budgeted Verification Failures in Inherited Agent Memory",
+      "authors": ["Kazuki Nakayashiki"],
+      "status": "identity_and_selected_claims_verified",
+      "support_locations": ["Title and author block", "Abstract", "Introduction"],
+      "verified_claims": [
+        "The study uses a six-memory scenario with a two-record verification budget.",
+        "A forced-critical intervention reallocates a slot within the same budget to the critical provenance path.",
+        "The forced policy uses experimenter knowledge and is explicitly not a scheduler."
+      ],
+      "limits": [
+        "Supports verification-allocation motivation, not equivalence to BTL's scope swap or proof of BTL novelty.",
+        "External study results are not BTL observations; no independent empirical replication was performed."
+      ]
+    },
+    {
+      "id": "arxiv:2609.35155v2",
+      "url": "https://arxiv.org/html/2609.35155v2",
+      "title": "Right Facts, Wrong Rule: Scope-Transfer Poisoning of Retrieval-Augmented Generation",
+      "authors": ["Kaisheng Fan", "Yishu Gao", "Xunzhu Tang", "Tegawend'e F. Bissyand'e", "Weizhe Zhang"],
+      "status": "identity_and_selected_claims_verified",
+      "support_locations": ["Title and author block", "Abstract", "Introduction"],
+      "verified_claims": [
+        "The study examines rule-scope misapplication with factual support and explicit scope boundaries.",
+        "For 76.2% of target-matching default responses, the same model judged the rule inapplicable when explicitly probed."
+      ],
+      "limits": [
+        "The 76.2% denominator is conditional on target-matching default responses, not all attempts.",
+        "Adversarial RAG findings do not establish causal recognition-to-action effects in BTL or prove BTL novelty."
+      ]
+    },
+    {
+      "id": "arxiv:2610.34107v1",
+      "url": "https://arxiv.org/html/2610.34107v1",
+      "title": "Can LLMs Trust Appropriately? Evaluating Calibrated Reliance on Imperfect Partners",
+      "authors": ["Mengdi Chu", "Jintao Huang"],
+      "status": "identity_and_selected_claims_verified",
+      "support_locations": ["Title and author block", "Abstract"],
+      "verified_claims": [
+        "The benchmark contains 324 scenarios across 23 collaboration categories with three sequential decisions and analytic evaluation of expected consequences.",
+        "The study evaluates seven models alongside 36 controlled-history probes.",
+        "Explicit posterior information resolves some errors while introducing others."
+      ],
+      "limits": [
+        "The study supports separating evidence sensitivity from appropriate reliance; its counts and outcomes are not BTL data.",
+        "No exhaustive comparison or independent replication was performed."
+      ]
+    },
+    {
+      "id": "apart-ai-x-epistemics-2026-guidelines",
+      "url": "https://apartresearch.com/sprints/ai-x-epistemics-research-sprint-2026-11-13-to-2026-11-15",
+      "title": "AI x Epistemics Research Sprint",
+      "organization": "Apart Research",
+      "status": "official_guidelines_and_template_link_verified",
+      "support_locations": ["Research Tracks", "Submission Requirements", "Submission Template", "Recommended Report Structure", "Frequently Asked Questions: Submissions"],
+      "verified_claims": [
+        "Track 2 is Trust Infrastructure.",
+        "Submit a PDF report using the linked official template, with at most eight body pages excluding references and appendices.",
+        "Include a 150-250-word abstract, author names and affiliations, and a Limitations and Dual-Use / Ethical Considerations appendix.",
+        "The Guidelines template takes precedence over an older acceptance-email template."
+      ],
+      "limits": ["Guideline verification does not establish template-content access, template conformity, submission, publication or participation."]
+    },
+    {
+      "id": "apart-official-template-17b3JWki-ZkaqdmqGI5d0gof-HwlGuWU9Mc1_klNZXKs",
+      "url": "https://docs.google.com/document/d/17b3JWki-ZkaqdmqGI5d0gof-HwlGuWU9Mc1_klNZXKs/copy?usp=sharing",
+      "linked_from": "https://apartresearch.com/sprints/ai-x-epistemics-research-sprint-2026-11-13-to-2026-11-15",
+      "status": "official_link_verified_contents_inaccessible",
+      "template_contents_verified": false,
+      "access_attempts": [
+        {"variant": "official copy link", "outcome": "Redirected to Google sign-in; inaccessible to the public web tool."},
+        {"variant": "same document /edit", "outcome": "Inaccessible to the public web tool."},
+        {"variant": "same document /export?format=txt", "outcome": "Inaccessible to the public web tool."}
+      ],
+      "limits": ["Document title, contents, styles and local reproduction were not verified. No copy, submission or publication was made."]
+    }
+  ],
+  "unresolved": [
+    "Human citation review H5 has not occurred.",
+    "Other citations and characterizations in design Section 17 remain unverified.",
+    "The official template contents must be obtained and checked before claiming conformity.",
+    "The source design's earlier not-located statuses for Fan and colleagues and Chu and Huang remain preserved as historical text, superseded by this review."
+  ]
+}

@@ -2,13 +2,13 @@
 
 **The Label Survived. Which Case Did the Agent Check?**
 
-Offline engineering checkpoint, 14 November 2026 (Australia/Sydney). Milestones 1–3 are complete within the offline scope and delivered. Milestone 4 preparation now adds trace-derived pilot summaries, stricter execution prerequisite checks and a synthetic smoke/pilot/load-8 rehearsal. Milestones 4–6 remain explicitly blocked by the offline instruction and absent real experimental inputs; they are not claimed complete. The repository was empty at intake; the remote's initial Git attributes commit was subsequently preserved. No pre-existing experiment code or observations were found.
+Execution checkpoint, 15 November 2026 (Australia/Sydney). Milestones 1–3 are complete within the offline scope and delivered. Milestone 4 has offline-tested real-run infrastructure, but real smoke/pilot and freeze are incomplete. Milestones 5–6 depend on those empirical gates. The repository was empty at intake; the remote's initial Git attributes commit was preserved. No pre-existing experiment code or observations were found.
 
-Current update: the free-only HTTP adapter, quota-aware manifest path, empirical pilot summaries and freeze verification are implemented for offline testing. One authorized read-only key-status request returned **HTTP 401**; no inference call occurred. The user then requested **offline work only**. Both execution and account preflight in [configs/free.yaml](configs/free.yaml) are disabled. See [free execution preparation and exact blockers](research/free_execution.md).
+Current update: the user authorized free-only execution through milestones 4–6 if the key hard limit is USD 0. The read-only OpenRouter check now authenticates, but reports **zero_hard_limit:false**, with **50 free requests remaining**. No inference request was sent. Both execution flags in [configs/free.yaml](configs/free.yaml) remain disabled. Set the hard spending limit to exactly USD 0 on the same key used by the ignored `.env`, then request a recheck. [Check evidence](research/checks/free_account_recheck.json); [execution details](research/free_execution.md).
 
 The contribution specified for this project is: “A fixed-report scope-binding swap with audited delivery and enacted verification under changing payoffs.” This is a planned study, not a claim supported by collected results.
 
-- [Authoritative design](research/protocol.md): byte-for-byte archive of the supplied `final_design.txt`, all 581 lines reviewed. Its historical citation claims are not newly verified.
+- [Authoritative design](research/protocol.md): byte-for-byte archive of the supplied `final_design.txt`, all 581 lines reviewed. Historical citation claims remain unchanged in the archive; the current independent checks are in [related work](research/related_work.md).
 - [Audit and blockers](research/audit.md), [requirements map](research/requirements.csv), and [decision log](research/decisions.md).
 - [Six-milestone status](research/milestones.json), [runtime baseline](research/baseline.json), and [source provenance](research/source_manifest.json).
 - [Approved NUMERIC amendment and implementation conventions](research/amendments.md).
@@ -70,11 +70,11 @@ Evidence: [rehearsal](evaluation/synthetic_m4_rehearsal/rehearsal.json), [gate r
 
 OpenRouter is specified as the routing service. The [proposed M4 configuration](configs/proposed_m4.yaml) selects `openai/gpt-4.1-mini` through the `openai` route, temperature 0, reasoning omitted, 512 output tokens and concurrency 1. The proposed USD 20 M4 ceiling is **not spending authorization**. Active configs stay disabled; account limits and real compatibility remain unverified. [Readiness and sources](research/execution_readiness.md) records prices, the upstream January 2027 retirement schedule, limitations and remaining work. A local credential loads automatically from the ignored project-root `.env`; presence does not verify authentication or authorize spending. The design's “under US$20” remains a historical estimate. No paid calls were made.
 
-That paid-model proposal is retained as historical planning. The subsequent free-only candidate is `nvidia/nemotron-3.5-super-vl:free`, pinned to `nvidia`/`Nvidia`, with zero request price ceilings. Its settings are retained in a separate disabled configuration. The local key was rejected by authentication; replacing it does not by itself revoke the user's restored offline instruction.
+That paid-model proposal is retained as historical planning. The subsequent free-only candidate is `nvidia/nemotron-3.5-super-vl:free`, pinned to `nvidia`/`Nvidia`, with zero request price ceilings. Its settings are retained in a separate disabled configuration. The earlier key rejection is historical. Authentication now succeeds, but the latest read-only check does not verify the USD 0 hard limit required by the user's renewed conditional authorization.
 
 Delivery uses the user-supplied existing repository, [araf81772/Beyond-the-label](https://github.com/araf81772/Beyond-the-label), on `main`. No GitHub repository was created or visibility changed. NUMERIC's information-sufficiency ambiguity was resolved by explicit user approval of amendment A1: retain report facts alongside the prescribed losses.
 
-The user requires offline research execution. Git delivery and read-only public provider documentation/pricing research are the requested exceptions. There is no execution freeze, model observation, effect estimate, confidence interval, observed regret, pilot decision, human trace review, or empirical report. Synthetic world inputs and analytic references must not be counted as model results.
+The user permits free-only inference once the provider-side USD 0 hard limit is verified. Until then, research execution remains offline; Git delivery, read-only account checks and public source verification are authorized. There is no execution freeze, model observation, effect estimate, confidence interval, observed regret, pilot decision, human trace review, or empirical report. Synthetic world inputs and analytic references must not be counted as model results.
 
 
 ## Local credential loading
@@ -104,10 +104,12 @@ python -m pytest -q
 python scripts/verify_audit.py
 ```
 
-The helpers reserve funds and rate capacity for each attempt, retain unknown costs, and preserve returned decisions when local settlement fails. Live HTTP/runner integration, verified cost/token bounds, restart reconciliation, account limits and spending authorization remain required. See the [readiness record](research/execution_readiness.md); no live command is provided or enabled.
+The helpers reserve funds and rate capacity for each attempt, retain unknown costs, and preserve returned decisions when local settlement fails. This is historical safeguard evidence. Subsequent free HTTP/runner integration is described below; the current hard-key-limit gate and empirical delivery checks remain unmet. See the [current free execution record](research/free_execution.md); no inference command is enabled.
 
 ## Current free-only engineering validation
 
-The stabilized full suite passed [901 tests](research/checks/free_engineering_suite.json); [regression records](research/checks/free_engineering_regressions.json) retain failures and repairs. The HTTP adapter uses local mocks in tests, and the full suite receives no real credentials. Both free execution and account preflight are disabled. Real smoke/pilot/main observations remain absent, with HTTP 401 authentication and the restored offline instruction recorded as blockers.
+The stabilized full suite passed [901 tests](research/checks/free_engineering_suite.json); [regression records](research/checks/free_engineering_regressions.json) retain failures and repairs. The HTTP adapter uses local mocks in tests, and the full suite receives no real credentials. Both free execution and account preflight are disabled. Real smoke/pilot/main observations remain absent. Authentication has since succeeded; the current blocker is the unmet USD 0 hard-key-limit condition, recorded in [the account recheck](research/checks/free_account_recheck.json).
 
 The [clean local clone](research/checks/free_clean_clone.json) also passed all 901 tests, audit and clean tracked diff, using the same installed dependencies. [Invocation evidence](research/checks/free_clean_clone_command.json) records credential exclusion and no network. This does not establish a fresh dependency installation or real provider delivery.
+
+The current hard-limit recheck checkpoint also passed [all 901 offline tests](research/checks/free_limit_recheck_suite.json) in 202.03 seconds. [Primary-source verification](research/related_work.md) covers the three requested arXiv versions and official sprint guidelines. Template contents remain inaccessible, and no human citation review or empirical result is claimed.
