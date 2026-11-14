@@ -1,0 +1,16 @@
+artifact_label,condition,action,planned_denominator,agent_count,agent_fraction,oracle_reference_count,oracle_reference_fraction,oracle_evidence_kind
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,MAIN,COMMIT,256,0,0.0,0,0.0,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,MAIN,INSPECT_1,256,256,1.0,128,0.5,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,MAIN,INSPECT_2,256,0,0.0,128,0.5,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,MAIN,INVALID,256,0,0.0,0,0.0,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,MAIN,MISSING,256,0,0.0,0,0.0,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,HIGH-FEE,COMMIT,64,0,0.0,64,1.0,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,HIGH-FEE,INSPECT_1,64,64,1.0,0,0.0,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,HIGH-FEE,INSPECT_2,64,0,0.0,0,0.0,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,HIGH-FEE,INVALID,64,0,0.0,0,0.0,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,HIGH-FEE,MISSING,64,0,0.0,0,0.0,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,HIGH-STAKES,COMMIT,64,0,0.0,0,0.0,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,HIGH-STAKES,INSPECT_1,64,64,1.0,32,0.5,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,HIGH-STAKES,INSPECT_2,64,0,0.0,32,0.5,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,HIGH-STAKES,INVALID,64,0,0.0,0,0.0,analytic_reference_not_observation
+SYNTHETIC VALIDATION — NOT EMPIRICAL RESULTS,HIGH-STAKES,MISSING,64,0,0.0,0,0.0,analytic_reference_not_observation

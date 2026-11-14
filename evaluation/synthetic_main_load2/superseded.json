@@ -1,0 +1,8 @@
+{
+  "classification": "superseded_synthetic_validation_not_empirical",
+  "reason": "Two configuration EOF blank lines removed for final staged whitespace acceptance",
+  "raw_trace_unchanged": true,
+  "input_snapshot": "input_snapshot.zip",
+  "replacement_run": "../synthetic_main_load2_final",
+  "snapshot_member_hashes_verified": true
+}

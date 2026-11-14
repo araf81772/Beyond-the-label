@@ -2,7 +2,7 @@
 
 **The Label Survived. Which Case Did the Agent Check?**
 
-Offline engineering checkpoint, 14 November 2026 (Australia/Sydney). Milestone 1 is delivered; milestone 2 implements deterministic worlds, rendering, analytic scoring, and the tool sandbox. The repository was empty at intake; the remote's initial Git attributes commit was subsequently preserved. No pre-existing experiment code or observations were found.
+Offline engineering checkpoint, 14 November 2026 (Australia/Sydney). Milestones 1 and 2 are delivered. Milestone 3 adds the offline provider contract, manifest-driven execution/resume, trace replay, paired analysis and figures; current acceptance evidence is in the milestone record. The repository was empty at intake; the remote's initial Git attributes commit was subsequently preserved. No pre-existing experiment code or observations were found.
 
 The contribution specified for this project is: “A fixed-report scope-binding swap with audited delivery and enacted verification under changing payoffs.” This is a planned study, not a claim supported by collected results.
 
@@ -31,7 +31,20 @@ git status --short
 
 The audit script checks source integrity, requirement coverage, milestone records, and selected credential patterns without printing secrets. It does **not** replace the experiment test suite. Tests block network socket connections. Detailed acceptance outcomes and repair history are in `research/checks/` and the decision log.
 
-The initial milestone-1 pytest attempt found no tests; that historical evidence remains intact. Current tests cover world integrity, T1–T6 core behavior, deterministic rendering, readback prefixes, exact oracle values, sandbox transitions, and outcome accounting. Full provider/harness validation T7–T8 belongs to milestone 3.
+The initial milestone-1 pytest attempt found no tests; that historical evidence remains intact. Current tests cover T1–T8, world integrity, deterministic rendering, exact oracle values, sandbox transitions, provider payloads/retries, interruption recovery, independent readback prefixes, paired analysis and evidence provenance. Synthetic fixtures and mock usage are excluded from empirical results.
+
+## Synthetic offline pipeline
+
+```powershell
+python scripts/validate_offline.py --output evaluation/synthetic_main_load2_final
+python scripts/reproduce_offline.py
+```
+
+The first command builds provisional manifests for both possible main loads, runs all 704 main-plan cells through a deterministic local fixture, checks immutable traces and duplicate-free resume, and regenerates scores, usage, analysis, figures, a worked matched trace and a numeric evidence map. It makes **zero real provider calls**. Every output is labelled synthetic. The fixture always inspects the first target, so its outcomes are a pipeline check, not evidence about an AI model. The chosen main load remains unset.
+
+Each synthetic run contains `manifest.json`, `calls.jsonl`, `scores.csv`, `usage.csv`, and `analysis_manifest.json`, plus labelled analysis artifacts. Its manifest hashes source, prompts, configuration and data inputs; changed inputs block resume/replay. Use a new output directory for a new code version and preserve prior raw traces. A torn or ambiguous interrupted attempt is recorded or blocked explicitly rather than resampled. No valid/invalid decision is resampled, and each decision episode permits at most one exact no-tool re-prompt.
+
+The second command tests a clean local Git clone against the same installed environment, without network or package installation; its result is separate from fresh-environment reproducibility. The pinned OpenRouter serializer has only an injected local transport. Official provider-field compatibility, real returned metadata, pricing and rate limits remain unverified; the live transport and real-run configs are disabled.
 
 `requirements.lock` pins 32 installed transitive packages for Python 3.14.7 on Windows; `research/environment.lock.json` records their metadata fingerprints. `python scripts/lock_environment.py` regenerates this offline snapshot. `uv lock --offline` failed because required index/wheel data is absent, so the design's permitted pip+lock alternative is used. `python -m pip check` passes. A fresh isolated package installation is **not verified**; offline reinstall requires a compatible wheelhouse via `python -m pip install --no-index --find-links <wheelhouse> -r requirements.lock`. No dependency was downloaded.
 

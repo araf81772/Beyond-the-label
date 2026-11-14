@@ -1,0 +1,671 @@
+{
+  "manifest_version": 1,
+  "dataset": "smoke",
+  "load": 8,
+  "schedule_seed": 271828,
+  "classification": "planned_not_frozen",
+  "approved_for_execution": false,
+  "seeds": [
+    1100,
+    1101,
+    1102,
+    1103
+  ],
+  "counts": {
+    "READBACK": 16,
+    "MAIN": 16,
+    "HIGH-FEE": 16,
+    "HIGH-STAKES": 16,
+    "MASKED": 8,
+    "NUMERIC": 8
+  },
+  "initial_calls": 80,
+  "maximum_continuations": 64,
+  "maximum_planned_calls": 144,
+  "additional_calls_accounted_separately": [
+    "infrastructure_retries",
+    "permitted_no_tool_reprompts"
+  ],
+  "cells": [
+    {
+      "cell_id": "smoke-1100-readback-MAIN-inline-b",
+      "world_seed": 1100,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-STAKES-separate-b",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-STAKES-inline-a",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1101-readback-MAIN-inline-a",
+      "world_seed": 1101,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1102-readback-MAIN-separate-a",
+      "world_seed": 1102,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1102-readback-MAIN-inline-a",
+      "world_seed": 1102,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1103-readback-MAIN-inline-b",
+      "world_seed": 1103,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-FEE-inline-a",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MAIN-separate-a",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1102-decision-MASKED-inline-masked",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "MASKED",
+      "layout": "inline",
+      "twin": null
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-FEE-inline-b",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1101-decision-NUMERIC-separate-a",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "NUMERIC",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1103-decision-MASKED-inline-masked",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "MASKED",
+      "layout": "inline",
+      "twin": null
+    },
+    {
+      "cell_id": "smoke-1100-decision-MAIN-inline-a",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-STAKES-inline-a",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1102-decision-MAIN-inline-a",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MAIN-inline-b",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-FEE-separate-b",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1102-decision-NUMERIC-separate-a",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "NUMERIC",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-STAKES-inline-b",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-FEE-separate-b",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1103-readback-MAIN-separate-a",
+      "world_seed": 1103,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-STAKES-inline-a",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-FEE-inline-a",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-STAKES-separate-a",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1100-decision-NUMERIC-separate-a",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "NUMERIC",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-FEE-inline-a",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1102-decision-MAIN-inline-b",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1103-decision-MAIN-separate-b",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-STAKES-separate-a",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1102-decision-MASKED-separate-masked",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "MASKED",
+      "layout": "separate",
+      "twin": null
+    },
+    {
+      "cell_id": "smoke-1102-decision-MAIN-separate-a",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-STAKES-inline-a",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1100-decision-MAIN-separate-b",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1100-readback-MAIN-separate-b",
+      "world_seed": 1100,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-STAKES-separate-b",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1103-decision-MAIN-inline-b",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1100-decision-MASKED-inline-masked",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "MASKED",
+      "layout": "inline",
+      "twin": null
+    },
+    {
+      "cell_id": "smoke-1103-readback-MAIN-inline-a",
+      "world_seed": 1103,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-STAKES-separate-b",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-STAKES-inline-b",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1103-decision-MASKED-separate-masked",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "MASKED",
+      "layout": "separate",
+      "twin": null
+    },
+    {
+      "cell_id": "smoke-1103-decision-MAIN-inline-a",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1102-decision-NUMERIC-separate-b",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "NUMERIC",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-STAKES-separate-b",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1100-decision-MAIN-inline-b",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-STAKES-inline-b",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1102-decision-MAIN-separate-b",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MAIN-inline-a",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-FEE-inline-b",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1101-decision-NUMERIC-separate-b",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "NUMERIC",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1103-readback-MAIN-separate-b",
+      "world_seed": 1103,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1103-decision-NUMERIC-separate-a",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "NUMERIC",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1103-decision-NUMERIC-separate-b",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "NUMERIC",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-STAKES-inline-b",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1101-readback-MAIN-separate-a",
+      "world_seed": 1101,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1102-readback-MAIN-separate-b",
+      "world_seed": 1102,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-FEE-separate-a",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-FEE-separate-a",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MASKED-separate-masked",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "MASKED",
+      "layout": "separate",
+      "twin": null
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-STAKES-separate-a",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-FEE-inline-b",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1103-decision-MAIN-separate-a",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-FEE-inline-b",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-FEE-separate-a",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1102-readback-MAIN-inline-b",
+      "world_seed": 1102,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MAIN-separate-b",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-FEE-separate-a",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MASKED-inline-masked",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "MASKED",
+      "layout": "inline",
+      "twin": null
+    },
+    {
+      "cell_id": "smoke-1101-readback-MAIN-inline-b",
+      "world_seed": 1101,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-FEE-separate-b",
+      "world_seed": 1103,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1100-readback-MAIN-separate-a",
+      "world_seed": 1100,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1101-readback-MAIN-separate-b",
+      "world_seed": 1101,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1100-decision-MAIN-separate-a",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "MAIN",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-FEE-inline-a",
+      "world_seed": 1101,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1100-decision-MASKED-separate-masked",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "MASKED",
+      "layout": "separate",
+      "twin": null
+    },
+    {
+      "cell_id": "smoke-1100-readback-MAIN-inline-a",
+      "world_seed": 1100,
+      "purpose": "readback",
+      "condition": "MAIN",
+      "layout": "inline",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-FEE-separate-b",
+      "world_seed": 1102,
+      "purpose": "decision",
+      "condition": "HIGH-FEE",
+      "layout": "separate",
+      "twin": "b"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-STAKES-separate-a",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "HIGH-STAKES",
+      "layout": "separate",
+      "twin": "a"
+    },
+    {
+      "cell_id": "smoke-1100-decision-NUMERIC-separate-b",
+      "world_seed": 1100,
+      "purpose": "decision",
+      "condition": "NUMERIC",
+      "layout": "separate",
+      "twin": "b"
+    }
+  ]
+}

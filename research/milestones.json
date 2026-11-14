@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-14T09:34:02.972603+00:00",
+  "recorded_at_utc": "2026-11-14T09:56:18.541123+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "Sequential offline milestones with test-fix-retest and commit/push; Git transport authorized",
   "execution_freeze": null,
@@ -114,7 +114,8 @@
         "branch": "main",
         "delivered_commit": "d3e9325564016636c711e4f6a803c288f9cb626d",
         "remote_head_verified": true,
-        "correction": "Follow-up corrective checkpoint records 210 passing tests and LF preservation; final SHA resolved from Git"
+        "correction": "Follow-up corrective checkpoint records 210 passing tests and LF preservation; final SHA resolved from Git",
+        "final_corrective_commit": "07973dfbb2037d7a5e2c358749620d7da07a7d8b"
       },
       "limitations": [
         "Fresh isolated dependency installation not verified; no cached wheelhouse",
@@ -124,22 +125,123 @@
     {
       "number": 3,
       "name": "Validation",
-      "status": "not_started"
+      "status": "local_validation_complete_clone_pending_push_pending",
+      "execution_mode": "offline",
+      "experimental_calls": 0,
+      "planned_acceptance": [
+        "T1-T8 full offline suite",
+        "704-cell main manifest plus at most448 continuations",
+        "Synthetic pipeline and interrupted-run resume",
+        "Offline trace scoring analysis and figures",
+        "Credential/header leakage and immutable-attempt review"
+      ],
+      "real_run_blockers": [
+        "User requires offline execution",
+        "No authorized paid-call budget or credentials",
+        "Actual model/upstream provider/settings and provider documentation unverified"
+      ],
+      "validation": [
+        {
+          "classification": "offline_validation_not_empirical_observations",
+          "recorded_at_utc": "2026-11-14T09:52:37.636186+00:00",
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "stdout": "........................................................................ [ 20%]\n........................................................................ [ 40%]\n........................................................................ [ 61%]\n........................................................................ [ 81%]\n.................................................................        [100%]\n353 passed in 91.71s (0:01:31)",
+          "stderr": ""
+        },
+        {
+          "command": "python scripts/validate_offline.py --output evaluation/synthetic_main_load2_final",
+          "exit_code": 0,
+          "evidence": "research/checks/milestone3_pipeline.json"
+        },
+        {
+          "command": "python -m pytest -q tests/test_pilot_freeze_gates.py",
+          "exit_code": 0,
+          "summary": "13 passed after configuration whitespace fix"
+        }
+      ],
+      "acceptance": {
+        "T1_T8": "passed",
+        "full_suite": "353 passed",
+        "main_manifest_counts": {
+          "MAIN": 256,
+          "READBACK": 256,
+          "HIGH-FEE": 64,
+          "HIGH-STAKES": 64,
+          "MASKED": 32,
+          "NUMERIC": 32
+        },
+        "maximum_continuations": 448,
+        "maximum_planned_calls": 1152,
+        "synthetic_pipeline_completed_cells": 704,
+        "synthetic_successful_calls": 1152,
+        "synthetic_retries": 0,
+        "synthetic_invalids": 0,
+        "synthetic_missing": 0,
+        "resume_and_trace_regeneration": true,
+        "synthetic_excluded_from_empirical": true,
+        "real_provider_compatibility_verified": false
+      },
+      "artifacts": [
+        "evaluation/synthetic_main_load2_final",
+        "data/plans",
+        "research/checks/milestone3_suite.json",
+        "research/checks/milestone3_pipeline.json"
+      ],
+      "push": {
+        "status": "pending",
+        "remote": "origin",
+        "branch": "main"
+      },
+      "limitations": [
+        "Injected offline transport only; live wire compatibility unverified",
+        "No actual model/upstream provider selected",
+        "Fresh dependency installation unverified; wheelhouse unavailable"
+      ]
     },
     {
       "number": 4,
       "name": "Smoke/pilot/freeze",
-      "status": "not_started"
+      "status": "blocked",
+      "reason": "User explicitly requires offline research; real smoke/pilot and actual model/load selection cannot occur",
+      "completed_offline_preparation": [
+        "Exact pilot threshold tests",
+        "Fail-closed execution gates",
+        "Full four-world smoke manifest and eight-world pilot manifest",
+        "Pre-freeze configuration templates"
+      ],
+      "real_smoke_worlds": 0,
+      "real_pilot_worlds": 0,
+      "freeze_created": false,
+      "minimum_next_action": "Authorize live execution with a spending cap/currency and model/provider settings; supply credentials through environment; verify provider docs/delivery before real smoke"
     },
     {
       "number": 5,
       "name": "Main execution",
-      "status": "not_started"
+      "status": "blocked",
+      "reason": "Depends on real smoke/pilot and a valid execution freeze; offline instruction prohibits main calls",
+      "empirical_completed_cells": 0,
+      "planned_cells": 704,
+      "missingness_interpretation": "Not executed; no partial empirical run exists",
+      "minimum_next_action": "Complete milestone 4 under explicit live authorization"
     },
     {
       "number": 6,
       "name": "Analysis/report/reproduction",
-      "status": "not_started"
+      "status": "blocked",
+      "reason": "Empirical traces and official template/source verification are unavailable under offline instruction",
+      "completed_offline_preparation": [
+        "Analysis algorithms and synthetic tests",
+        "Figure/table and matched-trace generation",
+        "Numeric claim-evidence generator",
+        "Reproduction commands and source-integrity checks",
+        "Citation and report prerequisite records"
+      ],
+      "empirical_estimate": null,
+      "empirical_ci95": null,
+      "paper_created": false,
+      "human_review_observed": false,
+      "minimum_next_action": "Complete frozen main execution and provide or authorize retrieval of official template and cited sources"
     }
   ]
 }
