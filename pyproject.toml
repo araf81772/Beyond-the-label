@@ -16,4 +16,3 @@ dev = ["pytest==9.1.0"]
 pythonpath = ["src"]
 testpaths = ["tests"]
 addopts = "--strict-markers"
-

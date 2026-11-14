@@ -22,5 +22,11 @@
       "stdout": "",
       "stderr": "warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it"
     }
-  ]
+  ],
+  "corrective_retest": {
+    "command": "python -m pytest -q",
+    "exit_code": 0,
+    "stdout": "........................................................................ [ 34%]\n........................................................................ [ 68%]\n..................................................................       [100%]\n210 passed in 14.90s",
+    "stderr": ""
+  }
 }

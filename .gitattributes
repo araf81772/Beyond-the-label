@@ -4,5 +4,9 @@
 *.py text eol=lf
 *.json text eol=lf
 *.csv text eol=lf
+*.jsonl text eol=lf
+*.txt text eol=lf
+*.toml text eol=lf
+*.lock text eol=lf
 # Preserve the authoritative source bytes, including original line endings.
 research/protocol.md -text

@@ -71,13 +71,12 @@
     {
       "number": 2,
       "name": "Implementation",
-      "status": "local_complete_push_pending",
+      "status": "complete",
       "validation": [
         {
           "command": "python -m pytest -q",
-          "started_at_utc": "2026-11-14T09:32:59.914783+00:00",
           "exit_code": 0,
-          "stdout": "........................................................................ [ 34%]\n........................................................................ [ 68%]\n.................................................................        [100%]\n209 passed in 13.98s",
+          "stdout": "........................................................................ [ 34%]\n........................................................................ [ 68%]\n..................................................................       [100%]\n210 passed in 14.90s",
           "stderr": ""
         },
         {
@@ -101,7 +100,7 @@
         "exact_counterbalancing_and_mapping": true,
         "sandbox_fees_dispositions_categories": true,
         "hidden_state_leakage_tests": true,
-        "full_suite": "209 passed",
+        "full_suite": "210 passed after fixes and artifact-hash regression",
         "human_review": false
       },
       "amendments": [
@@ -110,9 +109,12 @@
       "execution_mode": "offline",
       "experimental_calls": 0,
       "push": {
-        "status": "pending",
+        "status": "succeeded",
         "remote": "origin",
-        "branch": "main"
+        "branch": "main",
+        "delivered_commit": "d3e9325564016636c711e4f6a803c288f9cb626d",
+        "remote_head_verified": true,
+        "correction": "Follow-up corrective checkpoint records 210 passing tests and LF preservation; final SHA resolved from Git"
       },
       "limitations": [
         "Fresh isolated dependency installation not verified; no cached wheelhouse",

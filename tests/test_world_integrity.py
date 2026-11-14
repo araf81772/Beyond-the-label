@@ -75,4 +75,3 @@ def test_reject_compound_schema_inconsistency(mutation):
         model = World
     with pytest.raises(ValidationError):
         model.model_validate(data)
-
