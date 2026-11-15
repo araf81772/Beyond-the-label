@@ -1,0 +1,14 @@
+{
+  "status": "prepared_not_executed",
+  "active_source_commit": "89de9c8202c8cfa9720f49e495ecbb8ea662f3aa",
+  "active_directory": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2",
+  "unique_planned_cells": 80,
+  "record_sha256": {
+    "research/smoke_continuation.json": "a694f4be55b84902a075bc8643085d9896e96dcb1e294d50567b05cd67cdfd76",
+    "research/paid_smoke_cost_coverage.json": "37af9cf856fb00d82ea0350e383dcc8ad37f5898e5fceef5cdcc39b2f6081d23",
+    "research/paid_smoke_authorization_amendment.json": "9ed85bdfe0b5c6e2325bc1b27355e100fac1730e94bf43cc565194df0008cf24"
+  },
+  "original_run_and_controls_unchanged": true,
+  "inference_calls": 0,
+  "account_checks": 0
+}

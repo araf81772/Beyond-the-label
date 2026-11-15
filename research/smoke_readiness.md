@@ -1,11 +1,8 @@
 # Smoke preparation without execution
 
-The user approved preparing dated DeepSeek/PrimeIntellect and explicitly said
-not to run smoke yet. The implementation supports that preparation; this page
-does not claim the full validation cycle, committed preparation records, live
-delivery or smoke completion has occurred. Those outcomes must be recorded
-with their actual evidence in `decisions.md`, `milestones.json` and `checks/`.
-Pilot, main and execution freeze remain unstarted and outside this checkpoint.
+The three preparation blockers are resolved. **Ready for a later smoke attempt; no new inference was run.** The final [GET-only readiness check](checks/smoke_readiness_final.json) passed, including current route metadata and the USD10 nonreset key limit. All **1511 offline tests passed**; [suite evidence](checks/smoke_preparation_suite.json). Live inference delivery remains unverified.
+
+Prepared source commit: `89de9c8202c8cfa9720f49e495ecbb8ea662f3aa`. The three [preparation records](checks/smoke_preparation_records.json) bind this tested source and retain the original attempt/hold. This is not an execution freeze. The user explicitly said not to run smoke yet; pilot, main and freeze remain unstarted.
 
 ## Prepared model and limits
 
@@ -83,7 +80,7 @@ After tests pass and the implementation is committed, prepare records offline:
 
 ```powershell
 $env:PYTHONPATH = 'src'
-python scripts/prepare_smoke.py --source-commit VERIFIED_SOURCE_COMMIT
+python scripts/prepare_smoke.py --source-commit 89de9c8202c8cfa9720f49e495ecbb8ea662f3aa
 ```
 
 Use the actual validated source commit, not an uncommitted tree or an invented

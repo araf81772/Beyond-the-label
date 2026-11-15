@@ -1,0 +1,104 @@
+{
+  "classification": "offline_preparation_final_validation",
+  "checks": [
+    {
+      "check": "audit",
+      "command": [
+        "scripts/verify_audit.py"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "status": "passed",
+        "scope": "audit evidence and source integrity; experiment tests are separately recorded",
+        "checks_passed": 1254,
+        "requirements_mapped": 38,
+        "files_scanned": 405,
+        "source_sha256": "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b",
+        "execution_inventory": {
+          "recorded_request_attempts": 1,
+          "successful_calls": 0,
+          "infrastructure_retries": 0,
+          "empirical_runs": [
+            {
+              "directory": "runs/paid_smoke_gpt41mini_20261115",
+              "dataset": "smoke",
+              "raw_trace_sha256": "35c967b3a8154533ce159a807e1f2820b45d2a673436612405888dcbdd6fa442",
+              "replay_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
+              "attempted_calls": 1,
+              "successful_calls": 0,
+              "infrastructure_retries": 0,
+              "empirical_observations": 0,
+              "planned_cells": 80,
+              "completed_cells": 0,
+              "pending_cells": 80,
+              "first_action_or_readback_missing": 80,
+              "unknown_cost_attempts": 1,
+              "accounting_error_attempts": 0
+            }
+          ],
+          "synthetic_run_directories": [],
+          "freeze": null,
+          "call_count_scope": "recorded attempt_started events; not confirmed HTTP deliveries",
+          "logical_smoke_runs": [
+            {
+              "logical_run_directory": "runs/paid_smoke_gpt41mini_20261115",
+              "classification": "same_smoke_sample_across_pre_freeze_source_versions",
+              "independent_smoke_samples": 1,
+              "unique_planned_cells": 80,
+              "completed_cells": 0,
+              "pending_cells": 80,
+              "segment_directories": [
+                "runs/paid_smoke_gpt41mini_20261115"
+              ],
+              "active_directory": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2",
+              "active_segment_initialized": false,
+              "active_segment_started": false,
+              "recorded_request_attempts": 1,
+              "successful_calls": 0,
+              "infrastructure_retries": 0,
+              "source_version_reissues": 0,
+              "unknown_cost_attempts": 1
+            }
+          ]
+        },
+        "secret_scan_limit": "Selected token patterns, credential filenames, and checked current environment values; manual diff review also required.",
+        "failures": []
+      },
+      "stderr": ""
+    },
+    {
+      "check": "dependencies",
+      "command": [
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "stdout": "No broken requirements found.",
+      "stderr": ""
+    },
+    {
+      "check": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "inference_calls": 0,
+  "account_checks": 0,
+  "additional_verified_checks": {
+    "prepared_records_regenerate_identically": true,
+    "tested_input_hashes_unchanged": 47,
+    "historical_file_hashes_unchanged": 10,
+    "new_execution_segment_exists": false,
+    "source_commit": "89de9c8202c8cfa9720f49e495ecbb8ea662f3aa",
+    "live_readiness_result": "ready_for_smoke_not_executed",
+    "live_readiness_evidence": "research/checks/smoke_readiness_final.json",
+    "inference_calls_this_checkpoint": 0
+  }
+}

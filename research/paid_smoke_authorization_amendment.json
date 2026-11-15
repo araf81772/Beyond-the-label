@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "authorization_id": "paid-smoke-usd1-200-v1",
+  "classification": "user_approved_model_change_preparation_not_execution",
+  "original_authorization": {
+    "authorization_id": "paid-smoke-usd1-200-v1",
+    "execution_scope": "smoke_only",
+    "authorized_total_testing_usd": "10",
+    "authorized_smoke_usd": "1",
+    "maximum_inference_attempts": 200,
+    "run_directory": "runs/paid_smoke_gpt41mini_20261115",
+    "model": "openai/gpt-4.1-mini",
+    "provider_route": "openai",
+    "provider": "OpenAI",
+    "stop_before": [
+      "pilot",
+      "main"
+    ],
+    "attempts_include": [
+      "initial",
+      "retries",
+      "reprompts",
+      "continuations"
+    ]
+  },
+  "model": "deepseek/deepseek-v4.1-flash-1017",
+  "provider_route": "primeintellect",
+  "provider": "PrimeIntellect",
+  "reasoning": {
+    "effort": "none"
+  },
+  "total_testing_usd": "10",
+  "smoke_usd": "1",
+  "total_attempts": 200,
+  "user_decision": "Prepare DeepSeek/PrimeIntellect (recommended)",
+  "historical_attempt_and_hold_preserved": true,
+  "run_now": false,
+  "record_hash": "bef703d978c5eaceeb870bfbee11fe22c010276d6ebd39fa06b48394aa38a871"
+}

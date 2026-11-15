@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "classification": "reviewed_conservative_hold_not_billing_receipt",
+  "authorization_id": "paid-smoke-usd1-200-v1",
+  "run_directory": "runs/paid_smoke_gpt41mini_20261115",
+  "collection_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
+  "original_artifact_sha256": {
+    "manifest.json": "4f2aedf6c2776f40789f7658317c57b23ff914c5d24920b4f4add4100f517780",
+    "calls.jsonl": "35c967b3a8154533ce159a807e1f2820b45d2a673436612405888dcbdd6fa442",
+    "scores.csv": "5f9dc50f09b968c2406e0fbbccaebff2841a3622bdd8ce12df9947d46386a938",
+    "usage.csv": "a77586cf465966bcc623a32c71534dd194a1392acbd6119729f8bb1e025f8d06",
+    "analysis_manifest.json": "ffb58862c78feae7ad4c75055101d66a5fed4ea46d62d467aa42f7784f5aa382"
+  },
+  "control_prefixes": {
+    "budget.jsonl": {
+      "bytes": 890,
+      "sha256": "d44b93b21837614d35694cbf53e8a01349122b5a6b41e3fb4ed16a63a0da4044"
+    },
+    "attempts.jsonl": {
+      "bytes": 496,
+      "sha256": "f68143ae6f2aae95a30435f512e6f14724c42860af41fedaa9b2e9e4fe96d81b"
+    }
+  },
+  "currency": "USD",
+  "aggregate_smoke_cap": "1",
+  "maximum_aggregate_attempts": 200,
+  "actual_cost_verified": false,
+  "covered_attempts": [
+    {
+      "attempt_id": "attempt-2bd7653078634557b3fa8a2c2f516be0",
+      "request_hash": "0ff45575e0be2980780f1273020e6c9aecf9aa13e2ecf14251643b1846c4884e",
+      "maximum_cost": "0.44084208",
+      "actual_cost": null,
+      "status": "unknown",
+      "attempt_ordinal": 1,
+      "cell_id": "smoke-1100-readback-MAIN-inline-b",
+      "phase": "readback",
+      "http_status": 404,
+      "basis": "entire_prior_reservation_remains_held_against_unchanged_cap"
+    }
+  ],
+  "record_hash": "aabf4200ccd65aa72f27f479106529ef8af12d8d68f32cf1454a5413ac23a6b1"
+}

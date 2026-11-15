@@ -1,0 +1,129 @@
+{
+  "classification": "read_only_final_smoke_readiness",
+  "recorded_at_utc": "2026-11-15T02:21:41.926912+00:00",
+  "command": "PYTHONPATH=src python -m beyond_label.paid_live --check-ready",
+  "exit_code": 0,
+  "result": {
+    "account_evidence": {
+      "budgets": [
+        {
+          "include_byok": false,
+          "limit_usd": 10,
+          "remaining_usd": 10,
+          "reset_interval": null,
+          "scope": "key_limit",
+          "spend_usd": 0
+        }
+      ],
+      "effective_budget": {
+        "include_byok": false,
+        "limit_usd": 10,
+        "remaining_usd": 10,
+        "reset_interval": null,
+        "scope": "key_limit",
+        "spend_usd": 0
+      },
+      "include_byok_in_limit": false,
+      "key_hard_limit_usd": 10,
+      "key_limit_remaining_usd": 10,
+      "key_limit_reset": null,
+      "key_usage_usd": 0
+    },
+    "active_directory": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2",
+    "active_source_commit": "89de9c8202c8cfa9720f49e495ecbb8ea662f3aa",
+    "actual_cost_evidence_complete": false,
+    "attempts_consumed": 1,
+    "attempts_remaining": 199,
+    "available_smoke_usd": "0.55915792",
+    "budget_ready": true,
+    "capability_evidence": {
+      "blockers": [],
+      "classification": "public_capability_metadata_not_live_delivery",
+      "compatible": true,
+      "execution_authorized": false,
+      "fetch": {
+        "credentials_used": false,
+        "http_status": 200,
+        "source": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints",
+        "status": "received"
+      },
+      "http_404_cause_established": false,
+      "matching_endpoints": [
+        {
+          "available_status_verified": true,
+          "blockers": [],
+          "compatible": true,
+          "endpoint_index": 2,
+          "missing_parameters": [],
+          "price_checks": {
+            "completion": {
+              "catalog_field_absent": false,
+              "ceiling_usd": "7E-7",
+              "enforcement": "locked_router_max_price",
+              "observed_usd": "7E-7",
+              "unit": "per_token",
+              "within_ceiling": true
+            },
+            "image": {
+              "catalog_field_absent": true,
+              "ceiling_usd": "0",
+              "enforcement": "locked_router_max_price",
+              "observed_usd": null,
+              "unit": "per_unit",
+              "within_ceiling": null
+            },
+            "prompt": {
+              "catalog_field_absent": false,
+              "ceiling_usd": "4.368E-8",
+              "enforcement": "locked_router_max_price",
+              "observed_usd": "4.368E-8",
+              "unit": "per_token",
+              "within_ceiling": true
+            },
+            "request": {
+              "catalog_field_absent": true,
+              "ceiling_usd": "0",
+              "enforcement": "locked_router_max_price",
+              "observed_usd": null,
+              "unit": "per_unit",
+              "within_ceiling": null
+            }
+          },
+          "unknown_fields": [
+            "pricing.image",
+            "pricing.request"
+          ]
+        }
+      ],
+      "request_settings_changed": false,
+      "requested_model": "deepseek/deepseek-v4.1-flash-1017",
+      "requested_provider": "PrimeIntellect",
+      "requested_provider_route": "primeintellect",
+      "required_parameters": [
+        "max_tokens",
+        "parallel_tool_calls",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "reasoning"
+      ],
+      "schema_version": 1
+    },
+    "continuation_record_hash": "74a1499c202f559b827653eb3e40b567f59b49173c183715abe0449fed852d0a",
+    "execution_started": false,
+    "inference_calls": 0,
+    "known_settled_usd": "0",
+    "live_delivery_verified": false,
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "model_route_metadata_verified": true,
+    "next_attempt_upper_bound_usd": "0.048468209664",
+    "provider": "PrimeIntellect",
+    "ready": true,
+    "reasoning": {
+      "effort": "none"
+    },
+    "retained_hold_usd": "0.44084208",
+    "status": "ready_for_smoke_not_executed",
+    "unique_planned_cells": 80
+  }
+}
