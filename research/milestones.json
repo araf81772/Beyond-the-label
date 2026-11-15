@@ -1642,7 +1642,7 @@
   "main_continuation_recovery": {
     "recorded_at_utc": "2026-11-15T20:52:56.031915+00:00",
     "user_request_verbatim": "fix the billing holds and rate limit issue, test it, then finish the remaining 52 cells under the same budget. dont change the frozen design or rerun completed cells",
-    "status": "offline_preparation_passed_live_recovery_blocked_pending_explicit_billing_exception",
+    "status": "approved_implementation_validated_pending_operational_freeze",
     "recovery_inference_calls": 0,
     "frozen_inputs_changed": 0,
     "existing_holds_released": 0,
@@ -1650,7 +1650,7 @@
     "eligible_cells": 52,
     "completed_cells_preserved": 652,
     "blocking_reason": "staged_unknown_cost_hold_limit_reached",
-    "proposed_exception": "Accept only the enumerated existing 40 full holds; retain all dollar reservations; stop before the next attempt on any new unresolved unknown/pending charge; unchanged USD 9 and 3,000-attempt limits. Not approved or implemented.",
+    "proposed_exception": "Approved by user: retain all 40 enumerated full holds; only the 52 pending cells; unchanged USD 9 / 3,000-attempt limits; stop before another attempt on any new unknown or stranded pending charge.",
     "billing_review": "research/checks/main_continuation_billing_review.json",
     "boundary_verification": "research/checks/main_continuation_boundary.json",
     "recovery_report": "research/main_continuation_recovery.md",
@@ -1665,6 +1665,26 @@
       "final_validation": "research/checks/main_continuation_validation.json"
     },
     "human_H3_complete": false,
-    "human_H4_complete": false
+    "human_H4_complete": false,
+    "approval_record": "research/main_continuation_approval.json",
+    "approval_received_at_utc": "2026-11-15T22:36:07.928229+00:00",
+    "operational_exception_approved": true,
+    "new_inference_calls_since_approval": 0
+  },
+  "main_continuation_execution": {
+    "status": "offline_validated_pending_operational_freeze_and_fresh_readiness",
+    "directory": "continuations/staged_main_52_20261116",
+    "parent_directory": "runs/staged_main",
+    "approval": "research/main_continuation_approval.json",
+    "operational_freeze": "research/main_continuation_operational_freeze.json",
+    "original_scientific_freeze_unchanged": true,
+    "original_completed_cells": 652,
+    "authorized_remaining_cells": 52,
+    "completed_cells_may_be_resampled": false,
+    "human_H3_complete": false,
+    "human_H4_complete": false,
+    "preparation_validation": "research/checks/main52_preparation_validation.json",
+    "full_tests_passed": 1771,
+    "audit_checks_passed": 1664
   }
 }

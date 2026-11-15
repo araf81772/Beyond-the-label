@@ -61,7 +61,19 @@ Files: `research/main_continuation_recovery.md`, check records, `research/decisi
 
 - [x] Record unavailable per-attempt receipts and authenticated-log access status accurately.
 - [x] Preserve the stop-at-40 policy. Present a concrete alternative: accept only the enumerated existing 40 full holds, retain them against USD 9, and stop on any additional unknown charge. This is an operational exception, not a refund or a receipt.
-- [ ] Obtain explicit approval for that exception or attributable receipts before implementing a live billing-policy change. The existing authorization specifically prohibits weakening safeguards without explicit approval.
+- [x] Obtain explicit approval for that exception or attributable receipts before implementing a live billing-policy change. The existing authorization specifically prohibits weakening safeguards without explicit approval.
 - [ ] If approved, implement and test a separately versioned operational continuation with its own ID and provenance/freeze, retaining the original scientific freeze and raw segment. Do not disguise runtime overrides as unchanged execution.
 - [ ] Run focused tests, `python -m pytest -q`, `python scripts/verify_audit.py`, and `git diff --check`; independent AI review; review intended diff/claims/secrets and commit/push to verified v1.
 - [ ] Before inference: exact remaining-cell verification, fresh account/route evidence, reviewed operational source and provenance. After inference: preserve partial bundle and create a separately named final bundle, verify all original prefixes, report remaining missingness honestly.
+
+
+## Approved execution extension
+
+The user answered “Approve retained holds and stop on any new unknown charge”. The approval is recorded in `research/main_continuation_approval.json`; no budget, sample, retry or scientific setting is changed.
+
+- [x] Implement `scripts/main_continuation_accounting.py`: validate the fixed approval and immutable parent/prefixes; reconcile the child main exactly once; permit only the 40 original unknown holds and stop on every additional unresolved charge; preserve USD 9 / 3,000 attempts and the 478-attempt remaining-plan bound.
+- [x] Implement `scripts/execute_main_continuation.py`: preserve the original scientific replay contract, initialize a separately identified child, verify all original gates plus committed operational source/tag, and dispatch only the 52-cell suffix with frozen `_execute_cell` and extra per-POST pacing.
+- [ ] Bind all operational scripts/tests and approval to a separate operational freeze/tag. Do not overwrite the scientific freeze. Launch inference only from the designated unsynced clone.
+- [x] Integrate composite history into nonfrozen audit/status/finalization. Keep the original partial bundle and parent main immutable; expose inherited versus newly collected evidence.
+- [x] Test missing/tampered approval and source, budget/attempt/hold limits, exact retry numbering, no completed-cell dispatch, interruption/restart, accounting multiplicity, request identity, pacing and final provenance. Run full regression and audit before dispatch.
+- [ ] Execute the approved suffix, obey any new unknown-cost stop, then independently audit raw/scored evidence and preserve/reproduce a separately named final bundle if collection completes.

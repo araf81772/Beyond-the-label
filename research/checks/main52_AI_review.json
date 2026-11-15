@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "classification": "AI_engineering_and_independent_AI_review_not_human_H3",
+  "recorded_at_utc": "2026-11-15T22:39:36.270145+00:00",
+  "approval": "research/main_continuation_approval.json",
+  "reviews": [
+    {
+      "agent": "billing_reconciliation",
+      "work": "Strict retained-hold policy, baseline/prefix binding and composite accounting",
+      "validation": "28 accounting tests passed; additional boundary/receipt regressions passed; final focused 8-test run passed in126.67s."
+    },
+    {
+      "agent": "rate_resume_audit",
+      "work": "Independent live-path tests and architecture review",
+      "validation": "15 execution tests passed in144.06s, including actual full entry point with synthetic external boundaries; no live calls."
+    },
+    {
+      "agent": "continuation_integrity",
+      "work": "Reporting integration and independent executor/accounting safety review",
+      "validation": "17 targeted fixture/selector tests passed; six additional packaging/counting tests passed; no actionable safety findings."
+    }
+  ],
+  "findings_resolved": [
+    "Enforced the designated unsynced execution clone before any live-path network activity.",
+    "Separated dispatch capacity checks from post-cell validation, so a valid final permitted attempt can complete without needing capacity for another call.",
+    "Compared equivalent monetary receipt strings numerically while rejecting mismatched costs.",
+    "Bound historical test fixtures to verified original control prefixes so legitimate future appends do not invalidate the fixtures.",
+    "Constructed a missing-ledger test fixture without inheriting OneDrive read-only directory attributes."
+  ],
+  "limitations": [
+    "Offline tests use synthetic provider responses and do not prove future provider availability or billing receipts.",
+    "No new unknown-charge allowance beyond stopping on the first new unresolved charge is authorized.",
+    "Human H3/H4 remain pending."
+  ],
+  "reviewed_source_sha256": {
+    "scripts/execute_main_continuation.py": "4ff5ed77063f3c9b5e2cd258dfdd16648aaa7e515d745a8d46a1de996413f619",
+    "scripts/main_continuation_accounting.py": "33ac9f402662fbabb7e34d5b4156cf4b435d9392068ac15c4f9e5494883d0fd9",
+    "scripts/main_continuation_reporting.py": "91440def0e96d67a13d40fc20e83ac70077b6e9d2268c8897c982e1c09f6917f",
+    "scripts/finalize_main_continuation.py": "b764dc09075d199ca6a2f832e88fffea95c61437a824bb267d2c0c608c4de9ca",
+    "scripts/verify_audit.py": "84ebfd9f9f55f91dc2fa3c90186a66e9cac5fa2b01621ee53cb33f4dad0383b7",
+    "scripts/sync_execution_status.py": "d06ded2c93c6889dedc60791ca5bf44f92f7c0e8d9534705e57a78ad3f2e8823",
+    "tests/test_main_continuation_execution.py": "3342f202525f57f1aac8129c0abe6b158f2deca44ecb5c4af84025999ef78ff5",
+    "tests/test_main_continuation_accounting.py": "49a616a2156949d1e9139358e1e4ad4bbdfccf710629c41a11554c91bc9583df",
+    "tests/test_main_continuation_reporting.py": "db8594f87e0b3337e662ece2f45428d5db5219232acfccd6c894213c2e31d3af",
+    "tests/test_main_continuation.py": "973f12c64cbe5fa2c0bd80b6d0f03866e6e46d96f39e06bff3caeed891d5f7aa",
+    "tests/test_staged_ledger_audit.py": "e0e2afacd3f3e951978391c38fefdf9fbaf95ab78add75d3fc8b601ee0a5d195"
+  },
+  "new_inference_calls": 0,
+  "full_suite_evidence": "research/checks/main52_implementation_tests.json"
+}

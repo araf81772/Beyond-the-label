@@ -25,6 +25,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from beyond_label.environment import CredentialLoadError, load_local_credentials
 from replay_history import replay_historical
+from main_continuation_reporting import continuation_evidence
 SOURCE_SHA256 = "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b"
 
 
@@ -245,22 +246,26 @@ def validate_execution_evidence(root: Path, milestones: dict) -> dict:
     if not runs_root.resolve().is_relative_to(root):
         raise ValueError("Execution inventory must stay inside the repository")
     current_inputs = _inputs()
+    main_continuation = continuation_evidence(root)
     legacy, continuation = audit_continuations(root, current_inputs)
     historical_segments = {item["directory"]: item for item in continuation.get("historical_segments", [])} if continuation else {}
     manifests = sorted(runs_root.glob("**/manifest.json"))
     calls = sorted(runs_root.glob("**/calls.jsonl"))
     if {p.parent for p in manifests} != {p.parent for p in calls}:
         raise ValueError("Execution inventory has unmatched manifests or journals")
+    if main_continuation is not None:
+        manifests.append(root / main_continuation["directory"] / "manifest.json")
     inventory = {"recorded_request_attempts": 0, "successful_calls": 0,
                  "infrastructure_retries": 0, "empirical_runs": [],
-                 "synthetic_run_directories": [], "freeze": None,
+                 "synthetic_run_directories": [], "historical_main_snapshots": [], "freeze": None,
                  "call_count_scope": "recorded attempt_started events; not confirmed HTTP deliveries"}
     trace_hashes = set()
     main_freeze_hashes = set()
     required = ("manifest.json", "calls.jsonl", "scores.csv", "usage.csv", "analysis_manifest.json")
     for path in manifests:
         directory = path.parent
-        if not directory.resolve().is_relative_to(runs_root.resolve()):
+        is_main_child = main_continuation is not None and directory == root / main_continuation["directory"]
+        if not directory.resolve().is_relative_to(runs_root.resolve()) and not is_main_child:
             raise ValueError("Execution evidence escapes repository runs")
         if any(not (directory / name).is_file()
                or (directory / name).resolve().parent != directory.resolve() for name in required):
@@ -309,18 +314,25 @@ def validate_execution_evidence(root: Path, milestones: dict) -> dict:
         if kind == "synthetic":
             inventory["synthetic_run_directories"].append(relative)
             continue
-        trace_hashes.add(digest)
         dataset = stored["plan"]["dataset"]
         if dataset == "main":
             main_freeze_hashes.add(stored["run_config"].get("freeze", {}).get("record_hash"))
-        inventory["empirical_runs"].append({"directory": relative, "dataset": dataset,
+        entry = {"directory": relative, "dataset": dataset,
             "raw_trace_sha256": digest,
             "replay_source_commit": historical["source_commit"] if historical else None,
             "retained_terminal_cells": summary.get("retained_terminal_cells", 0),
             "known_provider_spend_usd": summary["known_provider_spend_usd"],
             **{key: summary[key] for key in ("attempted_calls", "successful_calls", "infrastructure_retries",
                 "empirical_observations", "planned_cells", "completed_cells", "pending_cells",
-                "first_action_or_readback_missing", "unknown_cost_attempts", "accounting_error_attempts")}})
+                "first_action_or_readback_missing", "unknown_cost_attempts", "accounting_error_attempts")}}
+        if main_continuation is not None and relative == main_continuation["parent_directory"]:
+            entry["counting_scope"] = "immutable historical prefix; counted through approved composite main"
+            inventory["historical_main_snapshots"].append(entry)
+            continue
+        if is_main_child:
+            entry["continuation_provenance"] = main_continuation
+        trace_hashes.add(digest)
+        inventory["empirical_runs"].append(entry)
         inventory["recorded_request_attempts"] += summary["attempted_calls"]
         inventory["successful_calls"] += summary["successful_calls"]
         inventory["infrastructure_retries"] += summary["infrastructure_retries"]
@@ -363,6 +375,9 @@ def validate_staged_ledger(root: Path) -> dict | None:
     and every hold must belong to a journaled attempt without a receipt. The
     check runs on a temporary copy, so the session directory is never written.
     """
+    continuation = continuation_evidence(root)
+    if continuation is not None:
+        return continuation["accounting"]
     from beyond_label.budget import BudgetLedger
     from beyond_label.gates import STAGED_SESSION, STAGED_STAGES
     from beyond_label.attempts import ExecutionSuspended

@@ -1,7 +1,9 @@
-"""Offline preservation checks on isolated copies of retained empirical evidence.
+"""Offline preservation checks on the historical stopped-main checkpoint.
 
 The copies remain empirical historical fixtures; generated suffix events below
 are deliberately synthetic and are never written to the repository's runs.
+The shared controls may acquire an authorized continuation suffix later. These
+fixtures verify and materialize only their immutable stopped-checkpoint prefix.
 """
 from __future__ import annotations
 
@@ -21,6 +23,10 @@ REPO = Path(__file__).resolve().parents[1]
 SCRIPT = REPO / "scripts/verify_main_continuation.py"
 PENDING = "main-2061-readback-MAIN-inline-b"
 TERMINAL = "main-2013-decision-HIGH-STAKES-inline-a"
+STOPPED_CONTROL_PREFIXES = {
+    "budget.jsonl": (1047363, "03b85248217ae077341e363b5efc90762431bf1d01de1b26e3d8c31284b0316c"),
+    "attempts.jsonl": (346169, "cc7b993a5d6602bf31f05a455bdd975a9f1c2f2b3fa3968fd367dc2531297856"),
+}
 
 
 def verifier():
@@ -46,7 +52,13 @@ def stopped_copy(tmp_path):
     for relative in paths:
         destination = tmp_path / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(REPO / relative, destination)
+        if relative.startswith("runs/_paid_staged_session/") and destination.name in STOPPED_CONTROL_PREFIXES:
+            length, digest = STOPPED_CONTROL_PREFIXES[destination.name]
+            raw = (REPO / relative).read_bytes()
+            assert len(raw) >= length and hashlib.sha256(raw[:length]).hexdigest() == digest
+            destination.write_bytes(raw[:length])
+        else:
+            shutil.copyfile(REPO / relative, destination)
     return tmp_path
 
 

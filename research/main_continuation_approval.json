@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "classification": "explicit_user_authorized_operational_exception",
+  "continuation_id": "staged-main-52-20261116",
+  "approved": true,
+  "recorded_at_utc": "2026-11-15T22:27:17.190254+00:00",
+  "user_answer_verbatim": "Approve retained holds and stop on any new unknown charge",
+  "question_verbatim": "The recorded authorization explicitly stops at 40 unknown charges. No receipts justify releasing them. Approve this narrow operational exception: keep all 40 fully reserved ($1.93872838656), resume only the 52 pending cells within the same $9/3,000-attempt limits, and stop on any new unknown charge? The frozen scientific design and completed cells remain unchanged.",
+  "parent_directory": "runs/staged_main",
+  "directory": "continuations/staged_main_52_20261116",
+  "scientific_freeze_record_hash": "4feb8fd870dc62ffd260b682d1249d6fc70c401d33f98a9a1eb7ce1189ef2081",
+  "baseline_boundary_report_hash": "f9836bc495bb80c84ed3e4543e403dacfa473ff44aaaf6f6a7c210405d2c0677",
+  "baseline_completed_cells": 652,
+  "eligible_cell_ids": [
+    "main-2061-readback-MAIN-inline-b",
+    "main-2012-decision-MAIN-separate-a",
+    "main-2019-decision-MAIN-inline-a",
+    "main-2002-decision-MAIN-separate-b",
+    "main-2002-decision-HIGH-STAKES-separate-b",
+    "main-2011-readback-MAIN-separate-a",
+    "main-2061-readback-MAIN-inline-a",
+    "main-2020-decision-MAIN-inline-b",
+    "main-2014-readback-MAIN-inline-a",
+    "main-2050-decision-MAIN-separate-a",
+    "main-2043-readback-MAIN-separate-b",
+    "main-2012-decision-HIGH-FEE-inline-b",
+    "main-2004-decision-HIGH-STAKES-inline-b",
+    "main-2050-decision-MAIN-separate-b",
+    "main-2049-decision-MAIN-inline-a",
+    "main-2015-readback-MAIN-inline-a",
+    "main-2005-readback-MAIN-inline-a",
+    "main-2047-decision-MAIN-inline-a",
+    "main-2025-decision-MAIN-separate-b",
+    "main-2001-decision-HIGH-FEE-inline-a",
+    "main-2055-readback-MAIN-separate-b",
+    "main-2009-decision-MAIN-inline-b",
+    "main-2010-decision-MAIN-inline-b",
+    "main-2015-readback-MAIN-inline-b",
+    "main-2018-readback-MAIN-inline-b",
+    "main-2019-readback-MAIN-separate-b",
+    "main-2032-decision-MAIN-separate-a",
+    "main-2006-decision-HIGH-STAKES-separate-a",
+    "main-2048-readback-MAIN-separate-a",
+    "main-2039-decision-MAIN-separate-b",
+    "main-2004-decision-HIGH-FEE-inline-b",
+    "main-2015-decision-MAIN-separate-a",
+    "main-2023-decision-MAIN-separate-a",
+    "main-2053-readback-MAIN-inline-b",
+    "main-2009-readback-MAIN-separate-b",
+    "main-2024-decision-MAIN-inline-b",
+    "main-2049-decision-MAIN-separate-a",
+    "main-2060-decision-MAIN-inline-a",
+    "main-2014-decision-MASKED-inline-masked",
+    "main-2010-decision-NUMERIC-separate-b",
+    "main-2045-readback-MAIN-inline-b",
+    "main-2000-decision-HIGH-STAKES-separate-b",
+    "main-2009-readback-MAIN-inline-b",
+    "main-2000-decision-MAIN-inline-b",
+    "main-2012-decision-MAIN-inline-a",
+    "main-2006-decision-HIGH-FEE-separate-a",
+    "main-2062-decision-MAIN-separate-a",
+    "main-2002-readback-MAIN-inline-a",
+    "main-2025-decision-MAIN-inline-b",
+    "main-2005-decision-MAIN-separate-a",
+    "main-2007-decision-MASKED-separate-masked",
+    "main-2063-readback-MAIN-inline-a"
+  ],
+  "baseline_reserved_attempts": 1561,
+  "maximum_additional_attempts": 478,
+  "maximum_aggregate_attempts": 3000,
+  "budget_cap_usd": "9",
+  "per_attempt_reservation_usd": "0.048468209664",
+  "approved_hold_total_usd": "1.93872838656",
+  "approved_holds": [
+    {
+      "attempt_id": "attempt-93e536e945de446fa0e2ad5b32978e66",
+      "request_hash": "f33055d3f1f68da6a54033a419897c44db1c4ac12199a0d55b9feda1928179f3",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-2c03a160acf14c498a1fd2229413d7cd",
+      "request_hash": "4e28ae0334397ff24b33241b4799eb1b99db9fcacb6d2b5159349a8ab3567b60",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-687e476d973a4dc8967e96a4af0154c8",
+      "request_hash": "d92453ad73a61fc53c2f0332a2808427cb1121026aa3745c4b476330e6f92373",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-b92fce7269d14085b748220c4ec9736f",
+      "request_hash": "768a9ce22e1e323540ef396640a6c8bc142667845c2a993e84db1b81c05f7615",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-6d978b2a4ca546b9827c9be196862ad9",
+      "request_hash": "f28e55765d821112c48ff4edbf5236ca7e62395abd5c7498a6fd507cace9578f",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-a2f1fad25a364b7d8ed790a0ad1308b1",
+      "request_hash": "cfaf58e40165987016f364558dee4fd2229d5ab0996d6c306a9a3510fbf4a835",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-1b5e3473bd4947d6a88e81918d8cf497",
+      "request_hash": "5bd6d52f294ca4003a6fe832d5d6548060f837006cd7f3e12c9dd702c97aa48c",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-c0dc57b838fc46eda50288395d5a63dd",
+      "request_hash": "9f1ad021de9e9610ff28ae75b80adb9071eb9266d12e3b610d9c7a8ec459a470",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-0bf6cb791928441db2948f0477bbefad",
+      "request_hash": "4f916445777f88d188dbccd6a50395ecb13beff9920008bc2090fb5834236703",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-d9670ce1572d49cabef689b39142551a",
+      "request_hash": "09c966db4e1f1a032a1637ec4a1dae61afd1a2ec4eb7a0ad3ca5b3e6b0f563f0",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-5c096209161b4d64943ac2c42a17ae7e",
+      "request_hash": "981da032ff1c477e29c032f72d3b86b23c4296444387bd8b3fd9702f2b5bed8b",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-0b7cb13c43fb4fd78ad75d3d17114045",
+      "request_hash": "3bd56d0b94c5cd09d97a9b0fb2c3dd8ec3cdd5b8ac9bcaf81400a07fee5317df",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-ab765ccfe0ca49be913c26c94685cb1f",
+      "request_hash": "3bd56d0b94c5cd09d97a9b0fb2c3dd8ec3cdd5b8ac9bcaf81400a07fee5317df",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-d8cf58d1ac2f4bbb92c2acc2a6448714",
+      "request_hash": "a3fc64e19ff674ac8eadab134436373c1b93879c58db4438beee073d43e073b8",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-874b004833c44244970170b306afdf98",
+      "request_hash": "ea40e34381bb474be2ebfde5a39597dcc118870a6131a5198def16f11454456f",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-f343b938b54c4f4f859588b94a4ce557",
+      "request_hash": "a8605d6ab3a7ccdd3b9ddb267a2a242c00b334d613012bfe9164624f75e381eb",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-33b3cccd3e0b4e1e80b37b9f8f9aca2f",
+      "request_hash": "9c19e8e8b8b8a08cd92be75ce54df5538703d1fb4f559859f72a76c7b6941fa7",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-fbe9b73a29294f96aaddb3aae9458bee",
+      "request_hash": "13b29c31b47a879a4480115b2569dacfd981c7af251d08657ef97ea87a5e356b",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-8e680d8482e7413fab5a297ad7a09763",
+      "request_hash": "3ecce4edcaf773c52491551fb9f24da577e87ab5e5e0ac56d3e99f7ff5b5e9dd",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-2f252e1608a64a4f8c6635e484112bf2",
+      "request_hash": "d505fdc040685aa70c43394990e38b06f914bc814e15927460bcfad47ccf43d3",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-fd6f364e907c48928cdf4e6344c42369",
+      "request_hash": "7bd3bc3df9149862f344558a95eb9f3fbe1ed796bf062ddc9d6bfebbf4ff7d4d",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-4557b01004bf43c7b979098c7624d822",
+      "request_hash": "d50793c2e108d7713d0eea679a78a179fee8410e531bea3c1b592ea287cad2b4",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-806930a3528f49ff9739c0dc4065e5a3",
+      "request_hash": "d50793c2e108d7713d0eea679a78a179fee8410e531bea3c1b592ea287cad2b4",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-6e155d135bbe4837ab836802848288b1",
+      "request_hash": "d50793c2e108d7713d0eea679a78a179fee8410e531bea3c1b592ea287cad2b4",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-9e04dbffe9b44a8fb146f4f459657ee8",
+      "request_hash": "507fe85b838cab53f25089071259c76bddb130db6eb6adc76a8c3a548445d95a",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-7fb37fd5e34948768a3b0b6efa16832a",
+      "request_hash": "507fe85b838cab53f25089071259c76bddb130db6eb6adc76a8c3a548445d95a",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-a7ea8aa9075c4984b06171888405830b",
+      "request_hash": "8884bddbf4fc198506b46c382749da2d0b7626bb08334dde89eef16620de7b56",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-879b9e2b5e064aedad4f9d090b832c44",
+      "request_hash": "07241189d5483b8ecc910d8d5c75dff0b9a6b8ee8820d5e39b441040c8f7b08a",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-16c53bd450e7451b912644955d82a4ed",
+      "request_hash": "07241189d5483b8ecc910d8d5c75dff0b9a6b8ee8820d5e39b441040c8f7b08a",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-1d86023429fa44f1a53d4d4e96c9715c",
+      "request_hash": "07241189d5483b8ecc910d8d5c75dff0b9a6b8ee8820d5e39b441040c8f7b08a",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-37ed4ba47ba9410193aa19dbf75e3f8e",
+      "request_hash": "07241189d5483b8ecc910d8d5c75dff0b9a6b8ee8820d5e39b441040c8f7b08a",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-190d5a00f4b94ea7ad3cb0648fba37e2",
+      "request_hash": "457fadd78870eb4bed39ee9ab32878a7fc9b2155b2d6b9c4864eeb1869a54465",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-a78c4fd6487c426fad7fd77be39be69f",
+      "request_hash": "c8f4f23f9521921347b8e3b223c8f4242cb297d959ed2de315558fe4a40d09cf",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-84ecadd0f7c94045893dbd5f20ebccbf",
+      "request_hash": "a4f1cf711569db2f2f3138fa33ff23a8af4e93af6ae4975f6bfae60914df58e6",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-4cd4cd238aa24ce08d2790e9aa3ca140",
+      "request_hash": "4b4ebd8df382b2e083e7f8ffc2ca982152b121d6dab3f10f962a2b9d56b2f2ab",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-2fa34a0cb1df4461995908b949b24590",
+      "request_hash": "4b4ebd8df382b2e083e7f8ffc2ca982152b121d6dab3f10f962a2b9d56b2f2ab",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-3090464543144d628126438fd002267a",
+      "request_hash": "4b4ebd8df382b2e083e7f8ffc2ca982152b121d6dab3f10f962a2b9d56b2f2ab",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-25e692993f02437f996b28dd16936590",
+      "request_hash": "c84b47eb9e7074643949a0748326a78264951b7c522cf61a9ca7686671b73490",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-faccdc3ad7fe47d2b713f3274ae91891",
+      "request_hash": "60844e0a2f8585e4942de9505025c76010da538fe90ec68cc6cd0bd333bdaca8",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    },
+    {
+      "attempt_id": "attempt-725442b9c41c40a5a16f386363f411bf",
+      "request_hash": "60844e0a2f8585e4942de9505025c76010da538fe90ec68cc6cd0bd333bdaca8",
+      "maximum_cost": "0.048468209664",
+      "status": "unknown",
+      "actual_cost": null
+    }
+  ],
+  "stop_on_any_new_unknown_or_stranded_pending": true,
+  "retry_limit_per_phase": 4,
+  "pending_readback_next_attempt": 3,
+  "pacing_minimum_interval_seconds": 15,
+  "rate_limit_minimum_cooldown_seconds": 60,
+  "original_scientific_design_changed": false,
+  "completed_cells_may_be_resampled": false,
+  "authorization_note": "No hold is settled, refunded, released, reclassified as free or excluded from the USD 9 ledger. This explicit exception accepts only the enumerated existing 40. The ordinary reservation for a currently dispatched call is expected; any new unresolved unknown/pending reservation stops the next attempt. A separate operational freeze binds this continuation; the original scientific freeze is immutable."
+}

@@ -4,12 +4,14 @@ Uses read-only temporary copies of the retained staged ledger and journals; no
 network, no credentials and no write to the retained session.
 """
 import importlib.util
+import hashlib
 from pathlib import Path
 import shutil
 
 import pytest
 
 from beyond_label.gates import STAGED_SESSION, STAGED_STAGES
+from scripts.verify_main_continuation import CONTROL_PREFIXES
 
 REPOSITORY = Path(__file__).resolve().parents[1]
 
@@ -22,13 +24,22 @@ def _audit():
     return module
 
 
-def _copy(root: Path) -> Path:
+def _copy(root: Path, *, include_session: bool = True) -> Path:
     if not (REPOSITORY / STAGED_SESSION / "budget.jsonl").is_file():
         pytest.skip("no retained staged session in this checkout")
-    for relative in [STAGED_SESSION, *(value[2] for value in STAGED_STAGES.values())]:
+    directories = [value[2] for value in STAGED_STAGES.values()]
+    if include_session:
+        directories.insert(0, STAGED_SESSION)
+    for relative in directories:
         if (REPOSITORY / relative).is_dir():
             shutil.copytree(REPOSITORY / relative, root / relative,
                             ignore=shutil.ignore_patterns("*.writer.lock"))
+    if include_session:
+        for name, (length, digest, _) in CONTROL_PREFIXES.items():
+            path = root / STAGED_SESSION / name
+            raw = path.read_bytes()
+            assert len(raw) >= length and hashlib.sha256(raw[:length]).hexdigest() == digest
+            path.write_bytes(raw[:length])
     return root
 
 
@@ -65,7 +76,6 @@ def test_unfinished_attempt_preserves_pending_or_unknown_hold(tmp_path, drop_set
 
 
 def test_staged_runs_without_a_ledger_fail_the_audit(tmp_path):
-    root = _copy(tmp_path)
-    shutil.rmtree(root / STAGED_SESSION)
+    root = _copy(tmp_path, include_session=False)
     with pytest.raises(ValueError, match="without its shared ledger"):
         _audit().validate_staged_ledger(root)

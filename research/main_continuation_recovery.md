@@ -1,6 +1,6 @@
 # Main continuation recovery — 16 November 2026
 
-Status: operational preparation; no new inference. This is AI engineering/review, not completion of H3 or H4.
+Historical preparation checkpoint below. The user subsequently approved the exact retained-hold exception; see `main_continuation_approval.json` and `main_continuation_execution.md` for current work. This remains AI engineering/review, not completion of H3 or H4.
 
 The user's current request is: “fix the billing holds and rate limit issue, test it, then finish the remaining 52 cells under the same budget. dont change the frozen design or rerun completed cells”. Engineering, testing and eligible continuation are authorized. Releasing unsupported charges, changing the scientific design and resampling remain prohibited.
 
