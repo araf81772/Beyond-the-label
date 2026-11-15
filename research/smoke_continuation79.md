@@ -2,10 +2,12 @@
 
 The current user instruction is to repair endpoint identity handling and
 prepare continuation of the 79 untouched smoke cells, with **no paid calls**.
-This document describes the repair and required preparation procedure. It does
-not claim a new full-suite pass, source commit, prepared continuation record or
-live execution. Actual validation and delivery outcomes must be recorded in
-the decision log, milestone status and check artifacts after they occur.
+The repair passed **1634 offline tests** and is committed and pushed as
+`eebba9de7a9923d2a81d17f7631d41371a35ef5e`. The continuation record is prepared and
+strictly verified against that source and both historical runs. No new inference
+or account call occurred. [Validation evidence](checks/endpoint_repair_suite.json)
+and [preparation evidence](checks/endpoint_repair_preparation.json) preserve the
+actual checks, including the initial failed test and its repair.
 
 The [v2 smoke outcome](deepseek_smoke.md) remains unchanged: one raw reply was
 rejected as `model_mismatch`, no valid observation exists, and the smoke gate
@@ -57,8 +59,8 @@ Keep these historical artifacts unchanged:
 
 The future execution location is
 `runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3`.
-Preparation must not create that directory or any empirical events. A separate
-`research/smoke_continuation_79.json` will bind the repaired committed source,
+Preparation must not create that directory or any empirical events. The separate
+`research/smoke_continuation_79.json` binds the repaired committed source,
 both historical replays, full plan, retained row and ordered dispatch list.
 
 ## Unchanged allowance and uncertainty
@@ -80,7 +82,7 @@ dispatch. Aggregate actual cost remains incomplete. Fresh account evidence is
 still required before a later execution; neither available credit nor a
 configuration flag supplies authorization.
 
-## Validate, commit and prepare without calls
+## Verification and recorded preparation
 
 Run the required relevant offline suite and audit, fix failures and retest:
 
@@ -91,13 +93,12 @@ python scripts/verify_audit.py
 git diff --check
 ```
 
-Record actual outcomes, review the diff and commit the validated source. The
-previous 1511-test preparation and 1515-test post-run passes describe earlier
-source versions; they do not validate this repair. Use the exact 40-character
-new source commit in the offline preparation command:
+The current source passed 1634 tests after a narrow diagnostic guard repair.
+The earlier 1511-test and 1515-test passes remain historical. The following
+one-time preparation command already completed successfully:
 
 ```powershell
-python scripts/prepare_smoke79.py --source-commit VERIFIED_SOURCE_COMMIT
+python scripts/prepare_smoke79.py --source-commit eebba9de7a9923d2a81d17f7631d41371a35ef5e
 ```
 
 The script replays both historical collection sources with credentials removed
@@ -105,10 +106,12 @@ and network blocked, checks immutable artifacts and the unchanged scientific
 inputs, and exclusively creates `research/smoke_continuation_79.json`. It makes
 no provider/account calls, changes no shared journals and creates no v3 run
 directory. It refuses to overwrite an existing new record or started segment.
-Commit the generated record separately after its hashes are verified, avoiding
-a circular source-commit dependency. Do not recreate or replace the v2 record.
+The generated record is delivered in a separate metadata commit, avoiding a
+circular source dependency. Do not rerun preparation against this existing
+record or recreate the v2 record. `python scripts/verify_audit.py` validates the
+existing preparation and independently replays its historical evidence.
 
-Once preparation is verified, a future fresh GET-only readiness check is:
+Preparation is verified offline. A future fresh GET-only readiness check is:
 
 ```powershell
 python -m beyond_label.paid_live --check-ready
@@ -124,3 +127,5 @@ inference needs a later explicit user request and all current source, route,
 account, cost and attempt guards. No pilot, main, freeze, model substitution or
 publication is included. No new human participation is inferred from the
 engineering review.
+
+Record body hash: `7fd60a8e009e3b65945321806b7cc24ca3037b722298a12a5a1781e95f59878c`. Record file SHA256: `35210961e64d0a11823cf5dde13c03b9c9e0afcf0d5c2f687714600c7da9e8bf`. All 48 tested execution inputs, 14 historical run/session files and four historical research records remained unchanged during preparation. The offline readiness exercise used recorded account/route evidence and does not verify current live availability.

@@ -1,0 +1,965 @@
+{
+  "schema_version": 1,
+  "classification": "prepared_source_version_not_execution",
+  "continuation_id": "deepseek_primeintellect_v3",
+  "authorization_id": "paid-smoke-usd1-200-v1",
+  "historical_directory": "runs/paid_smoke_gpt41mini_20261115",
+  "active_directory": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3",
+  "shared_session": "runs/_paid_testing_session",
+  "historical_segments": [
+    {
+      "directory": "runs/paid_smoke_gpt41mini_20261115",
+      "source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
+      "input_hashes": {
+        "src/beyond_label/__init__.py": "3af4623913c1c426172c13edf3e62cff2d156edbe256f17f8d2d473a4ac65cc4",
+        "src/beyond_label/analyze.py": "d00dddcbcec31ed15bcf79c934a7a8e219498a8e9b69699670ec9c6b7cd4c6d8",
+        "src/beyond_label/attempts.py": "77e21d4227c3e672f06f54c5b042d6be8805c92afec8c8d31b83472d54f97bba",
+        "src/beyond_label/budget.py": "375f5cf12f8cb4795a7e430a3d6b323c1aec0403e7a3e6cae7ac79facc6505ec",
+        "src/beyond_label/controls.py": "a0cb4da0a6e4891583c28587a7353e97038384dd5b479016b37e5b47bb61ddb6",
+        "src/beyond_label/environment.py": "28b503c97a1c10a47e62f27b7875062632cace72486fe740fe55e38938e9870f",
+        "src/beyond_label/evidence.py": "57f116c47475b2c78efa4e3df4c9f5c5ff9de399b3777306c57f3e7bd5b72c8d",
+        "src/beyond_label/figures.py": "cfbf4ce5a22bd23ab5ba55fc20bb94af8e0e807f9feafbdbd94aa14440afe2e2",
+        "src/beyond_label/finalize.py": "66db11e8ae395a853707944ae6c4b57619f6911250c4c06ce70c6090173e6d14",
+        "src/beyond_label/freeze.py": "ed89202383e8f48913aa56faa9802ae2b9cff4ef546197d0a2816c2ae5a14929",
+        "src/beyond_label/gates.py": "cc236884c9e95e481a8a7a713ca1aabeeb86bb19dbddcbb0369eedf92b52a146",
+        "src/beyond_label/generate.py": "dcab625863737966f36e14ae00063a313e2d6b003d1c31fda2d801dbfeb14491",
+        "src/beyond_label/live.py": "1b62f82bd4a07b56d85425420c78253ed4c529d911ed241b7e15f4dc5fa1b46c",
+        "src/beyond_label/openrouter.py": "bd31d494188b942b09b75788d3ec3fc8a7cdd5b05c76fab5a7cb513b118800c1",
+        "src/beyond_label/oracle.py": "186930b3e43d922abe60af62f38dddb09c5a4279b5ccf1d9c63594b8ba60bf29",
+        "src/beyond_label/paid_controls.py": "7e9f277570fefaadfda2893ca405f548ad377799f93af78561b4de62dbc76b4b",
+        "src/beyond_label/paid_live.py": "7aabed7445d732a179fa05c0e9d401229f52efe26fe1dc6b4cf4e772cb44d149",
+        "src/beyond_label/pilot.py": "792064085439ad1d17ee4d5efb37a41d20cabe6055b2c9ecc30010595871a5f9",
+        "src/beyond_label/provider.py": "3b41cafe62edb86c71dbefe1d6db5a84c861f568bff7b9e7fdf9aa35787a02ac",
+        "src/beyond_label/rate_limit.py": "0201670aa88ac85f4ec05a9f2f60d39faa565c3c090ea7ce20ac1b57debfe7a2",
+        "src/beyond_label/render.py": "8f661b0b8b132f5d62ee1b23e6508688ccb7bb5aab216ddddcb40dec7c94e63e",
+        "src/beyond_label/run.py": "28ef44c4b9b01f55a826d917b59071e6309221b25c66e543de5386b698b6fc25",
+        "src/beyond_label/sandbox.py": "8a6ef1e22d34d228e2e2c25ee42d01288e01c1bd436669d49b6a632a6ddb35ed",
+        "src/beyond_label/schemas.py": "afc0a6933fb6cf4cecedd4e611a632265d45aa7d43c567b425d9e3fa12d3c1d6",
+        "src/beyond_label/score.py": "38d973e166b246768b9f848a8dfaaa38e07f7e7c9bd82717d3e9c00a0da7660b",
+        "prompts/agent_system.txt": "5182b69506d51cedc814c295ebbb0e1be5a884a7dc5c4b987a4c6ef9e04561ce",
+        "prompts/control_masked.txt": "53b73a822dc461cfe6557606a2cb23b97a0793cf6c4760bb7e2bd15ea73e051a",
+        "prompts/control_numeric.txt": "bb275819f92808cbe51eb32126acb5ce63217af05a81d7f4f4026ba00b7b2ff5",
+        "prompts/probe_readback.txt": "1c962a2d0dcb1aae3dc523be0d89272e6fc29b123faf1e4019c82e99267cfcdf",
+        "prompts/reprompt_no_tool.txt": "e7a8dfdf71bb67aa526fd933f478394f77e1468e19f0366569b084838a8b8d4a",
+        "research/protocol.md": "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b",
+        "research/amendments.md": "8f7352f1fba562f4883a36ee4ce6d307dc82216062503c24210dc8a547b31e9d",
+        "configs/free.yaml": "f794bd1af3c7f4f2f4153d2ecaf9e37a178b2cb817551a663ae013cde5c374ad",
+        "configs/main.yaml": "2d21bd225502482cd5b2303d17b0230f220b0991ca8c82ddb8f49bf9c5ae6759",
+        "configs/paid_smoke.yaml": "d1d763bf6fc14f345ff798ba4dbd17222403b60f273a2759293c1d68ef2ca58e",
+        "configs/pilot.yaml": "7f6bc8df509bd8387bb206450d3dc4d3b81f14f8e71e4bebad31bfc5f58adfa6",
+        "configs/proposed_m4.yaml": "f8db2bf1be49acf0db0d068fe5be51ab06e29b6de0aea1494004bbb6216a7d19",
+        "data/worlds_main.jsonl": "cb426cda261722bb4f189b9cfda183ab373e1b7473ddd4dcccf2d3d80918e573",
+        "data/worlds_pilot.jsonl": "7988c4ca6e37ec461716a2c115255cd695f23cbc80a49d7aed0ddb47fca9749d",
+        "data/worlds_smoke.jsonl": "0b6535a13db14112e3be88658e464ccb8773f34ae4ab5f0fd591a73b303fd229",
+        "data/manifest.json": "2086a50d2d8fad43b87ae6adfa237e4c1531a6fbbfcfe8256a84c00d7b009183",
+        "pyproject.toml": "80472e3eba1f273612cedbe2fb2f0f9edf7c58f7fbead43eada0e1497934fa29",
+        "requirements.lock": "7d5a34a363a185ecd382c85efe7417ef8fea1ec02ecb53244e99e8780470e5c3"
+      },
+      "artifact_sha256": {
+        "manifest.json": "4f2aedf6c2776f40789f7658317c57b23ff914c5d24920b4f4add4100f517780",
+        "calls.jsonl": "35c967b3a8154533ce159a807e1f2820b45d2a673436612405888dcbdd6fa442",
+        "scores.csv": "5f9dc50f09b968c2406e0fbbccaebff2841a3622bdd8ce12df9947d46386a938",
+        "usage.csv": "a77586cf465966bcc623a32c71534dd194a1392acbd6119729f8bb1e025f8d06",
+        "analysis_manifest.json": "ffb58862c78feae7ad4c75055101d66a5fed4ea46d62d467aa42f7784f5aa382"
+      }
+    },
+    {
+      "directory": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2",
+      "source_commit": "89de9c8202c8cfa9720f49e495ecbb8ea662f3aa",
+      "input_hashes": {
+        "src/beyond_label/__init__.py": "3af4623913c1c426172c13edf3e62cff2d156edbe256f17f8d2d473a4ac65cc4",
+        "src/beyond_label/analyze.py": "d00dddcbcec31ed15bcf79c934a7a8e219498a8e9b69699670ec9c6b7cd4c6d8",
+        "src/beyond_label/attempts.py": "977d558b562b81fe6322be75d5035a3a1daed7ef6935af5b91cd3ec13e4e68d0",
+        "src/beyond_label/budget.py": "375f5cf12f8cb4795a7e430a3d6b323c1aec0403e7a3e6cae7ac79facc6505ec",
+        "src/beyond_label/capabilities.py": "fd05ce74d8df513e69d2bde664c819ff6c68a1d59cb30106528e633243be5ec7",
+        "src/beyond_label/continuation.py": "f16095b94b279f2e7fe8f93cc1ef37fe314408cabaf6037c6883089947ce216f",
+        "src/beyond_label/controls.py": "a0cb4da0a6e4891583c28587a7353e97038384dd5b479016b37e5b47bb61ddb6",
+        "src/beyond_label/cost_reconciliation.py": "0a19fe9013d6c32f695e9b4b8b345663606306d4ded53baa8c9330a8092c9073",
+        "src/beyond_label/environment.py": "28b503c97a1c10a47e62f27b7875062632cace72486fe740fe55e38938e9870f",
+        "src/beyond_label/evidence.py": "57f116c47475b2c78efa4e3df4c9f5c5ff9de399b3777306c57f3e7bd5b72c8d",
+        "src/beyond_label/figures.py": "cfbf4ce5a22bd23ab5ba55fc20bb94af8e0e807f9feafbdbd94aa14440afe2e2",
+        "src/beyond_label/finalize.py": "66db11e8ae395a853707944ae6c4b57619f6911250c4c06ce70c6090173e6d14",
+        "src/beyond_label/freeze.py": "ed89202383e8f48913aa56faa9802ae2b9cff4ef546197d0a2816c2ae5a14929",
+        "src/beyond_label/gates.py": "24b24066548be26e78cd5095ab75180bddcbc7964a1c1def05f72a5183c3d87e",
+        "src/beyond_label/generate.py": "dcab625863737966f36e14ae00063a313e2d6b003d1c31fda2d801dbfeb14491",
+        "src/beyond_label/live.py": "1b62f82bd4a07b56d85425420c78253ed4c529d911ed241b7e15f4dc5fa1b46c",
+        "src/beyond_label/openrouter.py": "7ded87610bab8ec572e6ce53e297f561de8246c253e307c0aa45d65314aa571a",
+        "src/beyond_label/oracle.py": "186930b3e43d922abe60af62f38dddb09c5a4279b5ccf1d9c63594b8ba60bf29",
+        "src/beyond_label/paid_controls.py": "74278acf9a9ed0fb81d871d4bdf47c4c1d057af228fd9364152f1cc515864a02",
+        "src/beyond_label/paid_live.py": "b47aea367499595b41cfd7622f3b7ee2610b38f8adebf8e4926d81779a2f1377",
+        "src/beyond_label/paid_profile.py": "683e3b1c7bd8112db2e003dfdc05fb4b05c5b253cd1aaaae4ff98001fadb76da",
+        "src/beyond_label/pilot.py": "792064085439ad1d17ee4d5efb37a41d20cabe6055b2c9ecc30010595871a5f9",
+        "src/beyond_label/provider.py": "c53cd01040826e8155ebe1b790f7b2e48d132dd739ab93fee4015800c775921c",
+        "src/beyond_label/rate_limit.py": "0201670aa88ac85f4ec05a9f2f60d39faa565c3c090ea7ce20ac1b57debfe7a2",
+        "src/beyond_label/render.py": "8f661b0b8b132f5d62ee1b23e6508688ccb7bb5aab216ddddcb40dec7c94e63e",
+        "src/beyond_label/run.py": "588f2580c76f65519df062b0ecdb70b5ab7c11d0be2c29f19520cbcaaa365b85",
+        "src/beyond_label/sandbox.py": "8a6ef1e22d34d228e2e2c25ee42d01288e01c1bd436669d49b6a632a6ddb35ed",
+        "src/beyond_label/schemas.py": "afc0a6933fb6cf4cecedd4e611a632265d45aa7d43c567b425d9e3fa12d3c1d6",
+        "src/beyond_label/score.py": "38d973e166b246768b9f848a8dfaaa38e07f7e7c9bd82717d3e9c00a0da7660b",
+        "prompts/agent_system.txt": "5182b69506d51cedc814c295ebbb0e1be5a884a7dc5c4b987a4c6ef9e04561ce",
+        "prompts/control_masked.txt": "53b73a822dc461cfe6557606a2cb23b97a0793cf6c4760bb7e2bd15ea73e051a",
+        "prompts/control_numeric.txt": "bb275819f92808cbe51eb32126acb5ce63217af05a81d7f4f4026ba00b7b2ff5",
+        "prompts/probe_readback.txt": "1c962a2d0dcb1aae3dc523be0d89272e6fc29b123faf1e4019c82e99267cfcdf",
+        "prompts/reprompt_no_tool.txt": "e7a8dfdf71bb67aa526fd933f478394f77e1468e19f0366569b084838a8b8d4a",
+        "research/protocol.md": "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b",
+        "research/amendments.md": "8f7352f1fba562f4883a36ee4ce6d307dc82216062503c24210dc8a547b31e9d",
+        "configs/free.yaml": "f794bd1af3c7f4f2f4153d2ecaf9e37a178b2cb817551a663ae013cde5c374ad",
+        "configs/main.yaml": "2d21bd225502482cd5b2303d17b0230f220b0991ca8c82ddb8f49bf9c5ae6759",
+        "configs/paid_smoke.yaml": "08b1638e8c42e921014bcc672dcfba7b8a893b66cf3cb6b0acacf331909c82fe",
+        "configs/pilot.yaml": "7f6bc8df509bd8387bb206450d3dc4d3b81f14f8e71e4bebad31bfc5f58adfa6",
+        "configs/proposed_m4.yaml": "f8db2bf1be49acf0db0d068fe5be51ab06e29b6de0aea1494004bbb6216a7d19",
+        "data/worlds_main.jsonl": "cb426cda261722bb4f189b9cfda183ab373e1b7473ddd4dcccf2d3d80918e573",
+        "data/worlds_pilot.jsonl": "7988c4ca6e37ec461716a2c115255cd695f23cbc80a49d7aed0ddb47fca9749d",
+        "data/worlds_smoke.jsonl": "0b6535a13db14112e3be88658e464ccb8773f34ae4ab5f0fd591a73b303fd229",
+        "data/manifest.json": "2086a50d2d8fad43b87ae6adfa237e4c1531a6fbbfcfe8256a84c00d7b009183",
+        "pyproject.toml": "80472e3eba1f273612cedbe2fb2f0f9edf7c58f7fbead43eada0e1497934fa29",
+        "requirements.lock": "7d5a34a363a185ecd382c85efe7417ef8fea1ec02ecb53244e99e8780470e5c3"
+      },
+      "artifact_sha256": {
+        "manifest.json": "ab9fd94b54d54c4cab1381e490990347d7ab13e2cadbd0d4400e4ee08ee90958",
+        "calls.jsonl": "8518852b1cd3b6406b7a0417b090547083480ff2b4ff02360d179a281a17a899",
+        "scores.csv": "758ab64bd0c800005c83a51c255a4765bbb49b1b8c47ddf87a7218665b4ffce4",
+        "usage.csv": "d10d8d2b60520204caf302b525915363ee1bcd356143dbff6a71624df4191cce",
+        "analysis_manifest.json": "cdfe09cb249b056a062848774a034b8ef54daab834824992cc38c4a1da85d856"
+      }
+    }
+  ],
+  "historical_recorded_attempts": 2,
+  "historical_successful_calls": 0,
+  "historical_terminal_cells": 1,
+  "unique_planned_cells": 80,
+  "plan": {
+    "manifest_version": 1,
+    "dataset": "smoke",
+    "load": 2,
+    "schedule_seed": 271828,
+    "classification": "planned_not_frozen",
+    "approved_for_execution": false,
+    "seeds": [
+      1100,
+      1101,
+      1102,
+      1103
+    ],
+    "counts": {
+      "READBACK": 16,
+      "MAIN": 16,
+      "HIGH-FEE": 16,
+      "HIGH-STAKES": 16,
+      "MASKED": 8,
+      "NUMERIC": 8
+    },
+    "initial_calls": 80,
+    "maximum_continuations": 64,
+    "maximum_planned_calls": 144,
+    "additional_calls_accounted_separately": [
+      "infrastructure_retries",
+      "permitted_no_tool_reprompts"
+    ],
+    "cells": [
+      {
+        "cell_id": "smoke-1100-readback-MAIN-inline-b",
+        "world_seed": 1100,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-inline-a",
+        "world_seed": 1101,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-separate-a",
+        "world_seed": 1102,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-inline-a",
+        "world_seed": 1102,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-inline-b",
+        "world_seed": 1103,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-inline-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-separate-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MASKED-inline-masked",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-inline-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-NUMERIC-separate-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MASKED-inline-masked",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-inline-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-inline-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-inline-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-separate-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1102-decision-NUMERIC-separate-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-separate-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-separate-a",
+        "world_seed": 1103,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-inline-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-NUMERIC-separate-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-inline-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-inline-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-separate-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MASKED-separate-masked",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-separate-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-separate-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-readback-MAIN-separate-b",
+        "world_seed": 1100,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-inline-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MASKED-inline-masked",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-inline-a",
+        "world_seed": 1103,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MASKED-separate-masked",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-inline-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-NUMERIC-separate-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-inline-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-separate-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-inline-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-inline-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-NUMERIC-separate-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-separate-b",
+        "world_seed": 1103,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-NUMERIC-separate-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1103-decision-NUMERIC-separate-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-separate-a",
+        "world_seed": 1101,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-separate-b",
+        "world_seed": 1102,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-separate-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-separate-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MASKED-separate-masked",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-inline-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-separate-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-inline-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-separate-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-inline-b",
+        "world_seed": 1102,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-separate-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-separate-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MASKED-inline-masked",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-inline-b",
+        "world_seed": 1101,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-separate-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-readback-MAIN-separate-a",
+        "world_seed": 1100,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-separate-b",
+        "world_seed": 1101,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-separate-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-inline-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MASKED-separate-masked",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1100-readback-MAIN-inline-a",
+        "world_seed": 1100,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-separate-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-NUMERIC-separate-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      }
+    ]
+  },
+  "retained_cells": [
+    {
+      "cell_id": "smoke-1100-readback-MAIN-inline-b",
+      "missing_reason": "model_mismatch",
+      "continuation_status": "not_applicable",
+      "source_directory": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2",
+      "source_artifact_sha256": {
+        "manifest.json": "ab9fd94b54d54c4cab1381e490990347d7ab13e2cadbd0d4400e4ee08ee90958",
+        "calls.jsonl": "8518852b1cd3b6406b7a0417b090547083480ff2b4ff02360d179a281a17a899",
+        "scores.csv": "758ab64bd0c800005c83a51c255a4765bbb49b1b8c47ddf87a7218665b4ffce4",
+        "usage.csv": "d10d8d2b60520204caf302b525915363ee1bcd356143dbff6a71624df4191cce",
+        "analysis_manifest.json": "cdfe09cb249b056a062848774a034b8ef54daab834824992cc38c4a1da85d856"
+      }
+    }
+  ],
+  "dispatch_cell_ids": [
+    "smoke-1103-decision-HIGH-STAKES-separate-b",
+    "smoke-1101-decision-HIGH-STAKES-inline-a",
+    "smoke-1101-readback-MAIN-inline-a",
+    "smoke-1102-readback-MAIN-separate-a",
+    "smoke-1102-readback-MAIN-inline-a",
+    "smoke-1103-readback-MAIN-inline-b",
+    "smoke-1103-decision-HIGH-FEE-inline-a",
+    "smoke-1101-decision-MAIN-separate-a",
+    "smoke-1102-decision-MASKED-inline-masked",
+    "smoke-1102-decision-HIGH-FEE-inline-b",
+    "smoke-1101-decision-NUMERIC-separate-a",
+    "smoke-1103-decision-MASKED-inline-masked",
+    "smoke-1100-decision-MAIN-inline-a",
+    "smoke-1100-decision-HIGH-STAKES-inline-a",
+    "smoke-1102-decision-MAIN-inline-a",
+    "smoke-1101-decision-MAIN-inline-b",
+    "smoke-1100-decision-HIGH-FEE-separate-b",
+    "smoke-1102-decision-NUMERIC-separate-a",
+    "smoke-1103-decision-HIGH-STAKES-inline-b",
+    "smoke-1101-decision-HIGH-FEE-separate-b",
+    "smoke-1103-readback-MAIN-separate-a",
+    "smoke-1103-decision-HIGH-STAKES-inline-a",
+    "smoke-1100-decision-HIGH-FEE-inline-a",
+    "smoke-1101-decision-HIGH-STAKES-separate-a",
+    "smoke-1100-decision-NUMERIC-separate-a",
+    "smoke-1102-decision-HIGH-FEE-inline-a",
+    "smoke-1102-decision-MAIN-inline-b",
+    "smoke-1103-decision-MAIN-separate-b",
+    "smoke-1103-decision-HIGH-STAKES-separate-a",
+    "smoke-1102-decision-MASKED-separate-masked",
+    "smoke-1102-decision-MAIN-separate-a",
+    "smoke-1102-decision-HIGH-STAKES-inline-a",
+    "smoke-1100-decision-MAIN-separate-b",
+    "smoke-1100-readback-MAIN-separate-b",
+    "smoke-1100-decision-HIGH-STAKES-separate-b",
+    "smoke-1103-decision-MAIN-inline-b",
+    "smoke-1100-decision-MASKED-inline-masked",
+    "smoke-1103-readback-MAIN-inline-a",
+    "smoke-1101-decision-HIGH-STAKES-separate-b",
+    "smoke-1100-decision-HIGH-STAKES-inline-b",
+    "smoke-1103-decision-MASKED-separate-masked",
+    "smoke-1103-decision-MAIN-inline-a",
+    "smoke-1102-decision-NUMERIC-separate-b",
+    "smoke-1102-decision-HIGH-STAKES-separate-b",
+    "smoke-1100-decision-MAIN-inline-b",
+    "smoke-1101-decision-HIGH-STAKES-inline-b",
+    "smoke-1102-decision-MAIN-separate-b",
+    "smoke-1101-decision-MAIN-inline-a",
+    "smoke-1103-decision-HIGH-FEE-inline-b",
+    "smoke-1101-decision-NUMERIC-separate-b",
+    "smoke-1103-readback-MAIN-separate-b",
+    "smoke-1103-decision-NUMERIC-separate-a",
+    "smoke-1103-decision-NUMERIC-separate-b",
+    "smoke-1102-decision-HIGH-STAKES-inline-b",
+    "smoke-1101-readback-MAIN-separate-a",
+    "smoke-1102-readback-MAIN-separate-b",
+    "smoke-1101-decision-HIGH-FEE-separate-a",
+    "smoke-1100-decision-HIGH-FEE-separate-a",
+    "smoke-1101-decision-MASKED-separate-masked",
+    "smoke-1102-decision-HIGH-STAKES-separate-a",
+    "smoke-1101-decision-HIGH-FEE-inline-b",
+    "smoke-1103-decision-MAIN-separate-a",
+    "smoke-1100-decision-HIGH-FEE-inline-b",
+    "smoke-1103-decision-HIGH-FEE-separate-a",
+    "smoke-1102-readback-MAIN-inline-b",
+    "smoke-1101-decision-MAIN-separate-b",
+    "smoke-1102-decision-HIGH-FEE-separate-a",
+    "smoke-1101-decision-MASKED-inline-masked",
+    "smoke-1101-readback-MAIN-inline-b",
+    "smoke-1103-decision-HIGH-FEE-separate-b",
+    "smoke-1100-readback-MAIN-separate-a",
+    "smoke-1101-readback-MAIN-separate-b",
+    "smoke-1100-decision-MAIN-separate-a",
+    "smoke-1101-decision-HIGH-FEE-inline-a",
+    "smoke-1100-decision-MASKED-separate-masked",
+    "smoke-1100-readback-MAIN-inline-a",
+    "smoke-1102-decision-HIGH-FEE-separate-b",
+    "smoke-1100-decision-HIGH-STAKES-separate-a",
+    "smoke-1100-decision-NUMERIC-separate-b"
+  ],
+  "active_source_commit": "eebba9de7a9923d2a81d17f7631d41371a35ef5e",
+  "active_input_sha256": {
+    "src/beyond_label/__init__.py": "3af4623913c1c426172c13edf3e62cff2d156edbe256f17f8d2d473a4ac65cc4",
+    "src/beyond_label/analyze.py": "d00dddcbcec31ed15bcf79c934a7a8e219498a8e9b69699670ec9c6b7cd4c6d8",
+    "src/beyond_label/attempts.py": "977d558b562b81fe6322be75d5035a3a1daed7ef6935af5b91cd3ec13e4e68d0",
+    "src/beyond_label/budget.py": "375f5cf12f8cb4795a7e430a3d6b323c1aec0403e7a3e6cae7ac79facc6505ec",
+    "src/beyond_label/capabilities.py": "fd05ce74d8df513e69d2bde664c819ff6c68a1d59cb30106528e633243be5ec7",
+    "src/beyond_label/continuation.py": "124a16cbb9f7f47375c855a3304f8ec5c27d3b8f4620f21b1b9346109ffdb419",
+    "src/beyond_label/continuation79.py": "e3053070ce2aa82c735d11f85cd0b3768e76c0dc55d93f7f6c9d63d7f646c040",
+    "src/beyond_label/controls.py": "a0cb4da0a6e4891583c28587a7353e97038384dd5b479016b37e5b47bb61ddb6",
+    "src/beyond_label/cost_reconciliation.py": "0a19fe9013d6c32f695e9b4b8b345663606306d4ded53baa8c9330a8092c9073",
+    "src/beyond_label/environment.py": "28b503c97a1c10a47e62f27b7875062632cace72486fe740fe55e38938e9870f",
+    "src/beyond_label/evidence.py": "57f116c47475b2c78efa4e3df4c9f5c5ff9de399b3777306c57f3e7bd5b72c8d",
+    "src/beyond_label/figures.py": "cfbf4ce5a22bd23ab5ba55fc20bb94af8e0e807f9feafbdbd94aa14440afe2e2",
+    "src/beyond_label/finalize.py": "66db11e8ae395a853707944ae6c4b57619f6911250c4c06ce70c6090173e6d14",
+    "src/beyond_label/freeze.py": "ed89202383e8f48913aa56faa9802ae2b9cff4ef546197d0a2816c2ae5a14929",
+    "src/beyond_label/gates.py": "177cac2baa0a7bb503b0508e81febc6802711549301d1120c7ee139daa884bd9",
+    "src/beyond_label/generate.py": "dcab625863737966f36e14ae00063a313e2d6b003d1c31fda2d801dbfeb14491",
+    "src/beyond_label/live.py": "1b62f82bd4a07b56d85425420c78253ed4c529d911ed241b7e15f4dc5fa1b46c",
+    "src/beyond_label/openrouter.py": "7ded87610bab8ec572e6ce53e297f561de8246c253e307c0aa45d65314aa571a",
+    "src/beyond_label/oracle.py": "186930b3e43d922abe60af62f38dddb09c5a4279b5ccf1d9c63594b8ba60bf29",
+    "src/beyond_label/paid_controls.py": "74278acf9a9ed0fb81d871d4bdf47c4c1d057af228fd9364152f1cc515864a02",
+    "src/beyond_label/paid_live.py": "a7919147f9b6610db2282eab0cd2e118b5abf59ca982cdbbcdd4ee520d8f0309",
+    "src/beyond_label/paid_profile.py": "55e70e435253ee04864787ff0d96ed0c6d19fa0cefda9ae6141fa87c186f7dc3",
+    "src/beyond_label/pilot.py": "792064085439ad1d17ee4d5efb37a41d20cabe6055b2c9ecc30010595871a5f9",
+    "src/beyond_label/provider.py": "dfe1426bf61472f1e2256b2daf5cd018e7e23ae844b0dcf3f833b66444c88b67",
+    "src/beyond_label/rate_limit.py": "0201670aa88ac85f4ec05a9f2f60d39faa565c3c090ea7ce20ac1b57debfe7a2",
+    "src/beyond_label/render.py": "8f661b0b8b132f5d62ee1b23e6508688ccb7bb5aab216ddddcb40dec7c94e63e",
+    "src/beyond_label/run.py": "7c1da6645778320c6ac7c8cd5c4904462593cc87abcb519d378177d6d1880e57",
+    "src/beyond_label/sandbox.py": "8a6ef1e22d34d228e2e2c25ee42d01288e01c1bd436669d49b6a632a6ddb35ed",
+    "src/beyond_label/schemas.py": "afc0a6933fb6cf4cecedd4e611a632265d45aa7d43c567b425d9e3fa12d3c1d6",
+    "src/beyond_label/score.py": "38d973e166b246768b9f848a8dfaaa38e07f7e7c9bd82717d3e9c00a0da7660b",
+    "prompts/agent_system.txt": "5182b69506d51cedc814c295ebbb0e1be5a884a7dc5c4b987a4c6ef9e04561ce",
+    "prompts/control_masked.txt": "53b73a822dc461cfe6557606a2cb23b97a0793cf6c4760bb7e2bd15ea73e051a",
+    "prompts/control_numeric.txt": "bb275819f92808cbe51eb32126acb5ce63217af05a81d7f4f4026ba00b7b2ff5",
+    "prompts/probe_readback.txt": "1c962a2d0dcb1aae3dc523be0d89272e6fc29b123faf1e4019c82e99267cfcdf",
+    "prompts/reprompt_no_tool.txt": "e7a8dfdf71bb67aa526fd933f478394f77e1468e19f0366569b084838a8b8d4a",
+    "research/protocol.md": "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b",
+    "research/amendments.md": "8f7352f1fba562f4883a36ee4ce6d307dc82216062503c24210dc8a547b31e9d",
+    "configs/free.yaml": "f794bd1af3c7f4f2f4153d2ecaf9e37a178b2cb817551a663ae013cde5c374ad",
+    "configs/main.yaml": "2d21bd225502482cd5b2303d17b0230f220b0991ca8c82ddb8f49bf9c5ae6759",
+    "configs/paid_smoke.yaml": "27346284ecd627bb8f1eb228e1debde3a9e60c46a8f27ce687a0cd6083bfc0c3",
+    "configs/pilot.yaml": "7f6bc8df509bd8387bb206450d3dc4d3b81f14f8e71e4bebad31bfc5f58adfa6",
+    "configs/proposed_m4.yaml": "f8db2bf1be49acf0db0d068fe5be51ab06e29b6de0aea1494004bbb6216a7d19",
+    "data/worlds_main.jsonl": "cb426cda261722bb4f189b9cfda183ab373e1b7473ddd4dcccf2d3d80918e573",
+    "data/worlds_pilot.jsonl": "7988c4ca6e37ec461716a2c115255cd695f23cbc80a49d7aed0ddb47fca9749d",
+    "data/worlds_smoke.jsonl": "0b6535a13db14112e3be88658e464ccb8773f34ae4ab5f0fd591a73b303fd229",
+    "data/manifest.json": "2086a50d2d8fad43b87ae6adfa237e4c1531a6fbbfcfe8256a84c00d7b009183",
+    "pyproject.toml": "80472e3eba1f273612cedbe2fb2f0f9edf7c58f7fbead43eada0e1497934fa29",
+    "requirements.lock": "7d5a34a363a185ecd382c85efe7417ef8fea1ec02ecb53244e99e8780470e5c3"
+  },
+  "changed_input_paths": [
+    "configs/paid_smoke.yaml",
+    "src/beyond_label/continuation.py",
+    "src/beyond_label/continuation79.py",
+    "src/beyond_label/gates.py",
+    "src/beyond_label/paid_live.py",
+    "src/beyond_label/paid_profile.py",
+    "src/beyond_label/provider.py",
+    "src/beyond_label/run.py"
+  ],
+  "historical_replay_verified": true,
+  "attempt_policy": "new_source_dispatch_only_untouched_cells_not_identical_retry",
+  "sample_policy": "same_80_logical_cells_one_terminal_missing_retained_79_untouched",
+  "allowance_policy": "shared_usd1_200_attempts_including_both_historical_attempts_no_reset",
+  "cost_policy": "preserve_original_unknown_hold_and_known_terminal_response_charge",
+  "record_hash": "7fd60a8e009e3b65945321806b7cc24ca3037b722298a12a5a1781e95f59878c"
+}

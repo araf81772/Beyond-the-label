@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-15T03:10:06.200143+00:00",
+  "recorded_at_utc": "2026-11-15T03:14:46.104261+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "Fix documented endpoint metadata identity mapping and prepare continuation for79untouched smoke cells; never rerun retained terminal readback; no paid calls; test/fix/retest/log/commit/push under same caps.",
   "execution_freeze": null,
@@ -228,7 +228,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "Smoke remains incomplete. Endpoint identity and retained-terminal continuation repair passed the full offline suite; exact-source commit and79-cell preparation record pending. Current user prohibits paid calls.",
+      "reason": "Smoke remains incomplete. The endpoint identity repair and exact79-cell continuation are prepared and verified offline; current user prohibits inference. Pilot/main/freeze remain unrun.",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -253,13 +253,14 @@
         "Explicit user-approved dated DeepSeek/PrimeIntellect profile with strict controls and no fallback",
         "Exact historical unknown-charge coverage retaining its entire reservation; new unknown charges still suspend dispatch",
         "Hash-bound versioned continuation preserving original source and raw artifacts with one shared allowance",
-        "Read-only readiness CLI default; inference requires explicit --execute"
+        "Read-only readiness CLI default; inference requires explicit --execute",
+        "Explicit selected-endpoint model mapping and exact79-cell continuation preserving one terminal missing row, both historical source versions and all cumulative charges/attempts"
       ],
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
-      "minimum_next_action": "Complete full validation, commit exact source, prepare new79-cell research record, and verify readiness without inference. Await later execution instruction; no rerun of retained cell.",
-      "offline_preparation_status": "Full1634-test suite passed; source commit and preparation record are next. Both historical runs and shared journals remain unchanged; no inference/accountcall.",
+      "minimum_next_action": "Await an explicit continuation instruction; then use the guarded smoke entry point with fresh account/route preflight and unchanged cumulative caps. Never dispatch the retained terminal cell. Stop before pilot/main.",
+      "offline_preparation_status": "Complete for the current repair:1634offline tests passed; sourceeebba9d committed/pushed; strict79-cell record load and actual-history accounting verified without network, inference or account calls.",
       "offline_validation": [
         {
           "command": "python -m pytest -q",
@@ -610,7 +611,6 @@
         "condition_satisfied": true,
         "evidence": "research/paid_smoke_execution_authorization.json",
         "blocking_conditions": [
-          "full_repair_validation_and_committed_v3_preparation_pending",
           "current_instruction_defers_inference",
           "fresh_account_and_route_preflight_before_future_execution"
         ],
@@ -624,16 +624,24 @@
         "account_condition_evidence_is_historical": true
       },
       "current_checkpoint": {
-        "status": "endpoint_identity_repair_validated_awaiting_source_commit",
+        "status": "endpoint_identity_and79_cell_preparation_complete_not_executed",
         "scope": "prepare79_untouched_no_inference_or_account_calls",
         "run_evidence_unchanged": true,
         "full_suite_evidence": "research/checks/endpoint_repair_suite.json",
         "initial_failure_evidence": "research/checks/endpoint_repair_suite_initial.json",
-        "push_status": "pending",
+        "push_status": "tested_source_pushed_remote_verified_metadata_followup_resolved_via_Git",
         "commit_reference": "Resolve source and final metadata commits through Git; no circular self-hash",
         "full_suite_tests_passed": 1634,
         "full_suite_seconds": 421.86,
-        "experimental_inputs_unchanged_during_suite": true
+        "experimental_inputs_unchanged_during_suite": true,
+        "source_commit": "eebba9de7a9923d2a81d17f7631d41371a35ef5e",
+        "record_path": "research/smoke_continuation_79.json",
+        "record_hash": "7fd60a8e009e3b65945321806b7cc24ca3037b722298a12a5a1781e95f59878c",
+        "strict_record_load_passed": true,
+        "delivery_evidence": "research/checks/endpoint_repair_delivery.json",
+        "preparation_evidence": "research/checks/endpoint_repair_preparation.json",
+        "final_audit_evidence": "research/checks/endpoint_repair_final_audit.json",
+        "final_audit_checks_passed": 1353
       },
       "checkpoint_history": [
         {
@@ -978,7 +986,7 @@
     "offline_tests_passed": 1515,
     "full_suite_evidence": "research/checks/deepseek_smoke_suite.json",
     "integrity_evidence": "research/checks/smoke_preparation_integrity.json",
-    "current_push_status": "endpoint_repair_validated_commit_pending",
+    "current_push_status": "tested_repair_source_pushed_remote_verified_metadata_followup_resolved_via_Git",
     "scientific_design_changed": false,
     "human_review": false,
     "engineering_commit": "88c632fc0bfe9f24700b4b30a217fdb6b53ee1c4",
@@ -1149,11 +1157,12 @@
     },
     {
       "issue": "Endpoint metadata identity needs an explicit verified same-snapshot mapping",
-      "required_action": "Preserve both existing source segments; do not resample terminal readback; dispatch only untouched cells after source-version repair"
+      "required_action": "Prepared sourceeebba9d and continuation79record preserve the terminal failure; future authorized execution may dispatch only79untouched cells.",
+      "status": "resolved_for_prepared_continuation_live_delivery_not_tested"
     }
   ],
   "endpoint_repair_preparation": {
-    "status": "validated_awaiting_committed_source_record",
+    "status": "prepared_and_verified_offline_no_execution",
     "model": "deepseek/deepseek-v4.1-flash-1017",
     "provider_route": "primeintellect",
     "accepted_endpoint_models": [
@@ -1173,19 +1182,27 @@
     "account_checks": 0,
     "scientific_design_changed": false,
     "empirical_classification_changed": false,
-    "source_commit": null,
+    "source_commit": "eebba9de7a9923d2a81d17f7631d41371a35ef5e",
     "record_path": "research/smoke_continuation_79.json",
     "new_segment_started": false,
     "suite_evidence": "research/checks/endpoint_repair_suite.json",
     "source_evidence": "research/checks/endpoint_identity_sources.json",
     "human_review": false,
-    "delivery_status": "pending",
+    "delivery_status": "tested_source_pushed_remote_verified_metadata_followup_resolved_via_Git",
     "full_suite_status": "passed",
     "full_suite_tests_passed": 1634,
     "full_suite_seconds": 421.86,
     "experimental_inputs_unchanged_during_suite": true,
     "historical_files_unchanged": 14,
     "historical_research_records_unchanged": 4,
-    "audit_checks_passed": 1341
+    "audit_checks_passed": 1341,
+    "record_hash": "7fd60a8e009e3b65945321806b7cc24ca3037b722298a12a5a1781e95f59878c",
+    "record_file_sha256": "35210961e64d0a11823cf5dde13c03b9c9e0afcf0d5c2f687714600c7da9e8bf",
+    "strict_record_load_passed": true,
+    "preparation_evidence": "research/checks/endpoint_repair_preparation.json",
+    "delivery_evidence": "research/checks/endpoint_repair_delivery.json",
+    "fresh_live_readiness_verified": false,
+    "final_audit_evidence": "research/checks/endpoint_repair_final_audit.json",
+    "final_audit_checks_passed": 1353
   }
 }
