@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "runs": {
+    "runs/paid_smoke_gpt41mini_20261115": {
+      "source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
+      "recorded_at_utc": "2026-11-15T01:00:47.537806+00:00",
+      "classification": "empirical_partial_smoke_not_main_results",
+      "files": {
+        "manifest.json": "4f2aedf6c2776f40789f7658317c57b23ff914c5d24920b4f4add4100f517780",
+        "calls.jsonl": "35c967b3a8154533ce159a807e1f2820b45d2a673436612405888dcbdd6fa442",
+        "scores.csv": "5f9dc50f09b968c2406e0fbbccaebff2841a3622bdd8ce12df9947d46386a938",
+        "usage.csv": "a77586cf465966bcc623a32c71534dd194a1392acbd6119729f8bb1e025f8d06",
+        "analysis_manifest.json": "ffb58862c78feae7ad4c75055101d66a5fed4ea46d62d467aa42f7784f5aa382"
+      },
+      "reason": "Preserve collection-version replay after offline infrastructure repairs; do not rewrite original traces or derived files"
+    }
+  }
+}

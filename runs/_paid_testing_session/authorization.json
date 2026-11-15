@@ -1,0 +1,21 @@
+{
+  "authorization_id": "paid-smoke-usd1-200-v1",
+  "execution_scope": "smoke_only",
+  "authorized_total_testing_usd": "10",
+  "authorized_smoke_usd": "1",
+  "maximum_inference_attempts": 200,
+  "run_directory": "runs/paid_smoke_gpt41mini_20261115",
+  "model": "openai/gpt-4.1-mini",
+  "provider_route": "openai",
+  "provider": "OpenAI",
+  "stop_before": [
+    "pilot",
+    "main"
+  ],
+  "attempts_include": [
+    "initial",
+    "retries",
+    "reprompts",
+    "continuations"
+  ]
+}

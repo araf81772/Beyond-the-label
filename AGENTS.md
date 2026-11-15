@@ -43,3 +43,10 @@ Complete and record required offline tests before inference. Preserve all smoke 
 Earlier free-key failures, free-only caps and offline preparation remain historical in `research/decisions.md` and the check records. The USD 20 proposal remains unapproved. The current authorization and account check are recorded in `research/paid_smoke.md`; do not confuse historical assertions with current execution permission.
 
 Tonmoy and Araf are confirmed author names; affiliations and H1-H5 participation remain unconfirmed. Pre-results exports are historical artifacts tied to their recorded source version. Once empirical smoke exists, do not regenerate a manuscript claiming no inference occurred. Report tests use isolated pre-results fixtures while the production guard remains strict. Empirical analysis must use the fixed 10,000 bootstrap resamples and seed 314159. Historical authoritative protocol bytes remain unchanged.
+
+
+## Partial smoke evidence and current stop
+
+The nonreset USD10 key limit is now verified. One real request in the canonical smoke returned HTTP404 with no model reply; the guard stopped before retry. Preserve the one attempt and unknown-cost hold. Current public metadata does not verify the strict pinned endpoint's required parallel-tool control. Do not substitute a model/provider, relax controls, invent a zero-cost receipt, reset the session, or edit the historical manifest to resume. Pilot/main remain outside scope.
+
+The original five run files are bound to collection source0ad2562 in `research/run_sources.json`. Offline audit may use `scripts/replay_history.py` to verify that exact source in a credential-free, network-blocked snapshot; live source-hash checks remain strict. Future repairs must leave the raw trace unchanged. `scripts/smoke_diagnostics.py` reports the corrected one-failed/79-untouched distinction separately from original collection-version scores. Account usage reports0; per-attempt billing is still unknown and its conservative reservation remains held.

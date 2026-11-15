@@ -6,7 +6,9 @@ stopping at **USD 1 or 200 total attempts**, including retries, re-prompts and
 continuations. Stop and report before pilot or main. No purchase, alternate model,
 additional run, pilot or main is enabled by this authorization.
 
-Three authenticated read-only checks found the same nonreset USD 100 key limit, USD 100 remaining and zero usage. The latest check at 2026-11-15T00:39:57Z still fails the execution guard's USD 10 ceiling. The user acknowledged the request to reduce it, but the setting change is not yet evidenced. See `checks/paid_smoke_account_final_check.json` and the retained earlier checks. No inference has occurred. Set the existing key limit to USD 10 with no reset and request a fresh check; no new spending authorization is needed for this same smoke.
+The key-limit blocker was resolved: the authenticated check at2026-11-15T00:53:44Z verified USD10, no reset, remaining10 and usage0. The first authorized smoke request then returned HTTP404 without a model response. The spending guard stopped before retry, leaving one consumed attempt and a USD0.44084208 unknown-cost reservation. The post-failure account check at2026-11-15T01:03:17Z still reports USD0 usage; this is account evidence, not a per-attempt billing receipt.
+
+The smoke is incomplete: **1 attempted infrastructure failure,79 untouched cells,0 completed cells,0 model responses**, and no retries/re-prompts/continuations/invalid model actions. No pilot, main or execution freeze occurred. The original five files and shared control journals are preserved. See `checks/paid_smoke_ready_preflight.json`, `checks/paid_smoke_post_failure_account.json` and `checks/paid_smoke_failure_audit.json`.
 
 ## Fixed run and settings
 
@@ -76,4 +78,19 @@ its no-inference statements must not be regenerated as current after smoke.
 Tests, observed outcomes, repairs and delivery are recorded in the decision log,
 `milestones.json` and `checks/paid_smoke_*.json`. Preparation is not a passed smoke.
 
-Integrated validation: **1201 offline tests passed in 339.56s**, including T1–T8 and the full mocked smoke/resume path. Integrity, dependency and diff checks passed. See `checks/paid_smoke_suite.json` and `checks/paid_smoke_validation.json`. Actual smoke attempts and inference cost remain **0 / USD 0**; no freeze was created.
+Integrated validation: **1201 offline tests passed in 339.56s**, including T1–T8 and the full mocked smoke/resume path. Integrity, dependency and diff checks passed. See `checks/paid_smoke_suite.json` and `checks/paid_smoke_validation.json`. That pre-execution test checkpoint had no attempts; the subsequent one-request partial smoke is recorded above. No freeze was created.
+
+
+## Observed failure and repairs
+
+The failed cell is `smoke-1100-readback-MAIN-inline-b`; no behavioral or readback result exists. Recorded latency60.521s includes the initial60-second operator rate wait, so it is end-to-end attempt latency, not upstream service latency alone. The original response body was discarded by the old adapter, leaving the specific404 cause unknown.
+
+Anonymous public metadata still lists the OpenAI endpoint, but omits `parallel_tool_calls`. Strict `require_parameters:true` can exclude an endpoint lacking any requested parameter. The request/image price fields are also absent, so their public metadata is unknown. This supports a routing-capability explanation, not a uniquely proven diagnosis. The endpoint report is `checks/paid_smoke_capabilities.json`. Request settings, model/provider and scientific protocol remain unchanged; there is no silent fallback or weakened strict filter.
+
+Repairs for future execution: bounded credential-safe HTTP diagnostic categories; public capability checks before account/inference; and pending-failure scoring that distinguishes an observed error from an untouched case. The old scores incorrectly used `not_executed_yet` for the attempted failure. They remain unchanged as collection-version artifacts; a separate reproducible diagnostic report supplies the corrected distinction.
+
+Collection source was commit `0ad25621f3b730065b1a71b92aafc1fd0a2863a1`. `research/run_sources.json` binds all five file hashes to that exact source. `scripts/replay_history.py` verifies all43 inputs against local Git blobs, removes credentials, blocks networking and regenerates outputs in a disposable snapshot. This preserves strict live-resume hash checks. Source repairs do not retroactively change which code produced the retained attempt.
+
+Remaining execution work requires a compatible pinned configuration and an explicit pre-freeze continuation/replacement record, plus billing reconciliation. The key and spending authorization do not need another increase. No repeated successful or invalid model sample may be created; none exists in this partial smoke.
+
+Final repair validation: **1341 tests passed in387.61s**;1161 integrity checks, dependencies, diff whitespace and immutable historical replay passed. No additional inference occurred. See `checks/paid_smoke_execution_suite.json` and `checks/paid_smoke_execution_validation.json`. A separate unapproved model-route candidate is documented in `research/model_route_candidate.md`; it is not activated or fully billing-verified.

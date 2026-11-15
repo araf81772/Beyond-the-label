@@ -1,0 +1,72 @@
+{
+  "recorded_at_utc": "2026-11-15T01:05:37.941359+00:00",
+  "source": "https://openrouter.ai/api/v1/models/openai/gpt-4.1-mini/endpoints",
+  "classification": "anonymous_public_metadata_not_inference",
+  "credentials_used": false,
+  "response_sha256": "c55d140b0532c149e47af5263e1aa44e2c708a1866e1b0dc01fef7397ae532d8",
+  "report": {
+    "schema_version": 1,
+    "classification": "public_capability_metadata_not_live_delivery",
+    "requested_model": "openai/gpt-4.1-mini",
+    "requested_provider": "OpenAI",
+    "requested_provider_route": "openai",
+    "required_parameters": [
+      "max_tokens",
+      "parallel_tool_calls",
+      "temperature",
+      "tool_choice",
+      "tools"
+    ],
+    "compatible": false,
+    "blockers": [
+      "no_verified_compatible_endpoint"
+    ],
+    "matching_endpoints": [
+      {
+        "endpoint_index": 1,
+        "available_status_verified": true,
+        "missing_parameters": [
+          "parallel_tool_calls"
+        ],
+        "unknown_fields": [
+          "pricing.image",
+          "pricing.request"
+        ],
+        "price_checks": {
+          "prompt": {
+            "observed_usd": "4E-7",
+            "ceiling_usd": "4E-7",
+            "unit": "per_token",
+            "within_ceiling": true
+          },
+          "completion": {
+            "observed_usd": "0.0000016",
+            "ceiling_usd": "0.0000016",
+            "unit": "per_token",
+            "within_ceiling": true
+          },
+          "request": {
+            "observed_usd": null,
+            "ceiling_usd": "0",
+            "unit": "per_unit",
+            "within_ceiling": null
+          },
+          "image": {
+            "observed_usd": null,
+            "ceiling_usd": "0",
+            "unit": "per_unit",
+            "within_ceiling": null
+          }
+        },
+        "blockers": [
+          "metadata_incomplete",
+          "missing_required_parameters"
+        ],
+        "compatible": false
+      }
+    ],
+    "execution_authorized": false,
+    "http_404_cause_established": false,
+    "request_settings_changed": false
+  }
+}

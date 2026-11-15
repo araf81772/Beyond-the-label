@@ -1,0 +1,31 @@
+{
+  "recorded_at_utc": "2026-11-15T01:03:17.279873+00:00",
+  "classification": "post_failed_request_account_metadata_not_attempt_billing_receipt",
+  "inference_calls_in_this_check": 0,
+  "account": {
+    "key_hard_limit_usd": 10,
+    "key_limit_remaining_usd": 10,
+    "key_usage_usd": 0,
+    "key_limit_reset": null,
+    "include_byok_in_limit": false,
+    "budgets": [
+      {
+        "scope": "key_limit",
+        "limit_usd": 10,
+        "spend_usd": 0,
+        "remaining_usd": 10,
+        "reset_interval": null,
+        "include_byok": false
+      }
+    ],
+    "effective_budget": {
+      "scope": "key_limit",
+      "limit_usd": 10,
+      "spend_usd": 0,
+      "remaining_usd": 10,
+      "reset_interval": null,
+      "include_byok": false
+    }
+  },
+  "status": "authenticated"
+}

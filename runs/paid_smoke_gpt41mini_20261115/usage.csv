@@ -1,0 +1,2 @@
+cell_id,phase,attempt,success,request_hash,request_id,model,provider,finish_reason,http_status,latency_seconds,prompt_tokens,completion_tokens,total_tokens,cost_usd,router_cost_usd,is_byok,byok_upstream_cost_usd,cost_evidence,error,evidence_kind
+smoke-1100-readback-MAIN-inline-b,readback,1,false,0ff45575e0be2980780f1273020e6c9aecf9aa13e2ecf14251643b1846c4884e,,,,,404,60.5212192000472,,,,,,,,unavailable,http_error,empirical

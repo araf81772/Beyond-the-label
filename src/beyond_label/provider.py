@@ -82,6 +82,9 @@ class TransportOutcome:
 
 
 _CREDENTIAL_ENV = CREDENTIAL_NAMES
+HTTP_DIAGNOSTICS = frozenset({
+    "unsupported_parameters", "data_policy", "price_filter", "data_region", "unknown",
+})
 _SENSITIVE_KEYS = {"authorization", "proxy-authorization", "headers", "api_key", "api-key", "x-api-key", "access_token", "refresh_token", "credentials"}
 _TOKEN_PATTERNS = (
     re.compile(r"sk-(?:or-v1-)?[A-Za-z0-9_-]{20,}"),
@@ -388,14 +391,28 @@ def _infrastructure_reason(exc: BaseException) -> str | None:
     return None
 
 
-def _http_status_evidence(exc: BaseException) -> dict[str, int]:
-    """Keep only a valid numeric HTTP status, never exception text or headers."""
+def _http_status_evidence(exc: BaseException) -> dict[str, int | str]:
+    """Keep numeric status and adapter-selected fixed diagnostics, never text.
+
+    The adapter builds fresh HTTP exceptions containing no original request,
+    body, or headers. Revalidate its optional attributes here: injected
+    transports and external HTTP exceptions are not trusted diagnostic sources.
+    """
     status = None
     if isinstance(exc, httpx.HTTPStatusError):
         status = exc.response.status_code
     elif isinstance(exc, HTTPError):
         status = exc.code
-    return {"http_status": status} if type(status) is int and 100 <= status <= 599 else {}
+    if type(status) is not int or not 100 <= status <= 599:
+        return {}
+    evidence: dict[str, int | str] = {"http_status": status}
+    category = getattr(exc, "_btl_http_diagnostic", None)
+    if type(category) is str and category in HTTP_DIAGNOSTICS:
+        evidence["http_diagnostic"] = category
+        code = getattr(exc, "_btl_api_error_code", None)
+        if type(code) is int and 400 <= code <= 599:
+            evidence["api_error_code"] = code
+    return evidence
 
 
 def parse_response(raw: Any, payload: dict[str, Any], settings: ProviderSettings,
@@ -449,7 +466,7 @@ class PinnedProvider:
             emit("attempt_started", attempt, usage={}, latency_seconds=0.0)
             started = time.perf_counter()
             local_accounting: dict[str, str] = {}
-            http_evidence: dict[str, int] = {}
+            http_evidence: dict[str, int | str] = {}
             try:
                 raw = self.transport(json.loads(encoded))
             except Exception as exc:

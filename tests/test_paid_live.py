@@ -127,6 +127,8 @@ def owner_fixture(tmp_path, monkeypatch):
     monkeypatch.setattr(run, "ROOT", tmp_path)
     monkeypatch.setattr(run, "_inputs", lambda: {})
     monkeypatch.setattr(paid_live, "paid_account_preflight", good_evidence)
+    monkeypatch.setattr(paid_live, "check_paid_smoke_capabilities", lambda config: {
+        "compatible": True, "classification": "synthetic_public_capability_fixture"}, raising=False)
     monkeypatch.setattr(RateLimiter, "acquire", lambda self, bound: None)
     config = paid_config()
     path = write_config(tmp_path, config)
@@ -315,3 +317,24 @@ def test_paid_unknown_billing_mode_holds_bound_and_stops_before_second_attempt(t
     assert result["spend_evidence_complete"] is False and result["unknown_cost_attempts"] == 1
     ledger = BudgetLedger(tmp_path / "runs/_paid_testing_session/budget.jsonl", "1")
     assert ledger.snapshot()["uncertain"] is True
+
+
+def test_paid_public_missing_parallel_control_blocks_before_account_and_dispatch(tmp_path, monkeypatch):
+    live, _, config, output, fixture = owner_fixture(tmp_path, monkeypatch)
+    monkeypatch.setattr(live, "check_paid_smoke_capabilities", lambda settings: {
+        "compatible": False, "blockers": ["missing_required_parameters"],
+        "missing_parameters": ["parallel_tool_calls"]}, raising=False)
+    monkeypatch.setattr(live, "paid_account_preflight", lambda: pytest.fail("No account request after incompatible metadata"))
+    with pytest.raises(live.ExecutionSuspended, match="public_capabilities_not_verified"):
+        live.run_paid_smoke(config, "smoke", output)
+    assert fixture.calls == 0 and not output.exists()
+
+
+def test_paid_missing_history_blocks_before_public_or_account_request(tmp_path, monkeypatch):
+    live, _, config, output, _ = owner_fixture(tmp_path, monkeypatch)
+    live.run_paid_smoke(config, "smoke", output, max_cells=0)
+    (tmp_path / "runs/_paid_testing_session/attempts.jsonl").unlink()
+    monkeypatch.setattr(live, "check_paid_smoke_capabilities", lambda config: pytest.fail("No public request after history loss"))
+    monkeypatch.setattr(live, "paid_account_preflight", lambda: pytest.fail("No account request after history loss"))
+    with pytest.raises(live.ExecutionSuspended, match="history_missing"):
+        live.run_paid_smoke(config, "smoke", output)

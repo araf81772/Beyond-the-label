@@ -1,9 +1,9 @@
 {
-  "recorded_at_utc": "2026-11-15T00:43:55.585650+00:00",
+  "recorded_at_utc": "2026-11-15T01:18:17.549286+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "User authorizes USD10 total testing on GPT-4.1 mini via OpenRouter/OpenAI; run one smoke only capped at USD1 or200 total attempts; stop before pilot/main; repair any evidenced M5 infrastructure issue",
   "execution_freeze": null,
-  "experimental_calls": 0,
+  "experimental_calls": 1,
   "human_participation_observed": false,
   "milestones": [
     {
@@ -136,8 +136,9 @@
         "Credential/header leakage and immutable-attempt review"
       ],
       "real_run_blockers": [
-        "Paid smoke first account hardlimit USD100 exceeds authorized USD10 ceiling; fresh compliant evidence required",
-        "Real pinned GPT-4.1 mini/OpenAI delivery, smoke and pilot remain unobserved"
+        "Pinned OpenAI endpoint does not advertise parallel_tool_calls required by strict routing; pricing.request/image metadata unknown",
+        "One failed smoke attempt has unknown per-request cost evidence; conservative hold retained",
+        "Pilot/main not authorized in this smoke-only checkpoint"
       ],
       "validation": [
         {
@@ -227,7 +228,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "Three authenticated read-only checks still show a nonreset USD100 hard key limit above the USD10 guard; no inference dispatched. Paid smoke authorization remains valid; pilot/main not authorized.",
+      "reason": "Key limit10 verified; first real READBACK request returnedHTTP404 with no model response. Guard stopped before retry because attempt billing evidence is unavailable; strict public endpoint capabilities also fail verification.",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -248,13 +249,13 @@
         "Empirical pilot summaries and read-only freeze preparation/verification against retained traces and Git blobs",
         "Durable 10-attempt attempt cap across all runs/restarts with crash/corruption/concurrent-writer tests and real-entry-point bypass regression",
         "Current-source 320-cell rehearsal with576 fixture calls and immutable replay",
-        "Execution audit reconciles actual trace counts/freeze evidence; paid path remains disabled"
+        "Execution audit reconciles actual trace counts/freeze evidence; paid smoke authorized but blocked after one HTTP404 attempt"
       ],
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
-      "minimum_next_action": "Change the existing OpenRouter key hard limit from USD100 to USD10 with reset disabled, then request a fresh check. Existing authorization remains: one smoke only, USD1 or200 attempts. No new spending approval needed.",
-      "offline_preparation_status": "Paid smoke engineering validated:1201 offline tests passed in339.56s; actual smoke remains blocked by provider key hardlimit100 above authorized10",
+      "minimum_next_action": "Resolve/approve a compatible pinned routing configuration and an explicit pre-freeze smoke continuation/replacement record; reconcile retained failed-attempt billing evidence before further dispatch. Current USD10 authorization and key limit are sufficient; do not repeat successful or invalid decisions.",
+      "offline_preparation_status": "Smoke-exposed infrastructure repairs validated:1341 tests passed in387.61s; historical source replay and original file hashes pass. Real smoke incomplete after1HTTP404; no further inference.",
       "offline_validation": [
         {
           "command": "python -m pytest -q",
@@ -388,6 +389,24 @@
           "exit_code": 0,
           "summary": "1077 integrity/source/selected secret checks; dependencies and whitespace passed; authoritative original/archive identical; zero real attempts",
           "evidence": "research/checks/paid_smoke_validation.json"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "1341 passed in387.61s; after actual HTTP404 diagnostic/missingness/capability/historical replay repairs",
+          "evidence": "research/checks/paid_smoke_execution_suite.json"
+        },
+        {
+          "command": "python scripts/verify_audit.py; python -m pip check; git diff --check",
+          "exit_code": 0,
+          "summary": "1161 integrity/selected secret checks;1actual request/0successful responses; original5files unchanged; dependencies and whitespace pass",
+          "evidence": "research/checks/paid_smoke_execution_validation.json"
+        },
+        {
+          "command": "python scripts/smoke_diagnostics.py --run runs/paid_smoke_gpt41mini_20261115",
+          "exit_code": 0,
+          "summary": "Exact43-input collection-source replay; corrected1failed/79untouched distinction; no raw evidence changes or network calls",
+          "evidence": "research/checks/paid_smoke_failure_audit.json"
         }
       ],
       "recorded_test_fix_retest": [
@@ -424,16 +443,17 @@
         "status_checkpoint": "Follow-up commit records this evidence; final remote HEAD is verified after that push"
       },
       "local_credential_setup": {
-        "status": "authenticated_but_zero_hard_limit_not_verified",
-        "evidence": "research/checks/durable_cap_account_preflight.json",
-        "credential_source_evidence": "research/checks/free_key_source_10_call_cap.json",
+        "status": "authenticated_authorized_usd10_hard_limit_verified",
+        "evidence": "research/checks/paid_smoke_ready_preflight.json",
+        "post_failure_evidence": "research/checks/paid_smoke_post_failure_account.json",
         "env_file_ignored": true,
         "credential_values_recorded": false,
-        "paid_calls_authorized": false,
-        "provider_inference_calls": 0,
-        "free_quota_used": 0,
-        "free_quota_limit": 50,
-        "free_quota_remaining": 50
+        "paid_calls_authorized": true,
+        "authorized_scope": "smoke_only",
+        "provider_inference_attempts": 1,
+        "provider_successful_responses": 0,
+        "hard_limit_usd": 10,
+        "reset": null
       },
       "proposed_configuration": {
         "path": "configs/proposed_m4.yaml",
@@ -522,42 +542,59 @@
           "free_quota_used": 0,
           "free_quota_limit": 50,
           "free_quota_remaining": 50
+        },
+        {
+          "status": "authenticated_but_zero_hard_limit_not_verified",
+          "evidence": "research/checks/durable_cap_account_preflight.json",
+          "credential_source_evidence": "research/checks/free_key_source_10_call_cap.json",
+          "env_file_ignored": true,
+          "credential_values_recorded": false,
+          "paid_calls_authorized": false,
+          "provider_inference_calls": 0,
+          "free_quota_used": 0,
+          "free_quota_limit": 50,
+          "free_quota_remaining": 50
         }
       ],
       "current_execution_authorization": {
-        "free_only": true,
-        "condition": "authenticated key hard limit exactly USD 0",
-        "condition_satisfied": false,
-        "paid_calls_authorized": false,
-        "configured_execution_enabled": false,
-        "source_config_changed": true,
-        "evidence": "research/checks/durable_cap_account_preflight.json",
-        "maximum_aggregate_inference_attempts": 10,
+        "authorization_id": "paid-smoke-usd1-200-v1",
+        "free_only": false,
+        "paid_calls_authorized": true,
+        "scope": "smoke_only; stop and report before pilot or main",
+        "total_testing_usd": 10,
+        "smoke_usd": 1,
+        "maximum_aggregate_inference_attempts": 200,
+        "consumed_attempts": 1,
         "attempt_count_includes": [
           "initial_requests",
           "infrastructure_retries",
           "no_tool_reprompts",
           "continuations"
         ],
-        "cap_readiness": "Implemented: shared append-only hash-linked fsynced integer reservations, no refunds/reset; both real entry points require the fixed 10-attempt policy",
+        "configured_execution_enabled": true,
+        "execution_ready": false,
+        "condition": "key hard limit no higher than authorized USD10 with no reset",
+        "condition_satisfied": true,
+        "evidence": "research/checks/paid_smoke_ready_preflight.json",
+        "blocking_conditions": [
+          "failed_attempt_cost_unreconciled",
+          "strict_route_capabilities_unverified",
+          "new_source_requires_explicit_prefreeze_execution_record"
+        ],
         "durable_cap_implemented": true,
-        "current_instruction": "Offline preparation only; smoke deferred until budget update"
+        "current_instruction": "Smoke only under the USD1 or 200-attempt stop; preserve consumed allowances; no pilot or main"
       },
       "current_checkpoint": {
-        "status": "committed_and_pushed_real_execution_blocked",
-        "account_evidence": "research/checks/durable_cap_account_preflight.json",
-        "regression_evidence": "research/checks/durable_cap_regressions.json",
-        "commit_reference": "Resolve final identity through Git; no circular self-hash",
-        "push_status": "succeeded",
-        "test_evidence": "research/checks/durable_cap_suite_final.json",
-        "verification_evidence": "research/checks/durable_cap_validation_final.json",
-        "delivered_commit": "abf70deb3c0ebc4022334fa3c7a075431b13b74e",
+        "status": "partial_smoke_stopped_repairs_validated_delivery_pending",
+        "account_evidence": "research/checks/paid_smoke_ready_preflight.json",
+        "test_evidence": "research/checks/paid_smoke_execution_suite.json",
+        "verification_evidence": "research/checks/paid_smoke_execution_validation.json",
+        "diagnostic_evidence": "research/checks/paid_smoke_failure_audit.json",
+        "collection_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
+        "push_status": "pending",
         "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
         "branch": "main",
-        "remote_head_verified": true,
-        "verification_command": "git ls-remote origin refs/heads/main",
-        "final_audit_checks": 685,
-        "final_status_checkpoint": "This follow-up records observed delivery; its own identity is resolved and verified through Git without a circular self-hash"
+        "commit_reference": "Resolve final identity through Git; no circular self-hash"
       },
       "checkpoint_history": [
         {
@@ -590,6 +627,22 @@
           "remote_head_verified": true,
           "verification_command": "git ls-remote origin refs/heads/main",
           "final_audit_checks": 658,
+          "final_status_checkpoint": "This follow-up records observed delivery; its own identity is resolved and verified through Git without a circular self-hash"
+        },
+        {
+          "status": "committed_and_pushed_real_execution_blocked",
+          "account_evidence": "research/checks/durable_cap_account_preflight.json",
+          "regression_evidence": "research/checks/durable_cap_regressions.json",
+          "commit_reference": "Resolve final identity through Git; no circular self-hash",
+          "push_status": "succeeded",
+          "test_evidence": "research/checks/durable_cap_suite_final.json",
+          "verification_evidence": "research/checks/durable_cap_validation_final.json",
+          "delivered_commit": "abf70deb3c0ebc4022334fa3c7a075431b13b74e",
+          "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
+          "branch": "main",
+          "remote_head_verified": true,
+          "verification_command": "git ls-remote origin refs/heads/main",
+          "final_audit_checks": 685,
           "final_status_checkpoint": "This follow-up records observed delivery; its own identity is resolved and verified through Git without a circular self-hash"
         }
       ],
@@ -631,13 +684,39 @@
           "evidence": "research/checks/preresults_clean_clone.json"
         }
       ],
-      "current_paid_smoke_checkpoint": "research/paid_smoke.md"
+      "current_paid_smoke_checkpoint": "research/paid_smoke.md",
+      "real_smoke_worlds_attempted": 1,
+      "real_smoke_attempts": 1,
+      "real_smoke_completed_cells": 0,
+      "real_smoke_pending_cells": 80,
+      "real_smoke_evidence": "runs/paid_smoke_gpt41mini_20261115",
+      "current_engineering_diagnostics": "research/checks/paid_smoke_failure_audit.json",
+      "capability_evidence": "research/checks/paid_smoke_capabilities.json",
+      "historical_execution_authorization": {
+        "free_only": true,
+        "condition": "authenticated key hard limit exactly USD 0",
+        "condition_satisfied": false,
+        "paid_calls_authorized": false,
+        "configured_execution_enabled": false,
+        "source_config_changed": true,
+        "evidence": "research/checks/durable_cap_account_preflight.json",
+        "maximum_aggregate_inference_attempts": 10,
+        "attempt_count_includes": [
+          "initial_requests",
+          "infrastructure_retries",
+          "no_tool_reprompts",
+          "continuations"
+        ],
+        "cap_readiness": "Implemented: shared append-only hash-linked fsynced integer reservations, no refunds/reset; both real entry points require the fixed 10-attempt policy",
+        "durable_cap_implemented": true,
+        "current_instruction": "Offline preparation only; smoke deferred until budget update"
+      }
     },
     {
       "number": 5,
       "name": "Main execution",
       "status": "blocked",
-      "reason": "Main not authorized by current smoke-only instruction; real pilot and execution freeze absent",
+      "reason": "No main execution: first smoke request failedHTTP404; pilot, load selection and execution freeze absent; current scope stops before pilot/main",
       "empirical_completed_cells": 0,
       "planned_cells": 704,
       "missingness_interpretation": "Not executed; no partial empirical run exists",
@@ -645,14 +724,15 @@
       "completed_offline_preparation": [
         "Current-source full704-cell synthetic execution, trace replay, usage and duplicate-free resume",
         "Read-only finalization bundle preserving source bytes and explicit missingness classes",
-        "Paid-path preflight repairs: exact snapshot replay, failed-call metadata/HTTP status, complete total-charge accounting and rollback-resistant monetary resume. No real smoke findings yet."
+        "Paid-path preflight repairs: exact snapshot replay, failed-call metadata/HTTP status, complete total-charge accounting and rollback-resistant monetary resume. No real smoke findings yet.",
+        "Actual smoke exposed pending-failure mislabelling and discarded HTTP diagnostics; both repaired offline, capability preflight added, and immutable collection-version replay implemented"
       ]
     },
     {
       "number": 6,
       "name": "Analysis/report/reproduction",
       "status": "blocked",
-      "reason": "Independent offline analysis, report and reproduction preparation finished for current disabled configuration; real main observations and human H1-H5 reviews absent, so empirical conclusions/final paper remain blocked",
+      "reason": "Independent offline analysis, report and reproduction preparation is retained as historical pre-results work; real smoke is incomplete and pilot/main gates are unmet. No main observations or human H1-H5 reviews exist, so empirical conclusions/final paper remain blocked.",
       "completed_offline_preparation": [
         "Analysis algorithms and synthetic tests",
         "Figure/table and matched-trace generation",
@@ -736,15 +816,6 @@
         "report/pre_results.pdf"
       ],
       "report_verification": "report/report_manifest.json",
-      "clean_clone_current_version": {
-        "candidate_commit": "4c369e17a526e1f0ac963ff6896fae002ef7449f",
-        "tests": 1006,
-        "passed": true,
-        "fresh_dependency_install": false,
-        "same_host_environment": true,
-        "later_code_change": "Report appendix spacing6pt to4pt only;20 report tests passed in1.83s",
-        "evidence": "research/checks/preresults_clean_clone.json"
-      },
       "official_template_sha256": "21ebc0bcea8f9760c64c9c0eb163bbaaab0a34465722f86e4e3feecf6849de59",
       "report_layout_validation": {
         "total_pages": 12,
@@ -754,6 +825,15 @@
         "human_review": false,
         "evidence": "evaluation/report_qa/final_v5/visual_verification.json",
         "submission_ready": false
+      },
+      "historical_clean_clone": {
+        "candidate_commit": "4c369e17a526e1f0ac963ff6896fae002ef7449f",
+        "tests": 1006,
+        "passed": true,
+        "fresh_dependency_install": false,
+        "same_host_environment": true,
+        "later_code_change": "Report appendix spacing6pt to4pt only;20 report tests passed in1.83s",
+        "evidence": "research/checks/preresults_clean_clone.json"
       }
     }
   ],
@@ -809,20 +889,30 @@
       "main"
     ],
     "config": "configs/paid_smoke.yaml",
-    "account_evidence": "research/checks/paid_smoke_account_final_check.json",
-    "status": "blocked_provider_key_hard_limit_usd100_exceeds_authorized_usd10",
-    "account_checks_completed": 3,
-    "real_attempts": 0,
-    "actual_inference_cost_usd": 0,
-    "offline_tests_passed": 1201,
-    "full_suite_evidence": "research/checks/paid_smoke_suite.json",
-    "integrity_evidence": "research/checks/paid_smoke_validation.json",
-    "current_push_status": "succeeded",
+    "account_evidence": "research/checks/paid_smoke_ready_preflight.json",
+    "status": "partial_smoke_stopped_after_first_http404",
+    "account_checks_completed": 6,
+    "real_attempts": 1,
+    "actual_inference_cost_usd": null,
+    "offline_tests_passed": 1341,
+    "full_suite_evidence": "research/checks/paid_smoke_execution_suite.json",
+    "integrity_evidence": "research/checks/paid_smoke_execution_validation.json",
+    "current_push_status": "pending_partial_run_and_repairs_delivery",
     "scientific_design_changed": false,
     "human_review": false,
     "engineering_commit": "516de443bbdad399e07529a071d841aca5d3ca0e",
     "remote_head_verified": true,
     "delivery_evidence": "research/checks/paid_smoke_delivery.json",
-    "final_status_commit_reference": "Resolve through Git; no circular self-hash"
+    "final_status_commit_reference": "Resolve through Git; no circular self-hash",
+    "known_account_usage_usd": 0,
+    "unknown_cost_reservation_usd": "0.44084208",
+    "successful_calls": 0,
+    "completed_cells": 0,
+    "pending_cells": 80,
+    "infrastructure_failed_cells": 1,
+    "never_attempted_cells": 79,
+    "run_directory": "runs/paid_smoke_gpt41mini_20261115",
+    "collection_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
+    "model_provider_changed": false
   }
 }

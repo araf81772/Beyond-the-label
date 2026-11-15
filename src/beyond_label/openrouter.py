@@ -26,7 +26,7 @@ from typing import Any
 import httpx
 
 from .environment import load_local_credentials
-from .provider import ProviderFailure, _sanitized, canonical_json
+from .provider import HTTP_DIAGNOSTICS, ProviderFailure, _sanitized, canonical_json
 
 
 _CHAT_URL = "https://openrouter.ai/api/v1/chat/completions"
@@ -40,6 +40,18 @@ _PRICE_FIELDS = {"prompt", "completion", "request", "image"}
 PAID_MODEL = "openai/gpt-4.1-mini"
 PAID_PROVIDER_ROUTE = "openai"
 PAID_MAX_PRICE = {"prompt": 0.40, "completion": 1.60, "request": 0, "image": 0}
+_MAX_ERROR_JSON_BYTES = 32_768
+# Exact prefixes verified in primary OpenRouter examples. Never store a prefix
+# match's free-form suffix, model IDs, upstream metadata, or original message.
+# https://openrouter.ai/blog/tutorials/structured-output-llm/
+# https://openrouter.ai/blog/insights/open-weight-vs-closed-weight-models/
+# https://openrouter.ai/blog/self-hosted-llm-vs-api/
+_ERROR_PREFIXES = (
+    ("No endpoints found that can handle the requested parameters.", "unsupported_parameters"),
+    ("No endpoints found matching your data policy (Zero data retention).", "data_policy"),
+    ("No endpoints found that satisfy the max price for this request", "price_filter"),
+    ("No endpoints found supporting your data region.", "data_region"),
+)
 
 
 def _timeout(value: Any) -> float:
@@ -68,12 +80,19 @@ def _credential() -> str:
     return value
 
 
-def _http_error(status: int, method: str, url: str) -> httpx.HTTPStatusError:
+def _http_error(status: int, method: str, url: str, *,
+                diagnostics: dict[str, int | str] | None = None) -> httpx.HTTPStatusError:
     # Construct fresh objects: original requests contain authorization headers,
     # and error response bodies or redirect locations can contain private data.
     safe_request = httpx.Request(method, url)
     safe_response = httpx.Response(status, request=safe_request)
-    return httpx.HTTPStatusError(f"openrouter_http_{status}", request=safe_request, response=safe_response)
+    error = httpx.HTTPStatusError(f"openrouter_http_{status}", request=safe_request, response=safe_response)
+    category = diagnostics.get("http_diagnostic") if isinstance(diagnostics, dict) else None
+    error._btl_http_diagnostic = category if type(category) is str and category in HTTP_DIAGNOSTICS else "unknown"
+    code = diagnostics.get("api_error_code") if isinstance(diagnostics, dict) else None
+    if type(code) is int and 400 <= code <= 599:
+        error._btl_api_error_code = code
+    return error
 
 
 def _unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
@@ -94,6 +113,36 @@ def _finite_float(value: str) -> float:
     if not math.isfinite(parsed):
         raise ValueError("invalid_json_number")
     return parsed
+
+
+def _error_diagnostics(content: bytes) -> dict[str, int | str]:
+    """Classify a bounded error envelope without retaining any provider text.
+
+    Malformed, oversized, unknown, or future messages stay unknown. The label
+    reports a documented provider message class, not an independent diagnosis
+    of the underlying cause. Numeric error codes remain distinct from status.
+    """
+    result: dict[str, int | str] = {"http_diagnostic": "unknown"}
+    if not content or len(content) > _MAX_ERROR_JSON_BYTES:
+        return result
+    try:
+        raw = json.loads(content, parse_constant=_reject_constant, parse_float=_finite_float,
+                         object_pairs_hook=_unique_object)
+    except (ValueError, UnicodeError, TypeError, RecursionError):
+        return result
+    error = raw.get("error") if isinstance(raw, dict) else None
+    if not isinstance(error, dict):
+        return result
+    code = error.get("code")
+    if type(code) is int and 400 <= code <= 599:
+        result["api_error_code"] = code
+    message = error.get("message")
+    if isinstance(message, str):
+        for prefix, category in _ERROR_PREFIXES:
+            if message.startswith(prefix):
+                result["http_diagnostic"] = category
+                break
+    return result
 
 
 def _request_json(method: str, url: str, *, payload: dict[str, Any] | None,
@@ -128,7 +177,8 @@ def _request_json(method: str, url: str, *, payload: dict[str, Any] | None,
     if failure is not None or response is None:
         raise ProviderFailure("openrouter_transport_failure")
     if not 200 <= response.status_code < 300:
-        raise _http_error(response.status_code, method, url)
+        raise _http_error(response.status_code, method, url,
+                          diagnostics=_error_diagnostics(response.content))
     if not response.content:
         return None
     malformed = False
@@ -144,7 +194,7 @@ def _request_json(method: str, url: str, *, payload: dict[str, Any] | None,
         error = raw["error"]
         code = error.get("code") if isinstance(error, dict) else None
         if type(code) is int and 400 <= code <= 599:
-            raise _http_error(code, method, url)
+            raise _http_error(code, method, url, diagnostics=_error_diagnostics(response.content))
         raise ProviderFailure("openrouter_api_error")
     # Successful completion evidence remains intact for PinnedProvider's
     # existing sanitization, action classification and immutable raw logging.

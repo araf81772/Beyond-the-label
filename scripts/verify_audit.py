@@ -19,7 +19,9 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from beyond_label.environment import CredentialLoadError, load_local_credentials
+from replay_history import replay_historical
 SOURCE_SHA256 = "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b"
 
 
@@ -32,7 +34,7 @@ def validate_execution_evidence(root: Path, milestones: dict) -> dict:
     """
     from beyond_label.budget import _unique_object
     from beyond_label.freeze import verify_freeze
-    from beyond_label.run import build_manifest, rebuild_outputs
+    from beyond_label.run import build_manifest, rebuild_outputs, _inputs
 
     root = root.resolve()
     runs_root = root / "runs"
@@ -67,14 +69,19 @@ def validate_execution_evidence(root: Path, milestones: dict) -> dict:
         digest = hashlib.sha256(raw["calls.jsonl"]).hexdigest()
         if kind == "empirical" and raw["calls.jsonl"] and digest in trace_hashes:
             raise ValueError("Duplicate empirical journal cannot count as another run")
-        with tempfile.TemporaryDirectory(prefix="btl-audit-replay-") as temporary:
-            replay = Path(temporary)
-            for name in ("manifest.json", "calls.jsonl"):
-                (replay / name).write_bytes(raw[name])
-            summary = rebuild_outputs(replay)
-            if any((replay / name).read_bytes() != raw[name]
-                   for name in ("scores.csv", "usage.csv", "analysis_manifest.json")):
-                raise ValueError("Execution outputs disagree with raw-journal replay")
+        historical = None
+        if stored["run_config"].get("input_hashes") != _inputs():
+            historical = replay_historical(root, directory)
+            summary = historical["summary"]
+        else:
+            with tempfile.TemporaryDirectory(prefix="btl-audit-replay-") as temporary:
+                replay = Path(temporary)
+                for name in ("manifest.json", "calls.jsonl"):
+                    (replay / name).write_bytes(raw[name])
+                summary = rebuild_outputs(replay)
+                if any((replay / name).read_bytes() != raw[name]
+                       for name in ("scores.csv", "usage.csv", "analysis_manifest.json")):
+                    raise ValueError("Execution outputs disagree with raw-journal replay")
         if any((directory / name).read_bytes() != data for name, data in raw.items()):
             raise ValueError("Execution evidence changed during audit")
         if kind == "synthetic":
@@ -86,6 +93,7 @@ def validate_execution_evidence(root: Path, milestones: dict) -> dict:
             main_freeze_hashes.add(stored["run_config"].get("freeze", {}).get("record_hash"))
         inventory["empirical_runs"].append({"directory": relative, "dataset": dataset,
             "raw_trace_sha256": digest,
+            "replay_source_commit": historical["source_commit"] if historical else None,
             **{key: summary[key] for key in ("attempted_calls", "successful_calls", "infrastructure_retries",
                 "empirical_observations", "planned_cells", "completed_cells", "pending_cells",
                 "first_action_or_readback_missing", "unknown_cost_attempts", "accounting_error_attempts")}})

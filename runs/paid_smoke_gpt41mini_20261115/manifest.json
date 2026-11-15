@@ -1,0 +1,809 @@
+{
+  "plan": {
+    "manifest_version": 1,
+    "dataset": "smoke",
+    "load": 2,
+    "schedule_seed": 271828,
+    "classification": "planned_not_frozen",
+    "approved_for_execution": false,
+    "seeds": [
+      1100,
+      1101,
+      1102,
+      1103
+    ],
+    "counts": {
+      "READBACK": 16,
+      "MAIN": 16,
+      "HIGH-FEE": 16,
+      "HIGH-STAKES": 16,
+      "MASKED": 8,
+      "NUMERIC": 8
+    },
+    "initial_calls": 80,
+    "maximum_continuations": 64,
+    "maximum_planned_calls": 144,
+    "additional_calls_accounted_separately": [
+      "infrastructure_retries",
+      "permitted_no_tool_reprompts"
+    ],
+    "cells": [
+      {
+        "cell_id": "smoke-1100-readback-MAIN-inline-b",
+        "world_seed": 1100,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-inline-a",
+        "world_seed": 1101,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-separate-a",
+        "world_seed": 1102,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-inline-a",
+        "world_seed": 1102,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-inline-b",
+        "world_seed": 1103,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-inline-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-separate-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MASKED-inline-masked",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-inline-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-NUMERIC-separate-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MASKED-inline-masked",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-inline-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-inline-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-inline-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-separate-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1102-decision-NUMERIC-separate-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-separate-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-separate-a",
+        "world_seed": 1103,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-inline-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-NUMERIC-separate-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-inline-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-inline-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-separate-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MASKED-separate-masked",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-separate-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-separate-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-readback-MAIN-separate-b",
+        "world_seed": 1100,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-inline-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MASKED-inline-masked",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-inline-a",
+        "world_seed": 1103,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MASKED-separate-masked",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-inline-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-NUMERIC-separate-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-inline-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-separate-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-inline-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-inline-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-NUMERIC-separate-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-separate-b",
+        "world_seed": 1103,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-NUMERIC-separate-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1103-decision-NUMERIC-separate-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-separate-a",
+        "world_seed": 1101,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-separate-b",
+        "world_seed": 1102,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-separate-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-separate-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MASKED-separate-masked",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-inline-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-separate-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-inline-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-separate-a",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-inline-b",
+        "world_seed": 1102,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-separate-b",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-separate-a",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MASKED-inline-masked",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-inline-b",
+        "world_seed": 1101,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-separate-b",
+        "world_seed": 1103,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-readback-MAIN-separate-a",
+        "world_seed": 1100,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-separate-b",
+        "world_seed": 1101,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-separate-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-inline-a",
+        "world_seed": 1101,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MASKED-separate-masked",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "smoke-1100-readback-MAIN-inline-a",
+        "world_seed": 1100,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-separate-b",
+        "world_seed": 1102,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "smoke-1100-decision-NUMERIC-separate-b",
+        "world_seed": 1100,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      }
+    ]
+  },
+  "run_config": {
+    "evidence_kind": "empirical",
+    "provider_settings": {
+      "model": "openai/gpt-4.1-mini",
+      "provider": "OpenAI",
+      "provider_route": "openai",
+      "provider_identity_source": "openrouter_metadata",
+      "require_parameters": true,
+      "free_only": false,
+      "max_price": {
+        "prompt": 0.4,
+        "completion": 1.6,
+        "request": 0,
+        "image": 0
+      },
+      "accepted_returned_models": [
+        "openai/gpt-4.1-mini-2025-04-14",
+        "gpt-4.1-mini-2025-04-14"
+      ],
+      "temperature": 0.0,
+      "reasoning": null,
+      "max_output_tokens": 512
+    },
+    "input_hashes": {
+      "src/beyond_label/__init__.py": "3af4623913c1c426172c13edf3e62cff2d156edbe256f17f8d2d473a4ac65cc4",
+      "src/beyond_label/analyze.py": "d00dddcbcec31ed15bcf79c934a7a8e219498a8e9b69699670ec9c6b7cd4c6d8",
+      "src/beyond_label/attempts.py": "77e21d4227c3e672f06f54c5b042d6be8805c92afec8c8d31b83472d54f97bba",
+      "src/beyond_label/budget.py": "375f5cf12f8cb4795a7e430a3d6b323c1aec0403e7a3e6cae7ac79facc6505ec",
+      "src/beyond_label/controls.py": "a0cb4da0a6e4891583c28587a7353e97038384dd5b479016b37e5b47bb61ddb6",
+      "src/beyond_label/environment.py": "28b503c97a1c10a47e62f27b7875062632cace72486fe740fe55e38938e9870f",
+      "src/beyond_label/evidence.py": "57f116c47475b2c78efa4e3df4c9f5c5ff9de399b3777306c57f3e7bd5b72c8d",
+      "src/beyond_label/figures.py": "cfbf4ce5a22bd23ab5ba55fc20bb94af8e0e807f9feafbdbd94aa14440afe2e2",
+      "src/beyond_label/finalize.py": "66db11e8ae395a853707944ae6c4b57619f6911250c4c06ce70c6090173e6d14",
+      "src/beyond_label/freeze.py": "ed89202383e8f48913aa56faa9802ae2b9cff4ef546197d0a2816c2ae5a14929",
+      "src/beyond_label/gates.py": "cc236884c9e95e481a8a7a713ca1aabeeb86bb19dbddcbb0369eedf92b52a146",
+      "src/beyond_label/generate.py": "dcab625863737966f36e14ae00063a313e2d6b003d1c31fda2d801dbfeb14491",
+      "src/beyond_label/live.py": "1b62f82bd4a07b56d85425420c78253ed4c529d911ed241b7e15f4dc5fa1b46c",
+      "src/beyond_label/openrouter.py": "bd31d494188b942b09b75788d3ec3fc8a7cdd5b05c76fab5a7cb513b118800c1",
+      "src/beyond_label/oracle.py": "186930b3e43d922abe60af62f38dddb09c5a4279b5ccf1d9c63594b8ba60bf29",
+      "src/beyond_label/paid_controls.py": "7e9f277570fefaadfda2893ca405f548ad377799f93af78561b4de62dbc76b4b",
+      "src/beyond_label/paid_live.py": "7aabed7445d732a179fa05c0e9d401229f52efe26fe1dc6b4cf4e772cb44d149",
+      "src/beyond_label/pilot.py": "792064085439ad1d17ee4d5efb37a41d20cabe6055b2c9ecc30010595871a5f9",
+      "src/beyond_label/provider.py": "3b41cafe62edb86c71dbefe1d6db5a84c861f568bff7b9e7fdf9aa35787a02ac",
+      "src/beyond_label/rate_limit.py": "0201670aa88ac85f4ec05a9f2f60d39faa565c3c090ea7ce20ac1b57debfe7a2",
+      "src/beyond_label/render.py": "8f661b0b8b132f5d62ee1b23e6508688ccb7bb5aab216ddddcb40dec7c94e63e",
+      "src/beyond_label/run.py": "28ef44c4b9b01f55a826d917b59071e6309221b25c66e543de5386b698b6fc25",
+      "src/beyond_label/sandbox.py": "8a6ef1e22d34d228e2e2c25ee42d01288e01c1bd436669d49b6a632a6ddb35ed",
+      "src/beyond_label/schemas.py": "afc0a6933fb6cf4cecedd4e611a632265d45aa7d43c567b425d9e3fa12d3c1d6",
+      "src/beyond_label/score.py": "38d973e166b246768b9f848a8dfaaa38e07f7e7c9bd82717d3e9c00a0da7660b",
+      "prompts/agent_system.txt": "5182b69506d51cedc814c295ebbb0e1be5a884a7dc5c4b987a4c6ef9e04561ce",
+      "prompts/control_masked.txt": "53b73a822dc461cfe6557606a2cb23b97a0793cf6c4760bb7e2bd15ea73e051a",
+      "prompts/control_numeric.txt": "bb275819f92808cbe51eb32126acb5ce63217af05a81d7f4f4026ba00b7b2ff5",
+      "prompts/probe_readback.txt": "1c962a2d0dcb1aae3dc523be0d89272e6fc29b123faf1e4019c82e99267cfcdf",
+      "prompts/reprompt_no_tool.txt": "e7a8dfdf71bb67aa526fd933f478394f77e1468e19f0366569b084838a8b8d4a",
+      "research/protocol.md": "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b",
+      "research/amendments.md": "8f7352f1fba562f4883a36ee4ce6d307dc82216062503c24210dc8a547b31e9d",
+      "configs/free.yaml": "f794bd1af3c7f4f2f4153d2ecaf9e37a178b2cb817551a663ae013cde5c374ad",
+      "configs/main.yaml": "2d21bd225502482cd5b2303d17b0230f220b0991ca8c82ddb8f49bf9c5ae6759",
+      "configs/paid_smoke.yaml": "d1d763bf6fc14f345ff798ba4dbd17222403b60f273a2759293c1d68ef2ca58e",
+      "configs/pilot.yaml": "7f6bc8df509bd8387bb206450d3dc4d3b81f14f8e71e4bebad31bfc5f58adfa6",
+      "configs/proposed_m4.yaml": "f8db2bf1be49acf0db0d068fe5be51ab06e29b6de0aea1494004bbb6216a7d19",
+      "data/worlds_main.jsonl": "cb426cda261722bb4f189b9cfda183ab373e1b7473ddd4dcccf2d3d80918e573",
+      "data/worlds_pilot.jsonl": "7988c4ca6e37ec461716a2c115255cd695f23cbc80a49d7aed0ddb47fca9749d",
+      "data/worlds_smoke.jsonl": "0b6535a13db14112e3be88658e464ccb8773f34ae4ab5f0fd591a73b303fd229",
+      "data/manifest.json": "2086a50d2d8fad43b87ae6adfa237e4c1531a6fbbfcfe8256a84c00d7b009183",
+      "pyproject.toml": "80472e3eba1f273612cedbe2fb2f0f9edf7c58f7fbead43eada0e1497934fa29",
+      "requirements.lock": "7d5a34a363a185ecd382c85efe7417ef8fea1ec02ecb53244e99e8780470e5c3"
+    },
+    "reprompt_limit_per_episode": 1,
+    "ambiguous_attempt_policy": "explicit_missing_no_resampling",
+    "execution_config": {
+      "schema_version": 1,
+      "authorization_id": "paid-smoke-usd1-200-v1",
+      "execution_scope": "smoke_only",
+      "authorized_dataset": "smoke",
+      "run_directory": "runs/paid_smoke_gpt41mini_20261115",
+      "live_execution_enabled": true,
+      "account_preflight_enabled": true,
+      "paid_calls_authorized": true,
+      "free_only": false,
+      "authorized_total_testing_cap": 10,
+      "authorized_spend_cap": 1,
+      "maximum_inference_attempts": 200,
+      "currency": "USD",
+      "routing_service": "OpenRouter",
+      "model": "openai/gpt-4.1-mini",
+      "provider": "OpenAI",
+      "provider_route": "openai",
+      "provider_identity_source": "openrouter_metadata",
+      "require_parameters": true,
+      "accepted_returned_models": [
+        "openai/gpt-4.1-mini-2025-04-14",
+        "gpt-4.1-mini-2025-04-14"
+      ],
+      "max_price": {
+        "prompt": 0.4,
+        "completion": 1.6,
+        "request": 0,
+        "image": 0
+      },
+      "temperature": 0,
+      "temperature_setting_verified": true,
+      "reasoning": null,
+      "reasoning_mode": "not_applicable",
+      "reasoning_setting_verified": true,
+      "max_output_tokens": 512,
+      "tool_choice": "auto",
+      "parallel_tool_calls": false,
+      "allow_fallbacks": false,
+      "concurrency": 1,
+      "provider_docs_verified": true,
+      "live_wire_compatibility_verified": false,
+      "provider_requests_per_minute": null,
+      "provider_request_limit_status": "not_published",
+      "provider_tokens_per_minute": null,
+      "provider_token_limit_status": "not_published",
+      "operator_requests_per_minute": 10,
+      "operator_tokens_per_minute": 10480880,
+      "total_token_bound": 1048088,
+      "total_token_bound_verified": true,
+      "token_bound_source": "https://openrouter.ai/api/v1/models/openai/gpt-4.1-mini/endpoints",
+      "key_hard_limit_usd": 10,
+      "key_hard_limit_verified": true,
+      "load": 2,
+      "schedule_seed": 271828,
+      "infrastructure_retries_after_initial": 3,
+      "no_tool_reprompts": 1,
+      "no_tool_reprompt": "Respond with exactly one tool call.",
+      "bootstrap_seed": 314159,
+      "bootstrap_resamples": 10000,
+      "human_audit_seed": 161803,
+      "freeze_tag": null
+    },
+    "transport_provenance": "openrouter_paid_https_v1"
+  },
+  "run_config_hash": "954078327cc6b628d739ea2c95b940f4d749705af8afefa1d7af16d93159d240"
+}

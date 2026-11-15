@@ -4,9 +4,9 @@
 
 “A fixed-report scope-binding swap with audited delivery and enacted verification under changing payoffs.”
 
-Checkpoint: 15 November 2026, Australia/Sydney. Milestones 1-3 are complete within the offline engineering scope. M4 real smoke/pilot/freeze and M5 main execution have not occurred. Independent M6 analysis/report/reproduction preparation is available; empirical findings and the final paper remain pending. No model inference was made, no execution freeze exists, and synthetic tests are excluded from empirical evidence.
+Checkpoint: 15 November 2026, Australia/Sydney. M1–M3 remain complete offline. The first paid smoke request returned HTTP404: one attempt, zero model responses, zero completed cells. One cell has an observed infrastructure failure; 79 cells remain untouched. Pilot, main and execution freeze have not started. M6 pre-results artifacts remain historical; no empirical main findings exist.
 
-The user now authorizes **USD 10 total testing**, with **one paid smoke only capped at USD 1 or 200 aggregate attempts**, including retries, re-prompts and continuations. The pinned route is GPT-4.1 mini via OpenRouter/OpenAI. Stop and report before pilot or main. The latest account check at 2026-11-15T00:39:57Z authenticates but still finds a USD 100 hard key limit; the guard requires a nonreset limit at most USD 10 before dispatch. [Current authorization, safeguards and commands](research/paid_smoke.md). Earlier offline/free-only records are historical. The current paid-path checkpoint passed **1201 offline tests**; actual inference calls and spend remain **0 / USD 0**.
+The user authorizes USD10 total testing, but only one smoke capped at USD1 or200 aggregate attempts, including retries, re-prompts and continuations. The key now correctly has a nonreset USD10 hard limit. The pinned GPT-4.1 mini/OpenAI route failed delivery; current public metadata omits a required control. Per-attempt cost was unavailable, so the USD0.44084208 reservation remains held even though a later account check reports USD0 usage. [Current evidence and remaining blocker](research/paid_smoke.md). No alternate model or relaxed request setting was silently substituted. Smoke-exposed repairs passed **1341 offline tests**; [historical replay and integrity evidence](research/checks/paid_smoke_execution_validation.json) preserves the original run files.
 
 The [pre-results manuscript](report/manuscript.md) names **Tonmoy and Araf**, with affiliations pending. It includes methods, analytic references, NOT RUN results and the required ethical/limitations appendix. The official template has been retrieved and retained. [Report artifacts and reproduction](report/README.md). No H1-H5 human review, author contribution, submission or publication is inferred from the confirmed names.
 
@@ -64,7 +64,7 @@ The ignored project-root `.env` can supply `OPENROUTER_API_KEY`. Existing proces
 python -m beyond_label.environment
 ```
 
-Do not print keys or authorization headers. Presence does not verify authentication, quota, a hard limit, budget or permission to spend. [Credential-loading evidence](research/checks/env_presence.json) is historical; [paid account evidence](research/checks/paid_smoke_account_final_check.json) records only safe limit/usage fields, never the key or headers.
+Do not print keys or authorization headers. Presence does not verify authentication, quota, a hard limit, budget or permission to spend. [Credential-loading evidence](research/checks/env_presence.json) is historical; [paid account evidence](research/checks/paid_smoke_ready_preflight.json) records only safe limit/usage fields, never the key or headers.
 
 The disabled free candidate is OpenRouter `nvidia/nemotron-3.5-super-vl:free`, pinned to route `nvidia` and identity `Nvidia`, temperature 0, reasoning disabled, 512 output tokens, automatic tool choice, parallel tools disabled and concurrency 1. Real wire compatibility and pilot selection remain unverified. [Free execution settings and sources](research/free_execution.md), [configuration](configs/free.yaml).
 
@@ -73,3 +73,14 @@ The disabled free candidate is OpenRouter `nvidia/nemotron-3.5-super-vl:free`, p
 The earlier USD 20 proposal remains unapproved historical planning in [readiness](research/execution_readiness.md). The current [paid smoke config](configs/paid_smoke.yaml) records the explicit USD 10 total / USD 1 smoke authorization; the authenticated key check and offline tests remain mandatory. Real smoke and the separately authorized full pilot must precede the freeze and main run. No main call may start before verified freeze evidence; material post-freeze changes require approval and a new run/freeze.
 
 Routine delivery uses the user-supplied existing repository [araf81772/Beyond-the-label](https://github.com/araf81772/Beyond-the-label), branch `main`. No repository creation, visibility change, force-push, publication or submission is part of this checkpoint.
+
+
+## Reproduce the partial smoke without calls
+
+```powershell
+python scripts/replay_history.py --run runs/paid_smoke_gpt41mini_20261115
+python scripts/smoke_diagnostics.py --run runs/paid_smoke_gpt41mini_20261115
+python scripts/verify_audit.py
+```
+
+Historical replay verifies the exact committed source and all original input/file hashes, strips credentials, blocks network connections and compares regenerated outputs byte-for-byte. The corrected diagnostic report distinguishes the one attempted failure from79 untouched cells without overwriting the collection-version scores. Current-version live resume still rejects changed inputs; historical replay does not authorize execution.

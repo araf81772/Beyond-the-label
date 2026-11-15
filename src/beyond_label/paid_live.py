@@ -22,6 +22,7 @@ import yaml
 from .attempts import (AttemptLimitError, CappedPaidAttempts, ExecutionSuspended,
                        PaidAttemptLimit)
 from .budget import BudgetError, BudgetLedger, _unique_object
+from .capabilities import check_paid_smoke_capabilities
 from .controls import GuardedTransport
 from .gates import (ExecutionBlocked, PAID_SMOKE_AUTHORIZATION, PAID_SMOKE_DIRECTORY,
                     _finite_number, require_paid_smoke_configuration)
@@ -205,6 +206,9 @@ def run_paid_smoke(config_path: Path, dataset: str, output: Path, *, max_cells: 
             raise ExecutionSuspended("paid_authorized_attempt_limit_exhausted")
         if Decimal(ledger.snapshot()["available"]) < Decimal(PAID_MAXIMUM_COST):
             raise ExecutionSuspended("paid_smoke_budget_exhausted")
+        capabilities = check_paid_smoke_capabilities(config)
+        if capabilities.get("compatible") is not True:
+            raise ExecutionSuspended("paid_public_capabilities_not_verified")
         evidence = paid_account_preflight()
         _record_preflight(session, evidence)
         config = account_configuration(config, evidence)

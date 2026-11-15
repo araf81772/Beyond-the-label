@@ -328,7 +328,20 @@ def _score_cell(cell: dict[str, Any], manifest: dict[str, Any], journal: Journal
     base = {**cell, "evidence_kind": "synthetic", "readback_correct": None,
             "continuation_status": terminal.get("continuation_status", "pending"), "report_contradiction": None,
             "cell_status": "completed" if completed else "pending"}
-    score = ScoreRow(cell_id=cell["cell_id"], missing_reason=terminal.get("first_missing_reason") or "not_executed_yet")
+    # A budget/rate suspension can interrupt an infrastructure retry before
+    # cell_completed is written. Preserve that observed failure separately from
+    # untouched cells; a later saved valid first action still replaces this
+    # default below, so a missing continuation cannot erase its observation.
+    pending_failure = not completed and any(
+        event["event"] == "attempt_failed" and event.get("infrastructure") is True
+        for event in events
+    )
+    score = ScoreRow(
+        cell_id=cell["cell_id"],
+        missing_reason=terminal.get("first_missing_reason") or (
+            "pending_after_infrastructure_failure" if pending_failure else "not_executed_yet"
+        ),
+    )
     if cell["purpose"] == "readback":
         if any(e["event"] == "tool_applied" for e in events):
             raise JournalIntegrityError("readback_contains_tool_transition")

@@ -16,6 +16,7 @@ dist/
 htmlcov/
 reproduction-work/
 .writer.lock
+*.writer.lock
 evaluation/synthetic_main_load2/input_snapshot/
 *.pem
 *.key

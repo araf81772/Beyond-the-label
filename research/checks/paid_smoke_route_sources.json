@@ -1,0 +1,29 @@
+{
+  "classification": "public_source_review_after_http404_not_proof_of_unique_cause",
+  "sources": [
+    {
+      "url": "https://openrouter.ai/api/v1/models/openai/gpt-4.1-mini/endpoints",
+      "supports": "NamedOpenAIendpoint available; parallel_tool_calls omitted; token prices match; request/image prices absent"
+    },
+    {
+      "url": "https://openrouter.ai/docs/guides/routing/provider-selection",
+      "supports": "Strictrequire_parameters filters endpoints missing requested parameters"
+    },
+    {
+      "url": "https://openrouter.ai/docs/api_reference/parameters",
+      "supports": "parallel_tool_calls applies when tools are provided"
+    },
+    {
+      "url": "https://openrouter.ai/pricing",
+      "supports": "Failed attempts are not billed for model tokens under documented policy; not an attempt-specific receipt"
+    },
+    {
+      "url": "https://openrouter.ai/docs/api/api-reference/credits/get-credits",
+      "supports": "Account credit endpoint requires a management key; not requested with the inference key"
+    }
+  ],
+  "actual_request_error_body_available": false,
+  "unique_http404_cause_proven": false,
+  "no_inference_probes": true,
+  "reviewer": "AI; no human review"
+}
