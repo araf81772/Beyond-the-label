@@ -13,6 +13,19 @@
         "analysis_manifest.json": "ffb58862c78feae7ad4c75055101d66a5fed4ea46d62d467aa42f7784f5aa382"
       },
       "reason": "Preserve collection-version replay after offline infrastructure repairs; do not rewrite original traces or derived files"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2": {
+      "source_commit": "89de9c8202c8cfa9720f49e495ecbb8ea662f3aa",
+      "recorded_at_utc": "2026-11-15T02:43:00.199044+00:00",
+      "classification": "empirical_partial_smoke_terminal_identity_failure",
+      "files": {
+        "manifest.json": "ab9fd94b54d54c4cab1381e490990347d7ab13e2cadbd0d4400e4ee08ee90958",
+        "calls.jsonl": "8518852b1cd3b6406b7a0417b090547083480ff2b4ff02360d179a281a17a899",
+        "scores.csv": "758ab64bd0c800005c83a51c255a4765bbb49b1b8c47ddf87a7218665b4ffce4",
+        "usage.csv": "d10d8d2b60520204caf302b525915363ee1bcd356143dbff6a71624df4191cce",
+        "analysis_manifest.json": "cdfe09cb249b056a062848774a034b8ef54daab834824992cc38c4a1da85d856"
+      },
+      "reason": "Preserve exact collection-version rejection before endpoint metadata repair; terminal readback must never be resampled or rewritten"
     }
   }
 }

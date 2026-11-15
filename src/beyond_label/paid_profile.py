@@ -3,7 +3,8 @@
 The GPT profile is retained for historical evidence/replay. The user approved
 preparing the dated DeepSeek/PrimeIntellect profile without running inference.
 Public endpoint/reasoning sources are recorded in smoke_route_readiness.json.
-No aliases, fallbacks, arbitrary providers or caller-selected prices are added.
+The explicit selected-endpoint identity is separate from top-level model
+identity. No arbitrary aliases, fallbacks or caller-selected prices are added.
 """
 from copy import deepcopy
 
@@ -14,6 +15,7 @@ _PROFILES = {
         "provider": "OpenAI", "provider_route": "openai",
         "endpoint_names": ["OpenAI | openai/gpt-4.1-mini", "OpenAI | openai/gpt-4.1-mini-2025-04-14"],
         "accepted_returned_models": ["openai/gpt-4.1-mini-2025-04-14", "gpt-4.1-mini-2025-04-14"],
+        "accepted_endpoint_models": [],
         "reasoning": None, "reasoning_mode": "not_applicable",
         "max_price": {"prompt": .4, "completion": 1.6, "request": 0, "image": 0},
         "token_prices": {"prompt": "0.0000004", "completion": "0.0000016"},
@@ -25,6 +27,7 @@ _PROFILES = {
         "provider": "PrimeIntellect", "provider_route": "primeintellect",
         "endpoint_names": ["PrimeIntellect | deepseek/deepseek-v4.1-flash-20261017"],
         "accepted_returned_models": [],
+        "accepted_endpoint_models": ["deepseek/deepseek-v4.1-flash-20261017"],
         "reasoning": {"effort": "none"}, "reasoning_mode": "configured",
         "max_price": {"prompt": .04368, "completion": .70, "request": 0, "image": 0},
         "token_prices": {"prompt": "0.00000004368", "completion": "0.0000007"},

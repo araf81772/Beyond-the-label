@@ -88,6 +88,8 @@ def require_paid_smoke_configuration(config: Mapping, *, stage: str,
         raise ExecutionBlocked("Paid smoke routing price ceiling changed")
     if config.get("accepted_returned_models") != profile["accepted_returned_models"]:
         raise ExecutionBlocked("Paid smoke returned model identities changed")
+    if config.get("accepted_endpoint_models", []) != profile["accepted_endpoint_models"]:
+        raise ExecutionBlocked("Paid smoke endpoint model identities changed")
     if account_verified:
         cap = config.get("key_hard_limit_usd")
         if (config.get("key_hard_limit_verified") is not True

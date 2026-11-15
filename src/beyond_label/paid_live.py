@@ -131,6 +131,8 @@ def _paid_history(runs_root: Path) -> list[Path]:
     expected = (runs_root.parent / PAID_SMOKE_DIRECTORY).resolve()
     continuation = _continuation(runs_root.parent)
     active = (runs_root.parent / continuation["active_directory"]).resolve() if continuation else expected
+    historical = {(runs_root.parent / item["directory"]).resolve(): item
+                  for item in (continuation or {}).get("historical_segments", [])}
     manifests = list(runs_root.rglob("manifest.json")) if runs_root.exists() else []
     calls = list(runs_root.rglob("calls.jsonl")) if runs_root.exists() else []
     if {path.parent for path in calls} != {path.parent for path in manifests}:
@@ -148,13 +150,22 @@ def _paid_history(runs_root: Path) -> list[Path]:
                 if config.get("transport_provenance") != "openrouter_free_https_v1":
                     raise ExecutionSuspended("paid_run_history_invalid")
                 continue
-            if path.parent.resolve() not in {expected, active} or config.get("transport_provenance") != PROVENANCE:
+            if path.parent.resolve() not in {expected, active, *historical} or config.get("transport_provenance") != PROVENANCE:
                 raise ExecutionSuspended("unaccounted_paid_run_history")
-            if path.parent.resolve() != expected:
+            if path.parent.resolve() in historical:
+                # The continuation loader has verified every immutable artifact
+                # and the exact collection source for these prior segments.
+                if config.get("input_hashes") != historical[path.parent.resolve()]["input_hashes"]:
+                    raise ExecutionSuspended("paid_historical_source_changed")
+            elif path.parent.resolve() != expected:
                 execution = config.get("execution_config", {})
                 if (execution.get("continuation_record_hash") != continuation["record_hash"]
                         or execution.get("continuation_source_commit") != continuation["active_source_commit"]):
                     raise ExecutionSuspended("paid_continuation_history_changed")
+                if "retained_cells" in continuation and (
+                        execution.get("retained_terminal_cells") != continuation["retained_cells"]
+                        or execution.get("continuation_dispatch_cell_ids") != continuation["dispatch_cell_ids"]):
+                    raise ExecutionSuspended("paid_retained_terminal_history_changed")
             paid.append(path)
         except (OSError, ValueError, KeyError, TypeError, BudgetError):
             raise ExecutionSuspended("paid_run_history_invalid") from None
@@ -189,11 +200,15 @@ def reconcile_paid_history(session: Path, runs_root: Path, ledger: BudgetLedger,
                     or plan != build_manifest("smoke", 2, 271828)):
                 raise ExecutionSuspended("paid_run_history_invalid")
             _validate_manifest(plan)
-            legacy = continuation is not None and path.parent.resolve() == (runs_root.parent / PAID_SMOKE_DIRECTORY).resolve()
+            historical_paths = {(runs_root.parent / item["directory"]).resolve()
+                                for item in (continuation or {}).get("historical_segments", [])}
+            legacy = continuation is not None and path.parent.resolve() in {
+                (runs_root.parent / PAID_SMOKE_DIRECTORY).resolve(), *historical_paths}
             if legacy:
                 # This exact hash-bound failed request belongs to its original
                 # serializer. It is never normalized or resumed as a new retry.
-                events = historical_smoke(runs_root.parent)["events"]
+                events = (Journal(path.parent / "calls.jsonl").events if historical_paths
+                          else historical_smoke(runs_root.parent)["events"])
             else:
                 journal = Journal(path.parent / "calls.jsonl")
                 _validate_journal(journal, plan, config)
@@ -287,9 +302,13 @@ def run_paid_smoke(config_path: Path, dataset: str, output: Path, *, max_cells: 
         if continuation is not None:
             config.update(continuation_record_hash=continuation["record_hash"],
                           continuation_source_commit=continuation["active_source_commit"])
+            if "retained_cells" in continuation:
+                config.update(retained_terminal_cells=copy.deepcopy(continuation["retained_cells"]),
+                              continuation_dispatch_cell_ids=list(continuation["dispatch_cell_ids"]))
         settings = ProviderSettings(**{key: config[key] for key in (
             "model", "provider", "provider_route", "provider_identity_source", "require_parameters",
-            "free_only", "temperature", "reasoning", "max_output_tokens", "max_price", "accepted_returned_models")})
+            "free_only", "temperature", "reasoning", "max_output_tokens", "max_price", "accepted_returned_models")},
+            accepted_endpoint_models=config.get("accepted_endpoint_models", []))
         transport = OpenRouterPaidTransport(settings.model, settings.provider_route)
         limiter = RateLimiter(config["operator_requests_per_minute"], config["operator_tokens_per_minute"])
         guard = GuardedTransport(transport, ledger, limiter, PaidSmokeQuote(), cost_reader=paid_observed_cost)
@@ -336,6 +355,8 @@ def check_smoke_readiness(config_path: Path, *, capability_evidence: dict | None
             "active_source_commit": continuation["active_source_commit"] if continuation else None,
             "active_directory": continuation["active_directory"] if continuation else PAID_SMOKE_DIRECTORY,
             "unique_planned_cells": 80, "inference_calls": 0, "execution_started": False,
+            "retained_terminal_cells": len((continuation or {}).get("retained_cells", [])),
+            "dispatchable_cells": len((continuation or {}).get("dispatch_cell_ids", range(80))),
             "account_evidence": evidence, "capability_evidence": capabilities}
 
 

@@ -377,6 +377,31 @@ def _score_cell(cell: dict[str, Any], manifest: dict[str, Any], journal: Journal
     return {**base, **score.model_dump()}
 
 
+def _retained_terminal_cells(config: dict[str, Any], manifest: dict[str, Any]) -> dict[str, dict]:
+    """Keep the one rejected readback visible without inventing another event.
+
+    This fixed, embedded reference permits standalone archival replay. Live
+    execution additionally verifies the referenced files and source record.
+    Arbitrary exclusions and events for this cell are never accepted.
+    """
+    execution = config.get("execution_config", {})
+    retained = execution.get("retained_terminal_cells", [])
+    dispatch = execution.get("continuation_dispatch_cell_ids")
+    if retained == [] and type(retained) is list:
+        if dispatch is not None:
+            raise JournalIntegrityError("dispatch_subset_without_retained_cell")
+        return {}
+    from .continuation79 import retained_cell_spec
+    spec = retained_cell_spec()
+    expected = [c["cell_id"] for c in manifest["cells"] if c["cell_id"] != spec["cell_id"]]
+    if (manifest != build_manifest("smoke", 2, 271828)
+            or _hash(retained) != _hash([spec]) or dispatch != expected
+            or not re.fullmatch(r"[0-9a-f]{64}", str(execution.get("continuation_record_hash", "")))
+            or not re.fullmatch(r"[0-9a-f]{40}", str(execution.get("continuation_source_commit", "")))):
+        raise JournalIntegrityError("retained_terminal_provenance_invalid")
+    return {spec["cell_id"]: spec}
+
+
 def _validate_execution_config(config: dict[str, Any], settings: ProviderSettings, manifest: dict[str, Any],
                                freeze: dict[str, Any] | None = None) -> None:
     from .provider import _sanitized, canonical_json as provider_json
@@ -395,8 +420,10 @@ def _validate_execution_config(config: dict[str, Any], settings: ProviderSetting
         if key not in config or config[key] != getattr(settings, key):
             raise ValueError("Execution settings differ from pinned provider")
     if paid_smoke and (config.get("max_price") != settings.max_price
-            or tuple(config.get("accepted_returned_models", [])) != settings.accepted_returned_models):
+            or tuple(config.get("accepted_returned_models", [])) != settings.accepted_returned_models
+            or tuple(config.get("accepted_endpoint_models", [])) != settings.accepted_endpoint_models):
         raise ValueError("Execution settings differ from pinned provider")
+    _retained_terminal_cells({"execution_config": config}, manifest)
     if config.get("load") != manifest["load"] or config.get("schedule_seed") != manifest["schedule_seed"]:
         raise ValueError("Execution manifest factors differ from configuration")
     if manifest["dataset"] == "main":
@@ -476,6 +503,7 @@ def _csv(path: Path, rows: list[dict[str, Any]], fields: list[str]) -> None:
 
 
 def _validate_journal(journal: Journal, manifest: dict[str, Any], config: dict[str, Any]) -> None:
+    retained = _retained_terminal_cells(config, manifest)
     allowed_ids = {c["cell_id"] for c in manifest["cells"]}
     cells = {c["cell_id"]: c for c in manifest["cells"]}
     settings = ProviderSettings.model_validate(config["provider_settings"])
@@ -488,6 +516,8 @@ def _validate_journal(journal: Journal, manifest: dict[str, Any], config: dict[s
     request_ids: dict[str, str] = {}
     for e in journal.events:
         cell_id = e.get("cell_id")
+        if cell_id in retained:
+            raise JournalIntegrityError("event_for_retained_terminal_cell")
         if cell_id not in allowed_ids:
             raise JournalIntegrityError("unknown_cell_id")
         if e.get("phase") is not None and e["phase"] not in PHASES:
@@ -577,8 +607,16 @@ def rebuild_outputs(run_dir: Path | str) -> dict[str, Any]:
     journal = Journal(run_dir / "calls.jsonl")
     _validate_journal(journal, manifest, stored["run_config"])
     scores = [_score_cell(cell, manifest, journal) for cell in manifest["cells"]]
+    retained = _retained_terminal_cells(run_config, manifest)
     for row in scores:
         row["evidence_kind"] = kind
+        if retained:
+            prior = retained.get(row["cell_id"])
+            row["retained_source_directory"] = prior["source_directory"] if prior else ""
+            row["retained_source_trace_sha256"] = prior["source_artifact_sha256"]["calls.jsonl"] if prior else ""
+            if prior:
+                row.update(cell_status="retained_terminal", missing_reason=prior["missing_reason"],
+                           continuation_status=prior["continuation_status"])
     fields = list(scores[0])
     _csv(run_dir / "scores.csv", scores, fields)
     usage = []
@@ -635,7 +673,7 @@ def rebuild_outputs(run_dir: Path | str) -> dict[str, Any]:
         "experimental_provider_spend": sum(row["cost_usd"] for row in usage if row["cost_usd"] is not None) if kind == "empirical" else 0,
         "run_config_hash": stored["run_config_hash"], "planned_cells": len(scores),
         "completed_cells": sum(row["cell_status"] == "completed" for row in scores),
-        "pending_cells": sum(row["cell_status"] != "completed" for row in scores),
+        "pending_cells": sum(row["cell_status"] == "pending" for row in scores),
         "first_action_or_readback_missing": sum(bool(row["missing_reason"]) for row in scores),
         "successful_calls": sum(e["event"] == "attempt_succeeded" for e in journal.events),
         "attempted_calls": sum(e["event"] == "attempt_started" for e in journal.events),
@@ -647,6 +685,9 @@ def rebuild_outputs(run_dir: Path | str) -> dict[str, Any]:
         "cells": [{"cell_id": row["cell_id"], "status": row["cell_status"], "missing_reason": row["missing_reason"],
                    "continuation_status": row["continuation_status"]} for row in scores],
     }
+    if retained:
+        summary["retained_terminal_cells"] = len(retained)
+        summary["dispatchable_cells"] = len(scores) - len(retained)
     if kind == "empirical":
         summary["spend_evidence_complete"] = all(row["cost_usd"] is not None for row in usage)
         summary["known_provider_spend_usd"] = summary["experimental_provider_spend"]
@@ -703,6 +744,7 @@ def _run_manifest_locked(manifest: dict[str, Any], run_dir: Path | str, provider
         (run_dir / "recovery_blocker.json").write_text(json.dumps(blocker, indent=2) + "\n", encoding="utf-8", newline="\n")
         raise
     complete = {e["cell_id"] for e in journal.events if e["event"] == "cell_completed"}
+    complete.update(_retained_terminal_cells(config, manifest))
     if not synthetic and any(e.get("accounting_error") for e in journal.events):
         raise JournalIntegrityError("accounting_reconciliation_required_before_resume")
     processed = 0
@@ -754,6 +796,10 @@ def run_manifest(manifest: dict[str, Any], run_dir: Path | str, provider: Pinned
                     execution_config.get("continuation_record_hash") != continuation["record_hash"]
                     or execution_config.get("continuation_source_commit") != continuation["active_source_commit"]):
                 raise ValueError("Paid smoke continuation provenance does not match")
+            if continuation is not None and "retained_cells" in continuation and (
+                    execution_config.get("retained_terminal_cells") != continuation["retained_cells"]
+                    or execution_config.get("continuation_dispatch_cell_ids") != continuation["dispatch_cell_ids"]):
+                raise ValueError("Paid smoke retained cell or dispatch schedule changed")
         from .attempts import MAX_ATTEMPTS
         allowance = MAX_ATTEMPTS if provider.settings.free_only else 200
         if (type(execution_config.get("maximum_inference_attempts")) is not int

@@ -1,7 +1,7 @@
 {
-  "recorded_at_utc": "2026-11-15T02:32:58.153263+00:00",
+  "recorded_at_utc": "2026-11-15T03:10:06.200143+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "User authorized DeepSeek/PrimeIntellect smoke under same USD1/200 caps including oldhold; run stopped after first new reply failed selected-endpoint model identity check; stop and report before pilot/main.",
+  "requested_scope": "Fix documented endpoint metadata identity mapping and prepare continuation for79untouched smoke cells; never rerun retained terminal readback; no paid calls; test/fix/retest/log/commit/push under same caps.",
   "execution_freeze": null,
   "experimental_calls": 2,
   "human_participation_observed": false,
@@ -228,7 +228,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "Real smoke stopped after first DeepSeek reply failed selected-endpoint model identity validation. One terminal missing readback cell,79pending and0accepted observations; pilot/freeze absent.",
+      "reason": "Smoke remains incomplete. Endpoint identity and retained-terminal continuation repair passed the full offline suite; exact-source commit and79-cell preparation record pending. Current user prohibits paid calls.",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -258,8 +258,8 @@
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
-      "minimum_next_action": "Verify and repair explicit endpoint identity mapping and source-version continuation for79untouched cells, preserving this terminal missing cell, both attempts, old hold and raw traces; then rerun offline checks before any continuation.",
-      "offline_preparation_status": "After one rejected DeepSeek response,1515offline tests passed in376.64s. Fixture-only repair; all47collection inputs unchanged, child artifacts reproduce immutably, caps and retained hold reconcile. Real smoke gate still unmet.",
+      "minimum_next_action": "Complete full validation, commit exact source, prepare new79-cell research record, and verify readiness without inference. Await later execution instruction; no rerun of retained cell.",
+      "offline_preparation_status": "Full1634-test suite passed; source commit and preparation record are next. Both historical runs and shared journals remain unchanged; no inference/accountcall.",
       "offline_validation": [
         {
           "command": "python -m pytest -q",
@@ -429,6 +429,12 @@
           "exit_code": 0,
           "summary": "1515passed in376.64s; post-run historical-prefix fixture repair and4new regressions; production source unchanged",
           "evidence": "research/checks/deepseek_smoke_suite.json"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "1634 passed in421.86s; initial1failure repaired; network blocked and credentials isolated; execution inputs unchanged",
+          "evidence": "research/checks/endpoint_repair_suite.json"
         }
       ],
       "recorded_test_fix_retest": [
@@ -439,7 +445,8 @@
         "Provider metadata/optional reasoning: 3 failed before repair; 33 focused then 86 provider tests passed",
         "Accounting/rate interactions: 4 failed before repair; final 208 focused tests passed including 22 controls tests",
         "Durablecap bypass regression:1 failed before real-entry-point enforcement;60 targeted tests passed after repair",
-        "Python -m CLI policy identity regression:1 failed before moving shared types to canonical module;1 focused then61 targeted tests passed; full suite repeated"
+        "Python -m CLI policy identity regression:1 failed before moving shared types to canonical module;1 focused then61 targeted tests passed; full suite repeated",
+        "Endpoint and79-cell continuation full suite:1failed/1627passed; add narrow diagnostic continuation79 allowlist plus6negative scientific-path tests; final1634passed421.86s"
       ],
       "offline_artifacts": [
         "evaluation/synthetic_m4_rehearsal/rehearsal.json",
@@ -477,7 +484,9 @@
         "hard_limit_usd": 10,
         "reset": null,
         "raw_model_replies": 1,
-        "provider_successful_responses_definition": "Accepted provider-parser results; the one raw DeepSeek reply failed identity validation"
+        "provider_successful_responses_definition": "Accepted provider-parser results; the one raw DeepSeek reply failed identity validation",
+        "classification": "historical_verified_account_and_execution_evidence",
+        "current_inference_authorized": false
       },
       "proposed_configuration": {
         "path": "configs/proposed_m4.yaml",
@@ -583,8 +592,8 @@
       "current_execution_authorization": {
         "authorization_id": "paid-smoke-usd1-200-v1",
         "free_only": false,
-        "paid_calls_authorized": true,
-        "scope": "smoke_only; stop and report before pilot or main",
+        "paid_calls_authorized": false,
+        "scope": "repair_and_preparation_only_now; retained_future_smoke_caps; no_pilot_or_main",
         "total_testing_usd": 10,
         "smoke_usd": 1,
         "maximum_aggregate_inference_attempts": 200,
@@ -601,35 +610,30 @@
         "condition_satisfied": true,
         "evidence": "research/paid_smoke_execution_authorization.json",
         "blocking_conditions": [
-          "selected_endpoint_model_identity_mismatch",
-          "future_source_version_must_carry_forward_terminal_missing_cell"
+          "full_repair_validation_and_committed_v3_preparation_pending",
+          "current_instruction_defers_inference",
+          "fresh_account_and_route_preflight_before_future_execution"
         ],
         "durable_cap_implemented": true,
-        "current_instruction": "User authorized smoke under unchanged shared caps; run stopped after identity mismatch. Stop and report before pilot/main; no resampling or silent identity relaxation.",
+        "current_instruction": "Repair and prepare79untouched only; no paid calls now. Preserve terminal missing cell, both consumed attempts and oldhold; stop beforepilot/main.",
         "remaining_attempts": 198,
         "account_evidence": "runs/_paid_testing_session/preflights.jsonl",
         "model": "deepseek/deepseek-v4.1-flash-1017",
-        "provider_route": "primeintellect"
+        "provider_route": "primeintellect",
+        "historical_paid_spending_authorization_retained": true,
+        "account_condition_evidence_is_historical": true
       },
       "current_checkpoint": {
-        "status": "offline_readback_wire_repair_validated_committed_and_pushed",
-        "scope": "repair_only_no_smoke_or_account_calls",
+        "status": "endpoint_identity_repair_validated_awaiting_source_commit",
+        "scope": "prepare79_untouched_no_inference_or_account_calls",
         "run_evidence_unchanged": true,
-        "historical_checkpoint": "b8d648b06aee883165971a4b51d5a230f912e339",
-        "focused_tests_passed": 329,
-        "historical_replay_tests_passed": 14,
-        "full_suite_evidence": "research/checks/readback_wire_fix_suite.json",
-        "integrity_evidence": "research/checks/readback_wire_fix_integrity.json",
-        "push_status": "succeeded",
-        "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
-        "branch": "main",
-        "commit_reference": "Resolve final identity through Git; no circular self-hash",
-        "guarded_path_tests_passed": 225,
-        "full_suite_tests_passed": 1381,
-        "experimental_inputs_unchanged_during_suite": true,
-        "delivered_commit": "464bbb0a3d1a4300aa975313520a24c3760f856b",
-        "remote_head_verified": true,
-        "delivery_evidence": "research/checks/readback_wire_fix_delivery.json"
+        "full_suite_evidence": "research/checks/endpoint_repair_suite.json",
+        "initial_failure_evidence": "research/checks/endpoint_repair_suite_initial.json",
+        "push_status": "pending",
+        "commit_reference": "Resolve source and final metadata commits through Git; no circular self-hash",
+        "full_suite_tests_passed": 1634,
+        "full_suite_seconds": 421.86,
+        "experimental_inputs_unchanged_during_suite": true
       },
       "checkpoint_history": [
         {
@@ -695,6 +699,27 @@
           "remote_head_verified": true,
           "delivery_evidence": "research/checks/paid_smoke_execution_delivery.json",
           "verification_command": "git ls-remote origin refs/heads/main"
+        },
+        {
+          "status": "offline_readback_wire_repair_validated_committed_and_pushed",
+          "scope": "repair_only_no_smoke_or_account_calls",
+          "run_evidence_unchanged": true,
+          "historical_checkpoint": "b8d648b06aee883165971a4b51d5a230f912e339",
+          "focused_tests_passed": 329,
+          "historical_replay_tests_passed": 14,
+          "full_suite_evidence": "research/checks/readback_wire_fix_suite.json",
+          "integrity_evidence": "research/checks/readback_wire_fix_integrity.json",
+          "push_status": "succeeded",
+          "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
+          "branch": "main",
+          "commit_reference": "Resolve final identity through Git; no circular self-hash",
+          "guarded_path_tests_passed": 225,
+          "full_suite_tests_passed": 1381,
+          "experimental_inputs_unchanged_during_suite": true,
+          "delivered_commit": "464bbb0a3d1a4300aa975313520a24c3760f856b",
+          "remote_head_verified": true,
+          "delivery_evidence": "research/checks/readback_wire_fix_delivery.json",
+          "classification": "historical_readback_repair_checkpoint"
         }
       ],
       "validation": [
@@ -735,7 +760,7 @@
           "evidence": "research/checks/preresults_clean_clone.json"
         }
       ],
-      "current_paid_smoke_checkpoint": "research/deepseek_smoke.md",
+      "current_paid_smoke_checkpoint": "research/smoke_continuation79.md",
       "real_smoke_worlds_attempted": 1,
       "real_smoke_attempts": 2,
       "real_smoke_completed_cells": 1,
@@ -953,7 +978,7 @@
     "offline_tests_passed": 1515,
     "full_suite_evidence": "research/checks/deepseek_smoke_suite.json",
     "integrity_evidence": "research/checks/smoke_preparation_integrity.json",
-    "current_push_status": "partial_smoke_pushed_remote_verified",
+    "current_push_status": "endpoint_repair_validated_commit_pending",
     "scientific_design_changed": false,
     "human_review": false,
     "engineering_commit": "88c632fc0bfe9f24700b4b30a217fdb6b53ee1c4",
@@ -1126,5 +1151,41 @@
       "issue": "Endpoint metadata identity needs an explicit verified same-snapshot mapping",
       "required_action": "Preserve both existing source segments; do not resample terminal readback; dispatch only untouched cells after source-version repair"
     }
-  ]
+  ],
+  "endpoint_repair_preparation": {
+    "status": "validated_awaiting_committed_source_record",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "provider_route": "primeintellect",
+    "accepted_endpoint_models": [
+      "deepseek/deepseek-v4.1-flash-20261017"
+    ],
+    "accepted_returned_models": [],
+    "unique_planned_cells": 80,
+    "retained_terminal_cells": 1,
+    "dispatchable_cells": 79,
+    "retained_cell_id": "smoke-1100-readback-MAIN-inline-b",
+    "aggregate_attempts_used": 2,
+    "aggregate_attempts_remaining": 198,
+    "known_settled_cost_usd": "0.00005501216",
+    "historical_unknown_cost_hold_usd": "0.44084208",
+    "available_smoke_usd": "0.55910290784",
+    "inference_calls": 0,
+    "account_checks": 0,
+    "scientific_design_changed": false,
+    "empirical_classification_changed": false,
+    "source_commit": null,
+    "record_path": "research/smoke_continuation_79.json",
+    "new_segment_started": false,
+    "suite_evidence": "research/checks/endpoint_repair_suite.json",
+    "source_evidence": "research/checks/endpoint_identity_sources.json",
+    "human_review": false,
+    "delivery_status": "pending",
+    "full_suite_status": "passed",
+    "full_suite_tests_passed": 1634,
+    "full_suite_seconds": 421.86,
+    "experimental_inputs_unchanged_during_suite": true,
+    "historical_files_unchanged": 14,
+    "historical_research_records_unchanged": 4,
+    "audit_checks_passed": 1341
+  }
 }

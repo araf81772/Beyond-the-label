@@ -20,6 +20,9 @@ provider_route: primeintellect
 provider_identity_source: openrouter_metadata
 require_parameters: true
 accepted_returned_models: []
+# Router-selected endpoint identity only; top-level model must remain 1017.
+accepted_endpoint_models:
+  - deepseek/deepseek-v4.1-flash-20261017
 # Routing ceilings: USD per million tokens; request/image charges forbidden.
 max_price:
   prompt: 0.04368

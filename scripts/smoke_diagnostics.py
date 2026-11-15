@@ -35,7 +35,7 @@ def diagnose(root: Path, run_dir: Path) -> dict:
     current = _inputs()
     allowed = {f"src/beyond_label/{name}.py" for name in
                ("run", "provider", "openrouter", "capabilities", "paid_live", "paid_controls",
-                "attempts", "gates", "continuation", "cost_reconciliation", "paid_profile")}
+                "attempts", "gates", "continuation", "continuation79", "cost_reconciliation", "paid_profile")}
     # The explicitly approved replacement smoke profile is infrastructure
     # preparation; original observations are still decoded with their own source.
     allowed.add("configs/paid_smoke.yaml")

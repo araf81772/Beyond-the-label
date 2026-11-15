@@ -33,7 +33,8 @@ def settings():
     p = get_paid_profile(MODEL)
     return ProviderSettings(model=p["model"], provider=p["provider"], provider_route=p["provider_route"],
         provider_identity_source="openrouter_metadata", require_parameters=True, reasoning=p["reasoning"],
-        max_price=p["max_price"], temperature=0, max_output_tokens=512)
+        max_price=p["max_price"], temperature=0, max_output_tokens=512,
+        accepted_endpoint_models=tuple(p["accepted_endpoint_models"]))
 
 
 def fixture():
@@ -51,6 +52,7 @@ def test_prepared_configuration_uses_only_the_approved_profile_and_unchanged_cap
     c = config()
     assert (c["model"], c["provider"], c["provider_route"]) == (MODEL, "PrimeIntellect", "primeintellect")
     assert c["reasoning"] == {"effort": "none"} and c["accepted_returned_models"] == []
+    assert c["accepted_endpoint_models"] == ["deepseek/deepseek-v4.1-flash-20261017"]
     assert (c["authorized_total_testing_cap"], c["authorized_spend_cap"], c["maximum_inference_attempts"]) == (10, 1, 200)
     require_paid_smoke_configuration(c, stage="smoke", account_verified=False)
     with pytest.raises(ExecutionBlocked):

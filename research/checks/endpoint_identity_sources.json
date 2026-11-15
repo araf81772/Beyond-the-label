@@ -1,0 +1,76 @@
+{
+  "classification": "read_only_primary_source_endpoint_identity_review",
+  "recorded_at_utc": "2026-11-15T02:45:00.923566+00:00",
+  "requested_model": "deepseek/deepseek-v4.1-flash-1017",
+  "selected_endpoint_model": "deepseek/deepseek-v4.1-flash-20261017",
+  "provider_route": "primeintellect",
+  "provider": "PrimeIntellect",
+  "sources": [
+    {
+      "url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints",
+      "retrieval": "anonymous fixed HTTPS GET; trust_env=False; no redirects; HTTP200",
+      "observed": {
+        "data.id": "deepseek/deepseek-v4.1-flash-1017",
+        "endpoint.model_id": "deepseek/deepseek-v4.1-flash-1017",
+        "endpoint.name": "PrimeIntellect | deepseek/deepseek-v4.1-flash-20261017",
+        "endpoint.provider_name": "PrimeIntellect",
+        "endpoint.tag": "primeintellect",
+        "endpoint.status": 0
+      }
+    },
+    {
+      "url": "https://openrouter.ai/deepseek/deepseek-v4.1-flash-20261017",
+      "retrieval": "public official model page via web search",
+      "supports": "The dated URL displays the canonical API model slug deepseek/deepseek-v4.1-flash-1017 and the October17 snapshot name"
+    },
+    {
+      "url": "https://openrouter.ai/docs/guides/routing/routers/router-metadata",
+      "retrieval": "public official documentation via web tool",
+      "supports": "The requested slug and selected endpoint provider/model are distinct response fields; requested may differ; exactly selected endpoint identifies delivery. Metadata opt-in header remains X-OpenRouter-Metadata: enabled."
+    }
+  ],
+  "conclusion": "An explicit endpoint-only mapping is supported for this exact model/provider/route. This does not license arbitrary aliases, fallback or different top-level response models.",
+  "implementation_contract": {
+    "setting": "accepted_endpoint_models",
+    "type": "tuple[str,...] with empty default",
+    "allowed_for_exact_prepared_profile": [
+      "deepseek/deepseek-v4.1-flash-20261017"
+    ],
+    "accepted_returned_models": [],
+    "top_level_model_remains_exact": true,
+    "wire_payload_unchanged": true,
+    "historical_empty_setting_remains_rejected": true,
+    "historical_terminal_cell_not_resampled_or_reclassified": true
+  },
+  "regression_red": {
+    "command": "python -m pytest tests/test_endpoint_identity.py -q",
+    "failed": 24,
+    "passed": 0,
+    "reason": "Missing explicit endpoint mapping setting before implementation"
+  },
+  "credentials_used": false,
+  "inference_calls": 0,
+  "account_checks": 0,
+  "human_review": false,
+  "retained_raw_trace_sha256": "8518852b1cd3b6406b7a0417b090547083480ff2b4ff02360d179a281a17a899",
+  "regression_green": {
+    "command": "python -m pytest tests/test_endpoint_identity.py tests/test_paid_profiles.py tests/test_paid_openrouter.py tests/test_provider.py -q",
+    "passed": 229,
+    "failed": 0,
+    "duration_seconds": 49.44
+  },
+  "profile_helper_retest": {
+    "command": "python -m pytest tests/test_endpoint_identity.py tests/test_paid_profiles.py -q",
+    "passed": 46,
+    "failed": 0,
+    "duration_seconds": 2.02
+  },
+  "empirical_replay_boundary": {
+    "purpose": "read-only engineering diagnosis under explicit repaired settings",
+    "old_settings_still_reject": true,
+    "new_settings_parse_identity": true,
+    "five_original_child_artifacts_unchanged": true,
+    "terminal_missing_classification_unchanged": true,
+    "new_observation_or_sample_created": false
+  }
+}

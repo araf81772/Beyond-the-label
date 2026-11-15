@@ -7,7 +7,9 @@ status is checked against present files rather than freezing the project at M1.
 from __future__ import annotations
 
 import csv
+from decimal import Decimal
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -26,7 +28,7 @@ SOURCE_SHA256 = "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838
 
 
 def require_continuation_binding(stored: dict, record: dict) -> None:
-    """The one child segment must retain the prepared source/version identity."""
+    """An active child retains its exact prepared source and retained outcomes."""
     config = stored.get("run_config", {})
     execution = config.get("execution_config", {})
     if (stored.get("plan") != record["plan"]
@@ -36,6 +38,135 @@ def require_continuation_binding(stored: dict, record: dict) -> None:
             or execution.get("continuation_record_hash") != record["record_hash"]
             or execution.get("continuation_source_commit") != record["active_source_commit"]):
         raise ValueError("Smoke continuation metadata differs from its prepared source")
+    if ("retained_cells" in record
+            and (execution.get("retained_terminal_cells") != record["retained_cells"]
+                 or execution.get("continuation_dispatch_cell_ids") != record["dispatch_cell_ids"])):
+        raise ValueError("Smoke continuation retained outcomes differ from its prepared source")
+
+
+def require_retained_terminal_evidence(stored: dict, record: dict, raw: dict, summary: dict) -> None:
+    """A carried-forward terminal failure is missing data, never an active sample."""
+    from beyond_label.budget import _unique_object
+
+    require_continuation_binding(stored, record)
+    retained = {item["cell_id"]: item for item in record["retained_cells"]}
+    dispatch = set(record["dispatch_cell_ids"])
+    if (len(retained) != len(record["retained_cells"]) or retained.keys() & dispatch
+            or len(dispatch) != len(record["dispatch_cell_ids"])):
+        raise ValueError("Smoke retained and dispatch identities overlap or repeat")
+    events = [json.loads(line, object_pairs_hook=_unique_object)
+              for line in raw["calls.jsonl"].splitlines()]
+    if any(event.get("cell_id") in retained for event in events):
+        raise ValueError("An active event resamples a retained terminal cell")
+    if any(event.get("cell_id") not in dispatch for event in events):
+        raise ValueError("An active event is outside the prepared dispatch identities")
+    rows = list(csv.DictReader(io.StringIO(raw["scores.csv"].decode("utf-8"), newline="")))
+    by_id = {row["cell_id"]: row for row in rows}
+    if len(by_id) != len(rows) or set(by_id) != retained.keys() | dispatch:
+        raise ValueError("Smoke scores must retain each planned cell exactly once")
+    unobserved = ("readback_correct", "category", "expected_loss", "oracle_loss", "regret",
+                  "regret_with_invalids", "realised_loss", "inspected_lot", "post_inspection_correct",
+                  "report_contradiction")
+    for cell_id, source in retained.items():
+        row = by_id[cell_id]
+        if (row.get("cell_status") != "retained_terminal"
+                or row.get("missing_reason") != source["missing_reason"]
+                or row.get("continuation_status") != source["continuation_status"]
+                or row.get("retained_source_directory") != source["source_directory"]
+                or row.get("retained_source_trace_sha256") != source["source_artifact_sha256"]["calls.jsonl"]
+                or any(row.get(field, "") != "" for field in unobserved)):
+            raise ValueError("A retained terminal row changed its missing observation")
+    if (type(summary.get("retained_terminal_cells")) is not int
+            or summary["retained_terminal_cells"] != len(retained)
+            or type(summary.get("completed_cells")) is not int
+            or not 0 <= summary["completed_cells"] <= len(dispatch)
+            or type(summary.get("pending_cells")) is not int
+            or summary["pending_cells"] != len(dispatch) - summary["completed_cells"]):
+        raise ValueError("Smoke summary double-counts or loses retained terminal cells")
+
+
+def require_historical_segment_binding(stored: dict, raw: dict, descriptor: dict,
+                                       replay: dict | None = None) -> None:
+    """Historical segments use their own committed code and immutable artifacts."""
+    if (stored.get("run_config", {}).get("input_hashes") != descriptor["input_hashes"]
+            or set(raw) != set(descriptor["artifact_sha256"])
+            or any(hashlib.sha256(data).hexdigest() != descriptor["artifact_sha256"][name]
+                   for name, data in raw.items())
+            or (replay is not None and replay.get("source_commit") != descriptor["source_commit"])):
+        raise ValueError("Historical smoke source or artifact identity changed")
+
+
+def audit_continuations(root: Path, input_hashes: dict) -> tuple[dict | None, dict | None]:
+    """Audit old evidence before a new source is prepared without relaxing live gates."""
+    from beyond_label.continuation import load_continuation, load_legacy_continuation
+    from beyond_label.continuation79 import RECORD_PATH, segment_path
+
+    legacy = load_legacy_continuation(root)
+    active = (load_continuation(root, input_hashes=input_hashes)
+              if (root / RECORD_PATH).exists() or segment_path(root).exists() else legacy)
+    return legacy, active
+
+
+def _segment_costs(segments: list[dict]) -> dict:
+    known = Decimal(0)
+    for entry in segments:
+        value = Decimal(str(entry.get("known_provider_spend_usd", 0)))
+        if not value.is_finite() or value < 0:
+            raise ValueError("Smoke segment cost evidence is invalid")
+        known += value
+    return {"known_provider_spend_usd": format(known, "f"),
+            "aggregate_actual_cost_complete": not any(
+                entry["unknown_cost_attempts"] or entry.get("accounting_error_attempts", 0)
+                for entry in segments)}
+
+
+def _retained_smoke_group(smoke: list[dict], record: dict) -> tuple[dict, set[str]]:
+    """Count v2's one terminal failure once while v3 dispatches only 79 cells."""
+    history = [item["directory"] for item in record["historical_segments"]]
+    active_path = record["active_directory"]
+    retained = record["retained_cells"]
+    if (len(history) != 2 or len(set(history)) != 2 or active_path in history
+            or history[0] != record["historical_directory"] or len(retained) != 1
+            or retained[0]["source_directory"] != history[1]
+            or len(record["dispatch_cell_ids"]) != 79):
+        raise ValueError("Invalid historical smoke continuation identities")
+    old = []
+    for name in history:
+        matching = [entry for entry in smoke if entry["directory"] == name]
+        if len(matching) != 1:
+            raise ValueError("Every historical smoke segment must remain available once")
+        old.extend(matching)
+    for index, entry in enumerate(old):
+        expected = {"attempted_calls": 1, "successful_calls": 0, "completed_cells": index,
+                    "pending_cells": 80-index, "planned_cells": 80, "infrastructure_retries": 0}
+        if any(type(entry.get(key)) is not int or entry[key] != value for key, value in expected.items()):
+            raise ValueError("Historical smoke observations cannot be changed or resampled")
+    active = [entry for entry in smoke if entry["directory"] == active_path]
+    if len(active) > 1:
+        raise ValueError("An active smoke segment cannot be counted twice")
+    if active:
+        current = active[0]
+        if (type(current.get("completed_cells")) is not int or not 0 <= current["completed_cells"] <= 79
+                or type(current.get("retained_terminal_cells")) is not int or current["retained_terminal_cells"] != 1
+                or type(current.get("planned_cells")) is not int or current["planned_cells"] != 80
+                or type(current.get("pending_cells")) is not int or current["pending_cells"] != 79-current["completed_cells"]):
+            raise ValueError("Active smoke counts double-count or lose retained cells")
+    segments = [*old, *active]
+    completed = 1 + (active[0]["completed_cells"] if active else 0)
+    return ({"logical_run_directory": history[0],
+        "classification": "same_smoke_sample_across_pre_freeze_source_versions",
+        "independent_smoke_samples": 1, "unique_planned_cells": 80,
+        "completed_cells": completed, "retained_terminal_cells": 1, "pending_cells": 80-completed,
+        "segment_directories": [entry["directory"] for entry in segments],
+        "active_directory": active_path, "active_segment_initialized": bool(active),
+        "active_segment_started": bool(active and active[0]["attempted_calls"]),
+        "recorded_request_attempts": sum(entry["attempted_calls"] for entry in segments),
+        "successful_calls": sum(entry["successful_calls"] for entry in segments),
+        "infrastructure_retries": sum(entry["infrastructure_retries"] for entry in segments),
+        # Only v2 reissued the previously failed cell. V3 has disjoint dispatch.
+        "source_version_reissues": 1,
+        "unknown_cost_attempts": sum(entry["unknown_cost_attempts"] for entry in segments),
+        **_segment_costs(segments)}, {*history, active_path})
 
 
 def logical_smoke_groups(entries: list[dict], record: dict | None) -> list[dict]:
@@ -43,7 +174,10 @@ def logical_smoke_groups(entries: list[dict], record: dict | None) -> list[dict]
     smoke = [entry for entry in entries if entry["dataset"] == "smoke"]
     groups = []
     grouped = set()
-    if record is not None:
+    if record is not None and "retained_cells" in record:
+        group, grouped = _retained_smoke_group(smoke, record)
+        groups.append(group)
+    elif record is not None:
         old_path, active_path = record["historical_directory"], record["active_directory"]
         old = [entry for entry in smoke if entry["directory"] == old_path]
         active = [entry for entry in smoke if entry["directory"] == active_path]
@@ -64,7 +198,8 @@ def logical_smoke_groups(entries: list[dict], record: dict | None) -> list[dict]
             "successful_calls": sum(entry["successful_calls"] for entry in segments),
             "infrastructure_retries": sum(entry["infrastructure_retries"] for entry in segments),
             "source_version_reissues": int(bool(active and active[0]["attempted_calls"])),
-            "unknown_cost_attempts": sum(entry["unknown_cost_attempts"] for entry in segments)})
+            "unknown_cost_attempts": sum(entry["unknown_cost_attempts"] for entry in segments),
+            **_segment_costs(segments)})
         grouped.update((old_path, active_path))
     for entry in smoke:
         if entry["directory"] in grouped:
@@ -77,7 +212,7 @@ def logical_smoke_groups(entries: list[dict], record: dict | None) -> list[dict]
             "active_segment_started": bool(entry["attempted_calls"]),
             "recorded_request_attempts": entry["attempted_calls"], "successful_calls": entry["successful_calls"],
             "infrastructure_retries": entry["infrastructure_retries"], "source_version_reissues": 0,
-            "unknown_cost_attempts": entry["unknown_cost_attempts"]})
+            "unknown_cost_attempts": entry["unknown_cost_attempts"], **_segment_costs([entry])})
     return groups
 
 
@@ -91,13 +226,16 @@ def validate_execution_evidence(root: Path, milestones: dict) -> dict:
     from beyond_label.budget import _unique_object
     from beyond_label.freeze import verify_freeze
     from beyond_label.run import build_manifest, rebuild_outputs, _inputs
-    from beyond_label.continuation import load_continuation, SEGMENT_DIRECTORY
+    from beyond_label.continuation import SEGMENT_DIRECTORY
+    from beyond_label.continuation79 import SEGMENT_DIRECTORY as RETAINED_SEGMENT_DIRECTORY
 
     root = root.resolve()
     runs_root = root / "runs"
     if not runs_root.resolve().is_relative_to(root):
         raise ValueError("Execution inventory must stay inside the repository")
-    continuation = load_continuation(root, input_hashes=_inputs())
+    current_inputs = _inputs()
+    legacy, continuation = audit_continuations(root, current_inputs)
+    historical_segments = {item["directory"]: item for item in continuation.get("historical_segments", [])} if continuation else {}
     manifests = sorted(runs_root.glob("**/manifest.json"))
     calls = sorted(runs_root.glob("**/calls.jsonl"))
     if {p.parent for p in manifests} != {p.parent for p in calls}:
@@ -123,18 +261,27 @@ def validate_execution_evidence(root: Path, milestones: dict) -> dict:
         kind = stored.get("run_config", {}).get("evidence_kind")
         relative = directory.relative_to(root).as_posix()
         if relative == SEGMENT_DIRECTORY:
-            if continuation is None or kind != "empirical":
+            if legacy is None or kind != "empirical":
                 raise ValueError("Smoke continuation requires its verified preparation")
+            require_continuation_binding(stored, legacy)
+        if relative == RETAINED_SEGMENT_DIRECTORY:
+            if continuation is None or "retained_cells" not in continuation or kind != "empirical":
+                raise ValueError("Retained smoke continuation requires its verified preparation")
             require_continuation_binding(stored, continuation)
+        descriptor = historical_segments.get(relative)
+        if descriptor is not None:
+            require_historical_segment_binding(stored, raw, descriptor)
         if kind not in {"empirical", "synthetic"}:
             raise ValueError("Execution inventory requires explicit evidence labels")
         digest = hashlib.sha256(raw["calls.jsonl"]).hexdigest()
         if kind == "empirical" and raw["calls.jsonl"] and digest in trace_hashes:
             raise ValueError("Duplicate empirical journal cannot count as another run")
         historical = None
-        if stored["run_config"].get("input_hashes") != _inputs():
+        if stored["run_config"].get("input_hashes") != current_inputs or descriptor is not None:
             historical = replay_historical(root, directory)
             summary = historical["summary"]
+            if descriptor is not None:
+                require_historical_segment_binding(stored, raw, descriptor, historical)
         else:
             with tempfile.TemporaryDirectory(prefix="btl-audit-replay-") as temporary:
                 replay = Path(temporary)
@@ -144,6 +291,8 @@ def validate_execution_evidence(root: Path, milestones: dict) -> dict:
                 if any((replay / name).read_bytes() != raw[name]
                        for name in ("scores.csv", "usage.csv", "analysis_manifest.json")):
                     raise ValueError("Execution outputs disagree with raw-journal replay")
+        if relative == RETAINED_SEGMENT_DIRECTORY:
+            require_retained_terminal_evidence(stored, continuation, raw, summary)
         if any((directory / name).read_bytes() != data for name, data in raw.items()):
             raise ValueError("Execution evidence changed during audit")
         if kind == "synthetic":
@@ -156,6 +305,8 @@ def validate_execution_evidence(root: Path, milestones: dict) -> dict:
         inventory["empirical_runs"].append({"directory": relative, "dataset": dataset,
             "raw_trace_sha256": digest,
             "replay_source_commit": historical["source_commit"] if historical else None,
+            "retained_terminal_cells": summary.get("retained_terminal_cells", 0),
+            "known_provider_spend_usd": summary["known_provider_spend_usd"],
             **{key: summary[key] for key in ("attempted_calls", "successful_calls", "infrastructure_retries",
                 "empirical_observations", "planned_cells", "completed_cells", "pending_cells",
                 "first_action_or_readback_missing", "unknown_cost_attempts", "accounting_error_attempts")}})

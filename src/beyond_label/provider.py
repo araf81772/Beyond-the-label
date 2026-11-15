@@ -26,6 +26,7 @@ from pydantic import Field
 
 from .schemas import ModelReply, Request, StrictModel, ToolCall
 from .environment import CREDENTIAL_NAMES, load_local_credentials
+from .paid_profile import get_paid_profile
 
 
 class ProviderSettings(StrictModel):
@@ -41,6 +42,9 @@ class ProviderSettings(StrictModel):
     # Explicit documented names of the SAME model snapshot, never fallbacks.
     # Empty preserves the historical exact-request-model identity requirement.
     accepted_returned_models: tuple[str, ...] = ()
+    # Selected router-endpoint identity only, never top-level response aliases.
+    # Empty keeps historical strict matching; no inferred normalization.
+    accepted_endpoint_models: tuple[str, ...] = ()
     temperature: float | None = 0
     reasoning: dict[str, Any] | None = Field(default_factory=dict)
     max_output_tokens: int = Field(default=512, gt=0)
@@ -184,6 +188,22 @@ def _validate_settings_safety(settings: ProviderSettings) -> None:
                 or len(set(settings.accepted_returned_models)) != len(settings.accepted_returned_models)
                 or any(value not in allowed for value in settings.accepted_returned_models)):
             raise ProviderFailure("invalid_returned_model_pins")
+    if settings.accepted_endpoint_models:
+        # The exact 1017 catalog binds PrimeIntellect's endpoint name to the
+        # dated 20261017 identity. This mapping never admits another provider,
+        # snapshot, top-level response alias, model family or relaxed setting.
+        # https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints
+        profile = get_paid_profile("deepseek/deepseek-v4.1-flash-1017")
+        if (settings.model != profile["model"] or settings.provider != profile["provider"]
+                or settings.provider_route != profile["provider_route"]
+                or settings.provider_identity_source != "openrouter_metadata"
+                or settings.free_only or not settings.require_parameters
+                or settings.accepted_returned_models
+                or settings.accepted_endpoint_models != tuple(profile["accepted_endpoint_models"])
+                or settings.reasoning != profile["reasoning"] or settings.temperature != 0
+                or settings.max_output_tokens != profile["max_output_tokens"]
+                or settings.max_price != profile["max_price"]):
+            raise ProviderFailure("invalid_endpoint_model_pins")
     if settings.free_only and (not re.fullmatch(r"[A-Za-z0-9_-]+/[A-Za-z0-9_.-]+:free", settings.model)
             or settings.model.startswith("openrouter/") or not settings.provider_route
             or not settings.require_parameters or settings.provider_identity_source != "openrouter_metadata"):
@@ -301,7 +321,8 @@ def _validate_provider_identity(raw: dict[str, Any], settings: ProviderSettings)
             selected.append(endpoint)
     if len(selected) != 1:
         raise ProviderFailure("protocol_invalid_provider_metadata")
-    if selected[0]["model"] not in (settings.model, *settings.accepted_returned_models):
+    if selected[0]["model"] not in (settings.model, *settings.accepted_returned_models,
+                                    *settings.accepted_endpoint_models):
         raise ProviderFailure("model_mismatch")
     if selected[0]["provider"] != settings.provider:
         raise ProviderFailure("provider_mismatch")

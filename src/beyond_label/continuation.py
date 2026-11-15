@@ -25,7 +25,7 @@ SEGMENT_DIRECTORY = PAID_SMOKE_DIRECTORY + "/segments/deepseek_primeintellect_v2
 FILES = ("manifest.json", "calls.jsonl", "scores.csv", "usage.csv", "analysis_manifest.json")
 _REPAIR_INPUTS = {f"src/beyond_label/{name}.py" for name in (
     "provider", "openrouter", "paid_controls", "paid_live", "run", "capabilities",
-    "attempts", "budget", "controls", "continuation", "cost_reconciliation", "paid_profile", "gates",
+    "attempts", "budget", "controls", "continuation", "continuation79", "cost_reconciliation", "paid_profile", "gates",
 )} | {"configs/paid_smoke.yaml"}
 
 
@@ -214,7 +214,7 @@ def build_continuation_record(root: Path, *, source_commit: str, input_hashes: d
     return _record(history, source_commit, input_hashes)
 
 
-def load_continuation(root: Path, *, input_hashes: dict) -> dict | None:
+def _load_v2(root: Path, *, input_hashes: dict) -> dict | None:
     """Validate the fixed preparation; absence never grants an alternate path."""
     root = Path(root).resolve()
     segment = _segment_path(root)
@@ -239,7 +239,30 @@ def load_continuation(root: Path, *, input_hashes: dict) -> dict | None:
     return record
 
 
+def load_legacy_continuation(root: Path) -> dict | None:
+    """Validate retained v2 preparation against its own exact committed inputs."""
+    root = Path(root).resolve()
+    path = root / CONTINUATION_RECORD
+    if path.resolve() != path:
+        raise ContinuationError("continuation_record_path_invalid")
+    record = _read(path) if path.exists() else {}
+    inputs = record.get("active_input_sha256") if isinstance(record, dict) else None
+    return _load_v2(root, input_hashes=inputs)
+
+
+def load_continuation(root: Path, *, input_hashes: dict) -> dict | None:
+    """Use a verified 79-cell repair, otherwise retain the original v2 checks."""
+    from .continuation79 import RECORD_PATH, segment_path, load_continuation79
+    root = Path(root).resolve()
+    active = segment_path(root)
+    if (root / RECORD_PATH).exists():
+        return load_continuation79(root, input_hashes=input_hashes)
+    if active.exists():
+        raise ContinuationError("orphan_continuation79_segment")
+    return _load_v2(root, input_hashes=input_hashes)
+
+
 def effective_smoke_directory(root: Path, *, input_hashes: dict) -> Path:
     root = Path(root).resolve()
     record = load_continuation(root, input_hashes=input_hashes)
-    return _segment_path(root) if record else root / PAID_SMOKE_DIRECTORY
+    return root / record["active_directory"] if record else root / PAID_SMOKE_DIRECTORY

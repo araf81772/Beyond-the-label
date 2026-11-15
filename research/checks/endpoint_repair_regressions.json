@@ -1,0 +1,44 @@
+{
+  "classification": "offline_endpoint_repair_regressions",
+  "identity_initial_failed": 24,
+  "identity_extended_passed": 229,
+  "identity_focused_retest_passed": 46,
+  "provenance_tests_passed": 74,
+  "provenance_seconds": 11.71,
+  "audit_initial": {
+    "failed": 26,
+    "passed": 1
+  },
+  "audit_final": {
+    "passed": 63,
+    "seconds": 8.16
+  },
+  "root_integration": {
+    "passed": 79,
+    "seconds": 340.78,
+    "command": "python -m pytest -q tests/test_continuation79_execution.py tests/test_smoke_readiness.py tests/test_paid_live.py"
+  },
+  "root_new_unknown_cost_regression": {
+    "passed": 1,
+    "seconds": 1.67
+  },
+  "root_fixture_matrix_cells": 79,
+  "retained_cell_dispatched": false,
+  "independent_review": "AI review; no blocking finding",
+  "human_review": false,
+  "inference_calls": 0,
+  "account_checks": 0,
+  "full_suite_evidence": "research/checks/endpoint_repair_suite.json",
+  "historical_diagnostics_repair": {
+    "initial_full_suite_failed": 1,
+    "initial_full_suite_passed": 1627,
+    "cause": "New infrastructure continuation79 module absent from diagnostic allowlist",
+    "fix": "Add only continuation79; retain existing scientific and historical replay guards",
+    "focused_full_file_passed": 20,
+    "focused_full_file_seconds": 46.05,
+    "final_scientific_input_negatives_passed": 6,
+    "final_scientific_input_negatives_seconds": 34.32,
+    "final_scientific_input_negatives_deselected": 14,
+    "initial_suite_evidence": "research/checks/endpoint_repair_suite_initial.json"
+  }
+}

@@ -1,4 +1,11 @@
-# Partial DeepSeek smoke: identity check stopped execution
+# Historical v2 DeepSeek smoke: identity check stopped execution
+
+This document preserves the v2 collection outcome and its original rejection.
+The user has since requested an endpoint-only repair and preparation of the
+79 untouched cells, with no paid calls. See [the current preparation](smoke_continuation79.md).
+The repaired mapping does not change any v2 trace, score, terminal status or
+cost below. In particular, offline diagnostic parsing under new settings does
+not turn the old reply into an accepted empirical observation.
 
 After the user authorized smoke execution, the canonical `paid_live --execute`
 entry point ran once using source commit
@@ -84,6 +91,10 @@ collection source; it does not reinterpret or overwrite the DeepSeek child.
 Post-run validation passed **1515 offline tests in 376.64 seconds**, with network blocked and credentials isolated; [suite evidence](checks/deepseek_smoke_suite.json). This follows a fixture-only repair that verifies the historical ledger prefixes and adds four mutation/truncation regressions. Production source and empirical artifacts remain unchanged. This result is separate from the preceding 1511-test preparation pass. Do not call `paid_live --execute` merely to inspect
 or reproduce this evidence. `--check-ready` performs network GET checks and is
 not an offline reproduction command.
+
+The following were the next repair requirements recorded at the stop; their
+current implementation and preparation status are tracked separately in
+[smoke_continuation79.md](smoke_continuation79.md).
 
 Before any further execution, verify and implement an explicit mapping between
 the requested model and the documented selected-endpoint identity. Keep exact

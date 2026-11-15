@@ -70,3 +70,19 @@ def test_corrected_smoke_diagnostics_keep_one_failure_distinct_from_untouched():
         "pending_after_infrastructure_failure": 1, "not_executed_yet": 79}
     assert result["unknown_cost_attempts"] == 1 and not result["cost_evidence_complete"]
     assert result["completed_cells"] == result["empirical_observations"] == 0
+
+
+@pytest.mark.parametrize("changed_path", [
+    "src/beyond_label/oracle.py", "src/beyond_label/render.py", "src/beyond_label/generate.py",
+    "data/worlds_smoke.jsonl", "prompts/agent_system.txt", "src/beyond_label/unapproved_repair.py",
+])
+def test_diagnostics_reject_scientific_changes_and_unapproved_new_modules(monkeypatch, changed_path):
+    spec = importlib.util.spec_from_file_location("btl_smoke_diagnostics_guard", ROOT / "scripts/smoke_diagnostics.py")
+    diagnostics = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(diagnostics)
+    inputs = diagnostics._inputs()
+    assert changed_path in inputs or changed_path == "src/beyond_label/unapproved_repair.py"
+    inputs[changed_path] = "0" * 64
+    monkeypatch.setattr(diagnostics, "_inputs", lambda: inputs)
+    with pytest.raises(ValueError, match="Scientific inputs changed beyond the diagnostic repair"):
+        diagnostics.diagnose(ROOT, ROOT / "runs/paid_smoke_gpt41mini_20261115")
