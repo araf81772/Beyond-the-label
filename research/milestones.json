@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-15T16:19:35.730435+00:00",
+  "recorded_at_utc": "2026-11-15T16:28:01.228175+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "On 16 November 2026 the user assigned themselves H3 lead and Araf H4 lead, then explicitly requested operational fixes, test-fix-test and the final run. Main is authorized under the unchanged USD 9 staged allowance only after required validation and fresh readiness pass. The freeze tag is now verified on origin at 6f8f94b; main ran and stopped at652/704cells under the40-hold guard; further dispatch remains blocked. Each member's H3 audit remains required, H3/H4 remain pending and the late D4 assignment is disclosed.",
   "execution_freeze": "research/execution_freeze.json",
@@ -893,7 +893,7 @@
       "number": 6,
       "name": "Analysis/report/reproduction",
       "status": "blocked",
-      "reason": "Partial empirical bundle verified, but M5 is incomplete. Frozen conclusion is INCONCLUSIVE_WITH_INFRASTRUCTURE_MISSINGNESS. Each member still owes H3 under the current user lead; Araf leads H4. Final paper, affiliations, changed-citation checks and final reproduction remain pending.",
+      "reason": "Partial empirical bundle verified, but M5 is incomplete. Frozen conclusion is INCONCLUSIVE_WITH_INFRASTRUCTURE_MISSINGNESS. Each member still owes H3 under the current user lead; Araf leads H4. Final paper, affiliations, changed-citation checks and final-paper reproduction remain pending.",
       "completed_offline_preparation": [
         "Analysis algorithms and synthetic tests",
         "Figure/table and matched-trace generation",
@@ -974,6 +974,12 @@
           "exit_code": 0,
           "summary": "Partial empirical replay/freeze verification and10,000world bootstrap seed314159; source unchanged; human review and M6completion false",
           "evidence": "research/checks/main_finalization.json"
+        },
+        {
+          "command": "Credential-free clean-code clone; Python-network-blocked frozen finalization",
+          "exit_code": 0,
+          "summary": "All10artifact hashes,5source hashes,completeness andbootstrap settings match; no trackedsource changes orprovidercalls",
+          "evidence": "research/checks/main_clean_clone_reproduction_retest.json"
         }
       ],
       "planned_status_bundle": "results/planned",
@@ -1005,7 +1011,16 @@
       "current_empirical_limitation": "652/704 observations,52missing first/readback cells and1missing continuation; complete-pair estimates are conditional on observed pairs, not a completed64-world result.",
       "partial_empirical_bundle": "results/staged_main",
       "partial_estimate_scope": "Separate layout53 completeworlds: D=0.9622641509433962,95%bootstrapCI[0.9056603773584906,1.0]; all64planned-world identification bounds[0.75,0.9375]. Not an unconditional no-gap conclusion.",
-      "partial_finalization_evidence": "research/checks/main_finalization.json"
+      "partial_finalization_evidence": "research/checks/main_finalization.json",
+      "partial_clean_code_reproduction": {
+        "status": "passed",
+        "source_commit": "a900c1ba01f7765828d40a6d730f4b3e1c2c9779",
+        "artifact_hashes_identical": true,
+        "artifact_count": 10,
+        "same_host_dependencies": true,
+        "fresh_dependency_install": false,
+        "evidence": "research/checks/main_clean_clone_reproduction_retest.json"
+      }
     }
   ],
   "human_participation_scope": "H1/H2/H5 completion by the current user and Araf is user-attested in research/human_verification.json, not directly witnessed by Codex. H1 is late. On 16 November the current user assigned themselves H3 lead and Araf H4 lead after freeze; each member's independent H3 requirement remains and H3/H4 are pending. Historical observed/review false fields retain their original checkpoint meaning. User separately approved NUMERIC amendment A1.",

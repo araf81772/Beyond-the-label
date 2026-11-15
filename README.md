@@ -22,7 +22,7 @@ Design: [research/protocol.md](research/protocol.md) (byte-preserved, pre-regist
 
 | Stage | State |
 |---|---|
-| Offline tests and audit | **Passed in the unsynced execution clone:** 1,680 tests; integrity audit and dependency checks; 121 focused retests and fresh readiness after an invocation-only correction. The earlier Windows fixture failure remains historical. [Launch validation](research/checks/main_execution_preparation.json) |
+| Offline tests and audit | **Passed in the unsynced execution clone:** 1,680 tests; integrity audit and dependency checks; 121 focused retests and fresh readiness after an invocation-only correction. Post-run audit passed 1,583 checks; clean-code reproduction matched all ten partial-bundle artifacts. The earlier Windows fixture failure remains historical. [Launch validation](research/checks/main_execution_preparation.json) |
 | Earlier smoke, USD 1 allowance | **Partial and closed.** 54 real observations from DeepSeek V4.1 Flash via OpenRouter/PrimeIntellect on 4 smoke worlds. Smoke is a pipeline check and is never analysed as a result |
 | New smoke, pilot, load-8 smoke (USD 9 allowance) | **Executed.** Smoke 80/80 cells, pilot 160/160 (15 of 16 MAIN pairs fully correct, 15 of 16 NUMERIC optimal: load-8 selected), load-8 smoke 80/80. 525 pre-main calls, USD 0.0696 known charges. Smoke is never analysed; the pilot only selects the load |
 | Human checks and decisions | **H1/H2/H5 complete, user-attested.** H1 was late; thresholds and MASKED limitation accepted unchanged. D4 leads are now assigned: current user for H3, Araf for H4. Each member's H3 audit remains required; H3/H4 remain pending. The assignment after freeze is disclosed. [Attestation and scope](research/human_verification.json) |

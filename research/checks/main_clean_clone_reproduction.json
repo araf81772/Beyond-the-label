@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "classification": "offline_clean_code_clone_partial_main_reproduction_not_human_review",
+  "started_at_utc": "2026-11-15T16:25:38.708421+00:00",
+  "source_commit": "a900c1ba01f7765828d40a6d730f4b3e1c2c9779",
+  "same_host_dependencies": true,
+  "fresh_dependency_install": false,
+  "provider_calls": 0,
+  "clone_exit_code": 0,
+  "finalize_exit_code": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 3, in <module>\n    socket.socket=deny; socket.create_connection=deny; runpy.run_module(\"beyond_label.finalize\",run_name=\"__main__\")\n                                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 234, in run_module\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"C:\\Users\\tonmo\\AppData\\Local\\Temp\\btl-main-reproduction-ryx_soht\\repository\\src\\beyond_label\\finalize.py\", line 21, in <module>\n    from .evidence import export_evidence\n  File \"C:\\Users\\tonmo\\AppData\\Local\\Temp\\btl-main-reproduction-ryx_soht\\repository\\src\\beyond_label\\evidence.py\", line 11, in <module>\n    from .run import Journal\n  File \"C:\\Users\\tonmo\\AppData\\Local\\Temp\\btl-main-reproduction-ryx_soht\\repository\\src\\beyond_label\\run.py\", line 22, in <module>\n    from .provider import PinnedProvider, ProviderFailure, ProviderResult, ProviderSettings, parse_response, serialize_request\n  File \"C:\\Users\\tonmo\\AppData\\Local\\Temp\\btl-main-reproduction-ryx_soht\\repository\\src\\beyond_label\\provider.py\", line 24, in <module>\n    import httpx\n  File \"C:\\Users\\tonmo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\httpx\\__init__.py\", line 2, in <module>\n    from ._api import *\n  File \"C:\\Users\\tonmo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\httpx\\_api.py\", line 6, in <module>\n    from ._client import Client\n  File \"C:\\Users\\tonmo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\httpx\\_client.py\", line 13, in <module>\n    from ._auth import Auth, BasicAuth, FunctionAuth\n  File \"C:\\Users\\tonmo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\httpx\\_auth.py\", line 9, in <module>\n    from urllib.request import parse_http_list\n  File \"C:\\Users\\tonmo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\urllib\\request.py\", line 89, in <module>\n    import http.client\n  File \"C:\\Users\\tonmo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\http\\client.py\", line 1498, in <module>\n    import ssl\n  File \"C:\\Users\\tonmo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\ssl.py\", line 978, in <module>\n    class SSLSocket(socket):\n    ...<461 lines>...\n                return None\nTypeError: function() argument 'code' must be code, not str\n",
+  "python_socket_network_blocked": true,
+  "credential_environment_names_filtered": true,
+  "credential_file_absent": true,
+  "status": "failed",
+  "finished_at_utc": "2026-11-15T16:25:43.852586+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "scope": "temporary offline verification wrapper only; no frozen source edit",
+  "original_guard_import_exit_code": 1,
+  "original_guard_failure": "TypeError during ssl.SSLSocket class definition: socket.socket replaced with a function",
+  "first_diagnostic_attempt": "A literal escaped-newline in the diagnostic child string caused SyntaxError before imports; corrected to actual newlines. No provider call or source edit.",
+  "corrected_guard_exit_code": 0,
+  "corrected_guard_stdout": "imports_passed_network_construction_blocked",
+  "corrected_guard_stderr": "",
+  "provider_calls": 0
+}
