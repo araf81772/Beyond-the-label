@@ -817,8 +817,12 @@
     "offline_tests_passed": 1201,
     "full_suite_evidence": "research/checks/paid_smoke_suite.json",
     "integrity_evidence": "research/checks/paid_smoke_validation.json",
-    "current_push_status": "pending_checkpoint_delivery",
+    "current_push_status": "succeeded",
     "scientific_design_changed": false,
-    "human_review": false
+    "human_review": false,
+    "engineering_commit": "516de443bbdad399e07529a071d841aca5d3ca0e",
+    "remote_head_verified": true,
+    "delivery_evidence": "research/checks/paid_smoke_delivery.json",
+    "final_status_commit_reference": "Resolve through Git; no circular self-hash"
   }
 }
