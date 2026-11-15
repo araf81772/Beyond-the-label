@@ -1,6 +1,6 @@
 # Related-work verification status
 
-Read-only public-source verification was performed by Codex (AI review) on 2026-11-14 UTC / 2026-11-15 AEDT. The evidence record is [checks/source_verification.json](checks/source_verification.json). This establishes the identities and limited claims below, not an exhaustive literature review or a novelty finding. External papers' results are not Beyond the Label observations. No model credentials or inference calls were used for the public-paper review. Subsequent template retrieval used the connected Google Drive service; no credential values or authorization headers were retained. Human citation review H5 has not occurred.
+Read-only public-source verification was performed by Codex (AI review) on 2026-11-14 UTC / 2026-11-15 AEDT. The evidence record is [checks/source_verification.json](checks/source_verification.json). This establishes the identities and limited claims below, not an exhaustive literature review or a novelty finding. External papers' results are not Beyond the Label observations. No model credentials or inference calls were used for the public-paper review. Subsequent template retrieval used the connected Google Drive service; no credential values or authorization headers were retained. Human H5 had not occurred at that historical checkpoint. The current user subsequently confirmed H5 completion by themselves and Araf for the three manuscript references; [human_verification.json](human_verification.json) records that attestation separately from AI source checks.
 
 ## Requested primary sources
 
@@ -14,7 +14,7 @@ The abstract verifies a six-memory scenario with a two-record inspection budget 
 
 Kaisheng Fan, Yishu Gao, Xunzhu Tang, Tegawend'e F. Bissyand'e, and Weizhe Zhang, *Right Facts, Wrong Rule: Scope-Transfer Poisoning of Retrieval-Augmented Generation*, [arXiv:2609.35155v2](https://arxiv.org/html/2609.35155v2).
 
-The abstract verifies rule-scope misapplication despite factually supported evidence and explicit scope boundaries. Its 76.2% recognition result is conditional on target-matching default responses: under an explicit probe, the same model judged the rule inapplicable. It is not a rate over all attempts, a BTL observation, or evidence that BTL's separate readback branch causally determines action. The paper concerns adversarial RAG document construction; it does not by itself establish BTL's novelty.
+The paper supports rule-scope misapplication despite factually supported evidence and explicit scope boundaries. Its recognition comparison is conditional on target-matching default responses: under an explicit probe, the same model can judge the rule inapplicable. A later full-text AI check found an unresolved numerical inconsistency: section 4.4 reports 76.2% and also 281/376 (74.7%); both appear on [PDF page 7](https://arxiv.org/pdf/2609.35155v2#page=7), without clearly distinguishing the populations. Do not treat the exact percentage as verified or silently substitute one value. The current manuscript uses only the supported qualitative claim. This is not a rate over all attempts, a BTL observation, or evidence that BTL's separate readback branch causally determines action. The paper concerns adversarial RAG document construction; it does not by itself establish BTL's novelty.
 
 ### Chu and Huang: calibrated reliance and decision utility
 

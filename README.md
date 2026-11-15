@@ -22,10 +22,11 @@ Design: [research/protocol.md](research/protocol.md) (byte-preserved, pre-regist
 
 | Stage | State |
 |---|---|
-| Offline tests and audit | Passing on branch `v1` (see `research/checks/v1_validation.json`) |
+| Offline tests and audit | Audit passed. Current full suite: 1,679 passed, one temporary-directory permission failure; all 3 ledger tests passed in a clean Git snapshot. [Current validation](research/checks/human_verification_update.json); [earlier validation](research/checks/v1_validation.json) |
 | Earlier smoke, USD 1 allowance | **Partial and closed.** 54 real observations from DeepSeek V4.1 Flash via OpenRouter/PrimeIntellect on 4 smoke worlds. Smoke is a pipeline check and is never analysed as a result |
 | New smoke, pilot, load-8 smoke (USD 9 allowance) | **Executed.** Smoke 80/80 cells, pilot 160/160 (15 of 16 MAIN pairs fully correct, 15 of 16 NUMERIC optimal: load-8 selected), load-8 smoke 80/80. 525 calls, USD 0.0696 of USD 9. Smoke is never analysed; the pilot only selects the load |
-| Freeze and main (USD 9 allowance) | **Not run.** Human checks H1/H2 and team decisions D3/D4 are not recorded yet. One command per stage: [research/staged_execution.md](research/staged_execution.md) |
+| Human checks and decisions | **H1/H2/H5 complete, user-attested.** H1 was late; thresholds and MASKED limitation accepted unchanged. H3/H4 await main/report; D4 still needs their explicit responsibility record. [Attestation and scope](research/human_verification.json) |
+| Freeze and main (USD 9 allowance) | **Not run.** Finish D4 and obtain an explicit freeze request before creating/verifying the freeze and tag. Main remains deferred. [Runbook](research/staged_execution.md) |
 | Execution freeze | None yet |
 | Main effect, intervals, controls | Not available. Nothing in this repository is a finding about model behaviour |
 
@@ -59,7 +60,7 @@ python -m beyond_label.staged execute --stage smoke
 
 Every commit in this repository is dated 14 or 15 November 2026; the sprint opened on 13 November 2026. The design file is dated Saturday 14 November. The first commit contains only `.gitattributes`; no code predates the sprint. *Team to confirm before submission: whether any idea or draft behind the design predates 13 November, and say so in the report if it does.*
 
-AI assistance: OpenAI Codex wrote most of the code, tests and engineering records under the team's direction. Claude (Anthropic) reviewed the repository against the sprint rules on 15 November and added the staged execution path on branch `v1`. No model judges any experimental decision. No human review step (H1-H5 in the protocol) has been recorded yet.
+AI assistance: OpenAI Codex wrote most of the code, tests and engineering records under the team's direction. Claude (Anthropic) reviewed the repository against the sprint rules on 15 November and added the staged execution path on branch `v1`. No model judges any experimental decision. The current user reports that they and Araf completed H1, H2/P2 and H5; these are recorded as user-attested, not independently witnessed by an AI. H1's late timing remains a deviation. H3/H4 remain pending. [Human verification record](research/human_verification.json).
 
 ## Repository map
 

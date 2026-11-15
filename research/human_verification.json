@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "classification": "human_completion_reported_by_user_not_independently_observed",
+  "recorded_on": "2026-11-15",
+  "client_timezone": "Australia/Sydney",
+  "recorded_by": "Codex (AI), transcribing the current user's confirmations",
+  "reviewed_branch": "v1",
+  "reviewed_commit": "f1954c03807fa0422934b6dacfbbfd504e032772",
+  "reported_reviewers": ["current user", "Araf"],
+  "evidence_basis": "Statements in the current conversation. Individual worksheets, initials and exact completion times were not supplied; Codex did not directly witness the human checks.",
+  "user_statements_verbatim": [
+    "you do then iwe will do again",
+    "me and aaf check evert 4 of them. do you thik andthing need to done if not do human check done",
+    "we checked H5 too. mark it done and tell me if anything still blocks the freeze. don’t run main yet",
+    "update it in v1"
+  ],
+  "checks": {
+    "H1": {
+      "status": "complete_user_attested",
+      "scope": "Independent human calculation of protocol Section 4 and all eight pilot worlds, compared with the oracle; completion is recorded on the user's confirmation of the four requested reviews.",
+      "completed_before_pilot": false,
+      "timing_deviation": "The pilot had already run before this confirmation. Retrospective completion does not satisfy the original before-pilot timing requirement."
+    },
+    "H2_P2": {
+      "status": "complete_user_attested",
+      "scope": "Both reported reviewers checked all 160 pilot cells against their parser outputs, as confirmed by the user."
+    },
+    "H3": {
+      "status": "pending_main_not_collected",
+      "required_role": "Each human team member: 30 fixed-seed action-stratified main traces plus every INVALID and REFUSED trace.",
+      "individual_assignment_confirmation": "not_supplied"
+    },
+    "H4": {
+      "status": "pending_final_empirical_report",
+      "required_role": "Human verification of every final-paper number against its file-and-command evidence.",
+      "named_owner": null
+    },
+    "H5": {
+      "status": "complete_user_attested",
+      "scope": "The three scholarly references and associated claims in report/manuscript.md at the reviewed commit.",
+      "reviewers": ["current user", "Araf"],
+      "new_or_changed_citations_require_review": true
+    }
+  },
+  "decisions": {
+    "D3": {
+      "status": "accepted_unchanged",
+      "basis": "The user requested acceptance of the existing rules, then confirmed completion of all four requested reviews.",
+      "ceiling_rule": "At least 14 of 16 fully correct MAIN pairs selects load-8; 13 or fewer selects load-2.",
+      "floor_rule": "Fewer than 12 of 16 optimal NUMERIC decisions requires a model change and repeat pilot.",
+      "interpretation_rules": "Protocol Section 9 unchanged: gap requires probe and NUMERIC rates at least 0.90 and separate-layout upper D bound below 0.80; no-gap requires lower D bounds at least 0.80 in both layouts and both payoff controls at least 0.80; layout-help requires positive interaction lower bound, lower inline regret and no increase in inline HIGH-FEE checking; otherwise inconclusive.",
+      "timing_deviation": "Acceptance is recorded after pilot exposure. It is not evidence of the pre-pilot decision requested by protocol Section 18.",
+      "threshold_changes_after_freeze_allowed": false
+    },
+    "D4": {
+      "status": "partially_recorded",
+      "confirmed": "The current user and Araf report H1/H2/H5 completion. AI assistance is separate from human participation.",
+      "remaining": "Explicitly confirm the future H3 responsibilities and name the H4 owner. H3/H4 completion is due after main, not before freeze."
+    },
+    "MASKED": {
+      "status": "limitation_accepted_existing_settings_retained",
+      "max_output_tokens": 512,
+      "observed_first_reply_truncations": {
+        "staged_smoke_load2": "4/8",
+        "staged_pilot_load2": "14/16",
+        "staged_smoke_load8": "8/8"
+      },
+      "limitation": "Observed actions often follow the fixed re-prompt after truncation. Comparisons with other conditions cannot isolate withholding scope from the different realized interaction. Smoke does not establish a future main truncation rate.",
+      "cap_change_consequence": "A changed cap requires repeating both smoke and pilot, plus load-8 smoke if selected again. After freeze it also requires an approved deviation, a new run ID and a new freeze."
+    }
+  },
+  "independent_ai_review": {
+    "classification": "AI_review_not_human_signoff",
+    "reviewers": "Codex and three independent research subagents",
+    "pilot_cells_checked": 160,
+    "raw_responses_checked": 267,
+    "oracle_decision_rows_checked": 128,
+    "numeric_score_fields_checked": 512,
+    "parser_or_oracle_discrepancies_found": 0,
+    "invalid_continuations_retained": 8,
+    "suboptimal_first_actions_retained": 3,
+    "citation_review": "All three current qualitative attributions are supported. Fan et al. v2 reports both 76.2% and 281/376 (74.7%) without a clear reconciliation; no exact recognition percentage is cleared for quotation. The current manuscript quotes neither number.",
+    "citation_sources": [
+      "https://arxiv.org/html/2608.25553v3",
+      "https://arxiv.org/html/2609.35155v2",
+      "https://arxiv.org/pdf/2609.35155v2#page=7",
+      "https://arxiv.org/html/2610.34107v1"
+    ]
+  },
+  "execution_boundary": {
+    "current_update_scope": "Documentation and status only on v1; preserve every experimental input and retained run.",
+    "freeze_created": false,
+    "main_executed": false,
+    "main_authorized_by_this_update": false,
+    "remaining_before_freeze": [
+      "Finish the D4 responsibility record for H3/H4.",
+      "Obtain an explicit freeze request; create and verify the actual freeze record, tag and remote delivery."
+    ]
+  }
+}

@@ -4,6 +4,8 @@ Prepared 15 November 2026 (AEDT) on branch `v1`. Every paid stage starts only wh
 
 **State on 15 November 2026 (late):** stages 1–3 (smoke load-2, pilot, smoke load-8) have been executed and committed; the pilot selected load-8. The freeze and main have not been run. Current figures and open pre-freeze items are in [decisions.md](decisions.md).
 
+**Human-check update:** [human_verification.json](human_verification.json) records H1/H2/H5 complete on the current user's attestation for themselves and Araf. H1 was late; the existing thresholds and MASKED limitation are accepted unchanged. H3/H4 are later-stage checks; D4 still needs explicit future responsibilities. Complete that responsibility record and obtain an explicit freeze request before creating the freeze/tag. The current documentation update does not authorize freeze or main. A token-cap change would invalidate the existing gates and require repeating smoke and pilot (and load-8 smoke if selected again).
+
 Authorization: `paid-staged-usd9-v1`, recorded in [staged_authorization.json](staged_authorization.json). Settings: [configs/staged.yaml](../configs/staged.yaml). Code: [staged.py](../src/beyond_label/staged.py). The protocol in [protocol.md](protocol.md) is unchanged.
 
 ## What the stages are

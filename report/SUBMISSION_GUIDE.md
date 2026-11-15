@@ -78,17 +78,19 @@ Smoke results are a pipeline check and are **not** reported as findings. Pilot r
 
 ## 7. Human checks the protocol asks for (section 10)
 
-None is recorded yet. Each one that is really done turns a disclaimer into validation. Record initials and dates truthfully; do not record a check that did not happen.
+The current user confirmed that they and Araf completed H1, H2/P2 and H5. These are **user-attested completions**, recorded in [human_verification.json](../research/human_verification.json); no worksheets, initials or exact completion times were supplied. H1 was completed after the pilot and must remain a disclosed timing deviation. AI checks are recorded separately. H3/H4 remain pending; D4 still needs their explicit responsibility record.
 
-- [ ] H1: each person hand-computes the oracle table (protocol section 4) and compares it with `evaluation/oracle_table.csv`. About 20 minutes
-- [ ] H2: both read the pilot traces against the parser's categories
+- [x] H1 (user-attested; late): each person independently hand-computes protocol section 4 and all eight pilot worlds and compares with the oracle. Retain the timing deviation
+- [x] H2/P2 (user-attested): both read every pilot trace against the parser's categories
 - [ ] H3: each audits 30 main traces drawn with seed 161803, plus every invalid and refused trace; record in `evaluation/trace_audit.csv`
 - [ ] H4: every number in the paper has a row in `claim_evidence.csv`
-- [ ] H5: one person opens every cited paper and confirms title, authors and each quoted figure
+- [x] H5 (user-attested by the current user for themselves and Araf): the three references and associated claims in the current manuscript were checked. Any new or changed citation requires review
 
 ## 8. Related work
 
 The draft cites three 2026 arXiv papers. Claude opened all three on 15 November and the titles, authors and summaries match (AI check, not H5). Two gaps a judge is likely to notice:
+
+Later Codex AI review checked the relevant methods/results as well as metadata. The current qualitative attributions are supported. Fan et al. v2 section 4.4 and PDF page 7 contain both 76.2% and 281/376 (74.7%), with no clear reconciliation. Do not quote an exact recognition percentage as verified; the current manuscript avoids it. The historical source records remain unchanged. Human H5 completion is separately user-attested above.
 
 1. **Novelty against Nakayashiki (2026).** That paper already tests budgeted verification of stale provenance on sixteen models. The report needs one clear paragraph on what this design isolates that theirs does not: the labels are unchanged, only the report-to-scope binding is swapped between fixed reports, and the best action is known exactly.
 2. **The sprint's own reading list.** None of it is cited. Items close to this work: Ren et al., MASK (arXiv:2503.03750); Fanous et al., SycEval (arXiv:2502.08177); Kalai et al., "Why Language Models Hallucinate" (arXiv:2509.04664); the C2PA specification v2.4; Cotton-Barratt and Finnveden, "AI for AI for Epistemics" (Forethought, 2026); Finnveden, "What's Important in 'AI for Epistemics'?" (2024). Cite only what a team member has opened and read.

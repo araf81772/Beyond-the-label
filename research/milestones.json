@@ -1,10 +1,14 @@
 {
   "recorded_at_utc": "2026-11-15T03:50:26.540649+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "Staged USD 9 allowance (paid-staged-usd9-v1): smoke load-2, pilot and smoke load-8 executed on the user's explicit per-stage requests; pre-freeze AI review done; freeze and main await the team's pre-freeze checks and an explicit request. Earlier scope (79-cell continuation of the closed USD 1 smoke, stop before pilot/main) is historical.",
+  "requested_scope": "Documentation update on v1: record user-attested H1/H2/H5 completion, late H1 and D3/D4 timing, unchanged thresholds and accepted MASKED limitation. The three staged gates are complete. D4 future H3/H4 responsibilities remain incomplete; freeze and main await separate explicit requests. Earlier smoke-only boundaries remain historical.",
   "execution_freeze": null,
   "experimental_calls": 621,
   "human_participation_observed": false,
+  "human_verification_record": "research/human_verification.json",
+  "human_verification_update_validation": "research/checks/human_verification_update.json",
+  "human_checks_user_attested_complete": ["H1", "H2/P2", "H5"],
+  "human_checks_pending": ["H3", "H4"],
   "milestones": [
     {
       "number": 1,
@@ -228,7 +232,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "Staged smoke load-2 (80/80 cells), pilot (160/160; 15/16 MAIN pairs fully correct, 15/16 NUMERIC optimal; load-8 selected) and smoke load-8 (80/80) are complete on identical inputs. No execution freeze record or tag exists. Before the freeze the protocol still needs human check H2/P2 (H1 was not done before the pilot), recorded team decisions D3/D4, and an explicit freeze request. The closed USD 1 smoke stays partial and retained (53 new cells complete, 1 partial, 25 untouched, 1 retained missing).",
+      "reason": "Staged smoke load-2 (80/80), pilot (160/160; 15/16 MAIN pairs fully correct and 15/16 NUMERIC optimal; load-8 selected) and smoke load-8 (80/80) are complete on identical inputs. H1/H2/H5 are complete user-attested; H1 was late. D3 and MASKED acceptance are recorded unchanged. D4 future H3/H4 responsibilities remain incomplete. No execution freeze record or tag exists; an explicit freeze request is still required. The closed USD 1 smoke remains partial and preserved.",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -259,8 +263,8 @@
       "real_smoke_worlds": 4,
       "real_pilot_worlds": 8,
       "freeze_created": false,
-      "minimum_next_action": "Team: do and record H2/P2 on the pilot traces, record the H1 deviation, record D3/D4. Then commit and run `python -m beyond_label.staged freeze --tag <tag>` on explicit request, tag, push the tag. See research/decisions.md (pre-freeze review).",
-      "offline_preparation_status": "Partial smoke replay, accounting audit and1634-test offline suite passed; M4 empirical gates remain incomplete and M5 is notready.",
+      "minimum_next_action": "Confirm D4 future H3 responsibilities and the H4 owner. On a separate explicit freeze request, verify unchanged gate inputs, create the freeze record and tag, and verify remote delivery. H3/H4 completion is due after main; this documentation update does not authorize freeze or main.",
+      "offline_preparation_status": "Historical closed-smoke replay and1634-test validation are retained. The later v1 staged smoke/pilot/load8-smoke collections are complete on unchanged inputs; M4 remains blocked by the remaining D4 record and actual freeze, and M5 remains unrun.",
       "offline_validation": [
         {
           "command": "python -m pytest -q",
@@ -811,7 +815,7 @@
       "empirical_completed_cells": 0,
       "planned_cells": 704,
       "missingness_interpretation": "Not executed; no partial empirical run exists",
-      "minimum_next_action": "Complete the pre-freeze human checks and decisions, freeze, push the tag, run check-ready --stage main, then execute main only on explicit request",
+      "minimum_next_action": "Finish the D4 responsibility record and create/verify a freeze only on explicit request. A later separately requested main execution also requires a fresh readiness check. The user currently says not to run main.",
       "completed_offline_preparation": [
         "Current-source full704-cell synthetic execution, trace replay, usage and duplicate-free resume",
         "Read-only finalization bundle preserving source bytes and explicit missingness classes",
@@ -829,7 +833,7 @@
       "number": 6,
       "name": "Analysis/report/reproduction",
       "status": "blocked",
-      "reason": "Independent offline analysis, report and reproduction preparation is retained as historical pre-results work; real smoke is incomplete and pilot/main gates are unmet. No main observations or human H1-H5 reviews exist, so empirical conclusions/final paper remain blocked.",
+      "reason": "Historical pre-results artifacts remain preserved. The staged smoke/pilot gates are complete, but freeze/main are unrun, so empirical main conclusions and the final paper remain blocked. H1/H2/H5 are user-attested complete within the recorded scope; H1 was late. H3/H4, final-report citation changes, author affiliations and final reproduction remain outstanding.",
       "completed_offline_preparation": [
         "Analysis algorithms and synthetic tests",
         "Figure/table and matched-trace generation",
@@ -849,7 +853,7 @@
       "empirical_ci95": null,
       "paper_created": false,
       "human_review_observed": false,
-      "minimum_next_action": "Complete authorized real smoke/pilot and freeze, collect main traces, finalize evidence offline, and complete human review and author affiliations",
+      "minimum_next_action": "After a separately authorized freeze and main collection, complete H3, finalize evidence offline, complete H4 and any new-citation H5 checks, confirm affiliations, and verify the final report/reproduction. No main collection is authorized by this documentation update.",
       "source_verification": "research/checks/source_verification.json",
       "official_template_link_verified": true,
       "official_template_contents_verified": true,
@@ -935,7 +939,7 @@
       "current_empirical_limitation": "No main observations; partial smoke is excluded from main statistics. Historical pre-results artifacts are not an empirical report."
     }
   ],
-  "human_participation_scope": "No H1-H5 oracle/trace/citation review observed; user separately approved NUMERIC amendment A1",
+  "human_participation_scope": "H1/H2/H5 completion by the current user and Araf is user-attested in research/human_verification.json, not directly witnessed by Codex. H1 is late; H3/H4 remain pending. Historical observed/review false fields retain their original checkpoint meaning. User separately approved NUMERIC amendment A1.",
   "authors": {
     "names": [
       "Tonmoy",
@@ -1422,7 +1426,7 @@
         "commit": "9594f9a"
       }
     ],
-    "note": "Milestone 4 stays blocked until the freeze is actually written, tagged and verified. Smoke observations are never analysed; pilot observations only select the load. Human checks H1-H5 are not recorded as done.",
+    "note": "Milestone 4 stays blocked until D4 future responsibilities are recorded and the freeze is explicitly requested, written, tagged and verified. H1/H2/H5 are user-attested complete; H1 was late. D3 and MASKED acceptance are unchanged. H3/H4 completion belongs after main. Smoke is never analysed; pilot observations only select the load.",
     "ledger": {
       "attempts_reserved": 525,
       "attempts_remaining": 2475,
@@ -1432,6 +1436,7 @@
     },
     "freeze": null,
     "main_executed": false,
-    "pre_freeze_review": "research/decisions.md, entry 'pre-freeze review (Claude, AI review)'"
+    "pre_freeze_review": "research/decisions.md, pre-freeze AI review and subsequent human-attestation update",
+    "human_verification": "research/human_verification.json"
   }
 }

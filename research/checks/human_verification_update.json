@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "classification": "offline_documentation_validation_not_human_review_or_execution_freeze",
+  "recorded_on": "2026-11-15",
+  "client_timezone": "Australia/Sydney",
+  "recorded_by": "Codex (AI)",
+  "branch": "v1",
+  "base_commit": "f1954c03807fa0422934b6dacfbbfd504e032772",
+  "scope": "Record the user's H1/H2/H5 completion attestations, unchanged D3/MASKED acceptance, remaining D4 responsibilities and freeze/main boundaries.",
+  "checks": [
+    {
+      "command": "python scripts/verify_audit.py",
+      "result": "passed, 1498 checks, 0 failures; 486 files scanned",
+      "exit_code": 0,
+      "scope": "Evidence consistency and source integrity; not experiment tests."
+    },
+    {
+      "command": "python -m pytest -q",
+      "result": "1 failed, 1679 passed in 715.76s",
+      "exit_code": 1,
+      "failure": "tests/test_staged_ledger_audit.py::test_staged_runs_without_a_ledger_fail_the_audit",
+      "failure_point": "shutil.rmtree(root / STAGED_SESSION), Windows PermissionError WinError 5 on the temporary fixture directory",
+      "diagnosis": "The OneDrive source session directory has ReadOnly, Directory, Archive, ReparsePoint attributes. shutil.copytree retains ReadOnly on the temporary directory, preventing its deletion. No scientific or parser assertion failed."
+    },
+    {
+      "command": "python -m pytest -q tests/test_staged_ledger_audit.py",
+      "environment": "Original checkout, outside the sandbox",
+      "result": "1 failed, 2 passed in 11.47s",
+      "exit_code": 1,
+      "note": "Same temporary-directory deletion failure; this was not solely a sandbox permission issue."
+    },
+    {
+      "command": "python -m pytest -q tests/test_staged_ledger_audit.py",
+      "environment": "Temporary Git-archive snapshot of the base commit, outside OneDrive; no tracked source edits or inherited read-only directory attributes",
+      "result": "3 passed in 10.94s",
+      "exit_code": 0,
+      "credential_isolation": "No .env copied; credential-like environment variables removed; suite credential isolation and network prohibition active.",
+      "limit": "Targeted retest only. The original full-suite result remains one failure and 1679 passes."
+    },
+    {
+      "command": "git diff --check",
+      "result": "clean",
+      "exit_code": 0
+    },
+    {
+      "check": "Read-only JSON/CSV, manifest hashes and historical-state comparisons",
+      "result": "Both status JSON files parse; all 38 requirement IDs retained; only six live requirement rows updated; M1-M3, all milestone statuses, authorization/ledger history and staged observations preserved; all 50 gate inputs match the current worktree."
+    },
+    {
+      "check": "Independent AI documentation review",
+      "result": "No actionable findings; attestations are labelled user-reported, H1 timing deviation retained, no invented H3/H4 ownership, freeze/main remain unrun."
+    }
+  ],
+  "protocol_sha256": "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b",
+  "experimental_input_files_changed": 0,
+  "retained_run_files_changed": 0,
+  "inference_calls": 0,
+  "provider_or_account_requests": 0,
+  "freeze_created": false,
+  "main_executed": false,
+  "not_established": [
+    "Direct AI observation of the reported human work",
+    "Pre-pilot completion of H1 or acceptance of D3/D4",
+    "Named future H3/H4 responsibility assignments",
+    "An execution freeze, tag, or authorization to run main",
+    "A fully passing full-suite run in the original OneDrive checkout"
+  ]
+}
