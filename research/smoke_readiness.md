@@ -1,6 +1,15 @@
-# Smoke preparation without execution
+# Historical smoke-readiness checkpoint
 
-The three preparation blockers are resolved. **Ready for a later smoke attempt; no new inference was run.** The final [GET-only readiness check](checks/smoke_readiness_final.json) passed, including current route metadata and the USD10 nonreset key limit. All **1511 offline tests passed**; [suite evidence](checks/smoke_preparation_suite.json). Live inference delivery remains unverified.
+This page records the preparation checkpoint before the user subsequently
+authorized a smoke attempt. It is no longer the current execution status.
+The first DeepSeek response was retained but rejected as `model_mismatch`
+because its selected endpoint used the `20261017` model identity while the
+strict configuration accepted only `1017`. Execution stopped; the smoke gate
+did not pass. See [the current outcome and repair requirements](deepseek_smoke.md)
+and [recorded outcome](checks/deepseek_smoke_outcome.json). All counts, available
+budget and no-execution statements below describe the earlier preparation.
+
+At that checkpoint the three preparation blockers were resolved. **Ready for a later smoke attempt; no new inference had run at that point.** The [GET-only readiness check](checks/smoke_readiness_final.json) passed, including route metadata and the USD10 nonreset key limit. All **1511 offline tests passed**; [suite evidence](checks/smoke_preparation_suite.json). Those checks did not verify live inference identity handling.
 
 Prepared source commit: `89de9c8202c8cfa9720f49e495ecbb8ea662f3aa`. The three [preparation records](checks/smoke_preparation_records.json) bind this tested source and retain the original attempt/hold. This is not an execution freeze. The user explicitly said not to run smoke yet; pilot, main and freeze remain unstarted.
 

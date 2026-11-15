@@ -1,0 +1,22 @@
+{
+  "classification": "offline_actual_run_budget_history_reconciliation",
+  "network_blocked": true,
+  "credentials_removed": true,
+  "all_run_and_control_bytes_unchanged": true,
+  "counter": {
+    "maximum_attempts": 200,
+    "reserved_attempts": 2,
+    "remaining_attempts": 198
+  },
+  "money": {
+    "cap": "1",
+    "settled_cost": "0.00005501216",
+    "held": "0.44084208",
+    "available": "0.55910290784",
+    "pending_attempts": 0,
+    "unknown_cost_attempts": 1,
+    "blocked": false
+  },
+  "inference_calls": 0,
+  "account_checks": 0
+}

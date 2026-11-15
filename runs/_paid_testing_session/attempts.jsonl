@@ -1,2 +1,3 @@
 {"authorization_id":"paid-smoke-usd1-200-v1","event":"initialized","event_hash":"85deffa44b94143055849438d182c1ddc4d39fb72dfb9d75d38032c40b08ba5e","maximum_attempts":200,"previous_hash":"0000000000000000000000000000000000000000000000000000000000000000","sequence":1,"version":1}
 {"event":"attempt_reserved","event_hash":"5ef97b84be70bf5b2211cdd69eb495fc9268e1a3ce3bc018c9de39135755746d","ordinal":1,"previous_hash":"85deffa44b94143055849438d182c1ddc4d39fb72dfb9d75d38032c40b08ba5e","sequence":2}
+{"event":"attempt_reserved","event_hash":"d974f29d953a0fe4ca4e66aca874db34ccf4ceb1264afc22803336c17f2effc2","ordinal":2,"previous_hash":"5ef97b84be70bf5b2211cdd69eb495fc9268e1a3ce3bc018c9de39135755746d","sequence":3}

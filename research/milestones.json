@@ -1,9 +1,9 @@
 {
-  "recorded_at_utc": "2026-11-15T02:22:56.586763+00:00",
+  "recorded_at_utc": "2026-11-15T02:32:58.153263+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "Fix three smoke blockers, test/fix/retest, update logs and commit/push; prepare user-approved DeepSeek/PrimeIntellect replacement under unchanged USD10 total / USD1 smoke / 200 aggregate attempts; no smoke execution now.",
+  "requested_scope": "User authorized DeepSeek/PrimeIntellect smoke under same USD1/200 caps including oldhold; run stopped after first new reply failed selected-endpoint model identity check; stop and report before pilot/main.",
   "execution_freeze": null,
-  "experimental_calls": 1,
+  "experimental_calls": 2,
   "human_participation_observed": false,
   "milestones": [
     {
@@ -228,7 +228,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "All three preparation blockers resolved and GET-only readiness passed. Real smoke remains incomplete; current user instruction says do not run it yet. Pilot and execution freeze remain unstarted.",
+      "reason": "Real smoke stopped after first DeepSeek reply failed selected-endpoint model identity validation. One terminal missing readback cell,79pending and0accepted observations; pilot/freeze absent.",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -258,8 +258,8 @@
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
-      "minimum_next_action": "User requests smoke execution when ready; no additional budget or key-setting change needed based on the recorded check. Fresh route/account/source/cap guards will run again before inference. Stop and report before pilot/main.",
-      "offline_preparation_status": "1511 offline tests passed;47 tested source hashes match committed inputs; three preparation records generated and reproduced; final GET-only readiness passed. No new inference, no new empirical segment, no freeze.",
+      "minimum_next_action": "Verify and repair explicit endpoint identity mapping and source-version continuation for79untouched cells, preserving this terminal missing cell, both attempts, old hold and raw traces; then rerun offline checks before any continuation.",
+      "offline_preparation_status": "After one rejected DeepSeek response,1515offline tests passed in376.64s. Fixture-only repair; all47collection inputs unchanged, child artifacts reproduce immutably, caps and retained hold reconcile. Real smoke gate still unmet.",
       "offline_validation": [
         {
           "command": "python -m pytest -q",
@@ -423,6 +423,12 @@
           "exit_code": 0,
           "summary": "1511 passed in658.30s; network blocked and credentials isolated; execution inputs unchanged",
           "evidence": "research/checks/smoke_preparation_suite.json"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "1515passed in376.64s; post-run historical-prefix fixture repair and4new regressions; production source unchanged",
+          "evidence": "research/checks/deepseek_smoke_suite.json"
         }
       ],
       "recorded_test_fix_retest": [
@@ -460,16 +466,18 @@
       },
       "local_credential_setup": {
         "status": "authenticated_authorized_usd10_hard_limit_verified",
-        "evidence": "research/checks/paid_smoke_ready_preflight.json",
-        "post_failure_evidence": "research/checks/paid_smoke_post_failure_account.json",
+        "evidence": "runs/_paid_testing_session/preflights.jsonl",
+        "post_failure_evidence": "research/checks/deepseek_smoke_outcome.json",
         "env_file_ignored": true,
         "credential_values_recorded": false,
         "paid_calls_authorized": true,
         "authorized_scope": "smoke_only",
-        "provider_inference_attempts": 1,
+        "provider_inference_attempts": 2,
         "provider_successful_responses": 0,
         "hard_limit_usd": 10,
-        "reset": null
+        "reset": null,
+        "raw_model_replies": 1,
+        "provider_successful_responses_definition": "Accepted provider-parser results; the one raw DeepSeek reply failed identity validation"
       },
       "proposed_configuration": {
         "path": "configs/proposed_m4.yaml",
@@ -580,7 +588,7 @@
         "total_testing_usd": 10,
         "smoke_usd": 1,
         "maximum_aggregate_inference_attempts": 200,
-        "consumed_attempts": 1,
+        "consumed_attempts": 2,
         "attempt_count_includes": [
           "initial_requests",
           "infrastructure_retries",
@@ -591,14 +599,17 @@
         "execution_ready": false,
         "condition": "key hard limit no higher than authorized USD10 with no reset",
         "condition_satisfied": true,
-        "evidence": "research/checks/paid_smoke_ready_preflight.json",
+        "evidence": "research/paid_smoke_execution_authorization.json",
         "blocking_conditions": [
-          "failed_attempt_cost_unreconciled",
-          "strict_route_capabilities_unverified",
-          "new_source_requires_explicit_prefreeze_execution_record"
+          "selected_endpoint_model_identity_mismatch",
+          "future_source_version_must_carry_forward_terminal_missing_cell"
         ],
         "durable_cap_implemented": true,
-        "current_instruction": "Current checkpoint: repair and offline tests only; do not run smoke. Standing USD1/200 smoke authorization does not permit pilot/main, model switching or changed requests relabelled as identical retries."
+        "current_instruction": "User authorized smoke under unchanged shared caps; run stopped after identity mismatch. Stop and report before pilot/main; no resampling or silent identity relaxation.",
+        "remaining_attempts": 198,
+        "account_evidence": "runs/_paid_testing_session/preflights.jsonl",
+        "model": "deepseek/deepseek-v4.1-flash-1017",
+        "provider_route": "primeintellect"
       },
       "current_checkpoint": {
         "status": "offline_readback_wire_repair_validated_committed_and_pushed",
@@ -724,13 +735,13 @@
           "evidence": "research/checks/preresults_clean_clone.json"
         }
       ],
-      "current_paid_smoke_checkpoint": "research/smoke_readiness.md",
+      "current_paid_smoke_checkpoint": "research/deepseek_smoke.md",
       "real_smoke_worlds_attempted": 1,
-      "real_smoke_attempts": 1,
-      "real_smoke_completed_cells": 0,
-      "real_smoke_pending_cells": 80,
-      "real_smoke_evidence": "runs/paid_smoke_gpt41mini_20261115",
-      "current_engineering_diagnostics": "research/checks/smoke_readiness_final.json",
+      "real_smoke_attempts": 2,
+      "real_smoke_completed_cells": 1,
+      "real_smoke_pending_cells": 79,
+      "real_smoke_evidence": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2",
+      "current_engineering_diagnostics": "research/checks/deepseek_smoke_outcome.json",
       "capability_evidence": "research/checks/smoke_readiness_final.json",
       "historical_execution_authorization": {
         "free_only": true,
@@ -756,7 +767,7 @@
       "number": 5,
       "name": "Main execution",
       "status": "blocked",
-      "reason": "No main execution: smoke delivery remains untested for approved replacement; pilot/load selection/freeze absent; current scope stops before execution.",
+      "reason": "Main unrun: smoke remains incomplete after terminal endpoint-identity validation failure; pilot/load selection/freeze absent; user directs stop beforepilot/main.",
       "empirical_completed_cells": 0,
       "planned_cells": 704,
       "missingness_interpretation": "Not executed; no partial empirical run exists",
@@ -934,26 +945,26 @@
       "main"
     ],
     "config": "configs/paid_smoke.yaml",
-    "account_evidence": "research/checks/smoke_readiness_final.json",
-    "status": "ready_for_smoke_not_executed",
-    "account_checks_completed": 8,
-    "real_attempts": 1,
+    "account_evidence": "runs/_paid_testing_session/preflights.jsonl",
+    "status": "partial_deepseek_smoke_stopped_on_model_identity_mismatch",
+    "account_checks_completed": 9,
+    "real_attempts": 2,
     "actual_inference_cost_usd": null,
-    "offline_tests_passed": 1511,
-    "full_suite_evidence": "research/checks/smoke_preparation_suite.json",
+    "offline_tests_passed": 1515,
+    "full_suite_evidence": "research/checks/deepseek_smoke_suite.json",
     "integrity_evidence": "research/checks/smoke_preparation_integrity.json",
-    "current_push_status": "tested_source_pushed_remote_verified_preparation_records_in_followup",
+    "current_push_status": "validated_partial_smoke_commit_pending",
     "scientific_design_changed": false,
     "human_review": false,
     "engineering_commit": "88c632fc0bfe9f24700b4b30a217fdb6b53ee1c4",
-    "remote_head_verified": true,
+    "remote_head_verified": false,
     "delivery_evidence": "research/checks/smoke_preparation_delivery.json",
     "final_status_commit_reference": "Resolve through Git; no circular self-hash",
     "known_account_usage_usd": 0,
     "unknown_cost_reservation_usd": "0.44084208",
     "successful_calls": 0,
-    "completed_cells": 0,
-    "pending_cells": 80,
+    "completed_cells": 1,
+    "pending_cells": 79,
     "infrastructure_failed_cells": 1,
     "never_attempted_cells": 79,
     "run_directory": "runs/paid_smoke_gpt41mini_20261115",
@@ -963,7 +974,17 @@
     "latest_repair_commit": "89de9c8202c8cfa9720f49e495ecbb8ea662f3aa",
     "historical_model": "openai/gpt-4.1-mini",
     "historical_provider_route": "openai",
-    "provider": "PrimeIntellect"
+    "provider": "PrimeIntellect",
+    "known_inference_cost_usd": "0.00005501216",
+    "raw_model_replies": 1,
+    "missing_observations": 80,
+    "terminal_identity_failures": 1,
+    "current_segment": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2",
+    "outcome_evidence": "research/checks/deepseek_smoke_outcome.json",
+    "known_account_usage_note": "Historical account/preflight usage; new attempt cost is evidenced by its response, aggregate actual cost remains unknown",
+    "completed_cells_definition": "Terminal journal completion including one identity-failed missing readback; not a valid observation",
+    "valid_empirical_observations": 0,
+    "terminal_missing_cells": 1
   },
   "readback_wire_repair": {
     "scope": "offline_only",
@@ -1000,7 +1021,7 @@
     "delivery_evidence": "research/checks/readback_wire_fix_delivery.json"
   },
   "smoke_readiness_preparation": {
-    "status": "ready_for_smoke_not_executed",
+    "status": "historical_readiness_passed_actual_delivery_identity_mismatch",
     "inference_calls": 0,
     "account_checks": 2,
     "public_route_metadata_verified": true,
@@ -1032,5 +1053,75 @@
     "delivery_evidence": "research/checks/smoke_preparation_delivery.json",
     "final_validation_evidence": "research/checks/smoke_preparation_final_validation.json",
     "final_commit_reference": "Resolve follow-up HEAD through Git; no circular self-hash"
-  }
+  },
+  "deepseek_smoke_execution": {
+    "classification": "partial_real_smoke_no_pilot_or_main",
+    "recorded_at_utc": "2026-11-15T02:31:12.484312+00:00",
+    "source_commit": "89de9c8202c8cfa9720f49e495ecbb8ea662f3aa",
+    "run_directory": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2",
+    "stop_reason": "model_mismatch",
+    "retryable": false,
+    "requested_model": "deepseek/deepseek-v4.1-flash-1017",
+    "top_level_returned_model": "deepseek/deepseek-v4.1-flash-1017",
+    "selected_endpoint_model": "deepseek/deepseek-v4.1-flash-20261017",
+    "returned_provider": "PrimeIntellect",
+    "request_id": "gen-1794709740-tuHetAhSMEC9HQdYSy0A",
+    "new_attempts": 1,
+    "raw_model_replies": 1,
+    "accepted_successful_calls": 0,
+    "valid_empirical_observations": 0,
+    "terminal_completed_cells": 1,
+    "pending_cells": 79,
+    "unique_planned_cells": 80,
+    "missing_observations": 80,
+    "infrastructure_retries": 0,
+    "reprompts": 0,
+    "continuations": 0,
+    "invalid_first_actions": 0,
+    "aggregate_attempts": 2,
+    "attempts_remaining": 198,
+    "known_settled_cost_usd": "0.00005501216",
+    "historical_unknown_cost_hold_usd": "0.44084208",
+    "available_smoke_usd": "0.55910290784",
+    "aggregate_actual_cost_complete": false,
+    "new_attempt_actual_cost_complete": true,
+    "collection_inputs_unchanged": true,
+    "original_five_files_unchanged": true,
+    "original_control_prefixes_unchanged": {
+      "budget.jsonl": true,
+      "attempts.jsonl": true
+    },
+    "no_resampling": true,
+    "pilot_started": false,
+    "main_started": false,
+    "freeze_created": false,
+    "human_review": false,
+    "smoke_gate_passed": false,
+    "cli_exit_zero_does_not_mean_gate_passed": true,
+    "next_action": "Repair and validate explicit endpoint identity mapping with source-version provenance; preserve this terminal cell without resampling or rewriting its trace.",
+    "execution_evidence": "research/checks/deepseek_smoke_execution.json",
+    "audit_evidence": "research/checks/deepseek_smoke_audit.json",
+    "suite_evidence": "research/checks/deepseek_smoke_suite.json",
+    "source_changed": false,
+    "tests_changed_only": true,
+    "account_checks_this_checkpoint": 1,
+    "full_suite_status": "passed",
+    "delivery_status": "commit_pending",
+    "offline_tests_passed": 1515,
+    "offline_test_seconds": 376.64,
+    "final_validation_evidence": "research/checks/deepseek_smoke_final_validation.json",
+    "budget_reconciliation_evidence": "research/checks/deepseek_smoke_reconciliation.json",
+    "test_repair_evidence": "research/checks/deepseek_smoke_test_repair.json"
+  },
+  "future_pre_freeze_engineering": [
+    {
+      "issue": "Paid smoke/pilot evidence cannot yet satisfy freeze._verified_run free-only accounting gate",
+      "scope": "Deferred; no freeze authorized and no source changed during this smoke",
+      "required_action": "Explicitly support paid gate evidence with cost/source validation before any later freeze; never bypass checks"
+    },
+    {
+      "issue": "Endpoint metadata identity needs an explicit verified same-snapshot mapping",
+      "required_action": "Preserve both existing source segments; do not resample terminal readback; dispatch only untouched cells after source-version repair"
+    }
+  ]
 }

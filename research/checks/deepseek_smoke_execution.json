@@ -1,0 +1,839 @@
+{
+  "classification": "authorized_real_smoke_execution",
+  "started_at_utc": "2026-11-15T02:27:29.194875+00:00",
+  "finished_at_utc": "2026-11-15T02:29:01.942528+00:00",
+  "command": "PYTHONPATH=src python -m beyond_label.paid_live --execute",
+  "exit_code": 0,
+  "elapsed_seconds": 92.75,
+  "result": {
+    "accounting_error_attempts": 0,
+    "attempted_calls": 1,
+    "cells": [
+      {
+        "cell_id": "smoke-1100-readback-MAIN-inline-b",
+        "continuation_status": "not_applicable",
+        "missing_reason": "model_mismatch",
+        "status": "completed"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MASKED-inline-masked",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-NUMERIC-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MASKED-inline-masked",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-NUMERIC-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-NUMERIC-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MASKED-separate-masked",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-readback-MAIN-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MASKED-inline-masked",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MASKED-separate-masked",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-NUMERIC-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-NUMERIC-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-NUMERIC-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-NUMERIC-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MASKED-separate-masked",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MASKED-inline-masked",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-inline-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-readback-MAIN-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MASKED-separate-masked",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-readback-MAIN-inline-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-separate-a",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      },
+      {
+        "cell_id": "smoke-1100-decision-NUMERIC-separate-b",
+        "continuation_status": "pending",
+        "missing_reason": "not_executed_yet",
+        "status": "pending"
+      }
+    ],
+    "completed_cells": 1,
+    "continuations": 0,
+    "empirical_observations": 0,
+    "evidence_kind": "empirical",
+    "experimental_provider_spend": 5.501216e-05,
+    "first_action_or_readback_missing": 80,
+    "infrastructure_retries": 0,
+    "invalid_first_actions": 0,
+    "known_provider_spend_usd": 5.501216e-05,
+    "missingness": [
+      {
+        "cell_id": "smoke-1100-readback-MAIN-inline-b",
+        "reason": "model_mismatch"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MASKED-inline-masked",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-NUMERIC-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MASKED-inline-masked",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-NUMERIC-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-NUMERIC-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-STAKES-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MASKED-separate-masked",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-readback-MAIN-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MASKED-inline-masked",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MASKED-separate-masked",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-NUMERIC-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-STAKES-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-MAIN-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-NUMERIC-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-readback-MAIN-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-NUMERIC-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-NUMERIC-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MASKED-separate-masked",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-STAKES-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-MAIN-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-FEE-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-readback-MAIN-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MAIN-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-MASKED-inline-masked",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-inline-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1103-decision-HIGH-FEE-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-readback-MAIN-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-readback-MAIN-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MAIN-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1101-decision-HIGH-FEE-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-MASKED-separate-masked",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-readback-MAIN-inline-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1102-decision-HIGH-FEE-separate-b",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-HIGH-STAKES-separate-a",
+        "reason": "not_executed_yet"
+      },
+      {
+        "cell_id": "smoke-1100-decision-NUMERIC-separate-b",
+        "reason": "not_executed_yet"
+      }
+    ],
+    "nonzero_cost_attempts": 1,
+    "pending_cells": 79,
+    "permitted_reprompts": 0,
+    "planned_cells": 80,
+    "run_config_hash": "84af78c1f0d7762145074ad7b2eb74ab64d55d2c656d9c76b9c67033c9c94bc3",
+    "spend_evidence_complete": true,
+    "status": "smoke_stopped_before_pilot",
+    "successful_calls": 0,
+    "unknown_cost_attempts": 0
+  },
+  "stderr_present": false,
+  "stop_before": [
+    "pilot",
+    "main"
+  ]
+}

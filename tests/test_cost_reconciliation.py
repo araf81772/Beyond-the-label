@@ -17,6 +17,15 @@ from beyond_label.paid_controls import PAID_MAXIMUM_COST
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def historical_control_prefix(data, name):
+    """Read the reviewed one-attempt fixture, excluding later live history."""
+    proof = json.loads((ROOT / COVERAGE_PATH).read_bytes())["control_prefixes"][name]
+    prefix = data[:proof["bytes"]]
+    if len(prefix) != proof["bytes"] or hashlib.sha256(prefix).hexdigest() != proof["sha256"]:
+        raise ValueError("historical_control_prefix_changed")
+    return prefix
+
+
 def historical_fixture(tmp_path):
     for name in ("manifest.json", "calls.jsonl", "scores.csv", "usage.csv", "analysis_manifest.json"):
         target = tmp_path / ORIGINAL_RUN / name
@@ -25,7 +34,10 @@ def historical_fixture(tmp_path):
     session = tmp_path / "runs/_paid_testing_session"
     session.mkdir()
     for name in ("budget.jsonl", "attempts.jsonl", "authorization.json"):
-        (session / name).write_bytes((ROOT / "runs/_paid_testing_session" / name).read_bytes())
+        raw = (ROOT / "runs/_paid_testing_session" / name).read_bytes()
+        if name != "authorization.json":
+            raw = historical_control_prefix(raw, name)
+        (session / name).write_bytes(raw)
     record = build_cost_coverage_record(tmp_path)
     path = tmp_path / COVERAGE_PATH
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -33,6 +45,16 @@ def historical_fixture(tmp_path):
     ledger = BudgetLedger(session / "budget.jsonl", "1")
     counter = PaidAttemptLimit(session / "attempts.jsonl")
     return session, record, ledger, counter
+
+
+@pytest.mark.parametrize("name", ["budget.jsonl", "attempts.jsonl"])
+@pytest.mark.parametrize("mutation", ["changed", "truncated"])
+def test_historical_fixture_rejects_altered_original_prefix(name, mutation):
+    raw = (ROOT / "runs/_paid_testing_session" / name).read_bytes()
+    prefix = historical_control_prefix(raw, name)
+    altered = b"!" + prefix[1:] if mutation == "changed" else prefix[:-1]
+    with pytest.raises(ValueError, match="historical_control_prefix_changed"):
+        historical_control_prefix(altered, name)
 
 
 def test_coverage_is_not_a_receipt_or_refund_and_keeps_original_bytes(tmp_path):

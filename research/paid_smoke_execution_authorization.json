@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "classification": "user_authorized_smoke_execution",
+  "recorded_at_utc": "2026-11-15T02:27:09.527633+00:00",
+  "client_timezone": "Australia/Sydney",
+  "user_request": "Run smoke now with DeepSeek/PrimeIntellect under the existing US$1 and 200-attempt caps, including the previous attempt and retained cost hold. Stop and report before pilot or main. Update logs, commit and push.",
+  "source_commit": "89de9c8202c8cfa9720f49e495ecbb8ea662f3aa",
+  "model": "deepseek/deepseek-v4.1-flash-1017",
+  "provider_route": "primeintellect",
+  "provider": "PrimeIntellect",
+  "total_testing_cap_usd": "10",
+  "shared_smoke_cap_usd": "1",
+  "shared_total_attempts": 200,
+  "prior_attempts": 1,
+  "prior_retained_hold_usd": "0.44084208",
+  "prior_available_smoke_usd": "0.55915792",
+  "run_now": true,
+  "stop_before": [
+    "pilot",
+    "main"
+  ],
+  "historical_preparation_amendment_preserved": true,
+  "validated_input_count": 47,
+  "passed_offline_tests": 1511,
+  "suite_evidence": "research/checks/smoke_preparation_suite.json"
+}

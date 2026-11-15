@@ -11,6 +11,7 @@ from beyond_label import continuation, openrouter, paid_live, run
 from beyond_label.budget import BudgetLedger
 from beyond_label.cost_reconciliation import COVERAGE_PATH, build_cost_coverage_record
 from beyond_label.paid_profile import get_paid_profile
+from test_cost_reconciliation import historical_control_prefix
 from test_paid_live import owner_fixture, write_config
 
 REPO = Path(__file__).resolve().parents[1]
@@ -24,12 +25,16 @@ def prepared(tmp_path_factory, monkeypatch):
     path = write_config(root, config)
     (root / live.MODEL_AMENDMENT).parent.mkdir(exist_ok=True)
     (root / live.MODEL_AMENDMENT).write_text(json.dumps(live.model_amendment_record()))
-    for relative in ('runs/paid_smoke_gpt41mini_20261115', 'runs/_paid_testing_session'):
-        target = root / relative
-        target.mkdir(parents=True)
-        for source in (REPO / relative).iterdir():
-            if source.is_file() and not source.name.endswith('.writer.lock'):
-                shutil.copyfile(source, target / source.name)
+    original = root / continuation.PAID_SMOKE_DIRECTORY
+    original.mkdir(parents=True)
+    for name in continuation.FILES:
+        shutil.copyfile(REPO / continuation.PAID_SMOKE_DIRECTORY / name, original / name)
+    session = root / 'runs/_paid_testing_session'
+    session.mkdir()
+    for name in ('budget.jsonl', 'attempts.jsonl'):
+        raw = (REPO / 'runs/_paid_testing_session' / name).read_bytes()
+        (session / name).write_bytes(historical_control_prefix(raw, name))
+    shutil.copyfile(REPO / 'runs/_paid_testing_session/authorization.json', session / 'authorization.json')
     shutil.copyfile(REPO / 'research/run_sources.json', root / 'research/run_sources.json')
     (root / COVERAGE_PATH).write_text(json.dumps(build_cost_coverage_record(root)))
     # Source/commit verification is separately exercised by continuation tests.

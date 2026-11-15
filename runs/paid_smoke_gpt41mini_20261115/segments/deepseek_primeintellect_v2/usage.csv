@@ -1,0 +1,2 @@
+cell_id,phase,attempt,success,request_hash,request_id,model,provider,finish_reason,http_status,latency_seconds,prompt_tokens,completion_tokens,total_tokens,cost_usd,router_cost_usd,is_byok,byok_upstream_cost_usd,cost_evidence,error,evidence_kind
+smoke-1100-readback-MAIN-inline-b,readback,1,false,cd6818b56743cfb49691666a6f05234c2a73ac92254d08aeab626709ec7cb75e,gen-1794709740-tuHetAhSMEC9HQdYSy0A,deepseek/deepseek-v4.1-flash-1017,PrimeIntellect,,,38.924222100002225,362,56,418,5.501216e-05,5.501216e-05,false,,provider_reported_total_usd,model_mismatch,empirical

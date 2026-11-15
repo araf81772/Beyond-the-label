@@ -1,0 +1,40 @@
+{
+  "classification": "offline_fixture_repair_and_AI_review",
+  "production_source_changed": false,
+  "empirical_artifacts_changed_by_tests": false,
+  "root_initial_focused_suite": {
+    "failed": 11,
+    "passed": 91,
+    "seconds": 18.85,
+    "command": "python -m pytest -q tests/test_smoke_readiness.py tests/test_cost_reconciliation.py tests/test_smoke_continuation.py tests/test_smoke_continuation_audit.py tests/test_execution_audit.py"
+  },
+  "agent_fixture_suite_before": {
+    "failed": 11,
+    "passed": 32,
+    "seconds": 7.12
+  },
+  "agent_fixture_suite_after": {
+    "failed": 0,
+    "passed": 47,
+    "seconds": 9.44
+  },
+  "fixture_change": "Use exact reviewed length+SHA256 historical prefixes in temporary fixtures instead of later appended live journals; all original assertions retained",
+  "new_regressions": 4,
+  "independent_AI_review": [
+    "Accounting totals reconcile",
+    "Child artifacts reproduce immutably",
+    "Original artifacts and control prefixes match",
+    "No source/config/protocol changes",
+    "No hidden-state or credential fields in model-visible payloads/traces",
+    "No selected secret-pattern matches in intended files"
+  ],
+  "review_findings_fixed": [
+    "Current AGENTS counts/balance and no-reply wording",
+    "Current milestone authorization and credential setup counts",
+    "Explicit terminal-cell versus valid-observation distinction"
+  ],
+  "human_review": false,
+  "inference_calls": 0,
+  "account_checks": 0,
+  "full_suite_evidence": "research/checks/deepseek_smoke_suite.json"
+}
