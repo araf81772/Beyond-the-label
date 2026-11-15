@@ -1,0 +1,19 @@
+{
+  "classification": "offline_checkpoint_git_delivery_not_experiment_freeze",
+  "recorded_at_utc": "2026-11-15T00:12:56.361106+00:00",
+  "commit": "b5a06324894ea310febc9098b9492b92706ca6c8",
+  "remote": "https://github.com/araf81772/Beyond-the-label.git",
+  "branch": "main",
+  "push_exit_code": 0,
+  "remote_head_verified": true,
+  "remote_head": "b5a06324894ea310febc9098b9492b92706ca6c8",
+  "verification_command": "git ls-remote origin refs/heads/main",
+  "full_clean_clone_test_count": 1006,
+  "clean_clone_commit": "4c369e17a526e1f0ac963ff6896fae002ef7449f",
+  "final_report_test_count": 20,
+  "audit_checks": 1041,
+  "empirical_calls": 0,
+  "execution_freeze": null,
+  "real_milestones_4_to_6_complete": false,
+  "followup_note": "This record is committed in a later status checkpoint; resolve and compare that final HEAD through Git without embedding its own hash."
+}

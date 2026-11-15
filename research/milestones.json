@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-15T00:11:00.484711+00:00",
+  "recorded_at_utc": "2026-11-15T00:12:56.361106+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "Complete independent offline preparation through milestone 6; defer smoke until user budget update; no inference or account recheck; tests, logs, commit and push",
   "execution_freeze": null,
@@ -753,9 +753,9 @@
     "source": "user confirmed names; no review participation inferred"
   },
   "offline_preparation_checkpoint": {
-    "status": "offline_preparation_validated_artifact_commit_and_push_pending",
+    "status": "offline_preparation_committed_and_pushed_real_execution_pending",
     "commit_reference": "Resolve through Git; no circular self-hash",
-    "push_status": "pending",
+    "push_status": "succeeded",
     "no_inference": true,
     "no_account_recheck": true,
     "paid_calls_authorized": false,
@@ -769,6 +769,12 @@
     "committed_inputs_evidence": "research/checks/preresults_committed_inputs.json",
     "clean_clone_evidence": "research/checks/preresults_clean_clone.json",
     "final_validation_evidence": "research/checks/preresults_final_validation.json",
-    "real_milestones_4_to_6_completed": false
+    "real_milestones_4_to_6_completed": false,
+    "delivered_artifact_commit": "b5a06324894ea310febc9098b9492b92706ca6c8",
+    "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
+    "branch": "main",
+    "remote_head_verified": true,
+    "delivery_evidence": "research/checks/preresults_delivery.json",
+    "final_status_checkpoint": "Resolve final follow-up commit using Git; no circular self-hash"
   }
 }
