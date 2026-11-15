@@ -637,7 +637,7 @@
         "outcome_evidence": "research/checks/smoke79_outcome.json",
         "suite_evidence": "research/checks/smoke79_suite.json",
         "readiness_review": "research/m4_m5_readiness.md",
-        "push_status": "pending",
+        "push_status": "succeeded",
         "source_inputs_unchanged": true,
         "human_review": false,
         "full_suite_tests_passed": 1634,
@@ -646,7 +646,9 @@
         "audit_evidence": "research/checks/smoke79_audit.json",
         "verification_evidence": "research/checks/smoke79_verification.json",
         "final_validation_evidence": "research/checks/smoke79_final_validation.json",
-        "final_audit_checks_passed": 1395
+        "final_audit_checks_passed": 1395,
+        "delivered_commit": "30f6081f209c67a9454f2c9ce48baf04d72b5eab",
+        "delivery_evidence": "research/checks/smoke79_delivery.json"
       },
       "checkpoint_history": [
         {
@@ -993,12 +995,12 @@
     "offline_tests_passed": 1634,
     "full_suite_evidence": "research/checks/smoke79_suite.json",
     "integrity_evidence": "research/checks/smoke79_verification.json",
-    "current_push_status": "validated_partial_smoke_commit_pending",
+    "current_push_status": "partial_smoke_committed_pushed_remote_verified",
     "scientific_design_changed": false,
     "human_review": false,
     "engineering_commit": "88c632fc0bfe9f24700b4b30a217fdb6b53ee1c4",
     "remote_head_verified": true,
-    "delivery_evidence": "research/checks/deepseek_smoke_delivery.json",
+    "delivery_evidence": "research/checks/smoke79_delivery.json",
     "final_status_commit_reference": "Resolve through Git; no circular self-hash",
     "unknown_cost_reservation_usd": "0.489310289664",
     "successful_calls": 93,
@@ -1028,7 +1030,8 @@
     "post_run_suite_evidence": "research/checks/smoke79_suite.json",
     "post_run_suite_status": "passed",
     "infrastructure_failed_cells_definition": "Unique cell IDs with recorded infrastructure failures across all retained versions",
-    "original_collection_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1"
+    "original_collection_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
+    "delivered_commit": "30f6081f209c67a9454f2c9ce48baf04d72b5eab"
   },
   "readback_wire_repair": {
     "scope": "offline_only",
@@ -1284,7 +1287,7 @@
     "policy_blocked_despite_balance_available": true,
     "execution_record": "research/checks/smoke79_execution.json",
     "post_run_suite_status": "passed",
-    "delivery_status": "pending",
+    "delivery_status": "partial_smoke_committed_pushed_remote_verified",
     "full_suite_tests_passed": 1634,
     "full_suite_seconds": 421.51,
     "audit_checks_passed": 1383,
@@ -1292,7 +1295,9 @@
     "verification_evidence": "research/checks/smoke79_verification.json",
     "source_changed": false,
     "final_validation_evidence": "research/checks/smoke79_final_validation.json",
-    "final_audit_checks_passed": 1395
+    "final_audit_checks_passed": 1395,
+    "delivered_commit": "30f6081f209c67a9454f2c9ce48baf04d72b5eab",
+    "delivery_evidence": "research/checks/smoke79_delivery.json"
   },
   "m4_m5_gate_review": {
     "classification": "code_and_protocol_readiness_review_not_passed_gates",

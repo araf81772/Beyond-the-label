@@ -1,0 +1,19 @@
+{
+  "classification": "verified_partial_smoke79_delivery",
+  "recorded_at_utc": "2026-11-15T03:54:13.868705+00:00",
+  "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
+  "branch": "main",
+  "command": "git push origin main",
+  "exit_code": 0,
+  "delivered_commit": "30f6081f209c67a9454f2c9ce48baf04d72b5eab",
+  "remote_head": "30f6081f209c67a9454f2c9ce48baf04d72b5eab",
+  "remote_head_verified": true,
+  "verification_command": "git ls-remote origin refs/heads/main",
+  "collection_source_commit": "eebba9de7a9923d2a81d17f7631d41371a35ef5e",
+  "m4_complete": false,
+  "m5_ready": false,
+  "stop_reason": "paid_cost_reconciliation_required",
+  "pilot_started": false,
+  "main_started": false,
+  "followup": "This metadata-only follow-up records observed delivery; resolve and verify its own final HEAD with Git, avoiding a circular self-hash."
+}
