@@ -953,12 +953,12 @@
     "offline_tests_passed": 1515,
     "full_suite_evidence": "research/checks/deepseek_smoke_suite.json",
     "integrity_evidence": "research/checks/smoke_preparation_integrity.json",
-    "current_push_status": "validated_partial_smoke_commit_pending",
+    "current_push_status": "partial_smoke_pushed_remote_verified",
     "scientific_design_changed": false,
     "human_review": false,
     "engineering_commit": "88c632fc0bfe9f24700b4b30a217fdb6b53ee1c4",
-    "remote_head_verified": false,
-    "delivery_evidence": "research/checks/smoke_preparation_delivery.json",
+    "remote_head_verified": true,
+    "delivery_evidence": "research/checks/deepseek_smoke_delivery.json",
     "final_status_commit_reference": "Resolve through Git; no circular self-hash",
     "known_account_usage_usd": 0,
     "unknown_cost_reservation_usd": "0.44084208",
@@ -1106,12 +1106,15 @@
     "tests_changed_only": true,
     "account_checks_this_checkpoint": 1,
     "full_suite_status": "passed",
-    "delivery_status": "commit_pending",
+    "delivery_status": "partial_smoke_committed_pushed_remote_verified",
     "offline_tests_passed": 1515,
     "offline_test_seconds": 376.64,
     "final_validation_evidence": "research/checks/deepseek_smoke_final_validation.json",
     "budget_reconciliation_evidence": "research/checks/deepseek_smoke_reconciliation.json",
-    "test_repair_evidence": "research/checks/deepseek_smoke_test_repair.json"
+    "test_repair_evidence": "research/checks/deepseek_smoke_test_repair.json",
+    "delivered_commit": "f5be5ca348dbc8da454e6a82ac4b0947da3f8ad7",
+    "delivery_evidence": "research/checks/deepseek_smoke_delivery.json",
+    "final_followup_commit_reference": "Resolve final Git HEAD; no circular self-hash"
   },
   "future_pre_freeze_engineering": [
     {
