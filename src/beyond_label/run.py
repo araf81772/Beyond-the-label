@@ -1,7 +1,7 @@
 """Manifest-driven execution with durable, replayable journals.
 
 Synthetic fixtures exercise infrastructure; they are never empirical model
-observations. Real execution requires the separate, verified free-only path.
+observations. Real execution requires a verified, narrowly authorized live path.
 """
 
 from __future__ import annotations
@@ -369,13 +369,21 @@ def _validate_execution_config(config: dict[str, Any], settings: ProviderSetting
     from .provider import _sanitized, canonical_json as provider_json
     if not isinstance(config, dict) or provider_json(_sanitized(config)) != provider_json(config):
         raise ValueError("Invalid or sensitive execution configuration")
-    if config.get("free_only") is not True or settings.free_only is not True:
-        raise ValueError("Only free execution is authorized")
+    from .gates import PAID_SMOKE_AUTHORIZATION
+    paid_smoke = config.get("authorization_id") == PAID_SMOKE_AUTHORIZATION
+    if paid_smoke:
+        if config.get("free_only") is not False or settings.free_only is not False:
+            raise ValueError("Paid smoke settings must agree with their authorization")
+    elif config.get("free_only") is not True or settings.free_only is not True:
+        raise ValueError("Only the fixed paid smoke or free execution is authorized")
     require_real_execution(config, stage=manifest["dataset"], freeze=freeze)
     for key in ("model", "provider", "provider_route", "provider_identity_source", "temperature",
                 "reasoning", "max_output_tokens", "require_parameters"):
         if key not in config or config[key] != getattr(settings, key):
             raise ValueError("Execution settings differ from pinned provider")
+    if paid_smoke and (config.get("max_price") != settings.max_price
+            or tuple(config.get("accepted_returned_models", [])) != settings.accepted_returned_models):
+        raise ValueError("Execution settings differ from pinned provider")
     if config.get("load") != manifest["load"] or config.get("schedule_seed") != manifest["schedule_seed"]:
         raise ValueError("Execution manifest factors differ from configuration")
     if manifest["dataset"] == "main":
@@ -384,6 +392,9 @@ def _validate_execution_config(config: dict[str, Any], settings: ProviderSetting
 
 
 def _validate_live_transport(provider: PinnedProvider) -> None:
+    if provider.settings.free_only is False:
+        _validate_paid_live_transport(provider)
+        return
     from .attempts import AttemptLimit, CappedFreeAttempts, FreeQuota
     from .controls import GuardedTransport
     from .live import open_attempt_limit, reconcile_ledger
@@ -407,6 +418,35 @@ def _validate_live_transport(provider: PinnedProvider) -> None:
         raise ValueError("Live execution requires the shared durable ten-attempt policy")
     reconcile_ledger(guard.ledger, ROOT / "runs")
     open_attempt_limit(session, ROOT / "runs", guard.ledger)
+
+
+def _validate_paid_live_transport(provider: PinnedProvider) -> None:
+    from .attempts import CappedPaidAttempts, PaidAttemptLimit
+    from .budget import BudgetLedger
+    from .controls import GuardedTransport
+    from .openrouter import OpenRouterPaidTransport
+    from .paid_controls import PaidSmokeQuote, paid_observed_cost
+    from .paid_live import reconcile_paid_history
+    from .rate_limit import RateLimiter
+    guard = provider.transport
+    session = (ROOT / "runs/_paid_testing_session").resolve()
+    if (type(provider) is not PinnedProvider or type(guard) is not GuardedTransport
+            or type(guard.transport) is not OpenRouterPaidTransport
+            or guard.transport._transport is not None
+            or guard.transport.model != provider.settings.model
+            or guard.transport.provider_route != provider.settings.provider_route):
+        raise ValueError("Live execution requires the guarded paid HTTPS transport; fixtures remain synthetic")
+    policy = provider.before_attempt
+    if (type(policy) is not CappedPaidAttempts or type(policy.counter) is not PaidAttemptLimit
+            or type(guard.ledger) is not BudgetLedger or policy.ledger is not guard.ledger
+            or guard.ledger.path != session / "budget.jsonl" or guard.ledger.cap != 1
+            or guard.ledger.currency != "USD" or policy.counter.path != session / "attempts.jsonl"
+            or type(guard.quote) is not PaidSmokeQuote or guard.before_dispatch is not None
+            or guard.cost_reader is not paid_observed_cost
+            or type(guard.limiter) is not RateLimiter or guard.limiter.requests_per_minute != 10
+            or guard.limiter.tokens_per_minute != 10480880 or guard.limiter.cold_start is not True):
+        raise ValueError("Live paid smoke requires the canonical durable budget, attempt, quote, and rate policy")
+    reconcile_paid_history(session, ROOT / "runs", guard.ledger)
 
 
 def _csv(path: Path, rows: list[dict[str, Any]], fields: list[str]) -> None:
@@ -471,7 +511,10 @@ def _validate_journal(journal: Journal, manifest: dict[str, Any], config: dict[s
                 finished.add(key)
                 if e["event"] == "attempt_succeeded":
                     result = ProviderResult.model_validate(e["result"])
-                    if result.payload != e["payload"] or result.usage != e["usage"] or result.latency_seconds != e["latency_seconds"] or result.returned_model != settings.model or result.returned_provider != settings.provider:
+                    if (result.payload != e["payload"] or result.usage != e["usage"]
+                            or result.latency_seconds != e["latency_seconds"]
+                            or result.returned_model not in (settings.model, *settings.accepted_returned_models)
+                            or result.returned_provider != settings.provider):
                         raise JournalIntegrityError("provider_result_reconciliation_failed")
                     try:
                         reparsed = parse_response(result.raw_response, result.payload, settings, result.latency_seconds)
@@ -506,8 +549,11 @@ def rebuild_outputs(run_dir: Path | str) -> dict[str, Any]:
     kind = run_config.get("evidence_kind")
     if kind not in {"synthetic", "empirical"}:
         raise JournalIntegrityError("invalid_evidence_kind")
+    from .gates import PAID_SMOKE_AUTHORIZATION
+    paid_smoke = run_config.get("execution_config", {}).get("authorization_id") == PAID_SMOKE_AUTHORIZATION
     if kind == "empirical":
-        if run_config.get("transport_provenance") != "openrouter_free_https_v1":
+        expected_provenance = "openrouter_paid_https_v1" if paid_smoke else "openrouter_free_https_v1"
+        if run_config.get("transport_provenance") != expected_provenance:
             raise JournalIntegrityError("Empirical transport provenance is missing")
         _validate_execution_config(run_config.get("execution_config"),
             ProviderSettings.model_validate(run_config["provider_settings"]), manifest, run_config.get("freeze"))
@@ -524,13 +570,29 @@ def rebuild_outputs(run_dir: Path | str) -> dict[str, Any]:
             continue
         metrics = e.get("usage", {})
         result = e.get("result", {})
+        cost = metrics.get("cost")
+        if paid_smoke:
+            from .paid_controls import paid_observed_cost
+            total_cost = paid_observed_cost({"usage": metrics})
+            cost = None if total_cost is None else float(total_cost)
+        cost_details = metrics.get("cost_details")
         usage.append({"cell_id": e["cell_id"], "phase": e["phase"], "attempt": e["attempt"],
                       "success": e["event"] == "attempt_succeeded", "request_hash": e["request_hash"],
-                      "request_id": result.get("request_id"), "model": result.get("returned_model"),
-                      "provider": result.get("returned_provider"), "finish_reason": result.get("finish_reason"),
+                      "request_id": result.get("request_id", e.get("request_id")),
+                      "model": result.get("returned_model", e.get("returned_model")),
+                      "provider": result.get("returned_provider", e.get("returned_provider")),
+                      "finish_reason": result.get("finish_reason"), "http_status": e.get("http_status"),
                       "latency_seconds": e.get("latency_seconds"), "prompt_tokens": metrics.get("prompt_tokens"),
                       "completion_tokens": metrics.get("completion_tokens"), "total_tokens": metrics.get("total_tokens"),
-                      "cost_usd": metrics.get("cost"), "cost_evidence": ("synthetic_fixture_not_billed" if kind == "synthetic" else "provider_usage_cost_usd") if "cost" in metrics else "unavailable",
+                      "cost_usd": cost,
+                      "router_cost_usd": metrics.get("cost") if paid_smoke else None,
+                      "is_byok": metrics.get("is_byok") if paid_smoke else None,
+                      "byok_upstream_cost_usd": (cost_details.get("upstream_inference_cost")
+                                                 if paid_smoke and metrics.get("is_byok") is True
+                                                 and isinstance(cost_details, dict) else None),
+                      "cost_evidence": ("synthetic_fixture_not_billed" if kind == "synthetic" else
+                          "provider_reported_total_usd" if paid_smoke else "provider_usage_cost_usd")
+                          if cost is not None else "unavailable",
                       "error": e.get("reason"), "evidence_kind": kind})
     if kind == "empirical":
         finished = {(row["cell_id"], row["phase"], row["attempt"]) for row in usage}
@@ -540,13 +602,15 @@ def rebuild_outputs(run_dir: Path | str) -> dict[str, Any]:
             if (e["cell_id"], e["phase"], e["attempt"]) not in finished:
                 usage.append({"cell_id": e["cell_id"], "phase": e["phase"], "attempt": e["attempt"],
                     "success": False, "request_hash": e["request_hash"], "request_id": None,
-                    "model": None, "provider": None, "finish_reason": None, "latency_seconds": None,
+                    "model": None, "provider": None, "finish_reason": None, "http_status": None, "latency_seconds": None,
                     "prompt_tokens": None, "completion_tokens": None, "total_tokens": None,
-                    "cost_usd": None, "cost_evidence": "unavailable",
+                    "cost_usd": None, "router_cost_usd": None, "is_byok": None,
+                    "byok_upstream_cost_usd": None, "cost_evidence": "unavailable",
                     "error": "ambiguous_infrastructure_attempt", "evidence_kind": kind})
         usage.sort(key=lambda row: order[(row["cell_id"], row["phase"], row["attempt"])])
     usage_fields = ["cell_id", "phase", "attempt", "success", "request_hash", "request_id", "model", "provider", "finish_reason",
-                    "latency_seconds", "prompt_tokens", "completion_tokens", "total_tokens", "cost_usd", "cost_evidence", "error", "evidence_kind"]
+                    "http_status", "latency_seconds", "prompt_tokens", "completion_tokens", "total_tokens",
+                    "cost_usd", "router_cost_usd", "is_byok", "byok_upstream_cost_usd", "cost_evidence", "error", "evidence_kind"]
     _csv(run_dir / "usage.csv", usage, usage_fields)
     summary = {
         "evidence_kind": kind,
@@ -598,7 +662,8 @@ def _run_manifest_locked(manifest: dict[str, Any], run_dir: Path | str, provider
               "ambiguous_attempt_policy": "explicit_missing_no_resampling"}
     if execution_config is not None:
         config["execution_config"] = copy.deepcopy(execution_config)
-        config["transport_provenance"] = "injected_fixture" if synthetic else "openrouter_free_https_v1"
+        config["transport_provenance"] = ("injected_fixture" if synthetic else
+            "openrouter_free_https_v1" if provider.settings.free_only else "openrouter_paid_https_v1")
         if freeze is not None:
             config["freeze"] = copy.deepcopy(freeze)
     stored = {"plan": manifest, "run_config": config, "run_config_hash": _hash({"plan": manifest, "config": config})}
@@ -660,11 +725,17 @@ def run_manifest(manifest: dict[str, Any], run_dir: Path | str, provider: Pinned
     if execution_config is not None:
         _validate_execution_config(execution_config, provider.settings, manifest, freeze)
     if not synthetic:
+        if provider.settings.free_only is False:
+            from .gates import PAID_SMOKE_DIRECTORY
+            if Path(run_dir).resolve() != (ROOT / PAID_SMOKE_DIRECTORY).resolve():
+                raise ValueError("Paid smoke requires the canonical authorized output directory")
         _validate_live_transport(provider)
         from .attempts import MAX_ATTEMPTS
+        allowance = MAX_ATTEMPTS if provider.settings.free_only else 200
         if (type(execution_config.get("maximum_inference_attempts")) is not int
-                or execution_config["maximum_inference_attempts"] != MAX_ATTEMPTS):
-            raise ValueError("Live execution requires the fixed ten-attempt allowance")
+                or execution_config["maximum_inference_attempts"] != allowance):
+            raise ValueError("Live execution requires the fixed ten-attempt allowance" if provider.settings.free_only
+                             else "Paid smoke requires the fixed 200-attempt allowance")
     run_dir = Path(run_dir)
     run_dir.mkdir(parents=True, exist_ok=True)
     with _writer_lock(run_dir):

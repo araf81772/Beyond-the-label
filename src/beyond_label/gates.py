@@ -31,6 +31,65 @@ def _positive_integer(value: object) -> bool:
     return type(value) is int and value > 0
 
 
+PAID_SMOKE_AUTHORIZATION = "paid-smoke-usd1-200-v1"
+PAID_SMOKE_DIRECTORY = "runs/paid_smoke_gpt41mini_20261115"
+
+
+def require_paid_smoke_configuration(config: Mapping, *, stage: str,
+                                      account_verified: bool = True) -> None:
+    """The current paid authorization is one fixed smoke, never pilot or main.
+
+    Public documentation does not publish one universal paid-tier rate limit.
+    Local throttles are recorded honestly as operator choices. The authenticated
+    key ceiling and conservative reservation supply independent spending limits.
+    """
+    exact = {
+        "authorization_id": PAID_SMOKE_AUTHORIZATION, "execution_scope": "smoke_only",
+        "authorized_dataset": "smoke", "run_directory": PAID_SMOKE_DIRECTORY,
+        "live_execution_enabled": True, "account_preflight_enabled": True,
+        "paid_calls_authorized": True, "free_only": False, "currency": "USD",
+        "routing_service": "OpenRouter", "model": "openai/gpt-4.1-mini",
+        "provider": "OpenAI", "provider_route": "openai",
+        "provider_identity_source": "openrouter_metadata", "require_parameters": True,
+        "reasoning": None, "reasoning_mode": "not_applicable",
+        "reasoning_setting_verified": True, "temperature_setting_verified": True,
+        "parallel_tool_calls": False, "allow_fallbacks": False, "provider_docs_verified": True,
+        "provider_requests_per_minute": None, "provider_request_limit_status": "not_published",
+        "provider_tokens_per_minute": None, "provider_token_limit_status": "not_published",
+        "total_token_bound_verified": True,
+        "tool_choice": "auto", "no_tool_reprompt": "Respond with exactly one tool call.",
+    }
+    if stage != "smoke" or not isinstance(config, Mapping):
+        raise ExecutionBlocked("Paid authorization is smoke only; stop before pilot or main")
+    for field, expected in exact.items():
+        if field not in config or type(config[field]) is not type(expected) or config[field] != expected:
+            raise ExecutionBlocked("Paid smoke scope or pinned settings changed")
+    for field, expected in {"authorized_spend_cap": 1, "authorized_total_testing_cap": 10,
+                            "temperature": 0}.items():
+        if not _finite_number(config.get(field)) or config[field] != expected:
+            raise ExecutionBlocked("Paid smoke spending or temperature authorization changed")
+    for field, expected in {"maximum_inference_attempts": 200, "max_output_tokens": 512,
+                            "concurrency": 1, "load": 2, "schedule_seed": 271828,
+                            "operator_requests_per_minute": 10, "operator_tokens_per_minute": 10480880,
+                            "total_token_bound": 1048088, "no_tool_reprompts": 1,
+                            "infrastructure_retries_after_initial": 3}.items():
+        if type(config.get(field)) is not int or config[field] != expected:
+            raise ExecutionBlocked("Paid smoke fixed attempt, token, or schedule limit changed")
+    prices = config.get("max_price")
+    expected_prices = {"prompt": .4, "completion": 1.6, "request": 0, "image": 0}
+    if (not isinstance(prices, Mapping) or set(prices) != set(expected_prices)
+            or any(not _finite_number(prices[key]) or prices[key] != value
+                   for key, value in expected_prices.items())):
+        raise ExecutionBlocked("Paid smoke routing price ceiling changed")
+    if config.get("accepted_returned_models") != ["openai/gpt-4.1-mini-2025-04-14", "gpt-4.1-mini-2025-04-14"]:
+        raise ExecutionBlocked("Paid smoke returned model identities changed")
+    if account_verified:
+        cap = config.get("key_hard_limit_usd")
+        if (config.get("key_hard_limit_verified") is not True
+                or not _finite_number(cap) or not 0 < cap <= 10):
+            raise ExecutionBlocked("Paid smoke requires a verified positive hard key limit at most USD 10")
+
+
 def _require_free_prerequisites(config: Mapping) -> None:
     """Necessary zero-spend fields; flags cannot authenticate their evidence.
 
@@ -127,6 +186,11 @@ def require_real_execution(config: Mapping, *, stage: str, freeze: Mapping | Non
     authorization must be verified separately. Free mode allows only zero USD
     exposure with paid calls explicitly disabled; it never authorizes paid use.
     """
+    if config.get("authorization_id") == PAID_SMOKE_AUTHORIZATION:
+        require_paid_smoke_configuration(config, stage=stage)
+        if freeze is not None:
+            raise ExecutionBlocked("Paid smoke authorization does not include an execution freeze")
+        return
     if config.get("live_execution_enabled") is not True:
         raise ExecutionBlocked("Real execution is disabled by the offline instruction")
     free_only = config.get("free_only", False)

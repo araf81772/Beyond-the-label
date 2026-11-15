@@ -1,17 +1,19 @@
-"""Explicit free-only OpenRouter HTTP transport; imports never send requests.
+"""Explicit, separately gated OpenRouter HTTP transports; imports send nothing.
 
 Only the caller enables execution, after its authorization, account preflight,
 budget/rate guards and protocol gates. This adapter never retries. The fixed
-HTTPS origin, no redirects, four zero provider price caps, text-only messages,
-and local function-tool allowlist prevent paid routes or billed server plugins
-from being introduced through the request. No credentials or HTTP headers are
+HTTPS origin, no redirects, explicit price caps, text-only messages,
+and local function-tool allowlist prevent unintended routes or billed server plugins
+from being introduced through a request. No credentials or HTTP headers are
 logged, persisted, or included in raised errors.
 
 Official contracts: https://openrouter.ai/docs/guides/routing/provider-selection
 and https://openrouter.ai/docs/api/api-reference/api-keys/get-current-api-key.
 Max-price prompt/completion units are USD per million tokens; request and image
 are per-unit caps. Zero is exact in all four units. These routing restrictions
-do not replace the caller's independent zero-dollar account-limit preflight.
+do not replace the caller's independent authorization and account preflight.
+The free adapter retains its four zero caps. The separate paid adapter pins
+only the explicitly authorized GPT-4.1 Mini / OpenAI smoke configuration.
 """
 from __future__ import annotations
 
@@ -35,6 +37,9 @@ _PAYLOAD_FIELDS = {"model", "provider", "messages", "max_tokens", "parallel_tool
                    "temperature", "reasoning", "tools", "tool_choice"}
 _MESSAGE_FIELDS = {"role", "content", "tool_calls", "tool_call_id", "name"}
 _PRICE_FIELDS = {"prompt", "completion", "request", "image"}
+PAID_MODEL = "openai/gpt-4.1-mini"
+PAID_PROVIDER_ROUTE = "openai"
+PAID_MAX_PRICE = {"prompt": 0.40, "completion": 1.60, "request": 0, "image": 0}
 
 
 def _timeout(value: Any) -> float:
@@ -251,6 +256,109 @@ class OpenRouterFreeTransport:
             raise ProviderFailure("free_request_content_forbidden")
         canonical_json(payload)
         return _request_json("POST", _CHAT_URL, payload=payload, timeout_seconds=self.timeout_seconds, transport=self._transport)
+
+
+class OpenRouterPaidTransport:
+    """One strictly pinned paid smoke HTTP attempt; caller owns durable limits.
+
+    Construction is inert and does not establish spending authorization. The
+    execution harness must enforce the approved cumulative dollar/attempt caps,
+    account hard limit and smoke-only stage before each dispatch. This adapter
+    performs no retries, fallbacks, price inference or model substitution.
+    """
+
+    def __init__(self, model: str, provider_route: str, *, timeout_seconds: float = 60.0,
+                 transport: httpx.BaseTransport | None = None):
+        if model != PAID_MODEL or provider_route != PAID_PROVIDER_ROUTE:
+            raise ProviderFailure("paid_transport_pin_invalid")
+        self.model, self.provider_route = model, provider_route
+        self.timeout_seconds = _timeout(timeout_seconds)
+        self._transport = transport
+
+    def __call__(self, payload: dict[str, Any]) -> dict[str, Any] | None:
+        if not isinstance(payload, dict) or set(payload) - (_PAYLOAD_FIELDS - {"reasoning"}):
+            raise ProviderFailure("paid_request_field_forbidden")
+        if payload.get("model") != self.model:
+            raise ProviderFailure("paid_request_model_mismatch")
+        pin = payload.get("provider")
+        valid_pin = (isinstance(pin, dict) and set(pin) == {"only", "allow_fallbacks", "require_parameters", "max_price"}
+                     and pin.get("only") == [self.provider_route] and pin.get("allow_fallbacks") is False
+                     and pin.get("require_parameters") is True)
+        prices = pin.get("max_price") if isinstance(pin, dict) else None
+        if (not valid_pin or not isinstance(prices, dict) or set(prices) != _PRICE_FIELDS
+                or any(type(value) not in (int, float) or value != PAID_MAX_PRICE[key]
+                       for key, value in prices.items())):
+            raise ProviderFailure("paid_request_provider_pin_invalid")
+        if (payload.get("parallel_tool_calls") is not False
+                or type(payload.get("max_tokens")) is not int or payload["max_tokens"] != 512
+                or type(payload.get("temperature")) not in (int, float) or payload["temperature"] != 0):
+            raise ProviderFailure("paid_request_parameters_invalid")
+        if not _valid_messages(payload.get("messages")) or not _valid_tools(payload):
+            raise ProviderFailure("paid_request_content_forbidden")
+        canonical_json(payload)
+        return _request_json("POST", _CHAT_URL, payload=payload, timeout_seconds=self.timeout_seconds, transport=self._transport)
+
+
+def paid_account_preflight(*, transport: httpx.BaseTransport | None = None,
+                           timeout_seconds: float = 60.0) -> dict[str, Any]:
+    """Read current-key USD limits, never infer authorization or account funds.
+
+    No key name, identifier, headers, credential or arbitrary response content
+    leaves this function. Unlimited/exhausted/resetting limits are reported as
+    evidence for the caller to reject; this function does not enable execution.
+    Missing optional budget fields are None, not invented absence of limits.
+    """
+    raw = _request_json("GET", _KEY_URL, payload=None, timeout_seconds=_timeout(timeout_seconds), transport=transport)
+    invalid = "openrouter_paid_account_metadata_invalid"
+    data = raw.get("data") if isinstance(raw, dict) else None
+    if not isinstance(data, dict) or not {"limit", "limit_remaining", "usage", "limit_reset"} <= set(data):
+        raise ProviderFailure(invalid)
+
+    def number(value: Any, *, nullable: bool = False, nonnegative: bool = True) -> int | float | None:
+        if value is None and nullable:
+            return None
+        try:
+            valid = (type(value) in (int, float) and math.isfinite(value)
+                     and (not nonnegative or value >= 0))
+        except (OverflowError, ValueError):
+            valid = False
+        if not valid:
+            raise ProviderFailure(invalid)
+        return value
+
+    def reset(value: Any) -> str | None:
+        if value is not None and (not isinstance(value, str) or value not in {"daily", "weekly", "monthly"}):
+            raise ProviderFailure(invalid)
+        return value
+
+    def budget(value: Any) -> dict[str, Any]:
+        fields = {"scope", "limit_usd", "spend_usd", "remaining_usd", "reset_interval", "include_byok"}
+        if (not isinstance(value, dict) or not fields <= set(value)
+                or not isinstance(value["scope"], str)
+                or value["scope"] not in {"workspace_default_member", "workspace_default_key", "member", "api_key", "workspace", "key_limit"}
+                or type(value["include_byok"]) is not bool):
+            raise ProviderFailure(invalid)
+        return {"scope": value["scope"], "limit_usd": number(value["limit_usd"]),
+                "spend_usd": number(value["spend_usd"]),
+                "remaining_usd": number(value["remaining_usd"], nonnegative=False),
+                "reset_interval": reset(value["reset_interval"]), "include_byok": value["include_byok"]}
+
+    limit = number(data["limit"], nullable=True)
+    remaining = number(data["limit_remaining"], nullable=True, nonnegative=False)
+    if (limit is None) != (remaining is None) or (limit is not None and remaining > limit):
+        raise ProviderFailure(invalid)
+    include_byok = data.get("include_byok_in_limit")
+    if include_byok is not None and type(include_byok) is not bool:
+        raise ProviderFailure(invalid)
+    budgets = data.get("budgets")
+    if budgets is not None and not isinstance(budgets, list):
+        raise ProviderFailure(invalid)
+    effective = data.get("effective_budget")
+    return {"key_hard_limit_usd": limit, "key_limit_remaining_usd": remaining,
+            "key_usage_usd": number(data["usage"]), "key_limit_reset": reset(data["limit_reset"]),
+            "include_byok_in_limit": include_byok,
+            "budgets": None if budgets is None else [budget(value) for value in budgets],
+            "effective_budget": None if effective is None else budget(effective)}
 
 
 def free_account_preflight(*, transport: httpx.BaseTransport | None = None,

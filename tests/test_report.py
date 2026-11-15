@@ -3,6 +3,7 @@ import csv
 import importlib.util
 import io
 import json
+import shutil
 from pathlib import Path
 import xml.etree.ElementTree as ET
 from zipfile import ZipFile
@@ -15,14 +16,44 @@ report = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(report)
 
 
-def test_build_is_deterministic_and_preserves_official_package(tmp_path):
-    template = (ROOT / "report/official_template.docx").read_bytes()
-    first = report.build_report(output_dir=tmp_path / "first")
-    second = report.build_report(output_dir=tmp_path / "second")
+@pytest.fixture
+def pre_results_root(tmp_path):
+    """A pre-results project fixture remains valid after real smoke is recorded.
+
+    Production state checks stay enabled: empirical repositories must still
+    reject generation of a manuscript claiming that no inference occurred.
+    """
+    root = tmp_path / "pre_results_fixture"
+    paths = {
+        "report/official_template.docx", "report/manuscript.md", "report/artifact.md",
+        "scripts/build_report.py", "research/protocol.md", "research/amendments.md",
+        "research/checks/source_verification.json", "research/oracle_derivation.md",
+        "evaluation/oracle_table.csv", "configs/free.yaml",
+        "research/checks/report_preparation_sources.json", "research/audit.md",
+        "README.md", "research/decisions.md", "scripts/validate_offline.py",
+        "src/beyond_label/analyze.py", "src/beyond_label/evidence.py",
+        "prompts/agent_system.txt", "prompts/probe_readback.txt",
+    }
+    for name in paths:
+        target = root / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / name, target)
+    (root / "research/milestones.json").write_text(json.dumps({
+        "experimental_calls": 0, "execution_freeze": None,
+        "classification": "synthetic_pre_results_project_fixture",
+        "authors": {"names": ["Tonmoy", "Araf"]},
+    }), encoding="utf-8")
+    return root
+
+
+def test_build_is_deterministic_and_preserves_official_package(tmp_path, pre_results_root):
+    template = (pre_results_root / "report/official_template.docx").read_bytes()
+    first = report.build_report(root=pre_results_root, output_dir=tmp_path / "first")
+    second = report.build_report(root=pre_results_root, output_dir=tmp_path / "second")
     assert first == second
     for name in ("pre_results.docx", "claim_to_evidence.csv", "report_manifest.json"):
         assert (tmp_path / "first" / name).read_bytes() == (tmp_path / "second" / name).read_bytes()
-    assert template == (ROOT / "report/official_template.docx").read_bytes()
+    assert template == (pre_results_root / "report/official_template.docx").read_bytes()
     with ZipFile(io.BytesIO(template)) as original, ZipFile(tmp_path / "first/pre_results.docx") as generated:
         assert original.namelist() == generated.namelist()
         for name in original.namelist():
@@ -49,9 +80,9 @@ def test_build_is_deterministic_and_preserves_official_package(tmp_path):
     assert first["render_verification"]["status"] == "pending"
 
 
-def test_claim_map_cannot_be_mistaken_for_empirical_scores(tmp_path):
-    report.build_report(output_dir=tmp_path)
-    with (tmp_path / "claim_to_evidence.csv").open(encoding="utf-8", newline="") as stream:
+def test_claim_map_cannot_be_mistaken_for_empirical_scores(tmp_path, pre_results_root):
+    report.build_report(root=pre_results_root, output_dir=tmp_path / "out")
+    with (tmp_path / "out/claim_to_evidence.csv").open(encoding="utf-8", newline="") as stream:
         rows = list(csv.DictReader(stream))
     assert rows and len({row["claim_id"] for row in rows}) == len(rows)
     classes = {row["classification"] for row in rows}
@@ -59,14 +90,24 @@ def test_claim_map_cannot_be_mistaken_for_empirical_scores(tmp_path):
     for row in rows:
         assert row["empirical_evidence"] == row["human_review_claimed"] == "false"
         for name, expected in json.loads(row["source_sha256"]).items():
-            assert report.sha((ROOT / name).read_bytes()) == expected
+            assert report.sha((pre_results_root / name).read_bytes()) == expected
 
 
-def test_template_change_requires_new_distillation(tmp_path, monkeypatch):
+def test_template_change_requires_new_distillation(tmp_path, monkeypatch, pre_results_root):
     monkeypatch.setattr(report, "TEMPLATE_SHA256", "unverified")
     with pytest.raises(ValueError, match="template hash mismatch"):
-        report.build_report(output_dir=tmp_path)
-    assert list(tmp_path.iterdir()) == []
+        report.build_report(root=pre_results_root, output_dir=tmp_path / "out")
+    assert not (tmp_path / "out").exists()
+
+
+def test_completed_smoke_blocks_pre_results_regeneration(pre_results_root, tmp_path):
+    state_path = pre_results_root / "research/milestones.json"
+    state = json.loads(state_path.read_text("utf-8"))
+    state["experimental_calls"] = 1
+    state_path.write_text(json.dumps(state), encoding="utf-8")
+    with pytest.raises(ValueError, match="pre-results state"):
+        report.build_report(root=pre_results_root, output_dir=tmp_path / "out")
+    assert not (tmp_path / "out").exists()
 
 
 @pytest.mark.parametrize("old,new", [

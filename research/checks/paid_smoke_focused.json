@@ -1,0 +1,59 @@
+{
+  "classification": "offline_synthetic_checks_reported_by_implementation_agents_and_root",
+  "recorded_at_utc": "2026-11-15T00:38:16.376496+00:00",
+  "real_inference_calls": 0,
+  "checks": [
+    {
+      "command": "python -m pytest -q tests/test_report.py",
+      "passed": 21,
+      "source": "root observed output",
+      "repairs": "isolated pre-results project fixture; production stale-state rejection retained"
+    },
+    {
+      "command": "python -m pytest -q tests/test_openrouter.py tests/test_provider.py tests/test_free_provider.py tests/test_paid_openrouter.py",
+      "passed": 258,
+      "source": "paid_provider agent report before subsequent HTTP and billing tests",
+      "repairs": "paid adapter, safe current-key preflight, explicit snapshot identities, hostile price overflow"
+    },
+    {
+      "command": "python -m pytest -q tests/test_paid_openrouter.py",
+      "passed": 97,
+      "source": "paid_provider agent report after HTTP and billing regressions",
+      "repairs": "strict safe HTTP status on failed attempts and strict top-level billing-mode boolean preservation"
+    },
+    {
+      "command": "python -m pytest -q tests/test_paid_controls.py tests/test_controls.py",
+      "passed": 65,
+      "source": "paid_limits agent report",
+      "repairs": "durable200 cap, complete conservative cost accounting, unknown-cost stop and response preservation"
+    },
+    {
+      "command": "python -m pytest -q tests/test_attempt_limit.py",
+      "passed": 17,
+      "source": "paid_limits agent report",
+      "repairs": "unchanged free allowance retested after concurrent source hash failure"
+    },
+    {
+      "scope": "paid harness plus legacy focused tests",
+      "passed": 254,
+      "source": "paid_harness agent report before final billing/conservation changes",
+      "repairs": "canonical80-cell run, exact model replay, errors/usage identifiers, completed resume zero additional calls"
+    },
+    {
+      "scope": "targeted billing/resume/conservation regressions",
+      "passed": 4,
+      "source": "paid_harness agent report after final billing repair",
+      "repairs": "matched ledger/trace monetary history and paid total-charge exports"
+    }
+  ],
+  "failed_then_fixed": [
+    "New API imports absent before implementation",
+    "Hostile huge price integer raised OverflowError before strict numeric validation repair",
+    "Concurrent source edits invalidated a synthetic resume input hash; stable-source retest passed without weakening check",
+    "Documented returned snapshot rejected by replay until explicit allowlist applied consistently",
+    "Failed-call export omitted request/model/provider metadata and safe HTTP status",
+    "Valid-prefix money-journal truncation could omit recorded spending before exact reconciliation",
+    "Usage.cost alone omitted separately billed upstream BYOK spend; billing mode and complete total required"
+  ],
+  "human_review": false
+}

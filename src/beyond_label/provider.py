@@ -1,8 +1,8 @@
-"""Offline, injected-transport provider contract and immutable retry logging.
+"""Injected-transport provider contract and immutable retry logging.
 
-No network implementation is supplied. OpenRouter routing slugs and returned
-provider display names are separate pins. Its documented metadata identity mode
-requires a future transport to request X-OpenRouter-Metadata: enabled; that
+Network adapters are separate and explicitly injected. OpenRouter routing slugs
+and returned provider display names are separate pins. Its documented metadata
+identity mode requires the transport to request X-OpenRouter-Metadata: enabled; that
 noncredential HTTP header is not part of this module's JSON request payload.
 Credentials never enter payloads, responses, exceptions, or returned logs.
 """
@@ -35,6 +35,12 @@ class ProviderSettings(StrictModel):
     provider_identity_source: Literal["provider", "openrouter_metadata"] = "provider"
     require_parameters: bool = Field(default=False, strict=True)
     free_only: bool = Field(default=False, strict=True)
+    # OpenRouter prompt/completion caps use USD per million tokens; request and
+    # image caps use USD per unit. None retains the historical serialization.
+    max_price: dict[str, Any] | None = None
+    # Explicit documented names of the SAME model snapshot, never fallbacks.
+    # Empty preserves the historical exact-request-model identity requirement.
+    accepted_returned_models: tuple[str, ...] = ()
     temperature: float | None = 0
     reasoning: dict[str, Any] | None = Field(default_factory=dict)
     max_output_tokens: int = Field(default=512, gt=0)
@@ -141,6 +147,8 @@ def _provider_pin(settings: ProviderSettings) -> dict[str, Any]:
         pin["require_parameters"] = True
     if settings.free_only:
         pin["max_price"] = {"prompt": 0, "completion": 0, "request": 0, "image": 0}
+    elif settings.max_price is not None:
+        pin["max_price"] = deepcopy(settings.max_price)
     return pin
 
 
@@ -150,6 +158,29 @@ def _validate_settings_safety(settings: ProviderSettings) -> None:
     values = settings.model_dump(mode="json")
     if canonical_json(_sanitized(values)) != canonical_json(values):
         raise ProviderFailure("credential_or_header_in_request")
+    if settings.max_price is not None:
+        prices = settings.max_price
+        try:
+            valid_prices = (isinstance(prices, dict) and set(prices) == {"prompt", "completion", "request", "image"}
+                            and all(type(value) in (int, float) and math.isfinite(value) and value >= 0
+                                    for value in prices.values()) and not settings.free_only)
+        except (OverflowError, ValueError):
+            valid_prices = False
+        if not valid_prices:
+            raise ProviderFailure("invalid_provider_price_caps")
+    if settings.accepted_returned_models:
+        # OpenRouter's endpoint catalog identifies this exact dated snapshot.
+        # Native and namespaced response forms are explicitly recorded in the
+        # run settings; arbitrary aliases or other models remain forbidden.
+        allowed = {"openai/gpt-4.1-mini-2025-04-14", "gpt-4.1-mini-2025-04-14"}
+        if (settings.model != "openai/gpt-4.1-mini" or settings.provider != "OpenAI"
+                or settings.provider_route != "openai" or settings.free_only
+                or settings.provider_identity_source != "openrouter_metadata"
+                or not settings.require_parameters
+                or not isinstance(settings.accepted_returned_models, tuple)
+                or len(set(settings.accepted_returned_models)) != len(settings.accepted_returned_models)
+                or any(value not in allowed for value in settings.accepted_returned_models)):
+            raise ProviderFailure("invalid_returned_model_pins")
     if settings.free_only and (not re.fullmatch(r"[A-Za-z0-9_-]+/[A-Za-z0-9_.-]+:free", settings.model)
             or settings.model.startswith("openrouter/") or not settings.provider_route
             or not settings.require_parameters or settings.provider_identity_source != "openrouter_metadata"):
@@ -200,7 +231,13 @@ def _usage(raw: Any) -> dict[str, Any]:
                     and (isinstance(v, dict) or (isinstance(v, (int, float)) and not isinstance(v, bool)
                                                and math.isfinite(v) and v >= 0))}
         return value
-    return numbers(raw)
+    result = numbers(raw)
+    # This documented billing-mode flag is the sole nonnumeric usage field
+    # retained. Paid accounting must distinguish upstream BYOK spend from
+    # OpenRouter credits; neither absent evidence nor 0/1 means false/true.
+    if type(raw.get("is_byok")) is bool:
+        result["is_byok"] = raw["is_byok"]
+    return result
 
 
 def _valid_usage(raw: Any) -> bool:
@@ -257,7 +294,7 @@ def _validate_provider_identity(raw: dict[str, Any], settings: ProviderSettings)
             selected.append(endpoint)
     if len(selected) != 1:
         raise ProviderFailure("protocol_invalid_provider_metadata")
-    if selected[0]["model"] != settings.model:
+    if selected[0]["model"] not in (settings.model, *settings.accepted_returned_models):
         raise ProviderFailure("model_mismatch")
     if selected[0]["provider"] != settings.provider:
         raise ProviderFailure("provider_mismatch")
@@ -268,7 +305,7 @@ def _validate_provider_identity(raw: dict[str, Any], settings: ProviderSettings)
 def _parse(raw: Any, payload: dict[str, Any], settings: ProviderSettings, latency: float) -> ProviderResult:
     if not isinstance(raw, dict):
         raise ProviderFailure("protocol_invalid_response")
-    if raw.get("model") != settings.model:
+    if raw.get("model") not in (settings.model, *settings.accepted_returned_models):
         raise ProviderFailure("model_mismatch")
     _validate_provider_identity(raw, settings)
     choices = raw.get("choices")
@@ -325,7 +362,7 @@ def _parse(raw: Any, payload: dict[str, Any], settings: ProviderSettings, latenc
     usage = _usage(raw.get("usage"))
     safe_raw = {
         "id": _redact_string(raw["id"]) if isinstance(raw.get("id"), str) else None,
-        "model": settings.model,
+        "model": raw["model"],
         "choices": [{"message": safe_message, "finish_reason": _redact_string(finish_reason) if isinstance(finish_reason, str) else None}],
         "usage": usage,
     }
@@ -335,7 +372,7 @@ def _parse(raw: Any, payload: dict[str, Any], settings: ProviderSettings, latenc
         safe_raw["openrouter_metadata"] = _sanitized(raw["openrouter_metadata"])
     return ProviderResult(
         reply=reply, raw_response=safe_raw, payload=deepcopy(payload), usage=usage,
-        returned_model=settings.model, returned_provider=settings.provider,
+        returned_model=raw["model"], returned_provider=settings.provider,
         request_id=safe_raw["id"], finish_reason=safe_raw["choices"][0]["finish_reason"],
         latency_seconds=latency,
     )
@@ -349,6 +386,16 @@ def _infrastructure_reason(exc: BaseException) -> str | None:
     if isinstance(exc, (ConnectionError, URLError, httpx.TransportError)):
         return "connection_error"
     return None
+
+
+def _http_status_evidence(exc: BaseException) -> dict[str, int]:
+    """Keep only a valid numeric HTTP status, never exception text or headers."""
+    status = None
+    if isinstance(exc, httpx.HTTPStatusError):
+        status = exc.response.status_code
+    elif isinstance(exc, HTTPError):
+        status = exc.code
+    return {"http_status": status} if type(status) is int and 100 <= status <= 599 else {}
 
 
 def parse_response(raw: Any, payload: dict[str, Any], settings: ProviderSettings,
@@ -402,14 +449,16 @@ class PinnedProvider:
             emit("attempt_started", attempt, usage={}, latency_seconds=0.0)
             started = time.perf_counter()
             local_accounting: dict[str, str] = {}
+            http_evidence: dict[str, int] = {}
             try:
                 raw = self.transport(json.loads(encoded))
             except Exception as exc:
                 reason = _infrastructure_reason(exc)
+                http_evidence = _http_status_evidence(exc)
                 latency = _latency(started)
                 if latency is None:
                     emit("attempt_failed", attempt, reason="invalid_latency_measurement", infrastructure=False,
-                         retryable=False, usage={}, latency_seconds=None)
+                         retryable=False, usage={}, latency_seconds=None, **http_evidence)
                     raise ProviderFailure("invalid_latency_measurement") from None
                 if reason is None:
                     # Never include exception text, repr, request headers or body.
@@ -447,7 +496,7 @@ class PinnedProvider:
                     return result
             emit("attempt_failed", attempt, reason=reason, infrastructure=True,
                  retryable=attempt < 4 and not local_accounting, usage={}, latency_seconds=latency,
-                 **local_accounting)
+                 **local_accounting, **http_evidence)
             if local_accounting:
                 raise ProviderFailure("budget_control_blocked")
             if attempt == 4:

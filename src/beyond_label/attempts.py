@@ -8,10 +8,12 @@ import os
 from pathlib import Path
 from typing import Callable
 
-from .budget import BudgetError, _canonical, _lock, _unique_object
+from .budget import BudgetError, BudgetLedger, _amount, _canonical, _lock, _unique_object
 
 
 MAX_ATTEMPTS = 10
+PAID_MAX_ATTEMPTS = 200
+PAID_AUTHORIZATION_ID = "paid-smoke-usd1-200-v1"
 
 
 class AttemptLimitError(RuntimeError):
@@ -27,6 +29,19 @@ class AttemptLimit:
     This is local safety accounting, not evidence that a model call occurred.
     """
 
+    _maximum_attempts = MAX_ATTEMPTS
+    _authorization_id: str | None = None
+
+    def _initial_body(self) -> dict:
+        initial = {"event": "initialized", "version": 1,
+                   "maximum_attempts": self._maximum_attempts}
+        if self._authorization_id is not None:
+            initial["authorization_id"] = self._authorization_id
+        return initial
+
+    def _allow_initialize(self) -> bool:
+        return True
+
     def __init__(self, path: Path | str):
         self.path = Path(path).resolve()
         self._failed = False
@@ -34,8 +49,9 @@ class AttemptLimit:
             self.path.parent.mkdir(parents=True, exist_ok=True)
             with _lock(self.path):
                 if not self.path.exists():
-                    self._append([], {"event": "initialized", "version": 1,
-                                      "maximum_attempts": MAX_ATTEMPTS})
+                    if not self._allow_initialize():
+                        raise AttemptLimitError("missing_paid_attempt_history")
+                    self._append([], self._initial_body())
                 self._read()
         except (OSError, ValueError, BudgetError):
             raise AttemptLimitError("attempt_limit_evidence_unavailable") from None
@@ -57,16 +73,16 @@ class AttemptLimit:
                     or hashlib.sha256(_canonical(body)).hexdigest() != event.get("event_hash")):
                 raise AttemptLimitError("invalid_attempt_limit_journal")
             if not events:
-                if (set(event) != metadata | {"event", "version", "maximum_attempts"}
-                        or event["event"] != "initialized"
+                if (set(event) != metadata | set(self._initial_body())
+                        or {key: value for key, value in event.items() if key not in metadata} != self._initial_body()
                         or type(event["version"]) is not int or event["version"] != 1
                         or type(event["maximum_attempts"]) is not int
-                        or event["maximum_attempts"] != MAX_ATTEMPTS):
+                        or event["maximum_attempts"] != self._maximum_attempts):
                     raise AttemptLimitError("invalid_attempt_limit_journal")
             elif (set(event) != metadata | {"event", "ordinal"}
                   or event["event"] != "attempt_reserved"
                   or type(event["ordinal"]) is not int or event["ordinal"] != len(events)
-                  or len(events) > MAX_ATTEMPTS):
+                  or len(events) > self._maximum_attempts):
                 raise AttemptLimitError("invalid_attempt_limit_journal")
             events.append(event)
             previous = event["event_hash"]
@@ -87,8 +103,8 @@ class AttemptLimit:
         try:
             with _lock(self.path):
                 used = len(self._read()) - 1
-                return {"maximum_attempts": MAX_ATTEMPTS, "reserved_attempts": used,
-                        "remaining_attempts": MAX_ATTEMPTS - used}
+                return {"maximum_attempts": self._maximum_attempts, "reserved_attempts": used,
+                        "remaining_attempts": self._maximum_attempts - used}
         except (OSError, ValueError, BudgetError, AttemptLimitError):
             self._failed = True
             raise AttemptLimitError("attempt_limit_evidence_unavailable") from None
@@ -99,7 +115,7 @@ class AttemptLimit:
         try:
             with _lock(self.path):
                 events = self._read()
-                if len(events) - 1 >= MAX_ATTEMPTS:
+                if len(events) - 1 >= self._maximum_attempts:
                     raise AttemptLimitError("authorized_attempt_limit_exhausted")
                 self._append(events, {"event": "attempt_reserved", "ordinal": len(events)})
         except (OSError, ValueError, BudgetError):
@@ -109,6 +125,27 @@ class AttemptLimit:
             if str(error) != "authorized_attempt_limit_exhausted":
                 self._failed = True
             raise
+
+
+class PaidAttemptLimit(AttemptLimit):
+    """Separate paid-smoke authorization; never opens or upgrades free history.
+
+    Only the live owner, after checking all prior evidence under its project
+    lock, may explicitly initialize a previously absent shared journal. Normal
+    resume requires the file to exist; every slot is irrevocably consumed.
+    """
+
+    _maximum_attempts = PAID_MAX_ATTEMPTS
+    _authorization_id = PAID_AUTHORIZATION_ID
+
+    def __init__(self, path: Path | str, *, initialize: bool = False):
+        if type(initialize) is not bool:
+            raise AttemptLimitError("invalid_paid_attempt_initialization")
+        self._initialize_new = initialize
+        super().__init__(path)
+
+    def _allow_initialize(self) -> bool:
+        return self._initialize_new
 
 
 class ExecutionSuspended(RuntimeError):
@@ -155,4 +192,31 @@ class CappedFreeAttempts:
 
     def __call__(self) -> None:
         self.quota.claim()
+        self.counter.claim()
+
+
+class CappedPaidAttempts:
+    """Canonical pre-attempt callback for the one USD 1 / 200-attempt smoke.
+
+    Unknown cost stops before a further retry/continuation/re-prompt. The budget
+    guard separately reserves the verified worst-case cost before dispatch;
+    this early gate suspends safely before logging a fresh model attempt.
+    """
+
+    def __init__(self, counter: PaidAttemptLimit, ledger: BudgetLedger):
+        if (type(counter) is not PaidAttemptLimit or type(ledger) is not BudgetLedger
+                or ledger.cap != _amount("1") or ledger.currency != "USD"):
+            raise AttemptLimitError("invalid_paid_attempt_policy")
+        self.counter, self.ledger = counter, ledger
+
+    def __call__(self) -> None:
+        from .paid_controls import PAID_MAXIMUM_COST
+        try:
+            state = self.ledger.snapshot()
+            if state["uncertain"] or state["blocked"]:
+                raise ExecutionSuspended("paid_cost_reconciliation_required")
+            if _amount(state["available"]) < _amount(PAID_MAXIMUM_COST):
+                raise ExecutionSuspended("paid_smoke_budget_exhausted")
+        except (OSError, ValueError, BudgetError):
+            raise ExecutionSuspended("paid_cost_evidence_unavailable") from None
         self.counter.claim()

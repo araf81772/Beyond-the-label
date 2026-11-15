@@ -71,10 +71,13 @@ class GuardedTransport:
     """
 
     def __init__(self, transport: Callable, ledger: BudgetLedger, limiter: RateLimiter,
-                 quote: Callable[[dict[str, Any]], AttemptBound], *, before_dispatch: Callable[[], None] | None = None):
-        if not callable(transport) or not callable(quote) or ledger.currency != "USD":
+                 quote: Callable[[dict[str, Any]], AttemptBound], *, before_dispatch: Callable[[], None] | None = None,
+                 cost_reader: Callable[[Any], str | None] = _observed_cost):
+        if (not callable(transport) or not callable(quote) or not callable(cost_reader)
+                or ledger.currency != "USD"):
             raise ControlError("invalid_control_configuration")
         self.transport, self.ledger, self.limiter, self.quote = transport, ledger, limiter, quote
+        self.cost_reader = cost_reader
         self._dispatch = Lock()
         self._accounting_blocked = False
         if before_dispatch is not None and not callable(before_dispatch):
@@ -121,7 +124,7 @@ class GuardedTransport:
                     self._accounting_blocked = True
                 raise
             try:
-                self.ledger.settle(attempt_id, _observed_cost(raw), currency=bound.currency)
+                self.ledger.settle(attempt_id, self.cost_reader(raw), currency=bound.currency)
             except Exception:
                 self._accounting_blocked = True
                 return TransportOutcome(raw, "budget_settlement_failed")

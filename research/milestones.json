@@ -1,7 +1,7 @@
 {
-  "recorded_at_utc": "2026-11-15T00:12:56.361106+00:00",
+  "recorded_at_utc": "2026-11-15T00:43:55.585650+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "Complete independent offline preparation through milestone 6; defer smoke until user budget update; no inference or account recheck; tests, logs, commit and push",
+  "requested_scope": "User authorizes USD10 total testing on GPT-4.1 mini via OpenRouter/OpenAI; run one smoke only capped at USD1 or200 total attempts; stop before pilot/main; repair any evidenced M5 infrastructure issue",
   "execution_freeze": null,
   "experimental_calls": 0,
   "human_participation_observed": false,
@@ -136,8 +136,8 @@
         "Credential/header leakage and immutable-attempt review"
       ],
       "real_run_blockers": [
-        "Authenticated key check succeeded but zero_hard_limit is false; user condition for inference unmet",
-        "Real free-route wire compatibility, smoke and pilot remain unobserved"
+        "Paid smoke first account hardlimit USD100 exceeds authorized USD10 ceiling; fresh compliant evidence required",
+        "Real pinned GPT-4.1 mini/OpenAI delivery, smoke and pilot remain unobserved"
       ],
       "validation": [
         {
@@ -227,7 +227,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "User defers smoke pending budget update; historical zero-hard-limit condition unmet and ten-attempt allowance insufficient for complete smoke",
+      "reason": "Three authenticated read-only checks still show a nonreset USD100 hard key limit above the USD10 guard; no inference dispatched. Paid smoke authorization remains valid; pilot/main not authorized.",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -253,8 +253,8 @@
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
-      "minimum_next_action": "Set the hard spending limit on the OpenRouter key in the ignored .env to exactly USD 0 and request a recheck. Existing conditional authorization is capped at 10 total inference attempts; completing M4 later requires a separately authorized larger call allowance.",
-      "offline_preparation_status": "Durable ten-attempt implementation validated by949 offline tests; real smoke/pilot/freeze blocked by unverified USD0 hard key limit",
+      "minimum_next_action": "Change the existing OpenRouter key hard limit from USD100 to USD10 with reset disabled, then request a fresh check. Existing authorization remains: one smoke only, USD1 or200 attempts. No new spending approval needed.",
+      "offline_preparation_status": "Paid smoke engineering validated:1201 offline tests passed in339.56s; actual smoke remains blocked by provider key hardlimit100 above authorized10",
       "offline_validation": [
         {
           "command": "python -m pytest -q",
@@ -376,6 +376,18 @@
           "exit_code": 0,
           "summary": "Audit/source/selected-secret checks, dependencies and diff passed; authoritative protocol and scientific inputs unchanged; both execution flags disabled",
           "evidence": "research/checks/durable_cap_validation_final.json"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "1201 passed in339.56s; T1-T8 plus paid/free limits, full80-cell mock smoke, completed and partial resume, total-cost accounting, errors and report guards",
+          "evidence": "research/checks/paid_smoke_suite.json"
+        },
+        {
+          "command": "python scripts/verify_audit.py; python -m pip check; git diff --check",
+          "exit_code": 0,
+          "summary": "1077 integrity/source/selected secret checks; dependencies and whitespace passed; authoritative original/archive identical; zero real attempts",
+          "evidence": "research/checks/paid_smoke_validation.json"
         }
       ],
       "recorded_test_fix_retest": [
@@ -618,20 +630,22 @@
           "summary": "1006 passed in217.47s, audit and clean tracked diff in local clone of4c369e1; same installed environment, credentials stripped; no network/package installation. Subsequent report-only spacing change separately passed20 tests.",
           "evidence": "research/checks/preresults_clean_clone.json"
         }
-      ]
+      ],
+      "current_paid_smoke_checkpoint": "research/paid_smoke.md"
     },
     {
       "number": 5,
       "name": "Main execution",
       "status": "blocked",
-      "reason": "No real smoke/pilot, selected load or execution freeze; main not started",
+      "reason": "Main not authorized by current smoke-only instruction; real pilot and execution freeze absent",
       "empirical_completed_cells": 0,
       "planned_cells": 704,
       "missingness_interpretation": "Not executed; no partial empirical run exists",
-      "minimum_next_action": "User settles budget and aggregate attempt allowance, then complete real M4 gates and verify execution freeze before any main call",
+      "minimum_next_action": "Complete smoke and report, obtain separate pilot/main execution direction, satisfy pilot and freeze gates before any main call",
       "completed_offline_preparation": [
         "Current-source full704-cell synthetic execution, trace replay, usage and duplicate-free resume",
-        "Read-only finalization bundle preserving source bytes and explicit missingness classes"
+        "Read-only finalization bundle preserving source bytes and explicit missingness classes",
+        "Paid-path preflight repairs: exact snapshot replay, failed-call metadata/HTTP status, complete total-charge accounting and rollback-resistant monetary resume. No real smoke findings yet."
       ]
     },
     {
@@ -776,5 +790,35 @@
     "remote_head_verified": true,
     "delivery_evidence": "research/checks/preresults_delivery.json",
     "final_status_checkpoint": "Resolve final follow-up commit using Git; no circular self-hash"
+  },
+  "paid_smoke_authorization": {
+    "authorization_id": "paid-smoke-usd1-200-v1",
+    "total_testing_usd": 10,
+    "smoke_usd": 1,
+    "attempts": 200,
+    "attempts_include": [
+      "initial",
+      "retries",
+      "reprompts",
+      "continuations"
+    ],
+    "model": "openai/gpt-4.1-mini",
+    "provider_route": "openai",
+    "stop_before": [
+      "pilot",
+      "main"
+    ],
+    "config": "configs/paid_smoke.yaml",
+    "account_evidence": "research/checks/paid_smoke_account_final_check.json",
+    "status": "blocked_provider_key_hard_limit_usd100_exceeds_authorized_usd10",
+    "account_checks_completed": 3,
+    "real_attempts": 0,
+    "actual_inference_cost_usd": 0,
+    "offline_tests_passed": 1201,
+    "full_suite_evidence": "research/checks/paid_smoke_suite.json",
+    "integrity_evidence": "research/checks/paid_smoke_validation.json",
+    "current_push_status": "pending_checkpoint_delivery",
+    "scientific_design_changed": false,
+    "human_review": false
   }
 }
