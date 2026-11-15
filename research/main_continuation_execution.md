@@ -21,4 +21,4 @@ Preparation, source binding, fresh readiness and actual execution outcomes must 
 
 After all 704 cells are terminal, `python scripts/finalize_main_continuation.py` creates a separately named bundle in `results/staged_main_complete` with frozen analysis (10,000 bootstrap resamples, seed 314159), actual continuation provenance and guarded reproduction commands. It does not remove remaining missing outcomes, invent receipts, complete human H3/H4, or authorize submission.
 
-Current checkpoint: implementation validated (1,771 tests and 1,664 audit checks passed); pending committed operational freeze/tag and fresh readiness. No continuation inference has occurred yet. See `checks/main52_preparation_validation.json`.
+Current checkpoint: implementation validated (1,771 tests and 1,664 audit checks passed); source committed and operational freeze prepared; pending remote delivery and fresh readiness. No continuation inference has occurred yet. See `checks/main52_preparation_validation.json`.

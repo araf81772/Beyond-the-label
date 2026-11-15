@@ -1672,7 +1672,7 @@
     "new_inference_calls_since_approval": 0
   },
   "main_continuation_execution": {
-    "status": "offline_validated_pending_operational_freeze_and_fresh_readiness",
+    "status": "operational_freeze_prepared_pending_remote_delivery_and_fresh_readiness",
     "directory": "continuations/staged_main_52_20261116",
     "parent_directory": "runs/staged_main",
     "approval": "research/main_continuation_approval.json",
@@ -1685,6 +1685,9 @@
     "human_H4_complete": false,
     "preparation_validation": "research/checks/main52_preparation_validation.json",
     "full_tests_passed": 1771,
-    "audit_checks_passed": 1664
+    "audit_checks_passed": 1664,
+    "operational_source_commit": "cc7c81dbfda50aefada5c4e62f1ffd8702601939",
+    "operational_freeze_record_hash": "6ea8d88ef98bcfa87d6dd1c2d61ebd00a9146922bcb0e842ee0c64b83cfc1c87",
+    "operational_tag": "btl-main52-operations-v1"
   }
 }
