@@ -1,37 +1,44 @@
-# Unapproved replacement smoke candidate
+# Approved replacement preparation
 
-This is a read-only planning record. The user's active authorization names
-GPT-4.1 mini / OpenAI. No replacement is enabled, no candidate call was made,
-and no main or pilot execution is authorized.
+The user approved preparing `deepseek/deepseek-v4.1-flash-1017` through
+OpenRouter route `primeintellect`, expected provider identity `PrimeIntellect`,
+under the unchanged USD 10 total testing / USD 1 smoke / 200 aggregate-attempt
+caps. **Preparation only: no inference now.** The original candidate was
+unapproved when first documented; this explicit decision changes that status.
+It does not authorize pilot, main, another smoke allowance or publication.
 
-Candidate: `deepseek/deepseek-v4.1-flash-1017`, OpenRouter route `primeintellect`,
-expected provider identity `PrimeIntellect`. The dated model ID avoids a
-`latest` router. Its [public endpoint record](https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints)
-lists available status, 1,048,576 context tokens, 131,072 maximum completion
-tokens, and the required temperature, max_tokens, tools, tool_choice and
-parallel_tool_calls controls. The direct DeepSeek route omits the last control;
-it is not the proposed route.
+The exact dated ID is pinned in `configs/paid_smoke.yaml`, with no returned-model
+aliases or fallback. The [public endpoint record](https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints)
+lists the PrimeIntellect endpoint, 1,048,576 context tokens, 131,072 maximum
+completion tokens, automatic tool choice and every requested decision control.
+The anonymous profile check returned HTTP 200 and compatible metadata. This is
+route evidence, not a successful model call or verification of effective
+behavior, hosted weights, quantization or actual returned identity. The safe
+evidence is [smoke_route_readiness.json](checks/smoke_route_readiness.json).
 
-Proposed settings, subject to approval and validation: temperature0,
-max_tokens512, tool_choice `auto`, parallel_tool_calls `false`,
-reasoning `{"enabled":false}`, strict parameter enforcement and no fallback.
-The [model catalog](https://openrouter.ai/api/v1/models) declares optional
-reasoning; [OpenRouter documents the toggle](https://openrouter.ai/docs/guides/best-practices/reasoning-tokens).
-[DeepSeek's thinking guide](https://api-docs.deepseek.com/guides/thinking_mode/)
-explains that temperature is ignored while thinking, so effective reasoning
-disablement must be verified before interpreting a run as temperature0.
+The prepared settings are temperature 0, maximum output 512, automatic tool
+choice, `parallel_tool_calls:false`, strict parameter support and no fallback.
+Reasoning is explicitly `{"effort":"none"}`. The
+[model catalog](https://openrouter.ai/api/v1/models) reports reasoning as optional,
+enabled by default, and accepting `none`; the
+[reasoning documentation](https://openrouter.ai/docs/guides/best-practices/reasoning-tokens)
+defines that effort as disabled. Omitting reasoning would not express the
+chosen setting. Tool-free readback omits all tool-only fields while preserving
+the same decision prefix and fixed model settings.
 
-Listed token prices are USD0.04368 per million input tokens and USD0.70 per
-million output tokens. A full-context-plus512-output calculation with an extra
-5% is USD0.048468209664. **That is a conditional token-price calculation, not a
-verified all-fees reservation.** Request and image prices are absent, not
-explicit zero. The [official OpenAPI schema](https://openrouter.ai/openapi.json)
-makes those fields optional and supplies no default-zero rule. Full billing
-readiness, actual delivery, returned identity, effective reasoning setting,
-quantization and hosting implementation remain unverified.
+The exact endpoint lists USD 0.04368 per million input tokens and USD 0.70 per
+million output tokens. Reserving the full advertised input context plus 512
+output tokens, with a 5% margin, gives USD 0.048468209664. Request/image prices
+are absent and remain unknown. Explicit router `max_price` ceilings of zero
+for those fees enforce admissibility; the absence is not treated as observed
+zero billing. [Provider routing](https://openrouter.ai/docs/guides/routing/provider-selection)
+documents these ceilings. Unknown new billing still retains its reservation
+and stops further dispatch.
 
-Changing the model/provider pin requires the user's decision. Before any
-replacement call, resolve all readiness gaps, test the revised integration,
-record a distinct pre-freeze execution version, and carry forward the consumed
-attempt and retained cost reservation. Do not reset either allowance, repeat
-successful/invalid model decisions, or relabel the failed GPT-4.1 mini request.
+The old GPT request remains one consumed attempt with no model reply and a
+USD 0.44084208 hold. A distinct pre-freeze source-continuation record must bind
+the repaired code/model to the same 80-cell plan, preserving that failed trace
+and the shared limits. Its reissued cell is not an identical retry or a
+replacement of a completed decision. [Current preparation procedure](smoke_readiness.md)
+explains conservative coverage, source records, validation and the no-execution
+boundary. No smoke or full-suite pass is claimed by this route document.

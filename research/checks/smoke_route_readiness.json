@@ -1,0 +1,298 @@
+{
+  "classification": "read_only_primary_source_route_review",
+  "recorded_at_utc": "2026-11-15T01:57:52.508091+00:00",
+  "retrieval_method": "Public web pages and anonymous fixed-URL HTTPS GET with trust_env=False and no redirects; no credentials or inference",
+  "model": "openai/gpt-4.1-mini",
+  "provider_route": "openai",
+  "provider": "OpenAI",
+  "sources": [
+    {
+      "url": "https://openrouter.ai/api/v1/models/openai/gpt-4.1-mini/endpoints",
+      "supports": "Current pinned endpoint metadata",
+      "observations": {
+        "matching_provider_tag": "openai",
+        "context_length": 1047576,
+        "max_completion_tokens": 32768,
+        "supported_parameters": [
+          "seed",
+          "max_tokens",
+          "response_format",
+          "structured_outputs",
+          "tools",
+          "tool_choice",
+          "temperature",
+          "top_p"
+        ],
+        "parallel_tool_calls_listed": false,
+        "request_price_reported": false,
+        "image_price_reported": false
+      }
+    },
+    {
+      "url": "https://openrouter.ai/api/v1/models/openai/gpt-4.1-mini-2025-04-14/endpoints",
+      "supports": "Exact snapshot resolves to the same model ID and OpenAI/openai route; no parallel parameter listed; other routes are Azure"
+    },
+    {
+      "url": "https://openrouter.ai/openapi.json",
+      "supports": "PublicEndpoint.supported_parameters uses components.schemas.Parameter; its enum explicitly includes parallel_tool_calls. Absence is not an enum/schema inability to represent the field.",
+      "schema_paths": [
+        "components.schemas.PublicEndpoint.properties.supported_parameters",
+        "components.schemas.Parameter"
+      ]
+    },
+    {
+      "url": "https://openrouter.ai/api/v1/models",
+      "supports": "Several other current model catalog entries explicitly contain parallel_tool_calls, so the field is represented in public metadata"
+    },
+    {
+      "url": "https://openrouter.ai/docs/guides/routing/provider-selection",
+      "supports": "require_parameters true filters endpoints to all specified parameters; max_price enforces provider price ceilings including request/image"
+    },
+    {
+      "url": "https://github.com/OpenRouterTeam/python-sdk/blob/main/docs/components/providerpreferences.mdx",
+      "supports": "When strict parameter filtering is false, providers receive supported parameters and unsupported ones can be ignored"
+    },
+    {
+      "url": "https://openrouter.ai/docs/api_reference/parameters",
+      "supports": "parallel_tool_calls only applies with tools; generic provider-specific forwarding text does not establish forwarding on this exact route"
+    },
+    {
+      "url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints",
+      "supports": "Current exact PrimeIntellect route advertises all decision controls, reasoning control, automatic tool choice, output capacity and per-token prices"
+    },
+    {
+      "url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+      "supports": "Model catalog describes mandatory/default/supported reasoning settings; effort none explicitly disables reasoning"
+    }
+  ],
+  "conclusions": {
+    "strict_pinned_decision_route_verified": false,
+    "dated_snapshot_resolves_route_blocker": false,
+    "global_schema_omission_hypothesis_rejected": true,
+    "unique_historical_404_cause_proven": false,
+    "omitted_optional_fees_are_observed_zero": false
+  },
+  "request_or_model_settings_changed": true,
+  "inference_calls": 0,
+  "account_checks": 0,
+  "human_review": false,
+  "approved_metadata_repair": {
+    "optional_request_image_absence": "Unknown observed fees; not an independent metadata blocker because the unchanged request carries documented router max_price ceilings of zero",
+    "no_inferred_zero_fees": true,
+    "required_token_prices_still_verified": true,
+    "malformed_present_optional_fees_still_block": true,
+    "excessive_known_optional_fees_still_block": true,
+    "strict_parallel_parameter_requirement_preserved": true,
+    "request_settings_changed": false
+  },
+  "focused_regression_validation": {
+    "command": "python -m pytest tests/test_capabilities.py -q",
+    "synthetic_offline_only": true,
+    "before_fix": {
+      "failed": 13,
+      "passed": 87
+    },
+    "after_fix": {
+      "failed": 0,
+      "passed": 100
+    }
+  },
+  "prepared_profile_approval": {
+    "approved_by": "user",
+    "scope": "Prepare dated DeepSeek/PrimeIntellect under the unchanged USD10 total / USD1 smoke / 200-attempt caps; no inference authorized by this preparation",
+    "reasoning": {
+      "effort": "none"
+    },
+    "accepted_returned_models": [],
+    "configuration_changed": true
+  },
+  "prepared_profile_public_check": {
+    "checked_at_utc": "2026-11-15T02:02:43.468681+00:00",
+    "report": {
+      "schema_version": 1,
+      "classification": "public_capability_metadata_not_live_delivery",
+      "requested_model": "deepseek/deepseek-v4.1-flash-1017",
+      "requested_provider": "PrimeIntellect",
+      "requested_provider_route": "primeintellect",
+      "required_parameters": [
+        "max_tokens",
+        "parallel_tool_calls",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "reasoning"
+      ],
+      "compatible": true,
+      "blockers": [],
+      "matching_endpoints": [
+        {
+          "endpoint_index": 2,
+          "available_status_verified": true,
+          "missing_parameters": [],
+          "unknown_fields": [
+            "pricing.image",
+            "pricing.request"
+          ],
+          "price_checks": {
+            "prompt": {
+              "observed_usd": "4.368E-8",
+              "ceiling_usd": "4.368E-8",
+              "unit": "per_token",
+              "within_ceiling": true,
+              "catalog_field_absent": false,
+              "enforcement": "locked_router_max_price"
+            },
+            "completion": {
+              "observed_usd": "7E-7",
+              "ceiling_usd": "7E-7",
+              "unit": "per_token",
+              "within_ceiling": true,
+              "catalog_field_absent": false,
+              "enforcement": "locked_router_max_price"
+            },
+            "request": {
+              "observed_usd": null,
+              "ceiling_usd": "0",
+              "unit": "per_unit",
+              "within_ceiling": null,
+              "catalog_field_absent": true,
+              "enforcement": "locked_router_max_price"
+            },
+            "image": {
+              "observed_usd": null,
+              "ceiling_usd": "0",
+              "unit": "per_unit",
+              "within_ceiling": null,
+              "catalog_field_absent": true,
+              "enforcement": "locked_router_max_price"
+            }
+          },
+          "blockers": [],
+          "compatible": true
+        }
+      ],
+      "execution_authorized": false,
+      "http_404_cause_established": false,
+      "request_settings_changed": false,
+      "fetch": {
+        "source": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints",
+        "status": "received",
+        "http_status": 200,
+        "credentials_used": false
+      }
+    },
+    "inference_calls": 0,
+    "account_checks": 0
+  },
+  "candidate_review_before_approval": {
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "model_name": "DeepSeek: DeepSeek V4.1 Flash 1017",
+    "provider": "PrimeIntellect",
+    "provider_route": "primeintellect",
+    "endpoint_name": "PrimeIntellect | deepseek/deepseek-v4.1-flash-20261017",
+    "status": "Historical candidate at review time; subsequently approved for preparation only",
+    "context_length": 1048576,
+    "max_completion_tokens": 131072,
+    "supported_parameters": [
+      "reasoning",
+      "include_reasoning",
+      "max_tokens",
+      "max_completion_tokens",
+      "temperature",
+      "top_p",
+      "top_k",
+      "stop",
+      "frequency_penalty",
+      "repetition_penalty",
+      "parallel_tool_calls",
+      "response_format",
+      "structured_outputs",
+      "tools",
+      "tool_choice",
+      "logprobs",
+      "top_logprobs",
+      "reasoning_effort"
+    ],
+    "supports_tool_choice": {
+      "none": true,
+      "auto": true,
+      "required": true,
+      "function": true
+    },
+    "endpoint_prices_usd_per_token": {
+      "prompt": "0.00000004368",
+      "completion": "0.0000007",
+      "input_cache_read": "0.0000000024"
+    },
+    "request_image_prices_observed": null,
+    "pricing_note": "Exact endpoint prices above, not the cheaper aggregate model-catalog minimum; omitted request/image fees remain unknown and would require explicit zero router ceilings.",
+    "catalog_reasoning": {
+      "mandatory": false,
+      "default_enabled": true,
+      "supported_efforts": [
+        "max",
+        "high",
+        "low",
+        "none"
+      ],
+      "default_effort": "high"
+    },
+    "proposed_reasoning": {
+      "effort": "none"
+    },
+    "proposed_remaining_settings": "temperature 0; max_tokens 512; automatic tool choice; parallel_tool_calls false; require_parameters true; allow_fallbacks false; exact provider pin",
+    "metadata_capability_compatible": true,
+    "live_delivery_verified": false,
+    "configuration_changed": false,
+    "user_approval_required": true,
+    "execution_authorized": false
+  },
+  "profile_regression_validation": {
+    "command": "python -m pytest tests/test_paid_profiles.py tests/test_capabilities.py -q",
+    "synthetic_offline_only": true,
+    "failed": 0,
+    "passed": 122
+  },
+  "legacy_regression_validation": {
+    "command": "python -m pytest tests/test_capabilities.py tests/test_paid_controls.py tests/test_paid_openrouter.py tests/test_paid_live.py -q",
+    "synthetic_offline_only": true,
+    "failed": 2,
+    "passed": 309,
+    "unresolved_at_check": [
+      "test_paid_direct_fixture_cannot_claim_empirical_provenance: root continuation integration calls source hashing before synthetic rejection on a minimal fixture",
+      "test_paid_cli_reports_only_numeric_account_http_status: test must select new explicit execution CLI path"
+    ],
+    "handoff": "Parent owns run/CLI integration and will fix and retest before delivery"
+  },
+  "profile_transport_retest": {
+    "command": "python -m pytest tests/test_paid_profiles.py tests/test_capabilities.py tests/test_paid_openrouter.py -q",
+    "synthetic_offline_only": true,
+    "failed": 0,
+    "passed": 219,
+    "continuation_fixture": "Valid sandbox inspect result appended to the tool conversation"
+  },
+  "subsequent_preparation_decision": {
+    "user_approved": true,
+    "user_answer": "Prepare DeepSeek/PrimeIntellect (recommended)",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "provider_route": "primeintellect",
+    "reasoning": {
+      "effort": "none"
+    },
+    "inference_authorized_this_checkpoint": false,
+    "original_candidate_fields_are_pre_approval_history": true
+  },
+  "legacy_regression_resolution": {
+    "observer": "root",
+    "command": "python -m pytest -q tests/test_smoke_readiness.py tests/test_paid_live.py tests/test_historical_replay.py tests/test_execution_audit.py",
+    "passed": 95,
+    "failed": 0,
+    "seconds": 74.9,
+    "fixes": [
+      "Reject nonconcrete live transport before continuation source hashing",
+      "Exercise both explicit CLI modes in account HTTP status redaction test"
+    ],
+    "additional_targeted_cli_and_preparation_passed": 6,
+    "full_suite_evidence": "research/checks/smoke_preparation_suite.json"
+  }
+}

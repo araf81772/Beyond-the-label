@@ -246,7 +246,8 @@ def test_failed_response_usage_retains_returned_identity_without_resampling(tmp_
     assert usage[0]["request_id"]
 
 
-def test_paid_cli_reports_only_numeric_account_http_status(monkeypatch, capsys):
+@pytest.mark.parametrize("mode", ["--check-ready", "--execute"])
+def test_paid_cli_reports_only_numeric_account_http_status(monkeypatch, capsys, mode):
     import httpx
     from beyond_label import paid_live
     def rejected(*args, **kwargs):
@@ -254,7 +255,8 @@ def test_paid_cli_reports_only_numeric_account_http_status(monkeypatch, capsys):
         response = httpx.Response(401, request=request, text="sensitive-response-fixture")
         raise httpx.HTTPStatusError("sensitive-exception-fixture", request=request, response=response)
     monkeypatch.setattr(paid_live, "run_paid_smoke", rejected)
-    monkeypatch.setattr("sys.argv", ["paid_live"])
+    monkeypatch.setattr(paid_live, "check_smoke_readiness", rejected)
+    monkeypatch.setattr("sys.argv", ["paid_live", mode])
     assert paid_live.main() == 2
     printed = capsys.readouterr().out
     assert json.loads(printed)["http_status"] == 401

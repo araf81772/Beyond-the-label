@@ -1,7 +1,7 @@
 {
-  "recorded_at_utc": "2026-11-15T01:44:03.832744+00:00",
+  "recorded_at_utc": "2026-11-15T02:20:25.127195+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "User authorizes USD10 total testing on GPT-4.1 mini via OpenRouter/OpenAI; run one smoke only capped at USD1 or200 total attempts; stop before pilot/main; repair any evidenced M5 infrastructure issue",
+  "requested_scope": "Fix three smoke blockers, test/fix/retest, update logs and commit/push; prepare user-approved DeepSeek/PrimeIntellect replacement under unchanged USD10 total / USD1 smoke / 200 aggregate attempts; no smoke execution now.",
   "execution_freeze": null,
   "experimental_calls": 1,
   "human_participation_observed": false,
@@ -228,7 +228,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "Smoke remains incomplete after one historical HTTP404. Offline repair removes an inapplicable tool parameter from readback only; full decision-route compatibility and prior attempt billing/provenance remain unresolved. Current instruction forbids smoke execution.",
+      "reason": "Real smoke/pilot/freeze remain incomplete. Approved replacement preparation and conservative coverage of the historical unknown charge are under final offline validation; no inference is authorized in this checkpoint.",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -249,13 +249,17 @@
         "Empirical pilot summaries and read-only freeze preparation/verification against retained traces and Git blobs",
         "Durable 10-attempt attempt cap across all runs/restarts with crash/corruption/concurrent-writer tests and real-entry-point bypass regression",
         "Current-source 320-cell rehearsal with576 fixture calls and immutable replay",
-        "Execution audit reconciles actual trace counts/freeze evidence; paid smoke authorized but blocked after one HTTP404 attempt"
+        "Execution audit reconciles actual trace counts/freeze evidence; paid smoke authorized but blocked after one HTTP404 attempt",
+        "Explicit user-approved dated DeepSeek/PrimeIntellect profile with strict controls and no fallback",
+        "Exact historical unknown-charge coverage retaining its entire reservation; new unknown charges still suspend dispatch",
+        "Hash-bound versioned continuation preserving original source and raw artifacts with one shared allowance",
+        "Read-only readiness CLI default; inference requires explicit --execute"
       ],
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
-      "minimum_next_action": "No more key-limit change is needed. Before any later execution, resolve full decision-route capabilities, reconcile the retained failed-attempt charge from evidence, and record an explicit pre-freeze source/version continuation without changing historical artifacts or treating a changed request as an identical retry.",
-      "offline_preparation_status": "Readback serializer, adapter and budget-quote repair passed1381 offline tests in384.92s; source-version historical replay and original artifact hashes verified. No new smoke/account/inference call; real smoke remains incomplete.",
+      "minimum_next_action": "Finish readiness validation and delivery; wait for user direction before running smoke. Stop and report before pilot/main.",
+      "offline_preparation_status": "1511 offline tests passed in658.30s with stable47execution-input hashes. No smoke calls. Exact committed-source preparation and final GET-only readiness pending.",
       "offline_validation": [
         {
           "command": "python -m pytest -q",
@@ -413,6 +417,12 @@
           "exit_code": 0,
           "summary": "1381 passed in384.92s; stable experimental input hashes; no inference or account calls",
           "evidence": "research/checks/readback_wire_fix_suite.json"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "1511 passed in658.30s; network blocked and credentials isolated; execution inputs unchanged",
+          "evidence": "research/checks/smoke_preparation_suite.json"
         }
       ],
       "recorded_test_fix_retest": [
@@ -714,14 +724,14 @@
           "evidence": "research/checks/preresults_clean_clone.json"
         }
       ],
-      "current_paid_smoke_checkpoint": "research/paid_smoke.md",
+      "current_paid_smoke_checkpoint": "research/smoke_readiness.md",
       "real_smoke_worlds_attempted": 1,
       "real_smoke_attempts": 1,
       "real_smoke_completed_cells": 0,
       "real_smoke_pending_cells": 80,
       "real_smoke_evidence": "runs/paid_smoke_gpt41mini_20261115",
       "current_engineering_diagnostics": "research/checks/paid_smoke_failure_audit.json",
-      "capability_evidence": "research/checks/paid_smoke_capabilities.json",
+      "capability_evidence": "research/checks/smoke_route_readiness.json",
       "historical_execution_authorization": {
         "free_only": true,
         "condition": "authenticated key hard limit exactly USD 0",
@@ -917,26 +927,26 @@
       "reprompts",
       "continuations"
     ],
-    "model": "openai/gpt-4.1-mini",
-    "provider_route": "openai",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "provider_route": "primeintellect",
     "stop_before": [
       "pilot",
       "main"
     ],
     "config": "configs/paid_smoke.yaml",
-    "account_evidence": "research/checks/paid_smoke_ready_preflight.json",
-    "status": "partial_smoke_stopped_after_first_http404",
-    "account_checks_completed": 6,
+    "account_evidence": "research/checks/smoke_readiness_account.json",
+    "status": "replacement_preparation_no_execution",
+    "account_checks_completed": 7,
     "real_attempts": 1,
     "actual_inference_cost_usd": null,
-    "offline_tests_passed": 1381,
-    "full_suite_evidence": "research/checks/readback_wire_fix_suite.json",
+    "offline_tests_passed": 1511,
+    "full_suite_evidence": "research/checks/smoke_preparation_suite.json",
     "integrity_evidence": "research/checks/paid_smoke_execution_validation.json",
-    "current_push_status": "offline_wire_repair_pushed_and_remote_verified",
+    "current_push_status": "source_commit_pending",
     "scientific_design_changed": false,
     "human_review": false,
     "engineering_commit": "88c632fc0bfe9f24700b4b30a217fdb6b53ee1c4",
-    "remote_head_verified": true,
+    "remote_head_verified": false,
     "delivery_evidence": "research/checks/paid_smoke_execution_delivery.json",
     "final_status_commit_reference": "Resolve through Git; no circular self-hash",
     "known_account_usage_usd": 0,
@@ -948,9 +958,12 @@
     "never_attempted_cells": 79,
     "run_directory": "runs/paid_smoke_gpt41mini_20261115",
     "collection_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
-    "model_provider_changed": false,
+    "model_provider_changed": true,
     "previous_engineering_commit": "516de443bbdad399e07529a071d841aca5d3ca0e",
-    "latest_repair_commit": "464bbb0a3d1a4300aa975313520a24c3760f856b"
+    "latest_repair_commit": "464bbb0a3d1a4300aa975313520a24c3760f856b",
+    "historical_model": "openai/gpt-4.1-mini",
+    "historical_provider_route": "openai",
+    "provider": "PrimeIntellect"
   },
   "readback_wire_repair": {
     "scope": "offline_only",
@@ -985,5 +998,28 @@
     "delivered_commit": "464bbb0a3d1a4300aa975313520a24c3760f856b",
     "remote_head_verified": true,
     "delivery_evidence": "research/checks/readback_wire_fix_delivery.json"
+  },
+  "smoke_readiness_preparation": {
+    "status": "offline_validated_committed_source_preparation_pending",
+    "inference_calls": 0,
+    "account_checks": 1,
+    "public_route_metadata_verified": true,
+    "live_delivery_verified": false,
+    "actual_historical_cost_verified": false,
+    "retained_hold_usd": "0.44084208",
+    "available_smoke_usd": "0.55915792",
+    "next_attempt_upper_bound_usd": "0.048468209664",
+    "aggregate_attempts_used": 1,
+    "aggregate_attempts_remaining": 199,
+    "scientific_design_changed": false,
+    "human_review": false,
+    "user_model_decision": "Prepare DeepSeek/PrimeIntellect (recommended)",
+    "source_commit": null,
+    "execution_started": false,
+    "full_suite_evidence": "research/checks/smoke_preparation_suite.json",
+    "full_suite_tests_passed": 1511,
+    "full_suite_seconds": 658.3,
+    "original_artifacts_unchanged": true,
+    "staged_input_hashes_verified": 47
   }
 }

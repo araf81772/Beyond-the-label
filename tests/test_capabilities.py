@@ -24,7 +24,7 @@ def catalog_fixture():
         "model_id": "openai/gpt-4.1-mini", "model_name": "OpenAI: GPT-4.1 Mini",
         "provider_name": "OpenAI", "tag": "openai", "status": 0,
         "supported_parameters": ["seed", "max_tokens", "tools", "tool_choice", "temperature"],
-        "supports_tool_choice": {"auto": True}, "max_completion_tokens": 32768,
+        "supports_tool_choice": {"auto": True}, "max_completion_tokens": 32768, "context_length": 1047576,
         "pricing": {"prompt": "0.0000004", "completion": "0.0000016"},
     }]}}
 
@@ -61,6 +61,47 @@ def test_hypothetical_supported_metadata_does_not_authorize_execution_or_prove_h
     assert result["blockers"] == []
     assert result["matching_endpoints"][0]["blockers"] == []
     assert result["execution_authorized"] is result["http_404_cause_established"] is False
+
+
+@pytest.mark.parametrize("omitted", [("request",), ("image",), ("request", "image")])
+def test_optional_fee_omissions_remain_unknown_with_unchanged_router_ceilings(omitted):
+    doc, config = complete_fixture(), locked_config()
+    for field in omitted:
+        del doc["data"]["endpoints"][0]["pricing"][field]
+    before = deepcopy((doc, config))
+    result = validate_paid_smoke_capabilities(doc, config)
+    endpoint = result["matching_endpoints"][0]
+    assert result["compatible"] is True
+    assert endpoint["unknown_fields"] == sorted("pricing." + field for field in omitted)
+    assert endpoint["blockers"] == []
+    for field in omitted:
+        check = endpoint["price_checks"][field]
+        assert check["observed_usd"] is check["within_ceiling"] is None
+        assert check["ceiling_usd"] == "0"
+        assert check["enforcement"] == "locked_router_max_price"
+        assert check["catalog_field_absent"] is True
+    assert result["execution_authorized"] is False
+    assert (doc, config) == before
+
+
+@pytest.mark.parametrize("field", ["prompt", "completion"])
+def test_required_token_price_omissions_still_fail_closed(field):
+    doc = complete_fixture()
+    del doc["data"]["endpoints"][0]["pricing"][field]
+    endpoint = validate_paid_smoke_capabilities(doc, locked_config())["matching_endpoints"][0]
+    assert endpoint["compatible"] is False
+    assert "metadata_incomplete" in endpoint["blockers"]
+
+
+@pytest.mark.parametrize("field", ["request", "image"])
+@pytest.mark.parametrize("value", [None, True, "NaN", "-1", {}])
+def test_malformed_optional_fees_are_not_treated_as_omitted(field, value):
+    doc = complete_fixture()
+    doc["data"]["endpoints"][0]["pricing"][field] = value
+    endpoint = validate_paid_smoke_capabilities(doc, locked_config())["matching_endpoints"][0]
+    assert endpoint["compatible"] is False
+    assert "metadata_incomplete" in endpoint["blockers"]
+    assert endpoint["price_checks"][field]["catalog_field_absent"] is False
 
 
 @pytest.mark.parametrize("field,value", [

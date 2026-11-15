@@ -13,7 +13,8 @@ Max-price prompt/completion units are USD per million tokens; request and image
 are per-unit caps. Zero is exact in all four units. These routing restrictions
 do not replace the caller's independent authorization and account preflight.
 The free adapter retains its four zero caps. The separate paid adapter pins
-only the explicitly authorized GPT-4.1 Mini / OpenAI smoke configuration.
+only explicitly recorded smoke profiles; choosing a profile is not permission
+to dispatch it.
 """
 from __future__ import annotations
 
@@ -26,6 +27,7 @@ from typing import Any
 import httpx
 
 from .environment import load_local_credentials
+from .paid_profile import get_paid_profile
 from .provider import HTTP_DIAGNOSTICS, ProviderFailure, _sanitized, canonical_json
 
 
@@ -327,14 +329,19 @@ class OpenRouterPaidTransport:
 
     def __init__(self, model: str, provider_route: str, *, timeout_seconds: float = 60.0,
                  transport: httpx.BaseTransport | None = None):
-        if model != PAID_MODEL or provider_route != PAID_PROVIDER_ROUTE:
-            raise ProviderFailure("paid_transport_pin_invalid")
+        try:
+            self.profile = get_paid_profile(model, provider_route)
+            if provider_route != self.profile["provider_route"]:
+                raise ValueError("unverified_paid_profile")
+        except ValueError:
+            raise ProviderFailure("paid_transport_pin_invalid") from None
         self.model, self.provider_route = model, provider_route
         self.timeout_seconds = _timeout(timeout_seconds)
         self._transport = transport
 
     def __call__(self, payload: dict[str, Any]) -> dict[str, Any] | None:
-        if not isinstance(payload, dict) or set(payload) - (_PAYLOAD_FIELDS - {"reasoning"}):
+        allowed = _PAYLOAD_FIELDS if self.profile["reasoning"] is not None else _PAYLOAD_FIELDS - {"reasoning"}
+        if not isinstance(payload, dict) or set(payload) - allowed:
             raise ProviderFailure("paid_request_field_forbidden")
         if payload.get("model") != self.model:
             raise ProviderFailure("paid_request_model_mismatch")
@@ -344,10 +351,11 @@ class OpenRouterPaidTransport:
                      and pin.get("require_parameters") is True)
         prices = pin.get("max_price") if isinstance(pin, dict) else None
         if (not valid_pin or not isinstance(prices, dict) or set(prices) != _PRICE_FIELDS
-                or any(type(value) not in (int, float) or value != PAID_MAX_PRICE[key]
+                or any(type(value) not in (int, float) or value != self.profile["max_price"][key]
                        for key, value in prices.items())):
             raise ProviderFailure("paid_request_provider_pin_invalid")
         if (not _valid_parallel_control(payload)
+                or (self.profile["reasoning"] is not None and payload.get("reasoning") != self.profile["reasoning"])
                 or type(payload.get("max_tokens")) is not int or payload["max_tokens"] != 512
                 or type(payload.get("temperature")) not in (int, float) or payload["temperature"] != 0):
             raise ProviderFailure("paid_request_parameters_invalid")

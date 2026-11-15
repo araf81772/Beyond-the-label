@@ -7,6 +7,7 @@ from collections.abc import Mapping
 import json
 import math
 import re
+from .paid_profile import get_paid_profile
 
 
 class ExecutionBlocked(RuntimeError):
@@ -43,15 +44,21 @@ def require_paid_smoke_configuration(config: Mapping, *, stage: str,
     Local throttles are recorded honestly as operator choices. The authenticated
     key ceiling and conservative reservation supply independent spending limits.
     """
+    if stage != "smoke" or not isinstance(config, Mapping):
+        raise ExecutionBlocked("Paid authorization is smoke only; stop before pilot or main")
+    try:
+        profile = get_paid_profile(config.get("model"), config.get("provider_route"))
+    except ValueError:
+        raise ExecutionBlocked("Paid smoke scope or pinned settings changed") from None
     exact = {
         "authorization_id": PAID_SMOKE_AUTHORIZATION, "execution_scope": "smoke_only",
         "authorized_dataset": "smoke", "run_directory": PAID_SMOKE_DIRECTORY,
         "live_execution_enabled": True, "account_preflight_enabled": True,
         "paid_calls_authorized": True, "free_only": False, "currency": "USD",
-        "routing_service": "OpenRouter", "model": "openai/gpt-4.1-mini",
-        "provider": "OpenAI", "provider_route": "openai",
+        "routing_service": "OpenRouter", "model": profile["model"],
+        "provider": profile["provider"], "provider_route": profile["provider_route"],
         "provider_identity_source": "openrouter_metadata", "require_parameters": True,
-        "reasoning": None, "reasoning_mode": "not_applicable",
+        "reasoning": profile["reasoning"], "reasoning_mode": profile["reasoning_mode"],
         "reasoning_setting_verified": True, "temperature_setting_verified": True,
         "parallel_tool_calls": False, "allow_fallbacks": False, "provider_docs_verified": True,
         "provider_requests_per_minute": None, "provider_request_limit_status": "not_published",
@@ -59,8 +66,6 @@ def require_paid_smoke_configuration(config: Mapping, *, stage: str,
         "total_token_bound_verified": True,
         "tool_choice": "auto", "no_tool_reprompt": "Respond with exactly one tool call.",
     }
-    if stage != "smoke" or not isinstance(config, Mapping):
-        raise ExecutionBlocked("Paid authorization is smoke only; stop before pilot or main")
     for field, expected in exact.items():
         if field not in config or type(config[field]) is not type(expected) or config[field] != expected:
             raise ExecutionBlocked("Paid smoke scope or pinned settings changed")
@@ -70,18 +75,18 @@ def require_paid_smoke_configuration(config: Mapping, *, stage: str,
             raise ExecutionBlocked("Paid smoke spending or temperature authorization changed")
     for field, expected in {"maximum_inference_attempts": 200, "max_output_tokens": 512,
                             "concurrency": 1, "load": 2, "schedule_seed": 271828,
-                            "operator_requests_per_minute": 10, "operator_tokens_per_minute": 10480880,
-                            "total_token_bound": 1048088, "no_tool_reprompts": 1,
+                            "operator_requests_per_minute": 10, "operator_tokens_per_minute": profile["token_bound"] * 10,
+                            "total_token_bound": profile["token_bound"], "no_tool_reprompts": 1,
                             "infrastructure_retries_after_initial": 3}.items():
         if type(config.get(field)) is not int or config[field] != expected:
             raise ExecutionBlocked("Paid smoke fixed attempt, token, or schedule limit changed")
     prices = config.get("max_price")
-    expected_prices = {"prompt": .4, "completion": 1.6, "request": 0, "image": 0}
+    expected_prices = profile["max_price"]
     if (not isinstance(prices, Mapping) or set(prices) != set(expected_prices)
             or any(not _finite_number(prices[key]) or prices[key] != value
                    for key, value in expected_prices.items())):
         raise ExecutionBlocked("Paid smoke routing price ceiling changed")
-    if config.get("accepted_returned_models") != ["openai/gpt-4.1-mini-2025-04-14", "gpt-4.1-mini-2025-04-14"]:
+    if config.get("accepted_returned_models") != profile["accepted_returned_models"]:
         raise ExecutionBlocked("Paid smoke returned model identities changed")
     if account_verified:
         cap = config.get("key_hard_limit_usd")

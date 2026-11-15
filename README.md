@@ -6,7 +6,9 @@
 
 Checkpoint: 15 November 2026, Australia/Sydney. M1–M3 remain complete offline. The first paid smoke request returned HTTP404: one attempt, zero model responses, zero completed cells. One cell has an observed infrastructure failure; 79 cells remain untouched. Pilot, main and execution freeze have not started. M6 pre-results artifacts remain historical; no empirical main findings exist.
 
-The user authorizes USD10 total testing, but only one smoke capped at USD1 or200 aggregate attempts, including retries, re-prompts and continuations. The key now correctly has a nonreset USD10 hard limit. The pinned GPT-4.1 mini/OpenAI route failed delivery; current public metadata omits a required control. Per-attempt cost was unavailable, so the USD0.44084208 reservation remains held even though a later account check reports USD0 usage. [Current evidence and remaining blocker](research/paid_smoke.md). No alternate model or relaxed request setting was silently substituted. The repair-only checkpoint removes the inapplicable parallel-tool field from tool-free readback requests and aligns transport and budget validation; decision controls remain unchanged. **1381 offline tests passed** with stable experimental input hashes. No additional smoke, inference or account call was made. [Repair validation](research/checks/readback_wire_fix_suite.json) and [integrity evidence](research/checks/readback_wire_fix_integrity.json) preserve the original run files; live compatibility remains unverified.
+The user approved preparing the dated `deepseek/deepseek-v4.1-flash-1017` model through OpenRouter/PrimeIntellect, while keeping the existing USD 10 total testing / USD 1 smoke / 200 aggregate-attempt caps. **Do not run smoke yet.** The prepared profile uses temperature 0, explicit reasoning off, 512 output tokens, strict parameter support, parallel tools disabled and no fallback. Its public endpoint metadata supports the requested controls; actual delivery remains unverified. [Current smoke preparation](research/smoke_readiness.md) and [approved route](research/model_route_candidate.md).
+
+The original GPT-4.1 mini attempt and raw artifacts remain unchanged. Its USD 0.44084208 hold still counts against the cap, leaving USD 0.55915792 available and 199 attempts remaining. The exact-hold review permits conservative coverage of that historical uncertainty; it does not establish actual billing or zero cost. The prepared profile's next-attempt bound is USD 0.048468209664, and any new unknown charge still stops dispatch. [Historical failure and prior validation](research/paid_smoke.md). The earlier **1381-test pass** belongs to the readback repair checkpoint, not the current combined preparation. Current full-suite and delivery outcomes are recorded separately in the decision log and milestone record; preparation is not a passed smoke.
 
 The [pre-results manuscript](report/manuscript.md) names **Tonmoy and Araf**, with affiliations pending. It includes methods, analytic references, NOT RUN results and the required ethical/limitations appendix. The official template has been retrieved and retained. [Report artifacts and reproduction](report/README.md). No H1-H5 human review, author contribution, submission or publication is inferred from the confirmed names.
 
@@ -70,7 +72,21 @@ The disabled free candidate is OpenRouter `nvidia/nemotron-3.5-super-vl:free`, p
 
 `attempts.py` reserves each authorized attempt durably before dispatch, shares the ceiling across stages/restarts, and never refunds a reservation. An interrupted pre-dispatch reservation consumes allowance but is not a confirmed provider call or charge. Never reset `runs/_free_session/attempts.jsonl`. The budget ledger separately preserves known and unknown costs. The separate paid counter permits at most 200 attempts for the one authorized smoke and never changes the historical free counter. Silent fallback, pilot/main and unverified execution settings are rejected.
 
-The earlier USD 20 proposal remains unapproved historical planning in [readiness](research/execution_readiness.md). The current [paid smoke config](configs/paid_smoke.yaml) records the explicit USD 10 total / USD 1 smoke authorization; the authenticated key check and offline tests remain mandatory. Real smoke and the separately authorized full pilot must precede the freeze and main run. No main call may start before verified freeze evidence; material post-freeze changes require approval and a new run/freeze.
+The earlier USD 20 proposal remains unapproved historical planning in [readiness](research/execution_readiness.md). The current [paid smoke config](configs/paid_smoke.yaml) prepares the approved DeepSeek/PrimeIntellect route within the existing limits; fresh authenticated key evidence and offline tests remain mandatory. The original GPT authorization, attempt and hold are carried forward without reset. Real smoke and the separately authorized full pilot must precede freeze and main execution. No main call may start before verified freeze evidence; material post-freeze changes require approval and a new run/freeze.
+
+After the validated source is committed, the offline preparation command records its version without creating empirical runs:
+
+```powershell
+python scripts/prepare_smoke.py --source-commit VERIFIED_SOURCE_COMMIT
+```
+
+With those records present, readiness can be checked using read-only public/account GET requests:
+
+```powershell
+python -m beyond_label.paid_live --check-ready
+```
+
+The default invocation also checks readiness only. `--execute` is reserved for a future explicit request to run smoke; it is not part of this preparation. The versioned child segment retains the same 80 planned cells, the original failed attempt remains separate historical evidence, and shared attempts/costs remain cumulative. [Preparation, commands and evidence boundaries](research/smoke_readiness.md).
 
 Routine delivery uses the user-supplied existing repository [araf81772/Beyond-the-label](https://github.com/araf81772/Beyond-the-label), branch `main`. No repository creation, visibility change, force-push, publication or submission is part of this checkpoint.
 
@@ -83,4 +99,4 @@ python scripts/smoke_diagnostics.py --run runs/paid_smoke_gpt41mini_20261115
 python scripts/verify_audit.py
 ```
 
-Historical replay verifies the exact committed source and all original input/file hashes, strips credentials, blocks network connections and compares regenerated outputs byte-for-byte. The corrected diagnostic report distinguishes the one attempted failure from79 untouched cells without overwriting the collection-version scores. Current-version live resume still rejects changed inputs; historical replay does not authorize execution.
+Historical replay verifies the exact committed source and all original input/file hashes, strips credentials, blocks network connections and compares regenerated outputs byte-for-byte. The corrected diagnostic report distinguishes the one attempted failure from 79 untouched cells without overwriting collection-version scores. A separately prepared source-continuation record binds the approved repair to its own committed inputs; both historical replay and ordinary resume retain strict hash checks. A changed request is never recorded as an identical infrastructure retry. Historical replay does not authorize execution.

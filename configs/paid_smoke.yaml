@@ -1,4 +1,5 @@
-# User-authorized one smoke only. Fresh authenticated account evidence is required.
+# Prepared replacement profile; no inference is authorized by preparation.
+# Original run/session evidence and shared USD 1 / 200 caps remain unchanged.
 schema_version: 1
 authorization_id: paid-smoke-usd1-200-v1
 execution_scope: smoke_only
@@ -13,24 +14,23 @@ authorized_spend_cap: 1
 maximum_inference_attempts: 200
 currency: USD
 routing_service: OpenRouter
-model: openai/gpt-4.1-mini
-provider: OpenAI
-provider_route: openai
+model: deepseek/deepseek-v4.1-flash-1017
+provider: PrimeIntellect
+provider_route: primeintellect
 provider_identity_source: openrouter_metadata
 require_parameters: true
-accepted_returned_models:
-  - openai/gpt-4.1-mini-2025-04-14
-  - gpt-4.1-mini-2025-04-14
+accepted_returned_models: []
 # Routing ceilings: USD per million tokens; request/image charges forbidden.
 max_price:
-  prompt: 0.40
-  completion: 1.60
+  prompt: 0.04368
+  completion: 0.70
   request: 0
   image: 0
 temperature: 0
 temperature_setting_verified: true
-reasoning: null
-reasoning_mode: not_applicable
+reasoning:
+  effort: none
+reasoning_mode: configured
 reasoning_setting_verified: true
 max_output_tokens: 512
 tool_choice: auto
@@ -44,11 +44,11 @@ provider_request_limit_status: not_published
 provider_tokens_per_minute: null
 provider_token_limit_status: not_published
 operator_requests_per_minute: 10
-operator_tokens_per_minute: 10480880
+operator_tokens_per_minute: 10490880
 # Full advertised input context plus output ceiling, not a token-count estimate.
-total_token_bound: 1048088
+total_token_bound: 1049088
 total_token_bound_verified: true
-token_bound_source: https://openrouter.ai/api/v1/models/openai/gpt-4.1-mini/endpoints
+token_bound_source: https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints
 # Never trust these placeholders as authentication. The entry point checks anew.
 key_hard_limit_usd: null
 key_hard_limit_verified: false

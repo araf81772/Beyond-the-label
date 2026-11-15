@@ -1,0 +1,31 @@
+{
+  "classification": "smoke_preparation_preserves_historical_evidence",
+  "recorded_at_utc": "2026-11-15T02:10:31.179743+00:00",
+  "sha256": {
+    "runs/_paid_testing_session/attempts.jsonl": "f68143ae6f2aae95a30435f512e6f14724c42860af41fedaa9b2e9e4fe96d81b",
+    "runs/_paid_testing_session/authorization.json": "fe187ad8ba20fb919458811e355ba5d53edb8f47d634e3280a16aa29e4630f2a",
+    "runs/_paid_testing_session/budget.jsonl": "d44b93b21837614d35694cbf53e8a01349122b5a6b41e3fb4ed16a63a0da4044",
+    "runs/_paid_testing_session/preflights.jsonl": "9577bb6713d77c2d83b9b30865de03df8eb445f7a92bd7f1fa9f7842078302ec",
+    "runs/paid_smoke_gpt41mini_20261115/analysis_manifest.json": "ffb58862c78feae7ad4c75055101d66a5fed4ea46d62d467aa42f7784f5aa382",
+    "runs/paid_smoke_gpt41mini_20261115/calls.jsonl": "35c967b3a8154533ce159a807e1f2820b45d2a673436612405888dcbdd6fa442",
+    "runs/paid_smoke_gpt41mini_20261115/manifest.json": "4f2aedf6c2776f40789f7658317c57b23ff914c5d24920b4f4add4100f517780",
+    "runs/paid_smoke_gpt41mini_20261115/scores.csv": "5f9dc50f09b968c2406e0fbbccaebff2841a3622bdd8ce12df9947d46386a938",
+    "runs/paid_smoke_gpt41mini_20261115/usage.csv": "a77586cf465966bcc623a32c71534dd194a1392acbd6119729f8bb1e025f8d06",
+    "research/protocol.md": "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b"
+  },
+  "files_unchanged": {
+    "runs/_paid_testing_session/attempts.jsonl": true,
+    "runs/_paid_testing_session/authorization.json": true,
+    "runs/_paid_testing_session/budget.jsonl": true,
+    "runs/_paid_testing_session/preflights.jsonl": true,
+    "runs/paid_smoke_gpt41mini_20261115/analysis_manifest.json": true,
+    "runs/paid_smoke_gpt41mini_20261115/calls.jsonl": true,
+    "runs/paid_smoke_gpt41mini_20261115/manifest.json": true,
+    "runs/paid_smoke_gpt41mini_20261115/scores.csv": true,
+    "runs/paid_smoke_gpt41mini_20261115/usage.csv": true,
+    "research/protocol.md": true
+  },
+  "original_design_matches_archive": true,
+  "inference_calls_this_checkpoint": 0,
+  "new_execution_segment_exists": false
+}

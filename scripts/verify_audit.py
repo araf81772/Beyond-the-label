@@ -25,6 +25,62 @@ from replay_history import replay_historical
 SOURCE_SHA256 = "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b"
 
 
+def require_continuation_binding(stored: dict, record: dict) -> None:
+    """The one child segment must retain the prepared source/version identity."""
+    config = stored.get("run_config", {})
+    execution = config.get("execution_config", {})
+    if (stored.get("plan") != record["plan"]
+            or config.get("input_hashes") != record["active_input_sha256"]
+            or config.get("transport_provenance") != "openrouter_paid_https_v1"
+            or config.get("provider_settings", {}).get("free_only") is not False
+            or execution.get("continuation_record_hash") != record["record_hash"]
+            or execution.get("continuation_source_commit") != record["active_source_commit"]):
+        raise ValueError("Smoke continuation metadata differs from its prepared source")
+
+
+def logical_smoke_groups(entries: list[dict], record: dict | None) -> list[dict]:
+    """Keep infrastructure segments while counting the same planned 80 cells once."""
+    smoke = [entry for entry in entries if entry["dataset"] == "smoke"]
+    groups = []
+    grouped = set()
+    if record is not None:
+        old_path, active_path = record["historical_directory"], record["active_directory"]
+        old = [entry for entry in smoke if entry["directory"] == old_path]
+        active = [entry for entry in smoke if entry["directory"] == active_path]
+        if (len(old) != 1 or len(active) > 1 or old[0]["attempted_calls"] != 1
+                or old[0]["successful_calls"] != 0 or old[0]["completed_cells"] != 0
+                or old[0]["planned_cells"] != 80 or any(entry["planned_cells"] != 80 for entry in active)):
+            raise ValueError("historical smoke observations cannot be resampled by a continuation")
+        segments = [*old, *active]
+        completed = active[0]["completed_cells"] if active else 0
+        groups.append({"logical_run_directory": old_path,
+            "classification": "same_smoke_sample_across_pre_freeze_source_versions",
+            "independent_smoke_samples": 1, "unique_planned_cells": 80,
+            "completed_cells": completed, "pending_cells": 80 - completed,
+            "segment_directories": [entry["directory"] for entry in segments],
+            "active_directory": active_path, "active_segment_initialized": bool(active),
+            "active_segment_started": bool(active and active[0]["attempted_calls"]),
+            "recorded_request_attempts": sum(entry["attempted_calls"] for entry in segments),
+            "successful_calls": sum(entry["successful_calls"] for entry in segments),
+            "infrastructure_retries": sum(entry["infrastructure_retries"] for entry in segments),
+            "source_version_reissues": int(bool(active and active[0]["attempted_calls"])),
+            "unknown_cost_attempts": sum(entry["unknown_cost_attempts"] for entry in segments)})
+        grouped.update((old_path, active_path))
+    for entry in smoke:
+        if entry["directory"] in grouped:
+            continue
+        groups.append({"logical_run_directory": entry["directory"],
+            "classification": "single_source_smoke", "independent_smoke_samples": 1,
+            "unique_planned_cells": entry["planned_cells"], "completed_cells": entry["completed_cells"],
+            "pending_cells": entry["pending_cells"], "segment_directories": [entry["directory"]],
+            "active_directory": entry["directory"], "active_segment_initialized": True,
+            "active_segment_started": bool(entry["attempted_calls"]),
+            "recorded_request_attempts": entry["attempted_calls"], "successful_calls": entry["successful_calls"],
+            "infrastructure_retries": entry["infrastructure_retries"], "source_version_reissues": 0,
+            "unknown_cost_attempts": entry["unknown_cost_attempts"]})
+    return groups
+
+
 def validate_execution_evidence(root: Path, milestones: dict) -> dict:
     """Reconcile status with retained raw evidence without changing run files.
 
@@ -35,11 +91,13 @@ def validate_execution_evidence(root: Path, milestones: dict) -> dict:
     from beyond_label.budget import _unique_object
     from beyond_label.freeze import verify_freeze
     from beyond_label.run import build_manifest, rebuild_outputs, _inputs
+    from beyond_label.continuation import load_continuation, SEGMENT_DIRECTORY
 
     root = root.resolve()
     runs_root = root / "runs"
     if not runs_root.resolve().is_relative_to(root):
         raise ValueError("Execution inventory must stay inside the repository")
+    continuation = load_continuation(root, input_hashes=_inputs())
     manifests = sorted(runs_root.glob("**/manifest.json"))
     calls = sorted(runs_root.glob("**/calls.jsonl"))
     if {p.parent for p in manifests} != {p.parent for p in calls}:
@@ -64,6 +122,10 @@ def validate_execution_evidence(root: Path, milestones: dict) -> dict:
             raise ValueError("Execution inventory requires a wrapped run manifest")
         kind = stored.get("run_config", {}).get("evidence_kind")
         relative = directory.relative_to(root).as_posix()
+        if relative == SEGMENT_DIRECTORY:
+            if continuation is None or kind != "empirical":
+                raise ValueError("Smoke continuation requires its verified preparation")
+            require_continuation_binding(stored, continuation)
         if kind not in {"empirical", "synthetic"}:
             raise ValueError("Execution inventory requires explicit evidence labels")
         digest = hashlib.sha256(raw["calls.jsonl"]).hexdigest()
@@ -100,6 +162,7 @@ def validate_execution_evidence(root: Path, milestones: dict) -> dict:
         inventory["recorded_request_attempts"] += summary["attempted_calls"]
         inventory["successful_calls"] += summary["successful_calls"]
         inventory["infrastructure_retries"] += summary["infrastructure_retries"]
+    inventory["logical_smoke_runs"] = logical_smoke_groups(inventory["empirical_runs"], continuation)
     claimed = milestones.get("experimental_calls")
     if type(claimed) is not int or claimed < 0 or claimed != inventory["recorded_request_attempts"]:
         raise ValueError("Experimental call count disagrees with retained request attempts")

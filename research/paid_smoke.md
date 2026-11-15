@@ -1,4 +1,14 @@
-# Authorized paid smoke checkpoint
+# Historical GPT paid-smoke checkpoint
+
+This document preserves the original GPT-4.1 mini authorization, failed request
+and subsequent readback repair evidence. Its settings, test counts and execution
+instructions describe those historical checkpoints. The user has since approved
+preparing dated DeepSeek/PrimeIntellect under the same aggregate limits, with
+**no inference now**. See [current smoke preparation](smoke_readiness.md) and
+[approved replacement profile](model_route_candidate.md). The old hold and
+consumed attempt remain unchanged; the new profile is not retroactively applied
+to this evidence. The current `paid_live` default is a readiness check, not the
+historical inference behavior shown below.
 
 User authorization, 15 November 2026 (Australia/Sydney): USD 10 total for testing,
 paid GPT-4.1 mini calls via OpenRouter/OpenAI allowed. Execute **one smoke only**,
@@ -10,9 +20,10 @@ The key-limit blocker was resolved: the authenticated check at2026-11-15T00:53:4
 
 The smoke is incomplete: **1 attempted infrastructure failure,79 untouched cells,0 completed cells,0 model responses**, and no retries/re-prompts/continuations/invalid model actions. No pilot, main or execution freeze occurred. The original five files and shared control journals are preserved. See `checks/paid_smoke_ready_preflight.json`, `checks/paid_smoke_post_failure_account.json` and `checks/paid_smoke_failure_audit.json`.
 
-## Fixed run and settings
+## Historical fixed run and settings
 
-- Config: `configs/paid_smoke.yaml`.
+- Collection config: `configs/paid_smoke.yaml` at the recorded source commit;
+  the current file now contains the approved replacement preparation.
 - Output: `runs/paid_smoke_gpt41mini_20261115` only.
 - Shared durable controls: `runs/_paid_testing_session`; never reset or delete.
 - Four smoke seeds 1100–1103, load-2, schedule seed 271828: 80 initial cells,
@@ -56,9 +67,12 @@ key limits and remaining budget. Operator pacing is 10 requests/minute with a
 10,480,880-token conservative allowance. Upstream request/token rate guarantees
 are unpublished, not fabricated as equivalent to the operator throttle.
 
-## Commands and evidence boundaries
+## Historical commands and evidence boundaries
 
-After required tests and authenticated prerequisites pass, run from the project:
+At the historical checkpoint the following command selected execution. **Do not
+use this section as current execution permission:** the repaired command now
+defaults to GET-only readiness checks; current procedures are in
+[smoke_readiness.md](smoke_readiness.md).
 
 ```powershell
 $env:PYTHONPATH = 'src'
@@ -93,7 +107,7 @@ Collection source was commit `0ad25621f3b730065b1a71b92aafc1fd0a2863a1`. `resear
 
 Remaining execution work requires a compatible pinned configuration and an explicit pre-freeze continuation/replacement record, plus billing reconciliation. The key and spending authorization do not need another increase. No repeated successful or invalid model sample may be created; none exists in this partial smoke.
 
-Final repair validation: **1341 tests passed in387.61s**;1161 integrity checks, dependencies, diff whitespace and immutable historical replay passed. No additional inference occurred. See `checks/paid_smoke_execution_suite.json` and `checks/paid_smoke_execution_validation.json`. A separate unapproved model-route candidate is documented in `research/model_route_candidate.md`; it is not activated or fully billing-verified.
+Final repair validation at that checkpoint: **1341 tests passed in387.61s**;1161 integrity checks, dependencies, diff whitespace and immutable historical replay passed. No additional inference occurred. See `checks/paid_smoke_execution_suite.json` and `checks/paid_smoke_execution_validation.json`. The separate route candidate was unapproved then; its subsequent preparation approval is recorded in [model_route_candidate.md](model_route_candidate.md).
 
 ## Offline readback wire repair (no smoke execution)
 

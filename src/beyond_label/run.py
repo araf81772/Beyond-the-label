@@ -439,7 +439,8 @@ def _validate_paid_live_transport(provider: PinnedProvider) -> None:
     from .controls import GuardedTransport
     from .openrouter import OpenRouterPaidTransport
     from .paid_controls import PaidSmokeQuote, paid_observed_cost
-    from .paid_live import reconcile_paid_history
+    from .paid_live import reconcile_paid_history, require_model_amendment
+    from .paid_profile import get_paid_profile
     from .rate_limit import RateLimiter
     guard = provider.transport
     session = (ROOT / "runs/_paid_testing_session").resolve()
@@ -449,6 +450,8 @@ def _validate_paid_live_transport(provider: PinnedProvider) -> None:
             or guard.transport.model != provider.settings.model
             or guard.transport.provider_route != provider.settings.provider_route):
         raise ValueError("Live execution requires the guarded paid HTTPS transport; fixtures remain synthetic")
+    profile = get_paid_profile(provider.settings.model, provider.settings.provider_route)
+    require_model_amendment(ROOT, provider.settings.model)
     policy = provider.before_attempt
     if (type(policy) is not CappedPaidAttempts or type(policy.counter) is not PaidAttemptLimit
             or type(guard.ledger) is not BudgetLedger or policy.ledger is not guard.ledger
@@ -457,7 +460,8 @@ def _validate_paid_live_transport(provider: PinnedProvider) -> None:
             or type(guard.quote) is not PaidSmokeQuote or guard.before_dispatch is not None
             or guard.cost_reader is not paid_observed_cost
             or type(guard.limiter) is not RateLimiter or guard.limiter.requests_per_minute != 10
-            or guard.limiter.tokens_per_minute != 10480880 or guard.limiter.cold_start is not True):
+            or guard.limiter.tokens_per_minute != profile["token_bound"] * 10 or guard.limiter.cold_start is not True
+            or policy.maximum_cost != profile["maximum_cost"]):
         raise ValueError("Live paid smoke requires the canonical durable budget, attempt, quote, and rate policy")
     reconcile_paid_history(session, ROOT / "runs", guard.ledger)
 
@@ -738,11 +742,18 @@ def run_manifest(manifest: dict[str, Any], run_dir: Path | str, provider: Pinned
     if execution_config is not None:
         _validate_execution_config(execution_config, provider.settings, manifest, freeze)
     if not synthetic:
-        if provider.settings.free_only is False:
-            from .gates import PAID_SMOKE_DIRECTORY
-            if Path(run_dir).resolve() != (ROOT / PAID_SMOKE_DIRECTORY).resolve():
-                raise ValueError("Paid smoke requires the canonical authorized output directory")
         _validate_live_transport(provider)
+        if provider.settings.free_only is False:
+            from .continuation import load_continuation
+            from .gates import PAID_SMOKE_DIRECTORY
+            continuation = load_continuation(ROOT, input_hashes=_inputs())
+            expected = ROOT / (continuation["active_directory"] if continuation else PAID_SMOKE_DIRECTORY)
+            if Path(run_dir).resolve() != expected.resolve():
+                raise ValueError("Paid smoke requires the canonical authorized output directory")
+            if continuation is not None and (
+                    execution_config.get("continuation_record_hash") != continuation["record_hash"]
+                    or execution_config.get("continuation_source_commit") != continuation["active_source_commit"]):
+                raise ValueError("Paid smoke continuation provenance does not match")
         from .attempts import MAX_ATTEMPTS
         allowance = MAX_ATTEMPTS if provider.settings.free_only else 200
         if (type(execution_config.get("maximum_inference_attempts")) is not int

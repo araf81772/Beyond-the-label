@@ -198,24 +198,40 @@ class CappedFreeAttempts:
 class CappedPaidAttempts:
     """Canonical pre-attempt callback for the one USD 1 / 200-attempt smoke.
 
-    Unknown cost stops before a further retry/continuation/re-prompt. The budget
+    Unreviewed unknown cost stops before a retry/continuation/re-prompt. A
+    separately validated historical coverage record may keep one known old
+    uncertainty fully held without pretending that it is an actual charge. The budget
     guard separately reserves the verified worst-case cost before dispatch;
     this early gate suspends safely before logging a fresh model attempt.
     """
 
-    def __init__(self, counter: PaidAttemptLimit, ledger: BudgetLedger):
+    def __init__(self, counter: PaidAttemptLimit, ledger: BudgetLedger, *, coverage=None,
+                 maximum_cost: str | None = None):
+        from .cost_reconciliation import HISTORICAL_MAXIMUM_COST, ReviewedCostCoverage
+        from .paid_controls import SUPPORTED_MAXIMUM_COSTS
+        maximum_cost = HISTORICAL_MAXIMUM_COST if maximum_cost is None else maximum_cost
         if (type(counter) is not PaidAttemptLimit or type(ledger) is not BudgetLedger
-                or ledger.cap != _amount("1") or ledger.currency != "USD"):
+                or ledger.cap != _amount("1") or ledger.currency != "USD"
+                or type(maximum_cost) is not str or maximum_cost not in SUPPORTED_MAXIMUM_COSTS
+                or (coverage is not None and (type(coverage) is not ReviewedCostCoverage
+                    or coverage.ledger_path != ledger.path or coverage.counter_path != counter.path))):
             raise AttemptLimitError("invalid_paid_attempt_policy")
-        self.counter, self.ledger = counter, ledger
+        self.counter, self.ledger, self.coverage = counter, ledger, coverage
+        self.maximum_cost = maximum_cost
 
     def __call__(self) -> None:
-        from .paid_controls import PAID_MAXIMUM_COST
         try:
             state = self.ledger.snapshot()
-            if state["uncertain"] or state["blocked"]:
+            covered = False
+            if self.coverage is not None:
+                try:
+                    self.coverage.validate(state)
+                    covered = True
+                except BudgetError:
+                    raise ExecutionSuspended("paid_cost_reconciliation_required") from None
+            if (state["uncertain"] and not covered) or state["blocked"]:
                 raise ExecutionSuspended("paid_cost_reconciliation_required")
-            if _amount(state["available"]) < _amount(PAID_MAXIMUM_COST):
+            if _amount(state["available"]) < _amount(self.maximum_cost):
                 raise ExecutionSuspended("paid_smoke_budget_exhausted")
         except (OSError, ValueError, BudgetError):
             raise ExecutionSuspended("paid_cost_evidence_unavailable") from None
