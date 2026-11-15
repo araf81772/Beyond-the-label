@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "classification": "verified_offline_preparation_live_recovery_blocked",
+  "verified_at_utc": "2026-11-15T21:18:51.656501+00:00",
+  "full_suite": {
+    "passed": 1719,
+    "failed": 0,
+    "seconds": "607.41",
+    "evidence": "research/checks/main_continuation_regression_retest.json"
+  },
+  "original_failed_suite_retained": "research/checks/main_continuation_regression.json",
+  "audit": {
+    "passed": 1625,
+    "failed": 0,
+    "files_scanned": 528,
+    "evidence": "research/checks/main_continuation_audit_retest.json"
+  },
+  "reviewed_and_tested_code_hashes": {
+    "scripts/continuation_pacing.py": "6c62d619f40c5a46c106249edc6622be146c12e35aebd759924bce9f7b881193",
+    "tests/test_continuation_pacing.py": "1468134674e82ba2ae5af0028cdd0d74f98e43eeecfc0507cdc02d54ab0be8a2",
+    "scripts/verify_main_continuation.py": "8a0ba2de3e0255bcead04fe6e12339f5d62519fee3de06a898f26d36f4ee5040",
+    "tests/test_main_continuation.py": "a3fa72f33190f2d945ecd089a55f7ace2b0c58e6502a75b9523a960973b599a9",
+    "scripts/verify_audit.py": "0031d85c8b3e3bc7211fcd0aa4bd07f0d68ceba62a79a7acf4118e4ec9df0d82",
+    "tests/test_staged_ledger_audit.py": "af50e952c9b504fcbb0b6e6d0b8b7dd209d6db74286a187a403d08c475a3f910"
+  },
+  "frozen_inputs_unchanged": 50,
+  "original_main_artifacts_unchanged": 5,
+  "shared_control_files_unchanged": 3,
+  "git_protected_path_diff_empty": true,
+  "new_inference_calls": 0,
+  "billing_settlements_added": 0,
+  "holds_released": 0,
+  "completed_cells_rerun": 0,
+  "remaining_cells": 52,
+  "current_unknown_holds": 40,
+  "available_staged_usd": "6.86950925392",
+  "operational_exception_approved": false,
+  "operational_exception_implemented": false,
+  "blocking_reason": "staged_unknown_cost_hold_limit_reached",
+  "human_H3_complete": false,
+  "human_H4_complete": false
+}

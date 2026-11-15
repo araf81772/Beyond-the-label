@@ -46,6 +46,24 @@ def test_lost_final_settlement_line_fails_the_audit(tmp_path):
         _audit().validate_staged_ledger(root)
 
 
+@pytest.mark.parametrize("drop_settlement", [True, False], ids=["pending", "unknown"])
+def test_unfinished_attempt_preserves_pending_or_unknown_hold(tmp_path, drop_settlement):
+    root = _copy(tmp_path)
+    ledger = root / STAGED_SESSION / "budget.jsonl"
+    if drop_settlement:
+        ledger.write_bytes(b"".join(ledger.read_bytes().splitlines(keepends=True)[:-1]))
+    journal = root / STAGED_STAGES["main"][2] / "calls.jsonl"
+    journal.write_bytes(b"".join(journal.read_bytes().splitlines(keepends=True)[:-1]))
+    # Crash before or after settlement but before the outcome was journaled.
+    # Both isolated fixtures must retain the reservation, not infer cost.
+    before = ledger.read_bytes(), journal.read_bytes()
+    result = _audit().validate_staged_ledger(root)
+    assert result["journaled_attempts"] == 1561
+    assert result["held_reservations"] == 40
+    assert result["held_usd"] == "1.93872838656"
+    assert (ledger.read_bytes(), journal.read_bytes()) == before
+
+
 def test_staged_runs_without_a_ledger_fail_the_audit(tmp_path):
     root = _copy(tmp_path)
     shutil.rmtree(root / STAGED_SESSION)

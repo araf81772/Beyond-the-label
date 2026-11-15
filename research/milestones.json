@@ -1638,5 +1638,33 @@
     "human_H3_complete": false,
     "human_H4_complete": false,
     "publication_performed": false
+  },
+  "main_continuation_recovery": {
+    "recorded_at_utc": "2026-11-15T20:52:56.031915+00:00",
+    "user_request_verbatim": "fix the billing holds and rate limit issue, test it, then finish the remaining 52 cells under the same budget. dont change the frozen design or rerun completed cells",
+    "status": "offline_preparation_passed_live_recovery_blocked_pending_explicit_billing_exception",
+    "recovery_inference_calls": 0,
+    "frozen_inputs_changed": 0,
+    "existing_holds_released": 0,
+    "completed_cells_rerun": 0,
+    "eligible_cells": 52,
+    "completed_cells_preserved": 652,
+    "blocking_reason": "staged_unknown_cost_hold_limit_reached",
+    "proposed_exception": "Accept only the enumerated existing 40 full holds; retain all dollar reservations; stop before the next attempt on any new unresolved unknown/pending charge; unchanged USD 9 and 3,000-attempt limits. Not approved or implemented.",
+    "billing_review": "research/checks/main_continuation_billing_review.json",
+    "boundary_verification": "research/checks/main_continuation_boundary.json",
+    "recovery_report": "research/main_continuation_recovery.md",
+    "validation": {
+      "pacing_tests_passed": 23,
+      "boundary_tests_passed": 14,
+      "audit_checks_passed": 1625,
+      "full_suite": "retest_passed_1719",
+      "initial_full_suite_evidence": "research/checks/main_continuation_regression.json",
+      "full_suite_retest_evidence": "research/checks/main_continuation_regression_retest.json",
+      "audit_retest_evidence": "research/checks/main_continuation_audit_retest.json",
+      "final_validation": "research/checks/main_continuation_validation.json"
+    },
+    "human_H3_complete": false,
+    "human_H4_complete": false
   }
 }

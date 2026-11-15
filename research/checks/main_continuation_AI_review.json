@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "classification": "independent_AI_review_not_human_verification",
+  "recorded_at_utc": "2026-11-15T20:54:44.601920+00:00",
+  "reviewers": [
+    {
+      "role": "billing_reconciliation",
+      "scope": "Independent mapping of all 1,561 reservation/start pairs and all 40 unknown holds; authorization, utility review, and composite-accounting feasibility",
+      "outcome": "All 40 hold records match raw evidence and sum; no receipt supports release; no material defect in final helpers. Any accepted-40 exception is pending explicit approval."
+    },
+    {
+      "role": "rate_resume_audit",
+      "scope": "Rate limiter/retry diagnosis and new inactive pacing helper with tests",
+      "outcome": "23 focused pacing tests passed; 191 related tests passed before final additional decision-request case; all 50 frozen inputs match."
+    },
+    {
+      "role": "continuation_integrity",
+      "scope": "Independent exact 52-cell verifier, frozen inputs, raw/control preservation and stale-proposal tests",
+      "outcome": "14 tests passed; both checkouts give report hash f9836bc495bb80c84ed3e4543e403dacfa473ff44aaaf6f6a7c210405d2c0677; dispatch remains blocked."
+    },
+    {
+      "role": "billing_reconciliation_with_independent_continuation_integrity_review",
+      "scope": "Read-only audit repair after full-suite failure; pending reservations must match unfinished journal attempts",
+      "outcome": "Reproduced original failure; five focused audit tests passed in 63.26 seconds; independent review found no actionable issue. Legitimate pending/open and unknown/open crash cases retain full holds."
+    }
+  ],
+  "resolved_review_findings": [
+    "Separated current-policy billing requirements from the unapproved operational alternative in verifier output.",
+    "Added initial 15-second wait and fail-closed handling of unrepresentable numeric Retry-After.",
+    "Fixed latent audit gap: deleting a terminal unknown-cost settlement must fail audit despite unchanged total held money."
+  ],
+  "clarification": "New pending charge means an unresolved/stranded reservation at the next pre-attempt boundary; a normal reservation for the current in-flight request is expected.",
+  "reviewed_file_sha256": {
+    "scripts/continuation_pacing.py": "6c62d619f40c5a46c106249edc6622be146c12e35aebd759924bce9f7b881193",
+    "tests/test_continuation_pacing.py": "1468134674e82ba2ae5af0028cdd0d74f98e43eeecfc0507cdc02d54ab0be8a2",
+    "scripts/verify_main_continuation.py": "8a0ba2de3e0255bcead04fe6e12339f5d62519fee3de06a898f26d36f4ee5040",
+    "tests/test_main_continuation.py": "a3fa72f33190f2d945ecd089a55f7ace2b0c58e6502a75b9523a960973b599a9",
+    "scripts/verify_audit.py": "0031d85c8b3e3bc7211fcd0aa4bd07f0d68ceba62a79a7acf4118e4ec9df0d82",
+    "tests/test_staged_ledger_audit.py": "af50e952c9b504fcbb0b6e6d0b8b7dd209d6db74286a187a403d08c475a3f910"
+  },
+  "full_regression_record": "research/checks/main_continuation_regression.json",
+  "inference_calls": 0,
+  "frozen_input_changes": 0,
+  "human_checks_completed_by_this_review": [],
+  "full_regression_retest_record": "research/checks/main_continuation_regression_retest.json"
+}

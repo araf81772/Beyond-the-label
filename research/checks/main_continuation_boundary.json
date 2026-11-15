@@ -1,0 +1,218 @@
+{
+  "attempts": {
+    "consumed": 1561,
+    "maximum": 3000,
+    "remaining": 1439
+  },
+  "billing_receipts_added": 0,
+  "blocking_reason": "staged_unknown_cost_hold_limit_reached",
+  "budget": {
+    "available_usd": "6.86950925392",
+    "cap_usd": "9",
+    "held_attempt_ids": [
+      "attempt-93e536e945de446fa0e2ad5b32978e66",
+      "attempt-2c03a160acf14c498a1fd2229413d7cd",
+      "attempt-687e476d973a4dc8967e96a4af0154c8",
+      "attempt-b92fce7269d14085b748220c4ec9736f",
+      "attempt-6d978b2a4ca546b9827c9be196862ad9",
+      "attempt-a2f1fad25a364b7d8ed790a0ad1308b1",
+      "attempt-1b5e3473bd4947d6a88e81918d8cf497",
+      "attempt-c0dc57b838fc46eda50288395d5a63dd",
+      "attempt-0bf6cb791928441db2948f0477bbefad",
+      "attempt-d9670ce1572d49cabef689b39142551a",
+      "attempt-5c096209161b4d64943ac2c42a17ae7e",
+      "attempt-0b7cb13c43fb4fd78ad75d3d17114045",
+      "attempt-ab765ccfe0ca49be913c26c94685cb1f",
+      "attempt-d8cf58d1ac2f4bbb92c2acc2a6448714",
+      "attempt-874b004833c44244970170b306afdf98",
+      "attempt-f343b938b54c4f4f859588b94a4ce557",
+      "attempt-33b3cccd3e0b4e1e80b37b9f8f9aca2f",
+      "attempt-fbe9b73a29294f96aaddb3aae9458bee",
+      "attempt-8e680d8482e7413fab5a297ad7a09763",
+      "attempt-2f252e1608a64a4f8c6635e484112bf2",
+      "attempt-fd6f364e907c48928cdf4e6344c42369",
+      "attempt-4557b01004bf43c7b979098c7624d822",
+      "attempt-806930a3528f49ff9739c0dc4065e5a3",
+      "attempt-6e155d135bbe4837ab836802848288b1",
+      "attempt-9e04dbffe9b44a8fb146f4f459657ee8",
+      "attempt-7fb37fd5e34948768a3b0b6efa16832a",
+      "attempt-a7ea8aa9075c4984b06171888405830b",
+      "attempt-879b9e2b5e064aedad4f9d090b832c44",
+      "attempt-16c53bd450e7451b912644955d82a4ed",
+      "attempt-1d86023429fa44f1a53d4d4e96c9715c",
+      "attempt-37ed4ba47ba9410193aa19dbf75e3f8e",
+      "attempt-190d5a00f4b94ea7ad3cb0648fba37e2",
+      "attempt-a78c4fd6487c426fad7fd77be39be69f",
+      "attempt-84ecadd0f7c94045893dbd5f20ebccbf",
+      "attempt-4cd4cd238aa24ce08d2790e9aa3ca140",
+      "attempt-2fa34a0cb1df4461995908b949b24590",
+      "attempt-3090464543144d628126438fd002267a",
+      "attempt-25e692993f02437f996b28dd16936590",
+      "attempt-faccdc3ad7fe47d2b713f3274ae91891",
+      "attempt-725442b9c41c40a5a16f386363f411bf"
+    ],
+    "held_usd": "1.93872838656",
+    "known_settled_usd": "0.19176235952",
+    "maximum_unknown_cost_holds": 40,
+    "unknown_cost_holds": 40
+  },
+  "classification": "offline_continuation_proposal_not_execution_authorization",
+  "collection_source_commit": "d007585cff100f4fc6ce61c2b61452d830e3ffe9",
+  "control_prefixes": {
+    "attempts.jsonl": {
+      "appended_events": 0,
+      "bytes": 346169,
+      "events": 1562,
+      "last_event_hash": "fd319fb17c3eed83a479d2213630d0547122fdfd9dbc0b836f6a97ba9f505d6c",
+      "sha256": "cc7b993a5d6602bf31f05a455bdd975a9f1c2f2b3fa3968fd367dc2531297856"
+    },
+    "budget.jsonl": {
+      "appended_events": 0,
+      "bytes": 1047363,
+      "events": 3123,
+      "last_event_hash": "e927e06145ec170c5c47b12a25dbb583292521dd499fed5c8ecb74d440dc9e68",
+      "sha256": "03b85248217ae077341e363b5efc90762431bf1d01de1b26e3d8c31284b0316c"
+    }
+  },
+  "current_policy_requirements": [
+    "attributable_billing_evidence_and_validated_reconciliation",
+    "fewer_than_40_unresolved_holds_within_unchanged_caps"
+  ],
+  "dispatch_allowed": false,
+  "freeze": {
+    "commit": "6f8f94b3542980f65ba08f56aa3a12bf12c9e41d",
+    "file_sha256": "ab1fa4f553be65df5cf14910e6e8bb0e241f50445be04f5ee300542c27e992db",
+    "record_hash": "4feb8fd870dc62ffd260b682d1249d6fc70c401d33f98a9a1eb7ce1189ef2081",
+    "remote_tag_freshly_verified": false,
+    "tag": "btl-freeze-v1"
+  },
+  "frozen_gate_artifacts_verified": 15,
+  "frozen_inputs_verified": 50,
+  "inference_calls": 0,
+  "ledger_changes": 0,
+  "main": {
+    "accepted_replies": 996,
+    "attempts": 1036,
+    "completed_cells": 652,
+    "completed_prefix_cell_ids_sha256": "eae477e936a64d60e12c9b1057bca035828165877eee3a36aa518a6997e6d51f",
+    "completed_prefix_last_cell": "main-2031-readback-MAIN-inline-a",
+    "eligible_cell_ids": [
+      "main-2061-readback-MAIN-inline-b",
+      "main-2012-decision-MAIN-separate-a",
+      "main-2019-decision-MAIN-inline-a",
+      "main-2002-decision-MAIN-separate-b",
+      "main-2002-decision-HIGH-STAKES-separate-b",
+      "main-2011-readback-MAIN-separate-a",
+      "main-2061-readback-MAIN-inline-a",
+      "main-2020-decision-MAIN-inline-b",
+      "main-2014-readback-MAIN-inline-a",
+      "main-2050-decision-MAIN-separate-a",
+      "main-2043-readback-MAIN-separate-b",
+      "main-2012-decision-HIGH-FEE-inline-b",
+      "main-2004-decision-HIGH-STAKES-inline-b",
+      "main-2050-decision-MAIN-separate-b",
+      "main-2049-decision-MAIN-inline-a",
+      "main-2015-readback-MAIN-inline-a",
+      "main-2005-readback-MAIN-inline-a",
+      "main-2047-decision-MAIN-inline-a",
+      "main-2025-decision-MAIN-separate-b",
+      "main-2001-decision-HIGH-FEE-inline-a",
+      "main-2055-readback-MAIN-separate-b",
+      "main-2009-decision-MAIN-inline-b",
+      "main-2010-decision-MAIN-inline-b",
+      "main-2015-readback-MAIN-inline-b",
+      "main-2018-readback-MAIN-inline-b",
+      "main-2019-readback-MAIN-separate-b",
+      "main-2032-decision-MAIN-separate-a",
+      "main-2006-decision-HIGH-STAKES-separate-a",
+      "main-2048-readback-MAIN-separate-a",
+      "main-2039-decision-MAIN-separate-b",
+      "main-2004-decision-HIGH-FEE-inline-b",
+      "main-2015-decision-MAIN-separate-a",
+      "main-2023-decision-MAIN-separate-a",
+      "main-2053-readback-MAIN-inline-b",
+      "main-2009-readback-MAIN-separate-b",
+      "main-2024-decision-MAIN-inline-b",
+      "main-2049-decision-MAIN-separate-a",
+      "main-2060-decision-MAIN-inline-a",
+      "main-2014-decision-MASKED-inline-masked",
+      "main-2010-decision-NUMERIC-separate-b",
+      "main-2045-readback-MAIN-inline-b",
+      "main-2000-decision-HIGH-STAKES-separate-b",
+      "main-2009-readback-MAIN-inline-b",
+      "main-2000-decision-MAIN-inline-b",
+      "main-2012-decision-MAIN-inline-a",
+      "main-2006-decision-HIGH-FEE-separate-a",
+      "main-2062-decision-MAIN-separate-a",
+      "main-2002-readback-MAIN-inline-a",
+      "main-2025-decision-MAIN-inline-b",
+      "main-2005-decision-MAIN-separate-a",
+      "main-2007-decision-MASKED-separate-masked",
+      "main-2063-readback-MAIN-inline-a"
+    ],
+    "eligible_cells": 52,
+    "forbidden_terminal_retry": {
+      "cell_id": "main-2013-decision-HIGH-STAKES-inline-a",
+      "phase": "continuation",
+      "reason": "missing:infrastructure_exhausted:http_error"
+    },
+    "http429_failures": 40,
+    "journal_events": 4461,
+    "journal_last_event_hash": "af89b710a1965c8f2309470f7337a72e150d62ab0126a27201e524ef6114cebd",
+    "pending_retry": {
+      "cell_id": "main-2061-readback-MAIN-inline-b",
+      "completed_failed_attempts": [
+        1,
+        2
+      ],
+      "logical_request_hash": "3e461d111404310d1de21bc859aa8e0ab9b433b7e54e999bdb0d2984c07ccfbe",
+      "maximum_attempt": 4,
+      "next_attempt": 3,
+      "phase": "readback",
+      "request_hash": "60844e0a2f8585e4942de9505025c76010da538fe90ec68cc6cd0bd333bdaca8"
+    },
+    "planned_cells": 704,
+    "untouched_cells": 51
+  },
+  "main_artifacts": {
+    "analysis_manifest.json": {
+      "bytes": 127132,
+      "sha256": "206cdd95f56f568be2bbc9c6cc3f5dd20824ce7cf80a388b85bbb6d7bd0b4df3"
+    },
+    "calls.jsonl": {
+      "bytes": 17615533,
+      "sha256": "05d33f55fc30274fd9c20c0574360d7a9446c3665a2b4a6271c44dc233509753"
+    },
+    "manifest.json": {
+      "bytes": 173481,
+      "sha256": "38a5b1be160756382c43b342d77f88f8ec17f36dc34c3772067a662917f1d859"
+    },
+    "scores.csv": {
+      "bytes": 95195,
+      "sha256": "44b5a3f1f15f6e786083aed16c52f7b5bd716583f3eec77c2b52fde181248150"
+    },
+    "usage.csv": {
+      "bytes": 322106,
+      "sha256": "3ecd0beaba57e0ecafb110ce897880e205dcee8aa332d6f7aaafac01a34bfe9c"
+    }
+  },
+  "operational_amendment_alternative": {
+    "changes_cost_evidence": false,
+    "dispatch_allowed": false,
+    "proposal": "fixed_retained_40_hold_exception_with_full_reservations_and_stop_on_any_new_unknown",
+    "requires": [
+      "reviewed_amendment_and_new_operational_provenance",
+      "tested_continuation_path_preserving_scientific_freeze_and_shared_caps"
+    ],
+    "requires_explicit_approval": true,
+    "settles_or_refunds_holds": false,
+    "status": "proposed_not_approved_not_implemented"
+  },
+  "report_hash": "f9836bc495bb80c84ed3e4543e403dacfa473ff44aaaf6f6a7c210405d2c0677",
+  "schema_version": 1,
+  "shared_requirements_before_dispatch": [
+    "reviewed_operational_continuation_provenance",
+    "fresh_main_account_route_and_remote_freeze_tag_readiness"
+  ],
+  "verification_status": "verified_stopped_baseline"
+}

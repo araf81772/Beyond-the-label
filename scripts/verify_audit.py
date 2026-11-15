@@ -6,6 +6,7 @@ status is checked against present files rather than freezing the project at M1.
 
 from __future__ import annotations
 
+from collections import Counter
 import csv
 from decimal import Decimal
 import hashlib
@@ -365,6 +366,7 @@ def validate_staged_ledger(root: Path) -> dict | None:
     from beyond_label.budget import BudgetLedger
     from beyond_label.gates import STAGED_SESSION, STAGED_STAGES
     from beyond_label.attempts import ExecutionSuspended
+    from beyond_label.run import Journal
     from beyond_label.staged import STAGED_CAP, StagedAttemptLimit, reconcile_staged_history
 
     session = root / STAGED_SESSION
@@ -386,6 +388,22 @@ def validate_staged_ledger(root: Path) -> dict | None:
             ledger = BudgetLedger(copy / STAGED_SESSION / "budget.jsonl", STAGED_CAP, "USD")
             result = reconcile_staged_history(copy, ledger, StagedAttemptLimit(copy / STAGED_SESSION / "attempts.jsonl"))
             state = ledger.snapshot()
+            open_starts = Counter()
+            for relative in directories:
+                unfinished = {}
+                for event in Journal(copy / relative / "calls.jsonl").events:
+                    if event["event"] == "attempt_started":
+                        unfinished[(event["cell_id"], event["phase"], event["attempt"])] = event["request_hash"]
+                    elif event["event"] in {"attempt_succeeded", "attempt_failed"}:
+                        unfinished.pop((event["cell_id"], event["phase"], event["attempt"]), None)
+                open_starts.update(unfinished.values())
+            # Settlement precedes the journaled outcome, even for unknown cost.
+            # Pending reservations therefore need unmatched starts; a terminal
+            # outcome cannot explain a lost settled(null) ledger append.
+            pending = Counter(attempt["request_hash"] for attempt in state["attempts"].values()
+                              if attempt["status"] == "pending")
+            if pending - open_starts:
+                raise ExecutionSuspended("staged_pending_reservation_without_open_attempt")
         except ExecutionSuspended as exc:
             raise ValueError(f"Staged ledger disagrees with staged journals: {exc}") from None
     return {**result, "settled_cost_usd": state["settled_cost"], "held_usd": state["held"],

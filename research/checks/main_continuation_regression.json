@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "classification": "offline_full_regression",
+  "started_at_utc": "2026-11-15T20:53:45.333016+00:00",
+  "finished_at_utc": "2026-11-15T21:03:10.475514+00:00",
+  "command": "python -m pytest -q",
+  "exit_code": 1,
+  "snapshot_root": "C:\\Users\\tonmo\\AppData\\Local\\Temp\\btl-recovery-tests-jnw8imgy\\repo",
+  "snapshot_parent_commit": "5351ee9ba2040142be57c8922340a4190285c3a7",
+  "copied_working_tree_files": [
+    "docs/superpowers/plans/2026-11-16-main-continuation-recovery.md",
+    "research/checks/main_continuation_billing_review.json",
+    "research/checks/main_continuation_boundary.json",
+    "research/main_continuation_recovery.md",
+    "scripts/continuation_pacing.py",
+    "scripts/verify_main_continuation.py",
+    "tests/test_continuation_pacing.py",
+    "tests/test_main_continuation.py",
+    "research/decisions.md",
+    "research/milestones.json"
+  ],
+  "tested_file_hashes": {
+    "docs/superpowers/plans/2026-11-16-main-continuation-recovery.md": "890f2f1edb2981a585e195a22531f132790136462757101c795e67cb14771122",
+    "research/checks/main_continuation_billing_review.json": "597449876da0b56a8f87748b145130ee783a0c34b62d127dd99a86889118b5ca",
+    "research/checks/main_continuation_boundary.json": "8d95b31f6bbf6424ee14050119818c485157ca8f8ef06ab0cc5f0f29f4b60856",
+    "research/main_continuation_recovery.md": "d0eef54226ce8a7acb36917e10d0c6dc837d5659150df15533be9695d55a8a56",
+    "scripts/continuation_pacing.py": "6c62d619f40c5a46c106249edc6622be146c12e35aebd759924bce9f7b881193",
+    "scripts/verify_main_continuation.py": "8a0ba2de3e0255bcead04fe6e12339f5d62519fee3de06a898f26d36f4ee5040",
+    "tests/test_continuation_pacing.py": "1468134674e82ba2ae5af0028cdd0d74f98e43eeecfc0507cdc02d54ab0be8a2",
+    "tests/test_main_continuation.py": "a3fa72f33190f2d945ecd089a55f7ace2b0c58e6502a75b9523a960973b599a9",
+    "research/decisions.md": "50403335f5d5cbd77e856518020dcc315cb249ad6a40b5600e5aac5393a3c312",
+    "research/milestones.json": "94c11bcfb2407ec09f354e3469d384db75ab8566f56f870755cfdcb98623db77"
+  },
+  "credential_file_present": false,
+  "credentials_removed_from_environment": true,
+  "inference_calls": 0,
+  "initial_snapshot_failure": "Sandboxed local git clone failed with Windows MSYS NtCreateDirectoryObject access denied before tests; retried with escalation.",
+  "log_sha256": "a2c41d90ccc51d3691a445bc8cc56ed0569ac615c2b88ef892040160613b2ac4",
+  "output_tail": "........................................................................ [  4%]\n........................................................................ [  8%]\n........................................................................ [ 12%]\n........................................................................ [ 16%]\n........................................................................ [ 20%]\n........................................................................ [ 25%]\n........................................................................ [ 29%]\n........................................................................ [ 33%]\n........................................................................ [ 37%]\n........................................................................ [ 41%]\n........................................................................ [ 46%]\n........................................................................ [ 50%]\n........................................................................ [ 54%]\n........................................................................ [ 58%]\n........................................................................ [ 62%]\n........................................................................ [ 67%]\n........................................................................ [ 71%]\n........................................................................ [ 75%]\n........................................................................ [ 79%]\n........................................................................ [ 83%]\n........................................................................ [ 88%]\n........................................................................ [ 92%]\n........................................................................ [ 96%]\n....................................F........................            [100%]\n================================== FAILURES ===================================\n_______________ test_lost_final_settlement_line_fails_the_audit _______________\n\ntmp_path = WindowsPath('C:/Users/tonmo/AppData/Local/Temp/pytest-of-tonmo/pytest-370/test_lost_final_settlement_lin0')\n\n    def test_lost_final_settlement_line_fails_the_audit(tmp_path):\n        root = _copy(tmp_path)\n        ledger = root / STAGED_SESSION / \"budget.jsonl\"\n        lines = ledger.read_bytes().splitlines(keepends=True)\n        ledger.write_bytes(b\"\".join(lines[:-1]))\n>       with pytest.raises(ValueError, match=\"Staged ledger disagrees\"):\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       Failed: DID NOT RAISE ValueError\n\ntests\\test_staged_ledger_audit.py:45: Failed\n=========================== short test summary info ===========================\nFAILED tests/test_staged_ledger_audit.py::test_lost_final_settlement_line_fails_the_audit\n1 failed, 1716 passed in 562.34s (0:09:22)\n"
+}
