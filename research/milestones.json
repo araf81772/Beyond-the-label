@@ -591,7 +591,7 @@
         "current_instruction": "Current checkpoint: repair and offline tests only; do not run smoke. Standing USD1/200 smoke authorization does not permit pilot/main, model switching or changed requests relabelled as identical retries."
       },
       "current_checkpoint": {
-        "status": "offline_readback_wire_repair_validated_delivery_pending",
+        "status": "offline_readback_wire_repair_validated_committed_and_pushed",
         "scope": "repair_only_no_smoke_or_account_calls",
         "run_evidence_unchanged": true,
         "historical_checkpoint": "b8d648b06aee883165971a4b51d5a230f912e339",
@@ -599,13 +599,16 @@
         "historical_replay_tests_passed": 14,
         "full_suite_evidence": "research/checks/readback_wire_fix_suite.json",
         "integrity_evidence": "research/checks/readback_wire_fix_integrity.json",
-        "push_status": "pending",
+        "push_status": "succeeded",
         "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
         "branch": "main",
         "commit_reference": "Resolve final identity through Git; no circular self-hash",
         "guarded_path_tests_passed": 225,
         "full_suite_tests_passed": 1381,
-        "experimental_inputs_unchanged_during_suite": true
+        "experimental_inputs_unchanged_during_suite": true,
+        "delivered_commit": "464bbb0a3d1a4300aa975313520a24c3760f856b",
+        "remote_head_verified": true,
+        "delivery_evidence": "research/checks/readback_wire_fix_delivery.json"
       },
       "checkpoint_history": [
         {
@@ -929,7 +932,7 @@
     "offline_tests_passed": 1381,
     "full_suite_evidence": "research/checks/readback_wire_fix_suite.json",
     "integrity_evidence": "research/checks/paid_smoke_execution_validation.json",
-    "current_push_status": "offline_wire_repair_delivery_pending",
+    "current_push_status": "offline_wire_repair_pushed_and_remote_verified",
     "scientific_design_changed": false,
     "human_review": false,
     "engineering_commit": "88c632fc0bfe9f24700b4b30a217fdb6b53ee1c4",
@@ -946,7 +949,8 @@
     "run_directory": "runs/paid_smoke_gpt41mini_20261115",
     "collection_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
     "model_provider_changed": false,
-    "previous_engineering_commit": "516de443bbdad399e07529a071d841aca5d3ca0e"
+    "previous_engineering_commit": "516de443bbdad399e07529a071d841aca5d3ca0e",
+    "latest_repair_commit": "464bbb0a3d1a4300aa975313520a24c3760f856b"
   },
   "readback_wire_repair": {
     "scope": "offline_only",
@@ -974,9 +978,12 @@
     "preserved_bound_usd": "0.44084208",
     "total_recorded_historical_attempts": 1,
     "smoke_completed_cells": 0,
-    "status": "offline_validated_delivery_pending",
+    "status": "offline_validated_committed_and_pushed",
     "full_suite_tests_passed": 1381,
     "full_suite_seconds": 384.92,
-    "original_artifacts_unchanged": true
+    "original_artifacts_unchanged": true,
+    "delivered_commit": "464bbb0a3d1a4300aa975313520a24c3760f856b",
+    "remote_head_verified": true,
+    "delivery_evidence": "research/checks/readback_wire_fix_delivery.json"
   }
 }

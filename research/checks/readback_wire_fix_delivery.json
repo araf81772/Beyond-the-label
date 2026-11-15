@@ -1,0 +1,18 @@
+{
+  "classification": "offline_wire_repair_delivery",
+  "verified_at_utc": "2026-11-15T01:45:39.491056+00:00",
+  "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
+  "branch": "main",
+  "delivered_commit": "464bbb0a3d1a4300aa975313520a24c3760f856b",
+  "remote_head_verified": true,
+  "verification_command": "git ls-remote origin refs/heads/main",
+  "tests_passed": 1381,
+  "suite_evidence": "research/checks/readback_wire_fix_suite.json",
+  "staged_audit_checks_passed": 1188,
+  "tested_input_blobs_matching_index": 44,
+  "new_inference_calls": 0,
+  "new_account_checks": 0,
+  "original_run_and_control_files_unchanged": true,
+  "live_delivery_verified": false,
+  "note": "Documentation-only follow-up records this observed delivery; resolve its own identity through Git without a circular self-hash."
+}
