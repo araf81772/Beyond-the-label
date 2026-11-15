@@ -40,6 +40,8 @@ python scripts/verify_audit.py
 
 ## Commands
 
+**Execution invocation correction (16 November):** use the canonical-import execute command below. The `python -m beyond_label.staged` execute form loads its policy classes as `__main__`, while the live verifier imports the canonical module and rejects the duplicate types before dispatch. A network-blocked diagnostic reproduced that rejection and confirmed canonical import passes the unchanged strict guard. No frozen source, settings or gate was changed; see [invocation diagnostic](checks/main_invocation_diagnostic.json). The original failed main command and its account preflight are retained, with zero inference attempts. Readiness/status do not traverse that failing dispatch type check.
+
 Read-only readiness check for a stage (public metadata and key-limit GET only, no inference):
 
 ```powershell
@@ -49,7 +51,7 @@ python -m beyond_label.staged check-ready --stage smoke
 Run or resume a stage:
 
 ```powershell
-python -m beyond_label.staged execute --stage smoke
+python -c "from beyond_label.staged import main; raise SystemExit(main())" execute --stage smoke
 ```
 
 Offline summary of everything retained so far (no network):
@@ -61,7 +63,7 @@ python -m beyond_label.staged status
 Then, in order:
 
 ```powershell
-python -m beyond_label.staged execute --stage pilot
+python -c "from beyond_label.staged import main; raise SystemExit(main())" execute --stage pilot
 python -m beyond_label.pilot runs/staged_pilot_load2
 ```
 
@@ -70,7 +72,7 @@ The second command prints the trace-derived counts and the selected load. The ru
 Only if load-8 was selected:
 
 ```powershell
-python -m beyond_label.staged execute --stage smoke8
+python -c "from beyond_label.staged import main; raise SystemExit(main())" execute --stage smoke8
 ```
 
 Freeze. Commit the gate runs first, then:
@@ -84,7 +86,7 @@ This verifies the gates by replaying their raw traces, checks every input agains
 ```powershell
 python scripts/sync_execution_status.py
 python -m beyond_label.staged check-ready --stage main
-python -m beyond_label.staged execute --stage main
+python -c "from beyond_label.staged import main; raise SystemExit(main())" execute --stage main
 ```
 
 The main stage refuses to start unless the tag is visible on `origin` and resolves to the frozen commit (protocol section 8).

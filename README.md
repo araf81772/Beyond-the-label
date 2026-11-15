@@ -22,11 +22,11 @@ Design: [research/protocol.md](research/protocol.md) (byte-preserved, pre-regist
 
 | Stage | State |
 |---|---|
-| Offline tests and audit | **Passed in the unsynced execution clone:** 1,680 tests; integrity audit and dependency checks; fresh main readiness. The earlier Windows fixture failure remains historical. [Launch validation](research/checks/main_execution_preparation.json) |
+| Offline tests and audit | **Passed in the unsynced execution clone:** 1,680 tests; integrity audit and dependency checks; 121 focused retests and fresh readiness after an invocation-only correction. The earlier Windows fixture failure remains historical. [Launch validation](research/checks/main_execution_preparation.json) |
 | Earlier smoke, USD 1 allowance | **Partial and closed.** 54 real observations from DeepSeek V4.1 Flash via OpenRouter/PrimeIntellect on 4 smoke worlds. Smoke is a pipeline check and is never analysed as a result |
 | New smoke, pilot, load-8 smoke (USD 9 allowance) | **Executed.** Smoke 80/80 cells, pilot 160/160 (15 of 16 MAIN pairs fully correct, 15 of 16 NUMERIC optimal: load-8 selected), load-8 smoke 80/80. 525 calls, USD 0.0696 of USD 9. Smoke is never analysed; the pilot only selects the load |
 | Human checks and decisions | **H1/H2/H5 complete, user-attested.** H1 was late; thresholds and MASKED limitation accepted unchanged. D4 leads are now assigned: current user for H3, Araf for H4. Each member's H3 audit remains required; H3/H4 remain pending. The assignment after freeze is disclosed. [Attestation and scope](research/human_verification.json) |
-| Freeze and main (USD 9 allowance) | **Freeze tag delivered; main authorized but not started.** Required validation and fresh main readiness passed; the guarded execute command repeats its own preflight before dispatch. Use only the unsynced execution clone; do not launch from this OneDrive checkout. [Runbook](research/staged_execution.md) |
+| Freeze and main (USD 9 allowance) | **Freeze tag delivered; main authorized but not started.** The first launcher stopped before inference; canonical import passed the unchanged guard, focused retests and fresh readiness. The guarded execute command repeats its preflight before dispatch. Use only the unsynced execution clone; do not launch from this OneDrive checkout. [Runbook](research/staged_execution.md) |
 | Execution freeze | [research/execution_freeze.json](research/execution_freeze.json): commit `6f8f94b3542980f65ba08f56aa3a12bf12c9e41d`, load-8, tag `btl-freeze-v1`, verified on `origin` |
 | Main effect, intervals, controls | Not available. Nothing in this repository is a finding about model behaviour |
 
@@ -51,7 +51,7 @@ No test contacts a network or reads a real key. Paid stages need `OPENROUTER_API
 ```powershell
 python -m beyond_label.staged status
 python -m beyond_label.staged check-ready --stage smoke
-python -m beyond_label.staged execute --stage smoke
+python -c "from beyond_label.staged import main; raise SystemExit(main())" execute --stage smoke
 ```
 
 `status` is offline. `check-ready` makes read-only requests only. `execute` is the only command that spends money.

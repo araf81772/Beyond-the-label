@@ -16,7 +16,12 @@
     "execution_directory": "C:/Users/tonmo/CodexRuns/beyond-the-label-v1-main-20261116",
     "original_onedrive_checkout_must_not_execute_main": true,
     "concurrent_execution_allowed": false,
-    "evidence": "research/checks/main_execution_preparation.json"
+    "evidence": "research/checks/main_execution_preparation.json",
+    "invocation_failure": "research/checks/main_execution_command.json",
+    "invocation_diagnostic": "research/checks/main_invocation_diagnostic.json",
+    "canonical_invocation_retest": "passed_121_tests_and_fresh_readiness",
+    "canonical_invocation_retest_evidence": "research/checks/main_invocation_retest.json",
+    "canonical_readiness_evidence": "research/checks/main_invocation_readiness.json"
   },
   "human_verification_update_validation": "research/checks/human_verification_update.json",
   "human_checks_user_attested_complete": [
@@ -848,7 +853,7 @@
       "number": 5,
       "name": "Main execution",
       "status": "ready",
-      "reason": "Main explicitly authorized; required launch validation and readiness passed in the designated unsynced clone. Main has not started at this preparation checkpoint.",
+      "reason": "The first module-entry invocation stopped before dispatch; its failure and account preflight are preserved. Canonical import passes the unchanged strict guard, 121 focused tests pass, and fresh canonical main readiness passes. Main is authorized and has not yet started.",
       "empirical_completed_cells": 0,
       "planned_cells": 704,
       "missingness_interpretation": "Not executed; no partial empirical run exists",

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "classification": "real_main_execution_command_outcome_not_human_review",
+  "command": "python -m beyond_label.staged execute --stage main",
+  "started_at_utc": "2026-11-15T13:54:38.156005+00:00",
+  "finished_at_utc": "2026-11-15T13:55:12.348575+00:00",
+  "execution_source_commit": "a08c5d56cc6a3f560d91a342a1077f5194fe79ee",
+  "execution_directory": "C:\\Users\\tonmo\\CodexRuns\\beyond-the-label-v1-main-20261116",
+  "exit_code": 2,
+  "final_prelaunch_audit": {
+    "checks_passed": 1505,
+    "files_scanned": 488,
+    "failures": []
+  },
+  "result": {
+    "status": "blocked",
+    "reason": "ValueError"
+  },
+  "credential_values_recorded": false
+}

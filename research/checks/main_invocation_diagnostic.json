@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "classification": "offline_invocation_regression_not_inference",
+  "recorded_at_utc": "2026-11-15T13:57:24.887416+00:00",
+  "network_prohibited": true,
+  "original_m_entry_policy_module": "__main__",
+  "canonical_policy_module": "beyond_label.staged",
+  "original_exact_type_validation": "failed_as_expected",
+  "original_error": "Staged execution requires the shared durable budget, attempt, quote and rate policy",
+  "canonical_exact_type_validation": "passed",
+  "canonical_launch_command": "python -c \"from beyond_label.staged import main; raise SystemExit(main(['execute', '--stage', 'main']))\"",
+  "guard_monkeypatching": false,
+  "frozen_source_changes": false,
+  "existing_session_files_unchanged": {
+    "authorization.json": "ec54d9173dedc8fffbfc485b6fb10578eb68aef8fe7cf23a5e02e608a1583e4b",
+    "attempts.jsonl": "54a041cc40a9f1892872fe7224a4e909bb1608ed8b532a65dc7de26e1ff3e5b3",
+    "budget.jsonl": "f7480567399be043596b20c2e95d5779105dcacfa207124be739917280392ecc",
+    "preflights.jsonl": "76f18e53c440b3d9632f7709c2f94ab0c28c68dc3da6675603c5614793095933"
+  },
+  "main_directory_created": false,
+  "inference_calls": 0,
+  "interpretation": "Invocation-only correction imports the existing CLI canonically; strict validation remains active. All scientific inputs, wire construction and guards are unchanged."
+}

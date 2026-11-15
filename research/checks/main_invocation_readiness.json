@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "classification": "canonical_entry_readiness_not_inference",
+  "recorded_at_utc": "2026-11-15T14:04:16.398940+00:00",
+  "command": "python -c \"from beyond_label.staged import main; raise SystemExit(main())\" check-ready --stage main",
+  "exit_code": 0,
+  "result": {
+    "already_completed_cells": 0,
+    "attempts": {
+      "maximum_attempts": 3000,
+      "remaining_attempts": 2475,
+      "reserved_attempts": 525
+    },
+    "dataset": "main",
+    "directory": "runs/staged_main",
+    "execution_started": false,
+    "freeze_verified": true,
+    "inference_calls": 0,
+    "key_hard_limit_usd": 10,
+    "key_limit_remaining_usd": 9.917905597,
+    "load": 8,
+    "maximum_planned_calls": 1152,
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "model_route_metadata_verified": true,
+    "money": {
+      "available_usd": "8.930416628",
+      "blocked": false,
+      "cap_usd": "9",
+      "held_for_unknown_or_pending_usd": "0",
+      "known_settled_usd": "0.069583372",
+      "maximum_unknown_cost_holds": 40,
+      "unknown_cost_holds": 0
+    },
+    "next_attempt_upper_bound_usd": "0.048468209664",
+    "planned_cells": 704,
+    "prerequisites": {
+      "pilot_decision": {
+        "fully_correct_main_pairs": 15,
+        "optimal_numeric_calls": 15,
+        "selected_load": 8
+      }
+    },
+    "provider": "PrimeIntellect",
+    "ready": true,
+    "reasoning": {
+      "effort": "none"
+    },
+    "stage": "main",
+    "status": "ready_for_main_not_executed"
+  }
+}
