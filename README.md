@@ -18,17 +18,19 @@ Provenance metadata can survive a handoff between agents and still change nothin
 
 Design: [research/protocol.md](research/protocol.md) (byte-preserved, pre-registered thresholds in section 9). Oracle: [research/oracle_derivation.md](research/oracle_derivation.md).
 
-## Status on 16 November 2026 (AEDT): main authorized and ready, not started
+## Status on 16 November 2026 (AEDT): main stopped at 652/704 cells
 
 | Stage | State |
 |---|---|
 | Offline tests and audit | **Passed in the unsynced execution clone:** 1,680 tests; integrity audit and dependency checks; 121 focused retests and fresh readiness after an invocation-only correction. The earlier Windows fixture failure remains historical. [Launch validation](research/checks/main_execution_preparation.json) |
 | Earlier smoke, USD 1 allowance | **Partial and closed.** 54 real observations from DeepSeek V4.1 Flash via OpenRouter/PrimeIntellect on 4 smoke worlds. Smoke is a pipeline check and is never analysed as a result |
-| New smoke, pilot, load-8 smoke (USD 9 allowance) | **Executed.** Smoke 80/80 cells, pilot 160/160 (15 of 16 MAIN pairs fully correct, 15 of 16 NUMERIC optimal: load-8 selected), load-8 smoke 80/80. 525 calls, USD 0.0696 of USD 9. Smoke is never analysed; the pilot only selects the load |
+| New smoke, pilot, load-8 smoke (USD 9 allowance) | **Executed.** Smoke 80/80 cells, pilot 160/160 (15 of 16 MAIN pairs fully correct, 15 of 16 NUMERIC optimal: load-8 selected), load-8 smoke 80/80. 525 pre-main calls, USD 0.0696 known charges. Smoke is never analysed; the pilot only selects the load |
 | Human checks and decisions | **H1/H2/H5 complete, user-attested.** H1 was late; thresholds and MASKED limitation accepted unchanged. D4 leads are now assigned: current user for H3, Araf for H4. Each member's H3 audit remains required; H3/H4 remain pending. The assignment after freeze is disclosed. [Attestation and scope](research/human_verification.json) |
-| Freeze and main (USD 9 allowance) | **Freeze tag delivered; main authorized but not started.** The first launcher stopped before inference; canonical import passed the unchanged guard, focused retests and fresh readiness. The guarded execute command repeats its preflight before dispatch. Use only the unsynced execution clone; do not launch from this OneDrive checkout. [Runbook](research/staged_execution.md) |
+| Freeze and main (USD 9 allowance) | **Partial main, blocked.** 652/704 cells completed; 51 untouched and one pending readback. The unchanged guard stopped after 40 HTTP 429 unknown-cost holds. No relaunch or limit change. [Execution report](research/main_execution_report.md) |
 | Execution freeze | [research/execution_freeze.json](research/execution_freeze.json): commit `6f8f94b3542980f65ba08f56aa3a12bf12c9e41d`, load-8, tag `btl-freeze-v1`, verified on `origin` |
-| Main effect, intervals, controls | Not available. Nothing in this repository is a finding about model behaviour |
+| Main effect, intervals, controls | [Partial empirical bundle](results/staged_main/bundle_manifest.json) verified. Frozen conclusion: **INCONCLUSIVE_WITH_INFRASTRUCTURE_MISSINGNESS**. Observed-pair estimates do not establish a completed 64-world result |
+
+Staged accounting after main: 1,561 attempts, USD 0.19176235952 known charges, USD 1.93872838656 retained holds, USD 6.86950925392 available. Main alone has USD 0.12217898752 known charges; its total cost is unknown. Extra funds do not clear the hold-count blocker. The earlier closed USD 1 session is separate and unchanged.
 
 Synthetic fixtures under `evaluation/` exercise the software only. They are labelled synthetic and are excluded from every empirical count.
 

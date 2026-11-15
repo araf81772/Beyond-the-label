@@ -14,7 +14,7 @@ Each dimension is scored 1 to 5, the same for every track.
 | Execution quality | Technically solid for the time, interpretable results, limitations acknowledged | Thorough method, convincing validation, results clearly support the conclusions |
 | Presentation and clarity | Problem, method, findings and limitations all present and understandable | Easy to follow, well structured, right level of detail |
 
-Without results, Execution cannot rise above about 2. The single highest-value action is to run the pilot and main stages ([runbook](../research/staged_execution.md)).
+Judges assess completed work, validation and methodological limitations. The official rubric sets no automatic score ceiling for unfinished work. Report the achieved scope accurately and distinguish missing observations from findings. [Official rubric](https://apartresearch.com/sprints/ai-x-epistemics-research-sprint-2026-11-13-to-2026-11-15).
 
 ## 2. Hard requirements (checked against the live page)
 
@@ -35,7 +35,7 @@ Without results, Execution cannot rise above about 2. The single highest-value a
 
 | Where | Draft says | Fact now |
 |---|---|---|
-| Header, section 4, LLM statement | No real smoke, pilot or main observation exists | 54 real smoke observations exist (93 accepted calls, USD 0.0125 known cost) in `runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3`. More will exist after the staged runs |
+| Header, section 4, LLM statement | No real smoke, pilot or main observation exists | The historical closed smoke has 54 observations. Staged smokes and pilot are complete; the main stopped at 652/704 observations with 52 pending cells and one missing continuation. Use the reconciled stage-specific counts and separate known cost from held uncertainty in [the execution report](../research/main_execution_report.md) |
 | Section 3.5 | Candidate model `nvidia/nemotron-3.5-super-vl:free`, route `nvidia` | Never used. The model is `deepseek/deepseek-v4.1-flash-1017` through OpenRouter route `primeintellect` (provider PrimeIntellect), temperature 0, reasoning effort none, 512 output tokens, automatic tool choice, parallel tool calls off, no fallback |
 | Authors | Tonmoy; Araf; affiliations pending | Full names and real affiliations, plus the template's "With Apart Research" line and sprint footnote |
 | Reference 2 | `Bissyand'e, Tegawend'e F.` | `Bissyandé, Tegawendé F.` |
@@ -49,11 +49,11 @@ The template asks for this in Methods. All of it is in the repository:
 - One GPT-4.1 mini attempt returned HTTP 404 with no model reply. Public metadata did not confirm the parallel-tool control for that endpoint, so the model was changed before any observation.
 - The first DeepSeek reply was rejected because the router reported the dated endpoint name (`…-20261017`) for the requested model (`…-1017`). The cell is kept as missing and was never re-asked.
 - A cost guard stopped the first smoke after one timeout with no billing receipt, with 25 cells untouched.
-- Three first replies hit the 512-token output limit without a tool call; each received the single fixed re-prompt.
+- In the earlier closed smoke, three first replies hit the 512-token output limit without a tool call; each received the single fixed re-prompt. The partial main has 19/30 observed MASKED first replies truncated; see the separate counts and limitation in [the execution report](../research/main_execution_report.md).
 
 ## 5. Where each report element comes from after the runs
 
-Nothing below exists until the stages are executed. Do not write a number that is not in one of these files.
+The partial main bundle below now exists and has passed trace replay. It is not a completed main sample. Confirm exact denominators, missingness and the frozen inconclusive classification before citing a number. Generated claim evidence does not complete human H4; costs, pilot counts and individual trace values need their own mappings if used.
 
 | Report element | Source | Command |
 |---|---|---|
@@ -67,7 +67,7 @@ Nothing below exists until the stages are executed. Do not write a number that i
 
 Smoke results are a pipeline check and are **not** reported as findings. Pilot results chose the load and must be reported as such, separately from main. The protocol's three interpretation rules (section 9) decide the wording of the conclusion; anything outside them is "inconclusive".
 
-**If the main run does not finish in time:** report what exists, labelled for what it is. A complete pilot is 8 worlds chosen before any data and can be described as exploratory, with its exact denominators, and with a plain statement that the pre-registered main sample was not collected. That is a deviation from the plan and should be called one. Unfinished work with honest limits is explicitly welcome under the sprint rules.
+**Current incomplete main:** report the retained 652/704 observations, 51 untouched cells, one unresolved readback and one missing continuation. Separate complete-pair bootstrap intervals from full planned-world missingness bounds. Preserve the frozen conclusion INCONCLUSIVE_WITH_INFRASTRUCTURE_MISSINGNESS; do not promote the observed-denominator no-gap flag to a full-sample conclusion. The pilot selected load and remains separate. If collection cannot be completed under reviewed authorization, disclose the incomplete-run deviation; the official rules allow unfinished work with honest limitations.
 
 ## 6. LLM Usage Statement: facts to state
 

@@ -1,0 +1,634 @@
+{
+  "schema_version": 1,
+  "classification": "AI_machine_integrity_check_not_human_review",
+  "recorded_at_utc": "2026-11-15T16:14:29.842290+00:00",
+  "status": "passed",
+  "execution_source_commit": "d007585cff100f4fc6ce61c2b61452d830e3ffe9",
+  "checks": [
+    {
+      "path": "src/beyond_label/__init__.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/analyze.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/attempts.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/budget.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/capabilities.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/continuation.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/continuation79.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/controls.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/cost_reconciliation.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/environment.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/evidence.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/figures.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/finalize.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/freeze.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/gates.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/generate.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/live.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/openrouter.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/oracle.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/paid_controls.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/paid_live.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/paid_profile.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/pilot.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/provider.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/rate_limit.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/render.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/run.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/sandbox.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/schemas.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/score.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "src/beyond_label/staged.py",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "prompts/agent_system.txt",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "prompts/control_masked.txt",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "prompts/control_numeric.txt",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "prompts/probe_readback.txt",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "prompts/reprompt_no_tool.txt",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "research/protocol.md",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "research/amendments.md",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "configs/free.yaml",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "configs/main.yaml",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "configs/paid_smoke.yaml",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "configs/pilot.yaml",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "configs/proposed_m4.yaml",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "configs/staged.yaml",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "data/worlds_main.jsonl",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "data/worlds_pilot.jsonl",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "data/worlds_smoke.jsonl",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "data/manifest.json",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "pyproject.toml",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "requirements.lock",
+      "scope": "frozen_input",
+      "passed": true
+    },
+    {
+      "path": "research/execution_freeze.json",
+      "scope": "immutable_freeze",
+      "passed": true
+    },
+    {
+      "path": "data/plans/main_load8.json",
+      "scope": "frozen_plan",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_smoke_load2/manifest.json",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_smoke_load2/calls.jsonl",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_smoke_load2/scores.csv",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_smoke_load2/usage.csv",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_smoke_load2/analysis_manifest.json",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_pilot_load2/manifest.json",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_pilot_load2/calls.jsonl",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_pilot_load2/scores.csv",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_pilot_load2/usage.csv",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_pilot_load2/analysis_manifest.json",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_smoke_load8/manifest.json",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_smoke_load8/calls.jsonl",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_smoke_load8/scores.csv",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_smoke_load8/usage.csv",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/staged_smoke_load8/analysis_manifest.json",
+      "scope": "gate_artifact",
+      "passed": true
+    },
+    {
+      "path": "runs/_paid_staged_session/attempts.jsonl",
+      "scope": "retained_prefix",
+      "passed": true,
+      "before_bytes": 116088,
+      "after_bytes": 346169
+    },
+    {
+      "path": "runs/_paid_staged_session/authorization.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 864,
+      "after_bytes": 864
+    },
+    {
+      "path": "runs/_paid_staged_session/budget.jsonl",
+      "scope": "retained_prefix",
+      "passed": true,
+      "before_bytes": 351851,
+      "after_bytes": 1047363
+    },
+    {
+      "path": "runs/_paid_staged_session/preflights.jsonl",
+      "scope": "retained_prefix",
+      "passed": true,
+      "before_bytes": 3042,
+      "after_bytes": 4266
+    },
+    {
+      "path": "runs/_paid_testing_session/attempts.jsonl",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 21286,
+      "after_bytes": 21286
+    },
+    {
+      "path": "runs/_paid_testing_session/authorization.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 483,
+      "after_bytes": 483
+    },
+    {
+      "path": "runs/_paid_testing_session/budget.jsonl",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 64421,
+      "after_bytes": 64421
+    },
+    {
+      "path": "runs/_paid_testing_session/preflights.jsonl",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 1668,
+      "after_bytes": 1668
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/analysis_manifest.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 23677,
+      "after_bytes": 23677
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/calls.jsonl",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 6740,
+      "after_bytes": 6740
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/manifest.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 25626,
+      "after_bytes": 25626
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/scores.csv",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 10103,
+      "after_bytes": 10103
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2/analysis_manifest.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 23700,
+      "after_bytes": 23700
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2/calls.jsonl",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 8997,
+      "after_bytes": 8997
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2/manifest.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 26339,
+      "after_bytes": 26339
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2/scores.csv",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 10110,
+      "after_bytes": 10110
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2/usage.csv",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 565,
+      "after_bytes": 565
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3/analysis_manifest.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 17619,
+      "after_bytes": 17619
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3/calls.jsonl",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 1557385,
+      "after_bytes": 1557385
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3/manifest.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 31443,
+      "after_bytes": 31443
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3/scores.csv",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 11804,
+      "after_bytes": 11804
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3/usage.csv",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 30216,
+      "after_bytes": 30216
+    },
+    {
+      "path": "runs/paid_smoke_gpt41mini_20261115/usage.csv",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 427,
+      "after_bytes": 427
+    },
+    {
+      "path": "runs/staged_pilot_load2/analysis_manifest.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 28557,
+      "after_bytes": 28557
+    },
+    {
+      "path": "runs/staged_pilot_load2/calls.jsonl",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 4432904,
+      "after_bytes": 4432904
+    },
+    {
+      "path": "runs/staged_pilot_load2/manifest.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 44152,
+      "after_bytes": 44152
+    },
+    {
+      "path": "runs/staged_pilot_load2/scores.csv",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 23462,
+      "after_bytes": 23462
+    },
+    {
+      "path": "runs/staged_pilot_load2/usage.csv",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 85650,
+      "after_bytes": 85650
+    },
+    {
+      "path": "runs/staged_smoke_load2/analysis_manifest.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 14673,
+      "after_bytes": 14673
+    },
+    {
+      "path": "runs/staged_smoke_load2/calls.jsonl",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 2146089,
+      "after_bytes": 2146089
+    },
+    {
+      "path": "runs/staged_smoke_load2/manifest.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 26724,
+      "after_bytes": 26724
+    },
+    {
+      "path": "runs/staged_smoke_load2/scores.csv",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 11889,
+      "after_bytes": 11889
+    },
+    {
+      "path": "runs/staged_smoke_load2/usage.csv",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 41828,
+      "after_bytes": 41828
+    },
+    {
+      "path": "runs/staged_smoke_load8/analysis_manifest.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 14658,
+      "after_bytes": 14658
+    },
+    {
+      "path": "runs/staged_smoke_load8/calls.jsonl",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 2314458,
+      "after_bytes": 2314458
+    },
+    {
+      "path": "runs/staged_smoke_load8/manifest.json",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 26725,
+      "after_bytes": 26725
+    },
+    {
+      "path": "runs/staged_smoke_load8/scores.csv",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 11784,
+      "after_bytes": 11784
+    },
+    {
+      "path": "runs/staged_smoke_load8/usage.csv",
+      "scope": "retained_immutable",
+      "passed": true,
+      "before_bytes": 41155,
+      "after_bytes": 41155
+    }
+  ],
+  "main_source_files": {
+    "manifest.json": {
+      "bytes": 173481,
+      "sha256": "38a5b1be160756382c43b342d77f88f8ec17f36dc34c3772067a662917f1d859"
+    },
+    "calls.jsonl": {
+      "bytes": 17615533,
+      "sha256": "05d33f55fc30274fd9c20c0574360d7a9446c3665a2b4a6271c44dc233509753"
+    },
+    "scores.csv": {
+      "bytes": 95195,
+      "sha256": "44b5a3f1f15f6e786083aed16c52f7b5bd716583f3eec77c2b52fde181248150"
+    },
+    "usage.csv": {
+      "bytes": 322106,
+      "sha256": "3ecd0beaba57e0ecafb110ce897880e205dcee8aa332d6f7aaafac01a34bfe9c"
+    },
+    "analysis_manifest.json": {
+      "bytes": 127132,
+      "sha256": "206cdd95f56f568be2bbc9c6cc3f5dd20824ce7cf80a388b85bbb6d7bd0b4df3"
+    }
+  },
+  "raw_evidence_modified_by_check": false,
+  "provider_calls": 0
+}

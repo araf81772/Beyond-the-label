@@ -2,11 +2,11 @@
 
 Prepared 15 November 2026 (AEDT) on branch `v1`. Every paid stage starts only when a person runs its `execute` command.
 
-**State on 16 November 2026:** stages 1–3 (smoke load-2, pilot, smoke load-8) are complete; the pilot selected load-8. The existing freeze record is unchanged, and tag `btl-freeze-v1` is now verified on `origin` at `6f8f94b3542980f65ba08f56aa3a12bf12c9e41d`. The user authorized main after resolving prerequisites and passing validation. Main has not started at this preparation checkpoint. Launch validation passed (1,680 tests, integrity/dependency checks and fresh main readiness); see [preparation evidence](checks/main_execution_preparation.json). The execute command repeats the live preflight. Historical checkpoints remain in [decisions.md](decisions.md).
+**State on 16 November 2026:** M4 gates and the unchanged load-8 freeze are verified. The authorized main ran and stopped at 652/704 completed cells after reaching the fixed 40 unknown-cost-hold limit from HTTP 429 failures. There are 51 untouched cells, one pending readback and one missing continuation in an otherwise observed episode. Do not relaunch, release holds or change limits implicitly. The partial analysis is inconclusive with infrastructure missingness. See [execution report](main_execution_report.md), [command outcome](checks/main_execution_command_canonical.json) and [post-run review](checks/main_postrun_review.json).
 
 **Human-check update:** [human_verification.json](human_verification.json) records H1/H2/H5 complete on the current user's attestation for themselves and Araf. H1 was late; the existing thresholds and MASKED limitation are accepted unchanged. The current user now leads H3, and Araf leads H4. Each team member must still independently complete the H3 audit; H3/H4 remain pending until their later protocol stages. D4's assignment after freeze is a disclosed timing deviation. A token-cap change would invalidate the existing gates and require repeating smoke and pilot (and load-8 smoke if selected again).
 
-**Single execution location:** `C:/Users/tonmo/CodexRuns/beyond-the-label-v1-main-20261116` is the unsynced main execution clone. The original OneDrive checkout is for documentation and delivery, and must not dispatch main concurrently or independently. Pull the reviewed documentation commit into the execution clone before launch; preserve every scientific input and the full retained ledgers.
+**Single execution location:** `C:/Users/tonmo/CodexRuns/beyond-the-label-v1-main-20261116` is the unsynced main execution clone. The original OneDrive checkout is for documentation and delivery, and must not dispatch main concurrently or independently. Collection is stopped. Preserve every scientific input, raw trace and the full retained ledgers; the remaining dollars and attempts do not override the hold-count blocker.
 
 Authorization: `paid-staged-usd9-v1`, recorded in [staged_authorization.json](staged_authorization.json). Settings: [configs/staged.yaml](../configs/staged.yaml). Code: [staged.py](../src/beyond_label/staged.py). The protocol in [protocol.md](protocol.md) is unchanged.
 
@@ -48,7 +48,7 @@ Read-only readiness check for a stage (public metadata and key-limit GET only, n
 python -m beyond_label.staged check-ready --stage smoke
 ```
 
-Run or resume a stage:
+Historical command reference only; current main dispatch is blocked. Run or resume a stage only after its blocker is resolved and continuation scope is explicitly reviewed:
 
 ```powershell
 python -c "from beyond_label.staged import main; raise SystemExit(main())" execute --stage smoke

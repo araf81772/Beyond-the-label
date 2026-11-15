@@ -1,0 +1,103 @@
+{
+  "artifact_hash_scope": "All generated files except bundle_manifest.json, avoiding a circular self-hash",
+  "artifact_hashes": {
+    "analysis/analysis.json": "386b81e76349e51bc511b0fb3ec7fb164a5d4908df0bd8336c6d102989b2f9a0",
+    "analysis/cells.csv": "46b1a0d551a4f358ea828b2be28f861d5f190e2df162f6e0cd14f4c2f3328f7e",
+    "analysis/claim_evidence.csv": "94e20bb645ebc9af9718ff4dc5f7d437a2788b8863f78bbd7bda05363f6fa564",
+    "analysis/conditions.csv": "360e59f4c511159048252d770130cb425f0fc89891ddcb5b53e91217c9929162",
+    "analysis/figures/agent_allocation_vs_oracle.png": "9bdf1cee31d2310cccb0e956f7debed85bef129206b7797a8c2bb6764e79cca4",
+    "analysis/figures/allocation.csv": "407c98e36c38a970e46377e80512a1570a076d73189f4e92598fd697825be3a8",
+    "analysis/figures/pair_switch_categories.png": "9d42078b272db0b9931b2ced90b50bb9b5ba016560c71faf89e36c902d8cb61a",
+    "analysis/matched_trace.json": "0c1cb1bd13f4ac6fae2490b3d795515c997e8595d3f02da733fabb345e985576",
+    "analysis/pairs.csv": "bf6fefb4f9d47a41c9063c667b131fde9fbb7142f6c45e6135e012861c1a7014",
+    "execution_summary.json": "0c77342e8bbf45bc1168bc34bb93e4642016c25e5caaf691474c69ebc5b4b261"
+  },
+  "artifact_label": "MAIN OBSERVATIONS",
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 314159,
+    "unit": "world"
+  },
+  "completeness": {
+    "all_cells_terminal": false,
+    "all_observations_available": false,
+    "completed_cells": 652,
+    "continuation_missing_cells": 1,
+    "infrastructure_missing_cells": 0,
+    "missing_first_action_or_readback_cells": 52,
+    "missing_reasons": {
+      "not_executed_yet": 51,
+      "pending_after_infrastructure_failure": 1
+    },
+    "observed_first_action_or_readback_cells": 652,
+    "pending_cells": 52,
+    "planned_cells": 704,
+    "unexecuted_cells": 51,
+    "unresolved_attempt_cells": 1
+  },
+  "empirical_observations": 652,
+  "evidence_kind": "empirical",
+  "execution_summary": {
+    "artifact_label": "MAIN OBSERVATIONS",
+    "attempted_calls": 1036,
+    "confirmed_http_deliveries": null,
+    "continuations": 326,
+    "cost": {
+      "accounting_error_attempts": 0,
+      "evidence_kind": "provider_usage_cost_usd",
+      "known_provider_spend_usd": 0.12217898752,
+      "nonzero_cost_attempts": 996,
+      "scope": "Provider usage evidence only; unknown totals remain null and synthetic usage is not billed evidence",
+      "spend_evidence_complete": false,
+      "total_provider_spend_usd": null,
+      "unknown_cost_attempts": 40
+    },
+    "count_definitions": {
+      "attempted_calls": "Journaled attempt starts; do not prove HTTP dispatch",
+      "confirmed_http_deliveries": "No separate transport-delivery census is reconstructed from attempt-start markers",
+      "continuations": "Defined continuation phases, not necessarily dispatched HTTP calls",
+      "permitted_reprompts": "Defined re-prompt phases, not necessarily dispatched HTTP calls",
+      "successful_calls": "Responses accepted by the pinned parser; includes invalid model actions and is synthetic when labelled synthetic"
+    },
+    "evidence_kind": "empirical",
+    "infrastructure_retries": 38,
+    "invalid_first_actions": 2,
+    "permitted_reprompts": 19,
+    "successful_calls": 996
+  },
+  "freeze_identity": {
+    "commit": "6f8f94b3542980f65ba08f56aa3a12bf12c9e41d",
+    "record_hash": "4feb8fd870dc62ffd260b682d1249d6fc70c401d33f98a9a1eb7ce1189ef2081",
+    "tag": "btl-freeze-v1"
+  },
+  "freeze_verification": "existing_empirical_replay_and_freeze_checks_passed",
+  "human_review_claimed": false,
+  "milestone_6_complete": false,
+  "publication_performed": false,
+  "reproduction": {
+    "arguments": [
+      "--run",
+      "C:\\Users\\tonmo\\CodexRuns\\beyond-the-label-v1-main-20261116\\runs\\staged_main",
+      "--output",
+      "C:\\Users\\tonmo\\CodexRuns\\beyond-the-label-v1-main-20261116\\results\\staged_main"
+    ],
+    "command_template": "python -m beyond_label.finalize --run SOURCE_RUN --output BUNDLE_OUTPUT",
+    "module": "beyond_label.finalize",
+    "placeholders": [
+      "SOURCE_RUN",
+      "BUNDLE_OUTPUT"
+    ]
+  },
+  "schema_version": 1,
+  "scope": "Offline artifact packaging only; paper, human review and submission are not claimed",
+  "source_execution_evidence_kind": "empirical",
+  "source_hashes": {
+    "analysis_manifest.json": "206cdd95f56f568be2bbc9c6cc3f5dd20824ce7cf80a388b85bbb6d7bd0b4df3",
+    "calls.jsonl": "05d33f55fc30274fd9c20c0574360d7a9446c3665a2b4a6271c44dc233509753",
+    "manifest.json": "38a5b1be160756382c43b342d77f88f8ec17f36dc34c3772067a662917f1d859",
+    "scores.csv": "44b5a3f1f15f6e786083aed16c52f7b5bd716583f3eec77c2b52fde181248150",
+    "usage.csv": "3ecd0beaba57e0ecafb110ce897880e205dcee8aa332d6f7aaafac01a34bfe9c"
+  },
+  "source_run": "C:\\Users\\tonmo\\CodexRuns\\beyond-the-label-v1-main-20261116\\runs\\staged_main",
+  "trace_verification": "raw_journal_integrity_and_derived_outputs_verified"
+}

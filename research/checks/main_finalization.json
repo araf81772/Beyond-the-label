@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "classification": "offline_partial_main_packaging_not_human_review",
+  "command": "python -m beyond_label.finalize --run runs/staged_main --output results/staged_main",
+  "environment": {
+    "PYTHONPATH": "src"
+  },
+  "started_at_utc": "2026-11-15T16:15:46.797193+00:00",
+  "finished_at_utc": "2026-11-15T16:16:36.247801+00:00",
+  "exit_code": 0,
+  "invocation_check": {
+    "original_environment": "False",
+    "documented_src_environment": "True"
+  },
+  "prior_invocation": {
+    "exit_code": 1,
+    "reason": "ModuleNotFoundError: beyond_label; documented PYTHONPATH=src omitted in fresh shell",
+    "experiment_artifacts_created": false
+  },
+  "result": {
+    "artifact_label": "MAIN OBSERVATIONS",
+    "bundle_manifest": "results\\staged_main\\bundle_manifest.json",
+    "evidence_kind": "empirical",
+    "milestone_6_complete": false,
+    "publication_performed": false
+  },
+  "provider_calls": 0
+}

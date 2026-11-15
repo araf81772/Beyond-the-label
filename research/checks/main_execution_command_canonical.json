@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "classification": "real_main_execution_command_outcome_not_human_review",
+  "command": "python -c \"from beyond_label.staged import main; raise SystemExit(main())\" execute --stage main",
+  "started_at_utc": "2026-11-15T14:05:48.749358+00:00",
+  "finished_at_utc": "2026-11-15T16:13:06.895697+00:00",
+  "execution_source_commit": "d007585cff100f4fc6ce61c2b61452d830e3ffe9",
+  "execution_directory": "C:\\Users\\tonmo\\CodexRuns\\beyond-the-label-v1-main-20261116",
+  "exit_code": 2,
+  "invocation_diagnostic": "research/checks/main_invocation_diagnostic.json",
+  "retest_evidence": "research/checks/main_invocation_retest.json",
+  "readiness_evidence": "research/checks/main_invocation_readiness.json",
+  "result": {
+    "status": "blocked",
+    "reason": "staged_unknown_cost_hold_limit_reached"
+  },
+  "credential_values_recorded": false
+}

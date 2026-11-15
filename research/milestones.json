@@ -1,9 +1,9 @@
 {
-  "recorded_at_utc": "2026-11-15T03:50:26.540649+00:00",
+  "recorded_at_utc": "2026-11-15T16:19:35.730435+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "On 16 November 2026 the user assigned themselves H3 lead and Araf H4 lead, then explicitly requested operational fixes, test-fix-test and the final run. Main is authorized under the unchanged USD 9 staged allowance only after required validation and fresh readiness pass. The freeze tag is now verified on origin at 6f8f94b; main has not started. Each member's H3 audit remains required, H3/H4 remain pending and the late D4 assignment is disclosed.",
+  "requested_scope": "On 16 November 2026 the user assigned themselves H3 lead and Araf H4 lead, then explicitly requested operational fixes, test-fix-test and the final run. Main is authorized under the unchanged USD 9 staged allowance only after required validation and fresh readiness pass. The freeze tag is now verified on origin at 6f8f94b; main ran and stopped at652/704cells under the40-hold guard; further dispatch remains blocked. Each member's H3 audit remains required, H3/H4 remain pending and the late D4 assignment is disclosed.",
   "execution_freeze": "research/execution_freeze.json",
-  "experimental_calls": 621,
+  "experimental_calls": 1657,
   "human_participation_observed": false,
   "human_verification_record": "research/human_verification.json",
   "main_launch_preparation": {
@@ -21,7 +21,8 @@
     "invocation_diagnostic": "research/checks/main_invocation_diagnostic.json",
     "canonical_invocation_retest": "passed_121_tests_and_fresh_readiness",
     "canonical_invocation_retest_evidence": "research/checks/main_invocation_retest.json",
-    "canonical_readiness_evidence": "research/checks/main_invocation_readiness.json"
+    "canonical_readiness_evidence": "research/checks/main_invocation_readiness.json",
+    "checkpoint_scope": "Historical pre-launch preparation; see main_execution for actual stopped outcome."
   },
   "human_verification_update_validation": "research/checks/human_verification_update.json",
   "human_checks_user_attested_complete": [
@@ -852,12 +853,12 @@
     {
       "number": 5,
       "name": "Main execution",
-      "status": "ready",
-      "reason": "The first module-entry invocation stopped before dispatch; its failure and account preflight are preserved. Canonical import passes the unchanged strict guard, 121 focused tests pass, and fresh canonical main readiness passes. Main is authorized and has not yet started.",
-      "empirical_completed_cells": 0,
+      "status": "blocked",
+      "reason": "Authorized main ran at frozen load8 and stopped at the unchanged40 unknown-cost-hold limit after40 HTTP429 failures.652/704 cells are completed;51untouched and1pending readback remain. Do not relaunch or reset/release holds without verified reconciliation and an explicit reviewed continuation decision.",
+      "empirical_completed_cells": 652,
       "planned_cells": 704,
-      "missingness_interpretation": "Not executed; no partial empirical run exists",
-      "minimum_next_action": "After required validation and a fresh main readiness check pass, execute the fixed load-8 main plan only from C:/Users/tonmo/CodexRuns/beyond-the-label-v1-main-20261116 under the current user request. Do not dispatch from the original OneDrive checkout or another concurrent copy.",
+      "missingness_interpretation": "652 first actions/readbacks observed;51untouched cells and1pending readback. One observed HIGH-STAKES first action has an infrastructure-exhausted continuation; invalid decisions and continuations remain distinct.",
+      "minimum_next_action": "Resolve the40-hold blocker with attributable billing evidence and a validated reconciliation path, or obtain an explicit reviewed amendment; extra funds alone do not clear it. Preserve the terminal failed continuation and all observed/invalid decisions.",
       "completed_offline_preparation": [
         "Current-source full704-cell synthetic execution, trace replay, usage and duplicate-free resume",
         "Read-only finalization bundle preserving source bytes and explicit missingness classes",
@@ -869,13 +870,30 @@
         "tests_passed": 1381,
         "main_execution_started": false
       },
-      "readiness_evidence": "research/checks/main_execution_preparation.json"
+      "readiness_evidence": "research/checks/main_execution_preparation.json",
+      "pending_cells": 52,
+      "execution_evidence": "research/checks/main_execution_command_canonical.json",
+      "postrun_review": "research/checks/main_postrun_review.json",
+      "validation": [
+        {
+          "command": "python scripts/verify_audit.py",
+          "exit_code": 0,
+          "summary": "1538 checks passed across499files after stopped main",
+          "evidence": "research/checks/main_postrun_audit.json"
+        },
+        {
+          "command": "Frozen/retained SHA256 and independent AI journal/parser/oracle audits",
+          "exit_code": 0,
+          "summary": "105 integrity checks; no independently detected score, parser or accounting discrepancy",
+          "evidence": "research/checks/main_postrun_review.json"
+        }
+      ]
     },
     {
       "number": 6,
       "name": "Analysis/report/reproduction",
       "status": "blocked",
-      "reason": "Historical pre-results artifacts remain preserved. The staged gates and published freeze tag exist, but main is not yet started, so empirical main conclusions and the final paper remain blocked. H1/H2/H5 are user-attested complete; H1 was late. The current user leads H3 and Araf leads H4, assigned after freeze; each member's H3 audit remains required. H3/H4 completion, final-report citation changes, author affiliations and final reproduction remain outstanding.",
+      "reason": "Partial empirical bundle verified, but M5 is incomplete. Frozen conclusion is INCONCLUSIVE_WITH_INFRASTRUCTURE_MISSINGNESS. Each member still owes H3 under the current user lead; Araf leads H4. Final paper, affiliations, changed-citation checks and final reproduction remain pending.",
       "completed_offline_preparation": [
         "Analysis algorithms and synthetic tests",
         "Figure/table and matched-trace generation",
@@ -895,7 +913,7 @@
       "empirical_ci95": null,
       "paper_created": false,
       "human_review_observed": false,
-      "minimum_next_action": "After the currently authorized main collection passes its launch gates and finishes, reconcile evidence and complete each member's H3 audit under the current user's lead. Araf leads H4 before final writing; complete any new-citation H5 checks, confirm affiliations and verify the final report/reproduction. No human completion is inferred from assignment or machine checks.",
+      "minimum_next_action": "Resolve collection blocker or explicitly report incomplete collection with missingness bounds. Complete both human H3 audits and Araf-led H4 before final paper; preserve late H1/D3/D4 deviations and MASKED limitation.",
       "source_verification": "research/checks/source_verification.json",
       "official_template_link_verified": true,
       "official_template_contents_verified": true,
@@ -950,6 +968,12 @@
           "exit_code": 0,
           "summary": "89 claim rows and all report/PDF/page hashes verified;1038 audit checks at pre-delivery checkpoint; no empirical run or freeze",
           "evidence": "research/checks/preresults_final_validation.json"
+        },
+        {
+          "command": "python -m beyond_label.finalize --run runs/staged_main --output results/staged_main",
+          "exit_code": 0,
+          "summary": "Partial empirical replay/freeze verification and10,000world bootstrap seed314159; source unchanged; human review and M6completion false",
+          "evidence": "research/checks/main_finalization.json"
         }
       ],
       "planned_status_bundle": "results/planned",
@@ -978,7 +1002,10 @@
         "later_code_change": "Report appendix spacing6pt to4pt only;20 report tests passed in1.83s",
         "evidence": "research/checks/preresults_clean_clone.json"
       },
-      "current_empirical_limitation": "No main observations; partial smoke is excluded from main statistics. Historical pre-results artifacts are not an empirical report."
+      "current_empirical_limitation": "652/704 observations,52missing first/readback cells and1missing continuation; complete-pair estimates are conditional on observed pairs, not a completed64-world result.",
+      "partial_empirical_bundle": "results/staged_main",
+      "partial_estimate_scope": "Separate layout53 completeworlds: D=0.9622641509433962,95%bootstrapCI[0.9056603773584906,1.0]; all64planned-world identification bounds[0.75,0.9375]. Not an unconditional no-gap conclusion.",
+      "partial_finalization_evidence": "research/checks/main_finalization.json"
     }
   ],
   "human_participation_scope": "H1/H2/H5 completion by the current user and Araf is user-attested in research/human_verification.json, not directly witnessed by Codex. H1 is late. On 16 November the current user assigned themselves H3 lead and Araf H4 lead after freeze; each member's independent H3 requirement remains and H3/H4 are pending. Historical observed/review false fields retain their original checkpoint meaning. User separately approved NUMERIC amendment A1.",
@@ -1435,7 +1462,7 @@
     "authorization": "research/staged_authorization.json",
     "runbook": "research/staged_execution.md",
     "validation": "research/checks/v1_validation.json",
-    "status": "freeze_verified_main_authorized_ready_not_started",
+    "status": "main_started_then_blocked_40_unknown_cost_holds",
     "stages_executed": [
       {
         "stage": "smoke",
@@ -1466,15 +1493,26 @@
         "attempts": 128,
         "known_cost_usd": "0.01733081296",
         "commit": "9594f9a"
+      },
+      {
+        "stage": "main",
+        "directory": "runs/staged_main",
+        "cells_completed": 652,
+        "cells_planned": 704,
+        "attempts": 1036,
+        "known_cost_usd": "0.12217898752",
+        "unknown_cost_attempts": 40,
+        "status": "blocked_partial",
+        "execution_source_commit": "d007585cff100f4fc6ce61c2b61452d830e3ffe9"
       }
     ],
-    "note": "M4 complete: unchanged gates/freeze and published tag verified; 1680 tests and main readiness passed in the unsynced clone. Main authorized but not yet started at this checkpoint. D4 leads assigned late; H3/H4 remain pending. Smoke and pilot stay separate from main findings.",
+    "note": "M4complete; main stopped after652/704cells at40holds. Preserve partial evidence, all prior stages and the closedUSD1session. H3/H4pending.",
     "ledger": {
-      "attempts_reserved": 525,
-      "attempts_remaining": 2475,
-      "known_cost_usd": "0.069583372",
-      "held_usd": "0",
-      "available_usd": "8.930416628"
+      "attempts_reserved": 1561,
+      "attempts_remaining": 1439,
+      "known_cost_usd": "0.19176235952",
+      "held_usd": "1.93872838656",
+      "available_usd": "6.86950925392"
     },
     "freeze": {
       "record": "research/execution_freeze.json",
@@ -1484,9 +1522,106 @@
       "selected_load": 8,
       "tag_on_origin": true
     },
-    "main_executed": false,
+    "main_executed": true,
     "pre_freeze_review": "research/decisions.md, pre-freeze AI review and subsequent human-attestation update",
-    "human_verification": "research/human_verification.json"
+    "human_verification": "research/human_verification.json",
+    "pre_main_ledger": {
+      "attempts_reserved": 525,
+      "attempts_remaining": 2475,
+      "known_cost_usd": "0.069583372",
+      "held_usd": "0",
+      "available_usd": "8.930416628"
+    },
+    "main_completed": false
   },
-  "main_preparation_evidence": "research/checks/main_execution_preparation.json"
+  "main_preparation_evidence": "research/checks/main_execution_preparation.json",
+  "main_execution": {
+    "schema_version": 1,
+    "classification": "partial_main_execution_and_independent_AI_review_not_human_signoff",
+    "recorded_at_utc": "2026-11-15T16:19:35.730435+00:00",
+    "status": "blocked_partial_main",
+    "blocking_reason": "staged_unknown_cost_hold_limit_reached",
+    "execution_source_commit": "d007585cff100f4fc6ce61c2b61452d830e3ffe9",
+    "freeze_commit": "6f8f94b3542980f65ba08f56aa3a12bf12c9e41d",
+    "main": {
+      "planned_cells": 704,
+      "completed_cells": 652,
+      "observed_cells": 652,
+      "pending_cells": 52,
+      "untouched_cells": 51,
+      "unresolved_attempt_cells": 1,
+      "missing_continuations": 1,
+      "attempts": 1036,
+      "accepted_responses": 996,
+      "http429_failures": 40,
+      "infrastructure_retries": 38,
+      "permitted_reprompts": 19,
+      "observed_decisions": 414,
+      "readbacks": 238,
+      "invalid_first_actions": 2,
+      "invalid_continuations": 15,
+      "refused_replies": 0,
+      "known_cost_usd": "0.12217898752",
+      "total_cost_usd": null
+    },
+    "staged_ledger": {
+      "journaled_attempts": 1561,
+      "reserved_attempts": 1561,
+      "known_receipts": 1521,
+      "held_reservations": 40,
+      "settled_cost_usd": "0.19176235952",
+      "held_usd": "1.93872838656",
+      "available_usd": "6.86950925392"
+    },
+    "staged_attempts_remaining": 1439,
+    "independent_AI_reviews": {
+      "operational": {
+        "scope": "All journal/ledger chains,1036 starts and payload settings,996 returned identities,identical retry hashes,frozen order and prior evidence preservation",
+        "discrepancies": 0,
+        "recovered_failed_attempts": 34,
+        "recovered_logical_requests": 28,
+        "unrecovered_failed_attempts": 6
+      },
+      "oracle_and_parser": {
+        "raw_responses_checked": 996,
+        "first_actions_checked": 414,
+        "numeric_fields_checked": 1652,
+        "required_blank_fields_checked": 4,
+        "readbacks_checked": 238,
+        "continuation_actions_checked": 325,
+        "realised_losses_checked": 396,
+        "method": "Independent standard-library Fraction arithmetic and raw/world parsing; no experiment-module imports",
+        "discrepancies": 0
+      }
+    },
+    "main_source_hashes": {
+      "manifest.json": "38a5b1be160756382c43b342d77f88f8ec17f36dc34c3772067a662917f1d859",
+      "calls.jsonl": "05d33f55fc30274fd9c20c0574360d7a9446c3665a2b4a6271c44dc233509753",
+      "scores.csv": "44b5a3f1f15f6e786083aed16c52f7b5bd716583f3eec77c2b52fde181248150",
+      "usage.csv": "3ecd0beaba57e0ecafb110ce897880e205dcee8aa332d6f7aaafac01a34bfe9c",
+      "analysis_manifest.json": "206cdd95f56f568be2bbc9c6cc3f5dd20824ce7cf80a388b85bbb6d7bd0b4df3"
+    },
+    "bundle_artifact_hashes_verified": 10,
+    "figures_visually_reviewed_by_AI": [
+      "agent_allocation_vs_oracle.png",
+      "pair_switch_categories.png"
+    ],
+    "figure_scope": "Partial main observations; planned denominators and missing/pending bars visible. Final-paper captions must identify incomplete collection.",
+    "interpretation": {
+      "conclusion": "INCONCLUSIVE_WITH_INFRASTRUCTURE_MISSINGNESS",
+      "missingness_rule": "Threshold flags use observed denominators; any required-group infrastructure missingness prevents an unconditional conclusion.",
+      "nonsignificance_rule": "A nonsignificant effect is not evidence that the agent ignores scope.",
+      "recognition_action_gap_scope": "Descriptive conditional association; separate readback branches do not establish that recognition caused the decision.",
+      "required_group_missingness": true,
+      "threshold_checks_for_validation": {
+        "gap_found": false,
+        "layout_helps": false,
+        "no_gap_here": true
+      }
+    },
+    "provider_calls_after_stop": 0,
+    "human_H3_complete": false,
+    "human_H4_complete": false,
+    "publication_performed": false
+  }
 }

@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "classification": "partial_main_execution_and_independent_AI_review_not_human_signoff",
+  "recorded_at_utc": "2026-11-15T16:19:35.730435+00:00",
+  "status": "blocked_partial_main",
+  "blocking_reason": "staged_unknown_cost_hold_limit_reached",
+  "execution_source_commit": "d007585cff100f4fc6ce61c2b61452d830e3ffe9",
+  "freeze_commit": "6f8f94b3542980f65ba08f56aa3a12bf12c9e41d",
+  "main": {
+    "planned_cells": 704,
+    "completed_cells": 652,
+    "observed_cells": 652,
+    "pending_cells": 52,
+    "untouched_cells": 51,
+    "unresolved_attempt_cells": 1,
+    "missing_continuations": 1,
+    "attempts": 1036,
+    "accepted_responses": 996,
+    "http429_failures": 40,
+    "infrastructure_retries": 38,
+    "permitted_reprompts": 19,
+    "observed_decisions": 414,
+    "readbacks": 238,
+    "invalid_first_actions": 2,
+    "invalid_continuations": 15,
+    "refused_replies": 0,
+    "known_cost_usd": "0.12217898752",
+    "total_cost_usd": null
+  },
+  "staged_ledger": {
+    "journaled_attempts": 1561,
+    "reserved_attempts": 1561,
+    "known_receipts": 1521,
+    "held_reservations": 40,
+    "settled_cost_usd": "0.19176235952",
+    "held_usd": "1.93872838656",
+    "available_usd": "6.86950925392"
+  },
+  "staged_attempts_remaining": 1439,
+  "independent_AI_reviews": {
+    "operational": {
+      "scope": "All journal/ledger chains,1036 starts and payload settings,996 returned identities,identical retry hashes,frozen order and prior evidence preservation",
+      "discrepancies": 0,
+      "recovered_failed_attempts": 34,
+      "recovered_logical_requests": 28,
+      "unrecovered_failed_attempts": 6
+    },
+    "oracle_and_parser": {
+      "raw_responses_checked": 996,
+      "first_actions_checked": 414,
+      "numeric_fields_checked": 1652,
+      "required_blank_fields_checked": 4,
+      "readbacks_checked": 238,
+      "continuation_actions_checked": 325,
+      "realised_losses_checked": 396,
+      "method": "Independent standard-library Fraction arithmetic and raw/world parsing; no experiment-module imports",
+      "discrepancies": 0
+    },
+    "methodology": {
+      "conclusion": "INCONCLUSIVE_WITH_INFRASTRUCTURE_MISSINGNESS",
+      "observed_only_no_gap_flag_is_not_unconditional": true,
+      "main_MASKED_truncated_first_replies": 19,
+      "main_MASKED_observed_first_replies": 30,
+      "by_layout": {
+        "separate": "10/15",
+        "inline": "9/15"
+      },
+      "all_used_fixed_reprompt": true,
+      "other_phase_or_condition_truncations": 0,
+      "cap_unchanged": 512,
+      "scope": "Independent standard-library raw-response census; AI review, not human signoff"
+    }
+  },
+  "main_source_hashes": {
+    "manifest.json": "38a5b1be160756382c43b342d77f88f8ec17f36dc34c3772067a662917f1d859",
+    "calls.jsonl": "05d33f55fc30274fd9c20c0574360d7a9446c3665a2b4a6271c44dc233509753",
+    "scores.csv": "44b5a3f1f15f6e786083aed16c52f7b5bd716583f3eec77c2b52fde181248150",
+    "usage.csv": "3ecd0beaba57e0ecafb110ce897880e205dcee8aa332d6f7aaafac01a34bfe9c",
+    "analysis_manifest.json": "206cdd95f56f568be2bbc9c6cc3f5dd20824ce7cf80a388b85bbb6d7bd0b4df3"
+  },
+  "bundle_artifact_hashes_verified": 10,
+  "figures_visually_reviewed_by_AI": [
+    "agent_allocation_vs_oracle.png",
+    "pair_switch_categories.png"
+  ],
+  "figure_scope": "Partial main observations; planned denominators and missing/pending bars visible. Final-paper captions must identify incomplete collection.",
+  "interpretation": {
+    "conclusion": "INCONCLUSIVE_WITH_INFRASTRUCTURE_MISSINGNESS",
+    "missingness_rule": "Threshold flags use observed denominators; any required-group infrastructure missingness prevents an unconditional conclusion.",
+    "nonsignificance_rule": "A nonsignificant effect is not evidence that the agent ignores scope.",
+    "recognition_action_gap_scope": "Descriptive conditional association; separate readback branches do not establish that recognition caused the decision.",
+    "required_group_missingness": true,
+    "threshold_checks_for_validation": {
+      "gap_found": false,
+      "layout_helps": false,
+      "no_gap_here": true
+    }
+  },
+  "provider_calls_after_stop": 0,
+  "human_H3_complete": false,
+  "human_H4_complete": false,
+  "publication_performed": false
+}

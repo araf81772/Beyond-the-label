@@ -31,7 +31,7 @@
       "scope": "Both reported reviewers checked all 160 pilot cells against their parser outputs, as confirmed by the user."
     },
     "H3": {
-      "status": "pending_main_not_collected",
+      "status": "pending_human_audit_partial_main_retained",
       "required_role": "Each human team member: 30 fixed-seed action-stratified main traces plus every INVALID and REFUSED trace.",
       "lead": "current user",
       "assignment_basis": "The user explicitly assigned themselves H3 on 16 November 2026.",
@@ -121,15 +121,18 @@
     "freeze_commit": "6f8f94b3542980f65ba08f56aa3a12bf12c9e41d",
     "freeze_tag_on_origin_verified": true,
     "main_authorized": true,
-    "main_executed": false,
-    "launch_status": "validation_and_readiness_passed_not_executed",
+    "main_executed": true,
+    "launch_status": "executed_then_blocked_at_40_unknown_cost_holds",
     "authorized_ledger_cap_usd": "9",
     "execution_directory": "C:/Users/tonmo/CodexRuns/beyond-the-label-v1-main-20261116",
     "original_checkout_execution_allowed": false,
     "concurrent_main_execution_allowed": false,
-    "remaining_before_main": [
-      "Commit and synchronize the reviewed preparation records into the sole execution clone, then dispatch using the guarded staged CLI and its fresh execution preflight."
-    ],
-    "preparation_evidence": "research/checks/main_execution_preparation.json"
+    "remaining_before_main": [],
+    "preparation_evidence": "research/checks/main_execution_preparation.json",
+    "main_completed": false,
+    "current_blocker": "staged_unknown_cost_hold_limit_reached",
+    "main_outcome_evidence": "research/checks/main_execution_command_canonical.json",
+    "partial_review_evidence": "research/checks/main_postrun_review.json",
+    "further_dispatch_authorized_while_blocked": false
   }
 }
