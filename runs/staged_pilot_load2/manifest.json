@@ -1,0 +1,1466 @@
+{
+  "plan": {
+    "manifest_version": 1,
+    "dataset": "pilot",
+    "load": 2,
+    "schedule_seed": 271828,
+    "classification": "planned_not_frozen",
+    "approved_for_execution": false,
+    "seeds": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007
+    ],
+    "counts": {
+      "READBACK": 32,
+      "MAIN": 32,
+      "HIGH-FEE": 32,
+      "HIGH-STAKES": 32,
+      "MASKED": 16,
+      "NUMERIC": 16
+    },
+    "initial_calls": 160,
+    "maximum_continuations": 128,
+    "maximum_planned_calls": 288,
+    "additional_calls_accounted_separately": [
+      "infrastructure_retries",
+      "permitted_no_tool_reprompts"
+    ],
+    "cells": [
+      {
+        "cell_id": "pilot-1007-decision-MAIN-separate-a",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1003-decision-NUMERIC-separate-b",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1007-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1007-decision-NUMERIC-separate-a",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1001-decision-MAIN-inline-a",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1002-decision-HIGH-FEE-inline-a",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1005-readback-MAIN-inline-a",
+        "world_seed": 1005,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1007-decision-HIGH-FEE-inline-b",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1006-readback-MAIN-separate-a",
+        "world_seed": 1006,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1003-decision-HIGH-FEE-separate-a",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1003-readback-MAIN-inline-b",
+        "world_seed": 1003,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1000-decision-MAIN-inline-a",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1005-readback-MAIN-inline-b",
+        "world_seed": 1005,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1007-decision-MAIN-inline-a",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1005-decision-MAIN-separate-a",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1003-decision-NUMERIC-separate-a",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1003-decision-MAIN-separate-a",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1006-decision-HIGH-FEE-separate-b",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1002-decision-MASKED-separate-masked",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1000-decision-NUMERIC-separate-b",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1001-decision-HIGH-FEE-separate-b",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1006-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1004-decision-MAIN-separate-a",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1006-readback-MAIN-inline-a",
+        "world_seed": 1006,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1002-decision-MAIN-separate-a",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1006-readback-MAIN-inline-b",
+        "world_seed": 1006,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1002-decision-NUMERIC-separate-b",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1000-decision-MASKED-inline-masked",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1004-decision-HIGH-FEE-separate-b",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1003-decision-MAIN-inline-a",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1005-decision-MAIN-inline-a",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1000-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1007-readback-MAIN-separate-a",
+        "world_seed": 1007,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1002-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1000-decision-MAIN-separate-a",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1002-readback-MAIN-separate-a",
+        "world_seed": 1002,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1002-decision-MASKED-inline-masked",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1006-decision-HIGH-FEE-inline-b",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1006-decision-MAIN-separate-a",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1006-decision-MAIN-separate-b",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1005-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1005-decision-HIGH-FEE-separate-a",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1005-decision-MASKED-inline-masked",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1004-readback-MAIN-separate-a",
+        "world_seed": 1004,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1006-decision-MAIN-inline-a",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1000-decision-MASKED-separate-masked",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1002-decision-NUMERIC-separate-a",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1002-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1003-readback-MAIN-separate-b",
+        "world_seed": 1003,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1007-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1002-decision-HIGH-FEE-separate-b",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1007-decision-HIGH-FEE-separate-b",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1007-decision-MASKED-separate-masked",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1000-decision-MAIN-separate-b",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1001-decision-HIGH-FEE-separate-a",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1005-readback-MAIN-separate-a",
+        "world_seed": 1005,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1006-decision-MASKED-inline-masked",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1001-readback-MAIN-separate-a",
+        "world_seed": 1001,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1006-decision-NUMERIC-separate-a",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1006-readback-MAIN-separate-b",
+        "world_seed": 1006,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1004-readback-MAIN-separate-b",
+        "world_seed": 1004,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1007-readback-MAIN-inline-b",
+        "world_seed": 1007,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1001-decision-HIGH-FEE-inline-b",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1007-readback-MAIN-separate-b",
+        "world_seed": 1007,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1003-decision-HIGH-FEE-separate-b",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1007-decision-MAIN-separate-b",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1000-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1006-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1007-decision-HIGH-FEE-separate-a",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1000-decision-NUMERIC-separate-a",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1003-decision-HIGH-FEE-inline-a",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1006-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1000-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1005-readback-MAIN-separate-b",
+        "world_seed": 1005,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1004-decision-MAIN-separate-b",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1007-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1007-readback-MAIN-inline-a",
+        "world_seed": 1007,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1005-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1001-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1006-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1000-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1002-readback-MAIN-inline-b",
+        "world_seed": 1002,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1001-decision-MAIN-separate-a",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1003-decision-MAIN-inline-b",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1004-readback-MAIN-inline-b",
+        "world_seed": 1004,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1005-decision-MAIN-separate-b",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1001-decision-MASKED-inline-masked",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1007-decision-NUMERIC-separate-b",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1000-decision-HIGH-FEE-inline-a",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1004-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1005-decision-HIGH-FEE-separate-b",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1003-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1005-decision-HIGH-FEE-inline-a",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1001-decision-MASKED-separate-masked",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1004-decision-MASKED-separate-masked",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1006-decision-HIGH-FEE-inline-a",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1000-decision-HIGH-FEE-separate-b",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1001-decision-NUMERIC-separate-a",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1004-decision-HIGH-FEE-separate-a",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1001-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1007-decision-MASKED-inline-masked",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1003-readback-MAIN-inline-a",
+        "world_seed": 1003,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1002-decision-MAIN-separate-b",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1006-decision-HIGH-FEE-separate-a",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1004-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1005-decision-MAIN-inline-b",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1004-decision-HIGH-FEE-inline-a",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1005-decision-MASKED-separate-masked",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1004-decision-MAIN-inline-a",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1003-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1000-decision-HIGH-FEE-separate-a",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1002-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1002-decision-HIGH-FEE-separate-a",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1004-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1004-decision-HIGH-FEE-inline-b",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1001-decision-HIGH-FEE-inline-a",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1002-readback-MAIN-separate-b",
+        "world_seed": 1002,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1007-decision-HIGH-FEE-inline-a",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1005-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1005-decision-HIGH-FEE-inline-b",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1005-decision-NUMERIC-separate-a",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1000-readback-MAIN-inline-a",
+        "world_seed": 1000,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1000-decision-MAIN-inline-b",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1001-readback-MAIN-inline-b",
+        "world_seed": 1001,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1003-decision-MASKED-inline-masked",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1002-decision-MAIN-inline-a",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1005-decision-NUMERIC-separate-b",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1003-decision-HIGH-FEE-inline-b",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1003-decision-MAIN-separate-b",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1001-readback-MAIN-separate-b",
+        "world_seed": 1001,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1006-decision-MASKED-separate-masked",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1001-decision-MAIN-inline-b",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1004-decision-NUMERIC-separate-a",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1000-readback-MAIN-inline-b",
+        "world_seed": 1000,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1007-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1002-decision-HIGH-FEE-inline-b",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1003-decision-MASKED-separate-masked",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "separate",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1004-readback-MAIN-inline-a",
+        "world_seed": 1004,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1004-decision-MAIN-inline-b",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1005-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1005,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1001-decision-HIGH-STAKES-separate-b",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1006-decision-MAIN-inline-b",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1001-decision-MAIN-separate-b",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1003-decision-HIGH-STAKES-inline-b",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1004-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1002-readback-MAIN-inline-a",
+        "world_seed": 1002,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1004-decision-MASKED-inline-masked",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "MASKED",
+        "layout": "inline",
+        "twin": null
+      },
+      {
+        "cell_id": "pilot-1007-decision-MAIN-inline-b",
+        "world_seed": 1007,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1003-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1003,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1002-decision-HIGH-STAKES-inline-a",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1006-decision-NUMERIC-separate-b",
+        "world_seed": 1006,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1000-readback-MAIN-separate-b",
+        "world_seed": 1000,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1002-decision-MAIN-inline-b",
+        "world_seed": 1002,
+        "purpose": "decision",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1000-readback-MAIN-separate-a",
+        "world_seed": 1000,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1003-readback-MAIN-separate-a",
+        "world_seed": 1003,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1001-decision-HIGH-STAKES-separate-a",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "HIGH-STAKES",
+        "layout": "separate",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1000-decision-HIGH-FEE-inline-b",
+        "world_seed": 1000,
+        "purpose": "decision",
+        "condition": "HIGH-FEE",
+        "layout": "inline",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1004-decision-NUMERIC-separate-b",
+        "world_seed": 1004,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      },
+      {
+        "cell_id": "pilot-1001-readback-MAIN-inline-a",
+        "world_seed": 1001,
+        "purpose": "readback",
+        "condition": "MAIN",
+        "layout": "inline",
+        "twin": "a"
+      },
+      {
+        "cell_id": "pilot-1001-decision-NUMERIC-separate-b",
+        "world_seed": 1001,
+        "purpose": "decision",
+        "condition": "NUMERIC",
+        "layout": "separate",
+        "twin": "b"
+      }
+    ]
+  },
+  "run_config": {
+    "evidence_kind": "empirical",
+    "provider_settings": {
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "provider": "PrimeIntellect",
+      "provider_route": "primeintellect",
+      "provider_identity_source": "openrouter_metadata",
+      "require_parameters": true,
+      "free_only": false,
+      "max_price": {
+        "prompt": 0.04368,
+        "completion": 0.7,
+        "request": 0,
+        "image": 0
+      },
+      "accepted_returned_models": [],
+      "accepted_endpoint_models": [
+        "deepseek/deepseek-v4.1-flash-20261017"
+      ],
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "max_output_tokens": 512
+    },
+    "input_hashes": {
+      "src/beyond_label/__init__.py": "3af4623913c1c426172c13edf3e62cff2d156edbe256f17f8d2d473a4ac65cc4",
+      "src/beyond_label/analyze.py": "d00dddcbcec31ed15bcf79c934a7a8e219498a8e9b69699670ec9c6b7cd4c6d8",
+      "src/beyond_label/attempts.py": "977d558b562b81fe6322be75d5035a3a1daed7ef6935af5b91cd3ec13e4e68d0",
+      "src/beyond_label/budget.py": "237b6abb3b7b75ffc7fee3d2b6b851d15dbb140dac1b7ca4d0a8a7919ac482d1",
+      "src/beyond_label/capabilities.py": "fd05ce74d8df513e69d2bde664c819ff6c68a1d59cb30106528e633243be5ec7",
+      "src/beyond_label/continuation.py": "124a16cbb9f7f47375c855a3304f8ec5c27d3b8f4620f21b1b9346109ffdb419",
+      "src/beyond_label/continuation79.py": "e3053070ce2aa82c735d11f85cd0b3768e76c0dc55d93f7f6c9d63d7f646c040",
+      "src/beyond_label/controls.py": "a0cb4da0a6e4891583c28587a7353e97038384dd5b479016b37e5b47bb61ddb6",
+      "src/beyond_label/cost_reconciliation.py": "0a19fe9013d6c32f695e9b4b8b345663606306d4ded53baa8c9330a8092c9073",
+      "src/beyond_label/environment.py": "28b503c97a1c10a47e62f27b7875062632cace72486fe740fe55e38938e9870f",
+      "src/beyond_label/evidence.py": "57f116c47475b2c78efa4e3df4c9f5c5ff9de399b3777306c57f3e7bd5b72c8d",
+      "src/beyond_label/figures.py": "cfbf4ce5a22bd23ab5ba55fc20bb94af8e0e807f9feafbdbd94aa14440afe2e2",
+      "src/beyond_label/finalize.py": "66db11e8ae395a853707944ae6c4b57619f6911250c4c06ce70c6090173e6d14",
+      "src/beyond_label/freeze.py": "1a1c80b9dfb5addd84c49a279b8c77969ad0f9e77afa96d9aa4542e3dcbc60c6",
+      "src/beyond_label/gates.py": "1071f2305383951992a8fb0fd9d5dc061f815a3021bccdabe915996ea2c5a9b1",
+      "src/beyond_label/generate.py": "dcab625863737966f36e14ae00063a313e2d6b003d1c31fda2d801dbfeb14491",
+      "src/beyond_label/live.py": "1b62f82bd4a07b56d85425420c78253ed4c529d911ed241b7e15f4dc5fa1b46c",
+      "src/beyond_label/openrouter.py": "7ded87610bab8ec572e6ce53e297f561de8246c253e307c0aa45d65314aa571a",
+      "src/beyond_label/oracle.py": "186930b3e43d922abe60af62f38dddb09c5a4279b5ccf1d9c63594b8ba60bf29",
+      "src/beyond_label/paid_controls.py": "74278acf9a9ed0fb81d871d4bdf47c4c1d057af228fd9364152f1cc515864a02",
+      "src/beyond_label/paid_live.py": "a7919147f9b6610db2282eab0cd2e118b5abf59ca982cdbbcdd4ee520d8f0309",
+      "src/beyond_label/paid_profile.py": "55e70e435253ee04864787ff0d96ed0c6d19fa0cefda9ae6141fa87c186f7dc3",
+      "src/beyond_label/pilot.py": "87a83fe731d7e64227b49c73c6b93d650acc6b05dec01b8bd58ffc62bab24ac6",
+      "src/beyond_label/provider.py": "dfe1426bf61472f1e2256b2daf5cd018e7e23ae844b0dcf3f833b66444c88b67",
+      "src/beyond_label/rate_limit.py": "0201670aa88ac85f4ec05a9f2f60d39faa565c3c090ea7ce20ac1b57debfe7a2",
+      "src/beyond_label/render.py": "8f661b0b8b132f5d62ee1b23e6508688ccb7bb5aab216ddddcb40dec7c94e63e",
+      "src/beyond_label/run.py": "17a562fc25c75fd94d9828924a36ecc2fc4f49be07017966f1cd1ff823c01866",
+      "src/beyond_label/sandbox.py": "8a6ef1e22d34d228e2e2c25ee42d01288e01c1bd436669d49b6a632a6ddb35ed",
+      "src/beyond_label/schemas.py": "afc0a6933fb6cf4cecedd4e611a632265d45aa7d43c567b425d9e3fa12d3c1d6",
+      "src/beyond_label/score.py": "38d973e166b246768b9f848a8dfaaa38e07f7e7c9bd82717d3e9c00a0da7660b",
+      "src/beyond_label/staged.py": "07e8ff297cfbbd5687d9072b1eba435c471b5277fd99093865e57e239cf63247",
+      "prompts/agent_system.txt": "5182b69506d51cedc814c295ebbb0e1be5a884a7dc5c4b987a4c6ef9e04561ce",
+      "prompts/control_masked.txt": "53b73a822dc461cfe6557606a2cb23b97a0793cf6c4760bb7e2bd15ea73e051a",
+      "prompts/control_numeric.txt": "bb275819f92808cbe51eb32126acb5ce63217af05a81d7f4f4026ba00b7b2ff5",
+      "prompts/probe_readback.txt": "1c962a2d0dcb1aae3dc523be0d89272e6fc29b123faf1e4019c82e99267cfcdf",
+      "prompts/reprompt_no_tool.txt": "e7a8dfdf71bb67aa526fd933f478394f77e1468e19f0366569b084838a8b8d4a",
+      "research/protocol.md": "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b",
+      "research/amendments.md": "8f7352f1fba562f4883a36ee4ce6d307dc82216062503c24210dc8a547b31e9d",
+      "configs/free.yaml": "f794bd1af3c7f4f2f4153d2ecaf9e37a178b2cb817551a663ae013cde5c374ad",
+      "configs/main.yaml": "2d21bd225502482cd5b2303d17b0230f220b0991ca8c82ddb8f49bf9c5ae6759",
+      "configs/paid_smoke.yaml": "27346284ecd627bb8f1eb228e1debde3a9e60c46a8f27ce687a0cd6083bfc0c3",
+      "configs/pilot.yaml": "7f6bc8df509bd8387bb206450d3dc4d3b81f14f8e71e4bebad31bfc5f58adfa6",
+      "configs/proposed_m4.yaml": "f8db2bf1be49acf0db0d068fe5be51ab06e29b6de0aea1494004bbb6216a7d19",
+      "configs/staged.yaml": "63f6156c6a2728d3126f5257d5df2002c10f479957d910f75683f7a42ffe2f4a",
+      "data/worlds_main.jsonl": "cb426cda261722bb4f189b9cfda183ab373e1b7473ddd4dcccf2d3d80918e573",
+      "data/worlds_pilot.jsonl": "7988c4ca6e37ec461716a2c115255cd695f23cbc80a49d7aed0ddb47fca9749d",
+      "data/worlds_smoke.jsonl": "0b6535a13db14112e3be88658e464ccb8773f34ae4ab5f0fd591a73b303fd229",
+      "data/manifest.json": "2086a50d2d8fad43b87ae6adfa237e4c1531a6fbbfcfe8256a84c00d7b009183",
+      "pyproject.toml": "80472e3eba1f273612cedbe2fb2f0f9edf7c58f7fbead43eada0e1497934fa29",
+      "requirements.lock": "7d5a34a363a185ecd382c85efe7417ef8fea1ec02ecb53244e99e8780470e5c3"
+    },
+    "reprompt_limit_per_episode": 1,
+    "ambiguous_attempt_policy": "explicit_missing_no_resampling",
+    "execution_config": {
+      "schema_version": 1,
+      "authorization_id": "paid-staged-usd9-v1",
+      "execution_scope": "smoke_pilot_freeze_main",
+      "session_directory": "runs/_paid_staged_session",
+      "live_execution_enabled": true,
+      "account_preflight_enabled": true,
+      "paid_calls_authorized": true,
+      "free_only": false,
+      "authorized_total_testing_cap": 10,
+      "authorized_spend_cap": 9,
+      "maximum_inference_attempts": 3000,
+      "currency": "USD",
+      "unknown_cost_policy": "retain_full_hold_and_continue",
+      "maximum_unknown_cost_holds": 40,
+      "routing_service": "OpenRouter",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "provider": "PrimeIntellect",
+      "provider_route": "primeintellect",
+      "provider_identity_source": "openrouter_metadata",
+      "require_parameters": true,
+      "accepted_returned_models": [],
+      "accepted_endpoint_models": [
+        "deepseek/deepseek-v4.1-flash-20261017"
+      ],
+      "max_price": {
+        "prompt": 0.04368,
+        "completion": 0.7,
+        "request": 0,
+        "image": 0
+      },
+      "temperature": 0,
+      "temperature_setting_verified": true,
+      "reasoning": {
+        "effort": "none"
+      },
+      "reasoning_mode": "configured",
+      "reasoning_setting_verified": true,
+      "max_output_tokens": 512,
+      "tool_choice": "auto",
+      "parallel_tool_calls": false,
+      "allow_fallbacks": false,
+      "concurrency": 1,
+      "provider_docs_verified": true,
+      "provider_requests_per_minute": null,
+      "provider_request_limit_status": "not_published",
+      "provider_tokens_per_minute": null,
+      "provider_token_limit_status": "not_published",
+      "operator_requests_per_minute": 10,
+      "operator_tokens_per_minute": 10490880,
+      "total_token_bound": 1049088,
+      "total_token_bound_verified": true,
+      "token_bound_source": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints",
+      "schedule_seed": 271828,
+      "infrastructure_retries_after_initial": 3,
+      "no_tool_reprompts": 1,
+      "no_tool_reprompt": "Respond with exactly one tool call.",
+      "bootstrap_seed": 314159,
+      "bootstrap_resamples": 10000,
+      "human_audit_seed": 161803,
+      "key_hard_limit_usd": 10,
+      "key_hard_limit_verified": true,
+      "staged_stage": "pilot",
+      "load": 2,
+      "run_directory": "runs/staged_pilot_load2",
+      "authorization_record_hash": "a4823bce16e37c21695a9c3f58e00bca661416bf3f67501e58de090c3d71183d"
+    },
+    "transport_provenance": "openrouter_paid_https_v1"
+  },
+  "run_config_hash": "a7643cb67a649b6560bfe3d94c3de5476425a558b31dc696cd0786c039fbdc2d"
+}
