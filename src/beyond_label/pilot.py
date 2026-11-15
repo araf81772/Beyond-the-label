@@ -15,7 +15,7 @@ import tempfile
 from typing import Any
 
 from .analyze import analyze_rows
-from .gates import pilot_thresholds
+from .gates import STAGED_AUTHORIZATION, pilot_thresholds
 from .run import build_manifest, rebuild_outputs
 
 REQUIRED_FILES = ("manifest.json", "calls.jsonl", "scores.csv", "usage.csv", "analysis_manifest.json")
@@ -101,8 +101,12 @@ def summarize_pilot(run_dir: Path | str, *, allow_synthetic: bool = False) -> di
         execution_config = config.get("execution_config")
         provider_settings = config.get("provider_settings")
         if (not isinstance(execution_config, dict) or not execution_config
-                or not isinstance(provider_settings, dict) or provider_settings.get("free_only") is not True):
-            raise ValueError("Empirical pilot provenance requires a free-only execution configuration")
+                or not isinstance(provider_settings, dict)):
+            raise ValueError("Empirical pilot provenance requires a captured execution configuration")
+        # Paid pilot evidence exists only under the staged USD 9 allowance.
+        staged = execution_config.get("authorization_id") == STAGED_AUTHORIZATION
+        if provider_settings.get("free_only") is not (not staged):
+            raise ValueError("Empirical pilot provenance requires free-only settings or the staged paid authorization")
         # rebuild_outputs below validates the captured execution gates, settings,
         # journal and hashes; these metadata checks alone do not establish it.
     elif evidence_kind != "synthetic":

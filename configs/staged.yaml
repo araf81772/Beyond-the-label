@@ -1,0 +1,72 @@
+# Staged paid allowance: smoke -> pilot -> (load-8 smoke) -> freeze -> main.
+# User instruction, 15 Nov 2026: "budget cap usd 9". Separate from, and never
+# refilled by, the closed USD 1 smoke session (configs/paid_smoke.yaml).
+# Every pin below is checked exactly by gates.require_staged_configuration;
+# editing a value blocks execution rather than changing the experiment.
+# This file is a frozen input: do not edit it between the smoke and the main run.
+schema_version: 1
+authorization_id: paid-staged-usd9-v1
+execution_scope: smoke_pilot_freeze_main
+session_directory: runs/_paid_staged_session
+live_execution_enabled: true
+account_preflight_enabled: true
+paid_calls_authorized: true
+free_only: false
+# Earlier testing settled USD 0.0125 and still holds USD 0.4893, so
+# 9 + 0.5018 stays inside the original USD 10 total testing ceiling.
+authorized_total_testing_cap: 10
+authorized_spend_cap: 9
+maximum_inference_attempts: 3000
+currency: USD
+# An attempt with an unknown charge keeps its full worst-case reservation and
+# the run continues; it stops at 40 such holds (USD 1.94) or when less than
+# one worst-case attempt remains. Recorded in research/staged_authorization.json.
+unknown_cost_policy: retain_full_hold_and_continue
+maximum_unknown_cost_holds: 40
+routing_service: OpenRouter
+model: deepseek/deepseek-v4.1-flash-1017
+provider: PrimeIntellect
+provider_route: primeintellect
+provider_identity_source: openrouter_metadata
+require_parameters: true
+accepted_returned_models: []
+# Router-selected endpoint identity only; top-level model must remain 1017.
+accepted_endpoint_models:
+  - deepseek/deepseek-v4.1-flash-20261017
+# Routing ceilings: USD per million tokens; request/image charges forbidden.
+max_price:
+  prompt: 0.04368
+  completion: 0.70
+  request: 0
+  image: 0
+temperature: 0
+temperature_setting_verified: true
+reasoning:
+  effort: none
+reasoning_mode: configured
+reasoning_setting_verified: true
+max_output_tokens: 512
+tool_choice: auto
+parallel_tool_calls: false
+allow_fallbacks: false
+concurrency: 1
+provider_docs_verified: true
+provider_requests_per_minute: null
+provider_request_limit_status: not_published
+provider_tokens_per_minute: null
+provider_token_limit_status: not_published
+operator_requests_per_minute: 10
+operator_tokens_per_minute: 10490880
+# Full advertised input context plus output ceiling, not a token-count estimate.
+total_token_bound: 1049088
+total_token_bound_verified: true
+token_bound_source: https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints
+# The stage, load and output directory are fixed in gates.STAGED_STAGES and the
+# main load comes from the verified freeze record, never from this file.
+schedule_seed: 271828
+infrastructure_retries_after_initial: 3
+no_tool_reprompts: 1
+no_tool_reprompt: Respond with exactly one tool call.
+bootstrap_seed: 314159
+bootstrap_resamples: 10000
+human_audit_seed: 161803

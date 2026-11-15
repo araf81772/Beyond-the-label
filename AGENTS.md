@@ -8,7 +8,7 @@ The design's “frozen for build” header is not an execution freeze. A validat
 
 ## Roles and evidence
 
-Codex performs engineering, execution, and machine checks. Independent agent review must be labelled AI review. Claude has no assigned or completed role in this checkout; use it only if subsequently authorized. Neither agent substitutes for the human checks in design Section 10. Record real participants and never invent initials, participation, results, costs, citations, or completed checks.
+Codex performs engineering, execution, and machine checks. Independent agent review must be labelled AI review. Claude (Anthropic) was authorized by Araf on 15 November 2026 to review the repository against the sprint rules and to implement branch `v1`: the staged execution path, its tests and documentation. That work is AI engineering and AI review, recorded in `research/decisions.md`. Neither agent substitutes for the human checks in design Section 10. Record real participants and never invent initials, participation, results, costs, citations, or completed checks.
 
 ## Execution
 
@@ -73,3 +73,18 @@ The authorized DeepSeek smoke stopped after its first raw reply failed selected-
 V3sourceeebba9d retained94newattempts/93acceptedcalls,53completed episodes and54first observations. One continuation timedout without a receipt;25cells remain untouched and the old terminal missing readback is still preserved. Aggregate96attempts/104remaining; knownUSD0.0125113232, heldUSD0.489310289664 (old0.44084208+new0.048468209664), availableUSD0.498178387136. The coverage-aware policy is blocked despite the unused balance. Never treat ledger blocked:false as permission to dispatch. Keep all5v3files immutable; their source binding is in research/run_sources.json. Research-only status is in research/checks/smoke79_outcome.json and research/m4_m5_readiness.md.
 
 M4is incomplete andM5is not ready: paidpilot/main support, paidfreeze evidence, complete frozen reproduction and smoke acceptance require work before further stages. Existing pilot/main configs remain disabled. Do not relax the80-nonmissing smoke guard silently, claim pilot/load selection, fabricate human participation or create a freeze before verified gates. The current user request required stop/report beforepilot/main.
+
+## Staged USD 9 allowance (branch `v1`, supersedes the smoke-only boundary for new work)
+
+The sections above describe the closed `paid-smoke-usd1-200-v1` authorization. Keep that history, its session `runs/_paid_testing_session` and all three smoke directories byte-for-byte. Do not resume, reset or extend it; `scripts/verify_audit.py` replays it against its own source commits.
+
+On 15 November 2026 Araf set "budget cap usd 9" and asked for the project to be made ready for a smoke test and the final run, without spending until explicitly approved. That allowance is `paid-staged-usd9-v1`: see `research/staged_authorization.json`, `configs/staged.yaml`, `src/beyond_label/staged.py` and the runbook `research/staged_execution.md`.
+
+- Preparation is not execution. Run `python -m beyond_label.staged execute --stage …` only when a user explicitly asks for that stage in the current conversation. `status` and `check-ready` are always allowed.
+- Stage order is fixed: smoke, pilot, load-8 smoke only if the pilot selects load-8, freeze, main. The code enforces it; never bypass a gate, edit a gate's run files or hand-write a freeze record.
+- Limits: USD 9 ledger, 3,000 attempts, USD 0.048468209664 reserved per attempt, same model/provider/settings as the retained smoke. An unknown charge keeps its full hold and the run continues (user decision, verbatim in the authorization record); stop at 40 holds.
+- From the first staged smoke call until the main analysis is finished, do not change any hashed input: `src/beyond_label/*.py`, `prompts/`, `configs/*.yaml`, `data/`, `research/protocol.md`, `research/amendments.md`, `pyproject.toml`, `requirements.lock`. A changed input invalidates the gates.
+- Never interrupt a running stage. Use `--max-cells` to run in pieces.
+- After each stage: `python scripts/sync_execution_status.py`, `python scripts/verify_audit.py`, update `research/decisions.md` and the milestone statuses, commit. Before main: the freeze tag must be pushed to `origin`.
+- Smoke observations are never analysed. Pilot observations select the load and are reported separately. Only the frozen main run supplies results.
+- The report is written by the team in the official template. `report/manuscript.md` is a dated pre-results artifact; do not regenerate it or present it as the submission. `report/SUBMISSION_GUIDE.md` lists what must be true before submitting.

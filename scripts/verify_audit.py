@@ -98,13 +98,23 @@ def require_historical_segment_binding(stored: dict, raw: dict, descriptor: dict
 
 def audit_continuations(root: Path, input_hashes: dict) -> tuple[dict | None, dict | None]:
     """Audit old evidence before a new source is prepared without relaxing live gates."""
-    from beyond_label.continuation import load_continuation, load_legacy_continuation
-    from beyond_label.continuation79 import RECORD_PATH, segment_path
+    from beyond_label.continuation import ContinuationError, _read, load_continuation, load_legacy_continuation
+    from beyond_label.continuation79 import RECORD_PATH, load_continuation79, segment_path
 
     legacy = load_legacy_continuation(root)
-    active = (load_continuation(root, input_hashes=input_hashes)
-              if (root / RECORD_PATH).exists() or segment_path(root).exists() else legacy)
-    return legacy, active
+    if not ((root / RECORD_PATH).exists() or segment_path(root).exists()):
+        return legacy, legacy
+    record = _read(root / RECORD_PATH) if (root / RECORD_PATH).exists() else None
+    recorded = record.get("active_input_sha256") if isinstance(record, dict) else None
+    if recorded is not None and recorded != input_hashes:
+        # Later source (the staged USD 9 path) makes the 79-cell smoke a closed
+        # historical segment. Its record is still verified in full against its
+        # own committed source, exactly as the retained v2 record is; its run
+        # is then replayed with that source instead of the current code.
+        if not isinstance(recorded, dict):
+            raise ContinuationError("continuation79_record_changed")
+        return legacy, load_continuation79(root, input_hashes=recorded)
+    return legacy, load_continuation(root, input_hashes=input_hashes)
 
 
 def _segment_costs(segments: list[dict]) -> dict:

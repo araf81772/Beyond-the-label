@@ -97,6 +97,111 @@ def require_paid_smoke_configuration(config: Mapping, *, stage: str,
             raise ExecutionBlocked("Paid smoke requires a verified positive hard key limit at most USD 10")
 
 
+# Second, separately authorized paid allowance (user instruction of 15 Nov 2026,
+# "budget cap usd 9"). It never reopens, resets or borrows from the closed
+# USD 1 smoke session above; that history stays immutable evidence.
+STAGED_AUTHORIZATION = "paid-staged-usd9-v1"
+STAGED_SESSION = "runs/_paid_staged_session"
+STAGED_CONFIG = "configs/staged.yaml"
+STAGED_FREEZE_RECORD = "research/execution_freeze.json"
+STAGED_MAX_ATTEMPTS = 3000
+STAGED_MAX_UNKNOWN_HOLDS = 40
+STAGED_UNKNOWN_COST_POLICY = "retain_full_hold_and_continue"
+# stage -> (dataset, load or None when the verified freeze selects it, directory)
+STAGED_STAGES = {
+    "smoke": ("smoke", 2, "runs/staged_smoke_load2"),
+    "pilot": ("pilot", 2, "runs/staged_pilot_load2"),
+    "smoke8": ("smoke", 8, "runs/staged_smoke_load8"),
+    "main": ("main", None, "runs/staged_main"),
+}
+
+
+def staged_stage_for(dataset: object, load: object) -> str | None:
+    for stage, (stage_dataset, stage_load, _) in STAGED_STAGES.items():
+        if dataset == stage_dataset and (stage_load is None or stage_load == load):
+            return stage
+    return None
+
+
+def require_staged_configuration(config: Mapping, *, stage: str,
+                                 account_verified: bool = True) -> None:
+    """Exact pins for the USD 9 smoke/pilot/freeze/main allowance.
+
+    ``stage`` is the manifest dataset. Every scientific request setting equals
+    the profile already exercised by the retained smoke. Only the allowance,
+    its shared ledger and the unknown-cost rule differ, and each is fixed here
+    rather than chosen by a caller. Passing this check authorizes nothing by
+    itself: the staged owner still needs history reconciliation, an account
+    preflight and, for main, a verified pushed freeze.
+    """
+    if stage not in ("smoke", "pilot", "main") or not isinstance(config, Mapping):
+        raise ExecutionBlocked("Unknown staged execution stage")
+    try:
+        profile = get_paid_profile(config.get("model"), config.get("provider_route"))
+    except ValueError:
+        raise ExecutionBlocked("Staged scope or pinned settings changed") from None
+    if profile["model"] != "deepseek/deepseek-v4.1-flash-1017":
+        raise ExecutionBlocked("Staged execution is authorized for the smoke-tested model only")
+    exact = {
+        "authorization_id": STAGED_AUTHORIZATION, "execution_scope": "smoke_pilot_freeze_main",
+        "session_directory": STAGED_SESSION,
+        "live_execution_enabled": True, "account_preflight_enabled": True,
+        "paid_calls_authorized": True, "free_only": False, "currency": "USD",
+        "routing_service": "OpenRouter", "model": profile["model"],
+        "provider": profile["provider"], "provider_route": profile["provider_route"],
+        "provider_identity_source": "openrouter_metadata", "require_parameters": True,
+        "reasoning": profile["reasoning"], "reasoning_mode": profile["reasoning_mode"],
+        "reasoning_setting_verified": True, "temperature_setting_verified": True,
+        "parallel_tool_calls": False, "allow_fallbacks": False, "provider_docs_verified": True,
+        "provider_requests_per_minute": None, "provider_request_limit_status": "not_published",
+        "provider_tokens_per_minute": None, "provider_token_limit_status": "not_published",
+        "total_token_bound_verified": True, "tool_choice": "auto",
+        "no_tool_reprompt": "Respond with exactly one tool call.",
+        "unknown_cost_policy": STAGED_UNKNOWN_COST_POLICY,
+    }
+    for field, expected in exact.items():
+        if field not in config or type(config[field]) is not type(expected) or config[field] != expected:
+            raise ExecutionBlocked("Staged scope or pinned settings changed")
+    for field, expected in {"authorized_spend_cap": 9, "authorized_total_testing_cap": 10,
+                            "temperature": 0}.items():
+        if not _finite_number(config.get(field)) or config[field] != expected:
+            raise ExecutionBlocked("Staged spending or temperature authorization changed")
+    for field, expected in {"maximum_inference_attempts": STAGED_MAX_ATTEMPTS,
+                            "maximum_unknown_cost_holds": STAGED_MAX_UNKNOWN_HOLDS,
+                            "max_output_tokens": 512, "concurrency": 1, "schedule_seed": 271828,
+                            "operator_requests_per_minute": 10,
+                            "operator_tokens_per_minute": profile["token_bound"] * 10,
+                            "total_token_bound": profile["token_bound"], "no_tool_reprompts": 1,
+                            "infrastructure_retries_after_initial": 3,
+                            "bootstrap_seed": 314159, "bootstrap_resamples": 10000,
+                            "human_audit_seed": 161803}.items():
+        if type(config.get(field)) is not int or config[field] != expected:
+            raise ExecutionBlocked("Staged fixed attempt, token, schedule or analysis limit changed")
+    prices = config.get("max_price")
+    expected_prices = profile["max_price"]
+    if (not isinstance(prices, Mapping) or set(prices) != set(expected_prices)
+            or any(not _finite_number(prices[key]) or prices[key] != value
+                   for key, value in expected_prices.items())):
+        raise ExecutionBlocked("Staged routing price ceiling changed")
+    if config.get("accepted_returned_models") != profile["accepted_returned_models"]:
+        raise ExecutionBlocked("Staged returned model identities changed")
+    if config.get("accepted_endpoint_models", []) != profile["accepted_endpoint_models"]:
+        raise ExecutionBlocked("Staged endpoint model identities changed")
+    if account_verified:
+        # Runtime fields added by the staged owner, never read from the file.
+        cap = config.get("key_hard_limit_usd")
+        if (config.get("key_hard_limit_verified") is not True
+                or not _finite_number(cap) or not 0 < cap <= 10):
+            raise ExecutionBlocked("Staged execution requires a verified positive hard key limit at most USD 10")
+        load = config.get("load")
+        named = config.get("staged_stage")
+        if (type(load) is not int or load not in (2, 8) or named not in STAGED_STAGES
+                or STAGED_STAGES[named][0] != stage
+                or (STAGED_STAGES[named][1] is not None and STAGED_STAGES[named][1] != load)
+                or config.get("run_directory") != STAGED_STAGES[named][2]):
+            raise ExecutionBlocked("Staged stage, load or output directory is not the fixed design")
+
+
 def _require_free_prerequisites(config: Mapping) -> None:
     """Necessary zero-spend fields; flags cannot authenticate their evidence.
 
@@ -197,6 +302,22 @@ def require_real_execution(config: Mapping, *, stage: str, freeze: Mapping | Non
         require_paid_smoke_configuration(config, stage=stage)
         if freeze is not None:
             raise ExecutionBlocked("Paid smoke authorization does not include an execution freeze")
+        return
+    if config.get("authorization_id") == STAGED_AUTHORIZATION:
+        require_staged_configuration(config, stage=stage)
+        if stage != "main":
+            if freeze is not None:
+                raise ExecutionBlocked("Only the staged main run carries an execution freeze")
+            return
+        if (not isinstance(freeze, Mapping) or freeze.get("real_smoke_passed") is not True
+                or freeze.get("real_pilot_passed") is not True):
+            raise ExecutionBlocked("Real smoke and pilot gates have not been satisfied")
+        if (freeze.get("hashes_verified") is not True or not _nonblank_string(freeze.get("commit"))
+                or not _nonblank_string(freeze.get("tag"))):
+            raise ExecutionBlocked("Verified execution freeze is required")
+        if (type(freeze.get("selected_load")) is not int
+                or config.get("load") != freeze.get("selected_load")):
+            raise ExecutionBlocked("Main load must match the pilot and freeze")
         return
     if config.get("live_execution_enabled") is not True:
         raise ExecutionBlocked("Real execution is disabled by the offline instruction")

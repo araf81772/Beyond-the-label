@@ -1,5 +1,7 @@
 # Pre-results report and evidence packaging
 
+> **Status, 15 November 2026:** the files described below are a dated pre-results artifact. Real smoke observations now exist and the draft's model name is out of date. Do not submit `manuscript.md` or `pre_results.pdf`. Use [SUBMISSION_GUIDE.md](SUBMISSION_GUIDE.md) for the current requirements, the list of stale statements and where each result will come from.
+
 The retained DOCX/PDF, manuscript and claim map are historical pre-results artifacts from checkpoint `5aeecd232a45533f7fb099e2cc34179f8b219d23`. Their source hashes refer to that version, before the paid-smoke engineering changes. See `research/paid_smoke.md` and the live milestone record for current execution status. Do not treat the archived no-inference wording as a claim about later checkpoints or regenerate it after empirical calls exist.
 
 The manuscript is a **pre-results draft**, with authors **Tonmoy and Araf** and affiliations pending. No real smoke, pilot or main observations exist. The primary effect, interval, sign test, observed regret, readback/control performance and recognition-action gap are unavailable. Oracle references are analytic, and synthetic fixtures are software checks.

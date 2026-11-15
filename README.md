@@ -2,7 +2,82 @@
 
 **The Label Survived. Which Case Did the Agent Check?**
 
-“A fixed-report scope-binding swap with audited delivery and enacted verification under changing payoffs.”
+Apart Research AI x Epistemics Sprint, November 2026. Track 2 (Trust Infrastructure). Authors: Tonmoy Sarker and Araf Akhter.
+
+## The question
+
+Provenance metadata can survive a handoff between agents and still change nothing. When a scope label reaches the receiving agent intact, does the agent use it to decide **where to spend its one priced verification call**?
+
+## The experiment in five lines
+
+1. An agent must release or hold two lots. Each lot has one archived PASS/FAIL report. A report tested under the current configuration is 90% accurate; any other report is 60% accurate.
+2. The agent may pay to inspect one lot, then commits. The stated goal is to minimise expected points lost.
+3. **Matched twins** differ in exactly one thing: which of the two fixed reports carries the in-scope label. Report text, results, IDs, order, fees and penalties are identical.
+4. An exact expected-loss oracle gives the best first action in every cell, so scoring needs no model judge. The scope swap should move the inspection; the oracle's paired effect is +1.00.
+5. Controls separate real scope use from shortcuts: a fee too high to justify checking, an 800-point lot that should be checked whatever its scope, withheld scope labels, and losses stated outright. A separate no-tools readback probe measures whether the agent can read the labels at all.
+
+Design: [research/protocol.md](research/protocol.md) (byte-preserved, pre-registered thresholds in section 9). Oracle: [research/oracle_derivation.md](research/oracle_derivation.md).
+
+## Status on 15 November 2026 (AEDT): no main result yet
+
+| Stage | State |
+|---|---|
+| Offline tests and audit | Passing on branch `v1` (see `research/checks/v1_validation.json`) |
+| Earlier smoke, USD 1 allowance | **Partial and closed.** 54 real observations from DeepSeek V4.1 Flash via OpenRouter/PrimeIntellect on 4 smoke worlds. Smoke is a pipeline check and is never analysed as a result |
+| New smoke, pilot, freeze, main (USD 9 allowance) | **Prepared, not executed.** One command per stage: [research/staged_execution.md](research/staged_execution.md) |
+| Execution freeze | None yet |
+| Main effect, intervals, controls | Not available. Nothing in this repository is a finding about model behaviour |
+
+Synthetic fixtures under `evaluation/` exercise the software only. They are labelled synthetic and are excluded from every empirical count.
+
+`report/manuscript.md` and `report/pre_results.pdf` are the **pre-results draft from an earlier checkpoint**. They were written before any model call and still say that no observation exists and name a free model that was never used. They are kept as a dated artifact and are not the submission; see [report/SUBMISSION_GUIDE.md](report/SUBMISSION_GUIDE.md).
+
+## Run it
+
+Python 3.11 or newer. The lockfile was produced on 3.14.7 and also installs on 3.12.
+
+```powershell
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.lock
+$env:PYTHONPATH = 'src'
+python -m pytest -q
+python scripts/verify_audit.py
+```
+
+No test contacts a network or reads a real key. Paid stages need `OPENROUTER_API_KEY` in a git-ignored `.env` (template: `.env.example`) and a key hard limit of at most USD 10:
+
+```powershell
+python -m beyond_label.staged status
+python -m beyond_label.staged check-ready --stage smoke
+python -m beyond_label.staged execute --stage smoke
+```
+
+`status` is offline. `check-ready` makes read-only requests only. `execute` is the only command that spends money.
+
+## What was done during the sprint
+
+Every commit in this repository is dated 14 or 15 November 2026; the sprint opened on 13 November 2026. The design file is dated Saturday 14 November. The first commit contains only `.gitattributes`; no code predates the sprint. *Team to confirm before submission: whether any idea or draft behind the design predates 13 November, and say so in the report if it does.*
+
+AI assistance: OpenAI Codex wrote most of the code, tests and engineering records under the team's direction. Claude (Anthropic) reviewed the repository against the sprint rules on 15 November and added the staged execution path on branch `v1`. No model judges any experimental decision. No human review step (H1-H5 in the protocol) has been recorded yet.
+
+## Repository map
+
+| Path | Contents |
+|---|---|
+| `research/protocol.md`, `research/amendments.md` | Pre-registered design and its one approved amendment |
+| `src/beyond_label/` | Worlds, oracle, rendering, sandbox, scoring, analysis, execution controls |
+| `prompts/`, `data/`, `configs/` | Frozen prompts, seeded worlds and plans, pinned settings |
+| `tests/` | Offline tests, including T1-T8 from the protocol |
+| `runs/` | Real model traces: the closed partial smoke; staged runs appear here |
+| `evaluation/` | Analytic oracle table and synthetic software fixtures |
+| `research/decisions.md`, `research/checks/` | Dated decision log and check records |
+| `report/` | Official template, pre-results draft, submission guide |
+
+---
+
+# Engineering record
+
+The sections below are the detailed engineering log up to the closed USD 1 smoke. They are kept for provenance. Where they say paid execution is smoke-only or that pilot and main have no entry point, that describes the closed authorization; the staged path above supersedes it.
 
 Checkpoint: 15 November 2026, Australia/Sydney. **M4 is incomplete and M5 is not ready.** The authorized continuation accepted 93 calls and completed 53 new smoke cells, then stopped on a continuation timeout whose charge is unknown. The original rejected readback was never rerun. Across the 80 planned cells: 53 completed episodes, one partial episode with an observed first action, 25 untouched cells and one retained terminal missing readback. There are 54 first-action/readback observations; smoke observations are excluded from main results. Pilot, main and freeze have not started.
 

@@ -18,7 +18,7 @@ import subprocess
 import tempfile
 from typing import Any
 
-from .gates import pilot_thresholds
+from .gates import STAGED_AUTHORIZATION, pilot_thresholds
 from .pilot import REQUIRED_FILES, summarize_pilot
 from .provider import ProviderSettings
 from .run import ROOT, _hash, _inputs, build_manifest, rebuild_outputs
@@ -105,7 +105,14 @@ def _verified_run(directory: Path | str, dataset: str, load: int, inputs: dict) 
     if not isinstance(config.get("execution_config"), dict) or not config["execution_config"]:
         raise FreezeError("gate_execution_provenance_missing")
     settings = _settings(config.get("provider_settings"))
-    if settings.get("free_only") is not True or config["execution_config"].get("free_only") is not True:
+    # Paid gate evidence is accepted only under the separately authorized
+    # staged allowance; every other empirical gate must still be free-only.
+    staged = config["execution_config"].get("authorization_id") == STAGED_AUTHORIZATION
+    if staged:
+        if (settings.get("free_only") is not False or config["execution_config"].get("free_only") is not False
+                or config.get("transport_provenance") != "openrouter_paid_https_v1"):
+            raise FreezeError("staged_freeze_requires_captured_paid_settings")
+    elif settings.get("free_only") is not True or config["execution_config"].get("free_only") is not True:
         raise FreezeError("free_freeze_requires_captured_free_only_settings")
     if config.get("input_hashes") != inputs:
         raise FreezeError("gate_input_hashes_changed")
@@ -138,7 +145,19 @@ def _verified_run(directory: Path | str, dataset: str, load: int, inputs: dict) 
     # before a free-only gate can support an execution freeze.
     accounting_counts = ("unknown_cost_attempts", "accounting_error_attempts", "nonzero_cost_attempts")
     spend = replay.get("experimental_provider_spend")
-    if (replay.get("spend_evidence_complete") is not True
+    if staged:
+        # Paid costs are provider-reported and nonzero. An attempt whose charge
+        # is unknown (for example a retried timeout) stays an explicit unknown:
+        # it is counted here, kept as a full hold by the staged ledger, and is
+        # never converted into zero. Local accounting failures still block.
+        known = replay.get("known_provider_spend_usd")
+        if (type(replay.get("accounting_error_attempts")) is not int or replay["accounting_error_attempts"] != 0
+                or type(replay.get("unknown_cost_attempts")) is not int or replay["unknown_cost_attempts"] < 0
+                or type(replay.get("nonzero_cost_attempts")) is not int
+                or type(known) not in (int, float) or known < 0
+                or type(replay.get("spend_evidence_complete")) is not bool):
+            raise FreezeError("paid_gate_cost_or_accounting_evidence_incomplete")
+    elif (replay.get("spend_evidence_complete") is not True
             or any(type(replay.get(key)) is not int or replay[key] != 0 for key in accounting_counts)
             or type(spend) not in (int, float) or spend != 0):
         raise FreezeError("free_gate_cost_or_accounting_evidence_incomplete")
@@ -161,7 +180,8 @@ def _verified_run(directory: Path | str, dataset: str, load: int, inputs: dict) 
             "planned_cells": count, "completed_cells": count,
             "invalid_first_actions": replay.get("invalid_first_actions"),
             "cost_evidence": {key: replay[key] for key in
-                              ("spend_evidence_complete", *accounting_counts, "experimental_provider_spend")}}
+                              ("spend_evidence_complete", *accounting_counts, "experimental_provider_spend",
+                               *(("known_provider_spend_usd",) if staged else ()))}}
 
 
 def _pilot_decision(directory: Path | str, proof: dict) -> dict:

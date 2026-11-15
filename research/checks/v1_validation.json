@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "classification": "offline_validation_of_branch_v1_no_inference",
+  "recorded_at_utc": "2026-11-15T07:23:01.814725+00:00",
+  "recorded_by": "Claude (AI assistant); machine checks only, not human review",
+  "branch": "v1",
+  "base_commit": "06b4dc0509f3d8e03d96baccf86867ce3f077dee",
+  "python": "3.12.0 (project lock recorded on 3.14.7)",
+  "checks": [
+    {
+      "command": "python -m pytest -q",
+      "result": "1677 passed in 619.95s",
+      "exit_code": 0,
+      "note": "1634 pre-existing tests plus 43 new staged tests. Network blocked and credentials isolated by the suite."
+    },
+    {
+      "command": "python -m pytest -q tests/test_report.py tests/test_environment_loading.py tests/test_execution_audit.py tests/test_artifacts.py",
+      "result": "54 passed",
+      "exit_code": 0,
+      "note": "Rerun after the README, AGENTS.md, decision-log and .env.example edits."
+    },
+    {
+      "command": "python scripts/verify_audit.py",
+      "result": "passed, 1883 checks, 0 failures",
+      "exit_code": 0,
+      "note": "The three closed smoke directories replay at their own source commits 0ad2562, 89de9c8 and eebba9d; 96 recorded attempts unchanged."
+    },
+    {
+      "command": "python -m pip check",
+      "result": "No broken requirements found",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "result": "clean",
+      "exit_code": 0
+    },
+    {
+      "command": "python -m beyond_label.staged check-ready --stage smoke",
+      "result": "ready_for_smoke_not_executed",
+      "exit_code": 0,
+      "note": "Read-only: one anonymous public endpoint-metadata GET and one current-key GET. inference_calls 0; no run, reservation or session file created.",
+      "safe_account_fields": {
+        "key_hard_limit_usd": 10,
+        "key_limit_remaining_usd": 9.98748872,
+        "model_route_metadata_verified": true
+      }
+    }
+  ],
+  "account_observation": "Key usage implied by the limit (10 - 9.98748872 = 0.01251128) equals the closed smoke's known settled cost (0.0125113232) to the reported precision. This is consistent with the two unknown-cost attempts not having been charged. It is account-level evidence, not a per-attempt receipt, and no hold in the closed session was released.",
+  "protocol_sha256": "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b",
+  "amendments_sha256": "8f7352f1fba562f4883a36ee4ce6d307dc82216062503c24210dc8a547b31e9d",
+  "unchanged_scientific_inputs": "prompts/, data/, research/protocol.md, research/amendments.md and the oracle, render, sandbox, score, analyze, figures, evidence, generate and schemas modules are byte-identical to main.",
+  "changed_execution_inputs": [
+    "src/beyond_label/budget.py",
+    "src/beyond_label/freeze.py",
+    "src/beyond_label/gates.py",
+    "src/beyond_label/pilot.py",
+    "src/beyond_label/run.py",
+    "src/beyond_label/staged.py (new)",
+    "configs/staged.yaml (new)"
+  ],
+  "input_file_count": 50,
+  "input_set_sha256": "b108efbcebc7d0ea649efca12ca659d1d0585a925a1e3729133afbc798b3712c",
+  "inference_calls_during_preparation": 0,
+  "staged_stages_executed": [],
+  "not_established": [
+    "live delivery of the staged path (first proven by the staged smoke)",
+    "any model result",
+    "human checks H1-H5"
+  ]
+}

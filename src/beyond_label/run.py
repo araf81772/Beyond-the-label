@@ -407,13 +407,15 @@ def _validate_execution_config(config: dict[str, Any], settings: ProviderSetting
     from .provider import _sanitized, canonical_json as provider_json
     if not isinstance(config, dict) or provider_json(_sanitized(config)) != provider_json(config):
         raise ValueError("Invalid or sensitive execution configuration")
-    from .gates import PAID_SMOKE_AUTHORIZATION
-    paid_smoke = config.get("authorization_id") == PAID_SMOKE_AUTHORIZATION
+    from .gates import PAID_SMOKE_AUTHORIZATION, STAGED_AUTHORIZATION
+    # Exactly two paid authorizations exist: the closed USD 1 smoke and the
+    # separately approved USD 9 staged allowance. Nothing else may be paid.
+    paid_smoke = config.get("authorization_id") in {PAID_SMOKE_AUTHORIZATION, STAGED_AUTHORIZATION}
     if paid_smoke:
         if config.get("free_only") is not False or settings.free_only is not False:
-            raise ValueError("Paid smoke settings must agree with their authorization")
+            raise ValueError("Paid settings must agree with their authorization")
     elif config.get("free_only") is not True or settings.free_only is not True:
-        raise ValueError("Only the fixed paid smoke or free execution is authorized")
+        raise ValueError("Only the fixed paid authorizations or free execution are permitted")
     require_real_execution(config, stage=manifest["dataset"], freeze=freeze)
     for key in ("model", "provider", "provider_route", "provider_identity_source", "temperature",
                 "reasoning", "max_output_tokens", "require_parameters"):
@@ -596,8 +598,9 @@ def rebuild_outputs(run_dir: Path | str) -> dict[str, Any]:
     kind = run_config.get("evidence_kind")
     if kind not in {"synthetic", "empirical"}:
         raise JournalIntegrityError("invalid_evidence_kind")
-    from .gates import PAID_SMOKE_AUTHORIZATION
-    paid_smoke = run_config.get("execution_config", {}).get("authorization_id") == PAID_SMOKE_AUTHORIZATION
+    from .gates import PAID_SMOKE_AUTHORIZATION, STAGED_AUTHORIZATION
+    paid_smoke = run_config.get("execution_config", {}).get("authorization_id") in {
+        PAID_SMOKE_AUTHORIZATION, STAGED_AUTHORIZATION}
     if kind == "empirical":
         expected_provenance = "openrouter_paid_https_v1" if paid_smoke else "openrouter_free_https_v1"
         if run_config.get("transport_provenance") != expected_provenance:
@@ -783,7 +786,16 @@ def run_manifest(manifest: dict[str, Any], run_dir: Path | str, provider: Pinned
     serialize_request(Request(messages=[]), provider.settings)
     if execution_config is not None:
         _validate_execution_config(execution_config, provider.settings, manifest, freeze)
-    if not synthetic:
+    from .gates import STAGED_AUTHORIZATION
+    staged = (not synthetic and isinstance(execution_config, dict)
+              and execution_config.get("authorization_id") == STAGED_AUTHORIZATION)
+    if staged:
+        # The staged owner checks its own fixed directory, shared USD 9 ledger,
+        # attempt allowance, quote and rate policy; the smoke rules below stay
+        # exactly as they were for the closed USD 1 authorization.
+        from .staged import validate_staged_live
+        validate_staged_live(provider, Path(run_dir), execution_config, manifest)
+    elif not synthetic:
         _validate_live_transport(provider)
         if provider.settings.free_only is False:
             from .continuation import load_continuation

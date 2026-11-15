@@ -35,7 +35,11 @@ def diagnose(root: Path, run_dir: Path) -> dict:
     current = _inputs()
     allowed = {f"src/beyond_label/{name}.py" for name in
                ("run", "provider", "openrouter", "capabilities", "paid_live", "paid_controls",
-                "attempts", "gates", "continuation", "continuation79", "cost_reconciliation", "paid_profile")}
+                "attempts", "gates", "continuation", "continuation79", "cost_reconciliation", "paid_profile",
+                # Staged USD 9 execution layer and its gate/ledger plumbing. None
+                # of these renders a request, scores an action or analyses data.
+                "staged", "budget", "freeze", "pilot")}
+    allowed.add("configs/staged.yaml")
     # The explicitly approved replacement smoke profile is infrastructure
     # preparation; original observations are still decoded with their own source.
     allowed.add("configs/paid_smoke.yaml")

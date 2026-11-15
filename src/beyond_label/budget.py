@@ -151,6 +151,17 @@ class BudgetLedger:
         attempts: dict[str, dict] = {}
         previous = "0" * 64
         metadata = {"sequence", "previous_hash", "event_hash"}
+        # Running totals equal _snapshot() at every prefix. Recomputing the
+        # sums for each reservation made replay quadratic in ledger length.
+        # Amounts carry at most 128 digits, so this precision keeps them exact.
+        with localcontext() as context:
+            context.prec = 400
+            return self._replay(raw, events, attempts, previous, metadata)
+
+    def _replay(self, raw: bytes, events: list[dict], attempts: dict[str, dict],
+                previous: str, metadata: set[str]) -> tuple[list[dict], dict[str, dict]]:
+        settled = held = Decimal(0)
+        exceeded = False
         for line in raw.splitlines():
             try:
                 event = json.loads(line, object_pairs_hook=_unique_object)
@@ -180,11 +191,12 @@ class BudgetLedger:
                         raise BudgetError("invalid_request_hash")
                     if attempt_id in attempts:
                         raise BudgetError("duplicate_budget_attempt")
-                    state = self._snapshot(attempts)
-                    if state["blocked"] or maximum > _amount(state["available"]):
+                    remaining = self.cap - settled - held
+                    if exceeded or remaining < 0 or maximum > max(Decimal(0), remaining):
                         raise BudgetError("inconsistent_budget_reservation")
                     attempts[attempt_id] = {"maximum_cost": _text(maximum), "actual_cost": None,
                                             "status": "pending", "request_hash": request_hash}
+                    held += maximum
                 elif kind == "settled":
                     if set(event) != metadata | {"event", "attempt_id", "actual_cost", "currency"}:
                         raise BudgetError("invalid_budget_journal")
@@ -197,6 +209,12 @@ class BudgetLedger:
                         raise BudgetError("budget_currency_mismatch")
                     if attempt["status"] == "settled" or (attempt["status"] == "unknown" and actual is None):
                         raise BudgetError("duplicate_budget_settlement")
+                    if actual is not None:
+                        # A receipt releases the hold; an unknown charge keeps it.
+                        reserved = _amount(attempt["maximum_cost"])
+                        held -= reserved
+                        settled += _amount(actual)
+                        exceeded = exceeded or _amount(actual) > reserved
                     attempt.update(actual_cost=actual, status="unknown" if actual is None else "settled")
                 else:
                     raise BudgetError("invalid_budget_journal")

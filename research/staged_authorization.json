@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "classification": "user_authorized_preparation_and_budget_cap_not_yet_execution",
+  "authorization_id": "paid-staged-usd9-v1",
+  "recorded_on": "2026-11-15",
+  "client_timezone": "Australia/Sydney",
+  "recorded_by": "Claude (AI assistant), from the user's own messages in the working session",
+  "user": "Araf",
+  "user_request_verbatim": "implement all necessary and beneficial changes directly in the repository, under new branch v1 preserving the preregistered protocol, research integrity, and existing validated results; do not fabricate findings, alter preregistration, incur spending, or weaken safeguards without my explicit approval. Make the project ready for the final run , and make it also ready  to run the smoke test; budget cap usd 9",
+  "budget_cap_usd": "9",
+  "scope": [
+    "smoke (4 worlds, load-2, 80 cells)",
+    "pilot (8 worlds, load-2, 160 cells)",
+    "load-8 smoke (4 worlds, 80 cells) only if the pilot selects load-8",
+    "main (64 worlds, 704 cells) only after a verified, pushed freeze tag"
+  ],
+  "execution_status": "prepared_only",
+  "execution_note": "The user asked for the project to be made ready and said not to incur spending without explicit approval. No inference call was made while preparing this allowance. Each stage is started by an explicit 'execute' command from the user.",
+  "unknown_cost_decision": {
+    "question": "In the new USD 9 runs (smoke, pilot, main), what should happen when a call times out and its charge is unknown?",
+    "options_offered": [
+      "Hold and continue (Recommended)",
+      "Stop every time"
+    ],
+    "user_answer_verbatim": "Hold and continue (Recommended)",
+    "implemented_as": "retain_full_hold_and_continue",
+    "meaning": "Every attempt without a cost receipt keeps its full worst-case reservation (USD 0.048468209664) held against the USD 9 cap. It is never treated as zero or refunded. Dispatch stops when 40 such holds exist (USD 1.94) or when less than one worst-case attempt remains.",
+    "difference_from_closed_smoke_authorization": "The USD 1 smoke stopped all dispatch at the first unreviewed unknown charge. That rule is unchanged for the closed smoke session and is not applied to this allowance."
+  },
+  "limits": {
+    "ledger_cap_usd": "9",
+    "maximum_inference_attempts": 3000,
+    "attempts_include": ["initial", "retries", "reprompts", "continuations"],
+    "per_attempt_reservation_usd": "0.048468209664",
+    "maximum_unknown_cost_holds": 40,
+    "key_hard_limit_required": "verified, non-resetting, at most USD 10"
+  },
+  "limits_chosen_by_assistant_not_user": {
+    "maximum_inference_attempts": "3000 covers the 1,728 planned calls (144 smoke + 288 pilot + 144 load-8 smoke + 1,152 main) plus retries and re-prompts. At the observed mean of USD 0.000134 per call, 3,000 calls cost about USD 0.40.",
+    "maximum_unknown_cost_holds": "40, stated in the question the user answered."
+  },
+  "relation_to_earlier_authorization": {
+    "closed_authorization_id": "paid-smoke-usd1-200-v1",
+    "closed_session": "runs/_paid_testing_session",
+    "closed_session_settled_usd": "0.0125113232",
+    "closed_session_held_usd": "0.489310289664",
+    "treatment": "Preserved byte-for-byte as historical evidence. Not reset, refunded, relocated or reused. Its holds and attempts are not counted inside the new USD 9 ledger; 9 + 0.5018 remains inside the original USD 10 total testing ceiling.",
+    "earlier_smoke_observations": "The 54 observations in segments/deepseek_primeintellect_v3 stay retained smoke evidence. They are not pooled with the new smoke and never enter pilot or main estimates."
+  },
+  "model": "deepseek/deepseek-v4.1-flash-1017",
+  "provider_route": "primeintellect",
+  "provider": "PrimeIntellect",
+  "request_settings": "Unchanged from the retained smoke: temperature 0, reasoning effort none, 512 output tokens, automatic tool choice, parallel tool calls off, no fallback, operator limit 10 requests per minute.",
+  "protocol_unchanged": true,
+  "protocol_sha256": "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b",
+  "not_authorized": [
+    "any spend above USD 9 in this ledger",
+    "a different model, provider or fallback",
+    "any main call before a verified freeze tag is visible on origin",
+    "resampling a successful or invalid model reply",
+    "submission or publication"
+  ]
+}

@@ -1381,5 +1381,15 @@
         "terminal_missing_cells": 1
       }
     }
-  ]
+  ],
+  "staged_usd9_preparation": {
+    "recorded_on": "2026-11-15",
+    "branch": "v1",
+    "authorization": "research/staged_authorization.json",
+    "runbook": "research/staged_execution.md",
+    "validation": "research/checks/v1_validation.json",
+    "status": "prepared_not_executed",
+    "stages_executed": [],
+    "note": "Milestone 4 stays blocked until the staged smoke, pilot and freeze are actually run and verified."
+  }
 }
