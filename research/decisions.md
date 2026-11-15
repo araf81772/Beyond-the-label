@@ -416,3 +416,11 @@ One reservation (`attempt-e1aad08b…`, cell `smoke-1100-decision-HIGH-FEE-separ
 
 To avoid a repeat, the remaining paid stages run from a clone outside any synced folder. Post-smoke: `sync_execution_status.py` set `experimental_calls` to 226 (96 closed smoke + 130); pilot readiness is `ready_for_pilot_not_executed`; the audit passes.
 
+## 2026-11-15 AEDT (night) — staged pilot executed; ceiling rule selects load-8 (Claude, AI)
+
+Araf answered "Run pilot now". The pilot ran from a clone outside OneDrive (`C:/Users/araf7/btl-run/Beyond-the-label`, same commit and inputs; the smoke re-verified there as a gate before dispatch). Result: **160 of 160 cells completed, 0 missing, 0 invalid first actions, 0 infrastructure retries, 14 permitted re-prompts, 267 accepted calls, provider-reported cost USD 0.035102096.** Ledger and journal agree exactly; no hold, no pending reservation.
+
+Trace-derived thresholds (`python -m beyond_label.pilot runs/staged_pilot_load2`): **15 of 16 MAIN pairs fully correct** and **15 of 16 NUMERIC decisions optimal**. Under the pre-registered rules of protocol section 8 the floor is met (at least 12 of 16), no model change is required, and the ceiling rule (at least 14 of 16) **selects load-8 for the main run**. The protocol therefore requires the four smoke worlds at load-8 before the freeze. No other change is permitted on pilot evidence and none was made.
+
+Pilot observations chose the load. They are reported separately and never enter main estimates. Human checks H1 and H2 have not been done. Cumulative staged spend: USD 0.05225255904 of USD 9; 397 of 3,000 attempts reserved.
+
