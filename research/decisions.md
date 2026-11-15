@@ -424,3 +424,9 @@ Trace-derived thresholds (`python -m beyond_label.pilot runs/staged_pilot_load2`
 
 Pilot observations chose the load. They are reported separately and never enter main estimates. Human checks H1 and H2 have not been done. Cumulative staged spend: USD 0.05225255904 of USD 9; 397 of 3,000 attempts reserved.
 
+## 2026-11-15 AEDT (night) — load-8 smoke executed (Claude, AI)
+
+Araf answered "Run load-8 smoke". Because the pilot selected load-8, protocol section 8 requires the four smoke worlds at load-8 before the freeze. Result: **80 of 80 cells completed, 0 missing, 0 invalid first actions, 0 infrastructure retries, 8 permitted re-prompts, 128 accepted calls, provider-reported cost USD 0.01733081296.** Ledger and journal agree exactly; nothing held or pending. This is a pipeline check and is not analysed.
+
+All three freeze gates (smoke load-2, pilot, smoke load-8) are now complete on identical inputs. Cumulative staged spend: USD 0.069583372 of USD 9; 525 of 3,000 attempts reserved. No freeze record or tag exists yet; no main call has been made.
+
