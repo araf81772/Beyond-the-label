@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-15T01:18:17.549286+00:00",
+  "recorded_at_utc": "2026-11-15T01:44:03.832744+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "User authorizes USD10 total testing on GPT-4.1 mini via OpenRouter/OpenAI; run one smoke only capped at USD1 or200 total attempts; stop before pilot/main; repair any evidenced M5 infrastructure issue",
   "execution_freeze": null,
@@ -228,7 +228,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "Key limit10 verified; first real READBACK request returnedHTTP404 with no model response. Guard stopped before retry because attempt billing evidence is unavailable; strict public endpoint capabilities also fail verification.",
+      "reason": "Smoke remains incomplete after one historical HTTP404. Offline repair removes an inapplicable tool parameter from readback only; full decision-route compatibility and prior attempt billing/provenance remain unresolved. Current instruction forbids smoke execution.",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -254,8 +254,8 @@
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
       "freeze_created": false,
-      "minimum_next_action": "Resolve/approve a compatible pinned routing configuration and an explicit pre-freeze smoke continuation/replacement record; reconcile retained failed-attempt billing evidence before further dispatch. Current USD10 authorization and key limit are sufficient; do not repeat successful or invalid decisions.",
-      "offline_preparation_status": "Smoke-exposed infrastructure repairs validated:1341 tests passed in387.61s; historical source replay and original file hashes pass. Real smoke incomplete after1HTTP404; no further inference.",
+      "minimum_next_action": "No more key-limit change is needed. Before any later execution, resolve full decision-route capabilities, reconcile the retained failed-attempt charge from evidence, and record an explicit pre-freeze source/version continuation without changing historical artifacts or treating a changed request as an identical retry.",
+      "offline_preparation_status": "Readback serializer, adapter and budget-quote repair passed1381 offline tests in384.92s; source-version historical replay and original artifact hashes verified. No new smoke/account/inference call; real smoke remains incomplete.",
       "offline_validation": [
         {
           "command": "python -m pytest -q",
@@ -407,6 +407,12 @@
           "exit_code": 0,
           "summary": "Exact43-input collection-source replay; corrected1failed/79untouched distinction; no raw evidence changes or network calls",
           "evidence": "research/checks/paid_smoke_failure_audit.json"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "1381 passed in384.92s; stable experimental input hashes; no inference or account calls",
+          "evidence": "research/checks/readback_wire_fix_suite.json"
         }
       ],
       "recorded_test_fix_retest": [
@@ -582,23 +588,24 @@
           "new_source_requires_explicit_prefreeze_execution_record"
         ],
         "durable_cap_implemented": true,
-        "current_instruction": "Smoke only under the USD1 or 200-attempt stop; preserve consumed allowances; no pilot or main"
+        "current_instruction": "Current checkpoint: repair and offline tests only; do not run smoke. Standing USD1/200 smoke authorization does not permit pilot/main, model switching or changed requests relabelled as identical retries."
       },
       "current_checkpoint": {
-        "status": "partial_smoke_stopped_repairs_validated_committed_and_pushed",
-        "account_evidence": "research/checks/paid_smoke_ready_preflight.json",
-        "test_evidence": "research/checks/paid_smoke_execution_suite.json",
-        "verification_evidence": "research/checks/paid_smoke_execution_validation.json",
-        "diagnostic_evidence": "research/checks/paid_smoke_failure_audit.json",
-        "collection_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
-        "push_status": "succeeded",
+        "status": "offline_readback_wire_repair_validated_delivery_pending",
+        "scope": "repair_only_no_smoke_or_account_calls",
+        "run_evidence_unchanged": true,
+        "historical_checkpoint": "b8d648b06aee883165971a4b51d5a230f912e339",
+        "focused_tests_passed": 329,
+        "historical_replay_tests_passed": 14,
+        "full_suite_evidence": "research/checks/readback_wire_fix_suite.json",
+        "integrity_evidence": "research/checks/readback_wire_fix_integrity.json",
+        "push_status": "pending",
         "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
         "branch": "main",
         "commit_reference": "Resolve final identity through Git; no circular self-hash",
-        "delivered_commit": "88c632fc0bfe9f24700b4b30a217fdb6b53ee1c4",
-        "remote_head_verified": true,
-        "delivery_evidence": "research/checks/paid_smoke_execution_delivery.json",
-        "verification_command": "git ls-remote origin refs/heads/main"
+        "guarded_path_tests_passed": 225,
+        "full_suite_tests_passed": 1381,
+        "experimental_inputs_unchanged_during_suite": true
       },
       "checkpoint_history": [
         {
@@ -648,6 +655,22 @@
           "verification_command": "git ls-remote origin refs/heads/main",
           "final_audit_checks": 685,
           "final_status_checkpoint": "This follow-up records observed delivery; its own identity is resolved and verified through Git without a circular self-hash"
+        },
+        {
+          "status": "partial_smoke_stopped_repairs_validated_committed_and_pushed",
+          "account_evidence": "research/checks/paid_smoke_ready_preflight.json",
+          "test_evidence": "research/checks/paid_smoke_execution_suite.json",
+          "verification_evidence": "research/checks/paid_smoke_execution_validation.json",
+          "diagnostic_evidence": "research/checks/paid_smoke_failure_audit.json",
+          "collection_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
+          "push_status": "succeeded",
+          "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
+          "branch": "main",
+          "commit_reference": "Resolve final identity through Git; no circular self-hash",
+          "delivered_commit": "88c632fc0bfe9f24700b4b30a217fdb6b53ee1c4",
+          "remote_head_verified": true,
+          "delivery_evidence": "research/checks/paid_smoke_execution_delivery.json",
+          "verification_command": "git ls-remote origin refs/heads/main"
         }
       ],
       "validation": [
@@ -730,7 +753,12 @@
         "Read-only finalization bundle preserving source bytes and explicit missingness classes",
         "Paid-path preflight repairs: exact snapshot replay, failed-call metadata/HTTP status, complete total-charge accounting and rollback-resistant monetary resume. No real smoke findings yet.",
         "Actual smoke exposed pending-failure mislabelling and discarded HTTP diagnostics; both repaired offline, capability preflight added, and immutable collection-version replay implemented"
-      ]
+      ],
+      "latest_offline_wire_validation": {
+        "evidence": "research/checks/readback_wire_fix_suite.json",
+        "tests_passed": 1381,
+        "main_execution_started": false
+      }
     },
     {
       "number": 6,
@@ -898,10 +926,10 @@
     "account_checks_completed": 6,
     "real_attempts": 1,
     "actual_inference_cost_usd": null,
-    "offline_tests_passed": 1341,
-    "full_suite_evidence": "research/checks/paid_smoke_execution_suite.json",
+    "offline_tests_passed": 1381,
+    "full_suite_evidence": "research/checks/readback_wire_fix_suite.json",
     "integrity_evidence": "research/checks/paid_smoke_execution_validation.json",
-    "current_push_status": "partial_run_and_repairs_pushed_and_remote_verified",
+    "current_push_status": "offline_wire_repair_delivery_pending",
     "scientific_design_changed": false,
     "human_review": false,
     "engineering_commit": "88c632fc0bfe9f24700b4b30a217fdb6b53ee1c4",
@@ -919,5 +947,36 @@
     "collection_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
     "model_provider_changed": false,
     "previous_engineering_commit": "516de443bbdad399e07529a071d841aca5d3ca0e"
+  },
+  "readback_wire_repair": {
+    "scope": "offline_only",
+    "inference_calls": 0,
+    "account_checks": 0,
+    "live_compatibility_verified": false,
+    "historical_404_cause_proven": false,
+    "model_provider_changed": false,
+    "scientific_design_changed": false,
+    "budget_guard_changed": false,
+    "request_change": "Omit parallel_tool_calls only when no tools are provided; preserve false for decisions and continuations.",
+    "full_suite_evidence": "research/checks/readback_wire_fix_suite.json",
+    "integrity_evidence": "research/checks/readback_wire_fix_integrity.json",
+    "regression_evidence": "research/checks/readback_wire_fix_regressions.json",
+    "guarded_path_tests_passed": 225,
+    "historical_diagnostics_evidence": "research/checks/readback_wire_fix_diagnostics.json",
+    "validation_evidence": "research/checks/readback_wire_fix_validation.json",
+    "source_changes": [
+      "src/beyond_label/provider.py",
+      "src/beyond_label/openrouter.py",
+      "src/beyond_label/paid_controls.py",
+      "scripts/replay_history.py",
+      "scripts/smoke_diagnostics.py"
+    ],
+    "preserved_bound_usd": "0.44084208",
+    "total_recorded_historical_attempts": 1,
+    "smoke_completed_cells": 0,
+    "status": "offline_validated_delivery_pending",
+    "full_suite_tests_passed": 1381,
+    "full_suite_seconds": 384.92,
+    "original_artifacts_unchanged": true
   }
 }

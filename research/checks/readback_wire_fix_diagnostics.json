@@ -1,0 +1,42 @@
+{
+  "classification": "smoke_engineering_diagnostics_not_main_analysis",
+  "collection_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
+  "raw_trace_sha256": "35c967b3a8154533ce159a807e1f2820b45d2a673436612405888dcbdd6fa442",
+  "scorer_sha256": "1971d584e6036cc400c9dc782e7a12543d3e75dd95141775980b430b512a8d54",
+  "changed_implementation_paths": [
+    "src/beyond_label/capabilities.py",
+    "src/beyond_label/openrouter.py",
+    "src/beyond_label/paid_controls.py",
+    "src/beyond_label/paid_live.py",
+    "src/beyond_label/provider.py",
+    "src/beyond_label/run.py"
+  ],
+  "historical_replay_verified": true,
+  "original_files_unchanged": true,
+  "planned_cells": 80,
+  "attempted_cells": 1,
+  "never_attempted_cells": 79,
+  "attempts": 1,
+  "successful_calls": 0,
+  "completed_cells": 0,
+  "pending_cells": 80,
+  "corrected_missingness_counts": {
+    "pending_after_infrastructure_failure": 1,
+    "not_executed_yet": 79
+  },
+  "observed_failures": [
+    {
+      "cell_id": "smoke-1100-readback-MAIN-inline-b",
+      "phase": "readback",
+      "attempt": 1,
+      "reason": "http_error",
+      "http_status": 404
+    }
+  ],
+  "latency_interpretation": "end-to-end guarded attempt; includes operator pacing wait",
+  "known_router_and_upstream_cost_usd": 0,
+  "cost_evidence_complete": false,
+  "unknown_cost_attempts": 1,
+  "empirical_observations": 0,
+  "regenerate_command": "python scripts/smoke_diagnostics.py --run runs/paid_smoke_gpt41mini_20261115"
+}

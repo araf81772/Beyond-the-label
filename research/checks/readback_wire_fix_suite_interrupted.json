@@ -1,0 +1,11 @@
+{
+  "classification": "interrupted_offline_validation_not_passed",
+  "recorded_at_utc": "2026-11-15T01:35:49.328711+00:00",
+  "command": "python -m pytest -q",
+  "completed": false,
+  "exit_code": 1,
+  "reason": "Stopped with Ctrl-C after independent review and failing focused regressions identified the missing PaidSmokeQuote integration; final full suite will run after that repair.",
+  "captured_test_totals": null,
+  "inference_calls": 0,
+  "account_checks": 0
+}

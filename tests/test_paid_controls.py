@@ -22,7 +22,7 @@ def payload():
     return {"model": "openai/gpt-4.1-mini", "provider": {
         "only": ["openai"], "allow_fallbacks": False, "require_parameters": True,
         "max_price": {"prompt": 0.4, "completion": 1.6, "request": 0, "image": 0}},
-        "max_tokens": 512, "temperature": 0, "parallel_tool_calls": False,
+        "max_tokens": 512, "temperature": 0,
         "messages": [{"role": "user", "content": "Synthetic fixture"}]}
 
 
@@ -287,3 +287,86 @@ def test_cost_reader_failure_preserves_received_response_and_blocks_further_disp
         guarded(payload())
     assert len(calls) == 1
     assert "synthetic-private" not in ledger.path.read_text()
+
+
+def _serialized_paid_request(phase):
+    from beyond_label.generate import generate_world, make_case
+    from beyond_label.provider import serialize_request
+    from beyond_label.render import decision_request, readback_request
+    from beyond_label.run import _assistant
+    from beyond_label.sandbox import Sandbox
+    from beyond_label.schemas import ModelReply, ToolCall
+
+    settings = ProviderSettings(
+        model="openai/gpt-4.1-mini", provider="OpenAI", provider_route="openai",
+        provider_identity_source="openrouter_metadata", require_parameters=True,
+        reasoning=None, max_price={"prompt": .4, "completion": 1.6, "request": 0, "image": 0},
+    )
+    case = make_case(generate_world(1100))
+    request = readback_request(case) if phase == "readback" else decision_request(case)
+    if phase == "continuation":
+        reply = ModelReply(tool_calls=[ToolCall(id="synthetic-inspect", name="inspect",
+            arguments={"lot_id": case.public.target_ids[0]})])
+        revealed = Sandbox(case).apply_reply(reply)
+        request = request.model_copy(update={"messages": [*deepcopy(request.messages), _assistant(reply),
+            {"role": "tool", "tool_call_id": "synthetic-inspect", "content": json.dumps(revealed)}]})
+    return serialize_request(request, settings)
+
+
+def test_serialized_readback_reaches_paid_mock_http_through_unchanged_budget_guard(tmp_path, monkeypatch):
+    import httpx
+    from beyond_label.openrouter import OpenRouterPaidTransport
+
+    monkeypatch.setenv("OPENROUTER_API_KEY", "synthetic-guarded-readback-key")
+    original = _serialized_paid_request("readback")
+    expected = deepcopy(original)
+    assert not {"tools", "tool_choice", "parallel_tool_calls"} & original.keys()
+    callback, counter, ledger = policy(tmp_path)
+    sent = []
+
+    def handler(request):
+        sent.append(json.loads(request.content))
+        assert ledger.snapshot()["held"] == PAID_MAXIMUM_COST
+        return httpx.Response(200, json={"usage": {"is_byok": False, "cost": .001}})
+
+    adapter = OpenRouterPaidTransport("openai/gpt-4.1-mini", "openai", transport=httpx.MockTransport(handler))
+    guarded = GuardedTransport(adapter, ledger, RateLimiter(200, PAID_TOKEN_BOUND * 200, cold_start=False),
+                               PaidSmokeQuote(), cost_reader=paid_observed_cost)
+    callback()
+    result = guarded(original)
+    assert result == {"usage": {"is_byok": False, "cost": .001}}
+    assert original == expected and sent == [expected]
+    assert counter.snapshot()["reserved_attempts"] == 1
+    state = ledger.snapshot()
+    assert state["settled_cost"] == "0.001" and state["held"] == "0"
+    assert state["uncertain"] is False
+
+
+@pytest.mark.parametrize("phase", ["first", "continuation"])
+def test_quote_retains_same_bound_for_tool_decisions_and_continuations(phase):
+    request = _serialized_paid_request(phase)
+    assert request["parallel_tool_calls"] is False and request["tool_choice"] == "auto"
+    assert request["tools"]
+    bound = PaidSmokeQuote()(request)
+    assert bound.maximum_cost == PAID_MAXIMUM_COST
+    assert bound.token_bound == PAID_TOKEN_BOUND
+
+
+@pytest.mark.parametrize("phase", ["first", "continuation"])
+@pytest.mark.parametrize("control", ["absent", True, 0, None])
+def test_quote_rejects_missing_or_relaxed_parallel_control_for_tools(phase, control):
+    request = _serialized_paid_request(phase)
+    if control == "absent":
+        request.pop("parallel_tool_calls")
+    else:
+        request["parallel_tool_calls"] = control
+    with pytest.raises(ControlError, match="unverified_paid_request_bound"):
+        PaidSmokeQuote()(request)
+
+
+@pytest.mark.parametrize("control", [False, True, 0, None])
+def test_quote_rejects_inapplicable_parallel_control_for_readback(control):
+    request = _serialized_paid_request("readback")
+    request["parallel_tool_calls"] = control
+    with pytest.raises(ControlError, match="unverified_paid_request_bound"):
+        PaidSmokeQuote()(request)

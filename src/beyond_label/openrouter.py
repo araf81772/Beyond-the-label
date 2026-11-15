@@ -230,6 +230,14 @@ def _valid_messages(messages: Any) -> bool:
     return True
 
 
+def _valid_parallel_control(payload: dict[str, Any]) -> bool:
+    # No-tool readback must omit the inapplicable control, while every tool
+    # decision/continuation still explicitly disables parallel calls.
+    if "tools" in payload:
+        return payload.get("parallel_tool_calls") is False
+    return "parallel_tool_calls" not in payload
+
+
 def _valid_tools(payload: dict[str, Any]) -> bool:
     if "tools" not in payload:
         return "tool_choice" not in payload
@@ -285,7 +293,7 @@ class OpenRouterFreeTransport:
         if (not valid_pin or not isinstance(prices, dict) or set(prices) != _PRICE_FIELDS
                 or any(type(value) not in (int, float) or value != 0 for value in prices.values())):
             raise ProviderFailure("free_request_provider_pin_invalid")
-        if (payload.get("parallel_tool_calls") is not False
+        if (not _valid_parallel_control(payload)
                 or type(payload.get("max_tokens")) is not int or payload["max_tokens"] <= 0):
             raise ProviderFailure("free_request_parameters_invalid")
         temperature = payload.get("temperature", 0)
@@ -339,7 +347,7 @@ class OpenRouterPaidTransport:
                 or any(type(value) not in (int, float) or value != PAID_MAX_PRICE[key]
                        for key, value in prices.items())):
             raise ProviderFailure("paid_request_provider_pin_invalid")
-        if (payload.get("parallel_tool_calls") is not False
+        if (not _valid_parallel_control(payload)
                 or type(payload.get("max_tokens")) is not int or payload["max_tokens"] != 512
                 or type(payload.get("temperature")) not in (int, float) or payload["temperature"] != 0):
             raise ProviderFailure("paid_request_parameters_invalid")

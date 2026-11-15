@@ -110,7 +110,7 @@ def test_readback_without_tools_is_accepted(monkeypatch):
     monkeypatch.setenv("OPENROUTER_API_KEY", SECRET)
     value_payload = payload()
     value_payload["messages"] = readback_request(make_case(generate_world(2000))).messages
-    del value_payload["tools"], value_payload["tool_choice"]
+    del value_payload["tools"], value_payload["tool_choice"], value_payload["parallel_tool_calls"]
     assert adapter(lambda request: httpx.Response(200, json={"result": "fixture"}))(value_payload) == {"result": "fixture"}
 
 

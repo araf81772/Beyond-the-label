@@ -147,7 +147,8 @@ rebuild_outputs(Path('retained_run'))
         raise ValueError("Original historical evidence changed during replay")
     return {"summary": summary, "source_commit": commit, "input_hashes_verified": len(inputs),
             "original_files_unchanged": True, "network_blocked": True,
-            "credentials_removed": True, "raw_trace_sha256": hashes["calls.jsonl"]}
+            "credentials_removed": True, "raw_trace_sha256": hashes["calls.jsonl"],
+            "artifact_sha256": dict(hashes)}
 
 
 def main() -> int:

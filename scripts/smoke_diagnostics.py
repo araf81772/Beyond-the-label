@@ -15,14 +15,17 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from replay_history import replay_historical
-from beyond_label.run import Journal, _inputs, _score_cell, _validate_journal
+from replay_history import FILES, replay_historical
+from beyond_label.run import Journal, _inputs, _score_cell
 
 
 def diagnose(root: Path, run_dir: Path) -> dict:
     root, run_dir = root.resolve(), run_dir.resolve()
     proof = replay_historical(root, run_dir)
-    manifest = json.loads((run_dir / "manifest.json").read_text("utf-8"))
+    raw = {name: (run_dir / name).read_bytes() for name in FILES}
+    if any(hashlib.sha256(raw[name]).hexdigest() != proof["artifact_sha256"][name] for name in FILES):
+        raise ValueError("Historical evidence changed after source replay")
+    manifest = json.loads(raw["manifest.json"])
     if manifest["plan"]["dataset"] != "smoke":
         raise ValueError("Smoke engineering diagnostics require smoke evidence")
     # These are the only implementation changes being applied in this report.
@@ -31,16 +34,20 @@ def diagnose(root: Path, run_dir: Path) -> dict:
     prior = manifest["run_config"]["input_hashes"]
     current = _inputs()
     allowed = {f"src/beyond_label/{name}.py" for name in
-               ("run", "provider", "openrouter", "capabilities", "paid_live")}
+               ("run", "provider", "openrouter", "capabilities", "paid_live", "paid_controls")}
     changed = {name for name in set(prior) | set(current) if prior.get(name) != current.get(name)}
     if changed - allowed:
         raise ValueError("Scientific inputs changed beyond the diagnostic repair")
+    # The collection-version replay above already validates every saved payload
+    # against its original serializer. Current serialization intentionally differs
+    # for no-tool readback; never rewrite old payloads or weaken live validation.
     journal = Journal(run_dir / "calls.jsonl")
-    _validate_journal(journal, manifest["plan"], manifest["run_config"])
     starts = [event for event in journal.events if event["event"] == "attempt_started"]
     failures = [event for event in journal.events if event["event"] == "attempt_failed"]
     corrected = [_score_cell(cell, manifest["plan"], journal) for cell in manifest["plan"]["cells"]]
     attempted = {event["cell_id"] for event in starts}
+    if any((run_dir / name).read_bytes() != content for name, content in raw.items()):
+        raise ValueError("Historical evidence changed during diagnostics")
     return {"classification": "smoke_engineering_diagnostics_not_main_analysis",
             "collection_source_commit": proof["source_commit"],
             "raw_trace_sha256": proof["raw_trace_sha256"],

@@ -72,9 +72,9 @@ class PaidSmokeQuote:
             "only": ["openai"], "allow_fallbacks": False, "require_parameters": True,
             "max_price": {"prompt": 0.4, "completion": 1.6, "request": 0, "image": 0},
         }
-        required = {"model", "provider", "messages", "max_tokens", "temperature", "parallel_tool_calls"}
+        required = {"model", "provider", "messages", "max_tokens", "temperature"}
         if (type(payload) is not dict or not required <= set(payload)
-                or set(payload) - required - {"tools", "tool_choice"}
+                or set(payload) - required - {"tools", "tool_choice", "parallel_tool_calls"}
                 or payload["model"] != "openai/gpt-4.1-mini"
                 or type(payload["provider"]) is not dict
                 or payload["provider"] != expected_provider
@@ -83,7 +83,10 @@ class PaidSmokeQuote:
                 or any(type(price) not in (int, float) for price in payload["provider"]["max_price"].values())
                 or type(payload["max_tokens"]) is not int or payload["max_tokens"] != PAID_MAX_OUTPUT_TOKENS
                 or type(payload["temperature"]) not in (int, float) or payload["temperature"] != 0
-                or payload["parallel_tool_calls"] is not False
+                # Tool-free readback omits inapplicable tool controls. Tool
+                # decisions/continuations still explicitly disable parallelism.
+                or ("tools" in payload and payload.get("parallel_tool_calls") is not False)
+                or ("tools" not in payload and "parallel_tool_calls" in payload)
                 or type(payload["messages"]) is not list
                 or any(type(message) is not dict or
                        (message.get("content") is not None and type(message["content"]) is not str)

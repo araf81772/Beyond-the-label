@@ -206,13 +206,17 @@ def serialize_request(request: Request, settings: ProviderSettings) -> dict[str,
         "provider": _provider_pin(settings),
         "messages": deepcopy(request.messages),
         "max_tokens": settings.max_output_tokens,
-        "parallel_tool_calls": False,
     }
     if settings.reasoning is not None:
         payload["reasoning"] = deepcopy(settings.reasoning)
     if settings.temperature is not None:
         payload["temperature"] = settings.temperature
     if request.tools:
+        # OpenRouter documents this control as applicable only when tools are
+        # supplied. Readback branches have none; an inapplicable parameter can
+        # unnecessarily exclude the pinned route under require_parameters.
+        # https://openrouter.ai/docs/api_reference/parameters
+        payload["parallel_tool_calls"] = False
         payload["tools"] = deepcopy(request.tools)
         payload["tool_choice"] = request.tool_choice or "auto"
     # Reject instead of rewriting the actual request: retries must be identical.
