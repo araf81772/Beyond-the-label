@@ -1,0 +1,27 @@
+{
+  "authorization_id": "paid-staged-usd9-v1",
+  "execution_scope": "smoke_pilot_freeze_main",
+  "authorized_spend_usd": "9",
+  "authorized_total_testing_usd": "10",
+  "maximum_inference_attempts": 3000,
+  "unknown_cost_policy": "retain_full_hold_and_continue",
+  "maximum_unknown_cost_holds": 40,
+  "per_attempt_reservation_usd": "0.048468209664",
+  "model": "deepseek/deepseek-v4.1-flash-1017",
+  "provider_route": "primeintellect",
+  "provider": "PrimeIntellect",
+  "session_directory": "runs/_paid_staged_session",
+  "stage_directories": {
+    "smoke": "runs/staged_smoke_load2",
+    "pilot": "runs/staged_pilot_load2",
+    "smoke8": "runs/staged_smoke_load8",
+    "main": "runs/staged_main"
+  },
+  "separate_from_closed_authorization": "paid-smoke-usd1-200-v1",
+  "attempts_include": [
+    "initial",
+    "retries",
+    "reprompts",
+    "continuations"
+  ]
+}

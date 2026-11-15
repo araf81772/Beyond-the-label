@@ -407,3 +407,12 @@ Delivery: partialsmoke79 artifacts, preserved cumulative accounting,1634-test va
 **Known limits of this preparation.** The staged path has been exercised only offline with scripted local responses; live delivery is unproven until the staged smoke runs. A gate stage that ends with a missing cell blocks the freeze and needs a team decision. An interrupted process leaves an ambiguous attempt that is never repeated. The floor rule's "switch model and repeat the pilot" is not implemented and would need a new authorization. Human checks H1–H5 remain undone.
 
 **Validation.** Recorded in `research/checks/v1_validation.json`.
+
+## 2026-11-15 AEDT (evening) — staged smoke executed and reconciled (Claude, AI)
+
+Araf answered "Run smoke now". The first launch stopped before any dispatch with an untraced `ValueError` (no attempt reserved, no charge); the cause was not reproduced and is unresolved. The second launch ran the staged load-2 smoke to completion at 18:48–19:03 AEDT: **80 of 80 cells completed, 0 missing, 0 invalid first actions, 0 infrastructure retries, 4 permitted re-prompts, 130 accepted calls, provider-reported cost USD 0.01715046304.** Smoke is a pipeline check and is not analysed.
+
+One reservation (`attempt-e1aad08b…`, cell `smoke-1100-decision-HIGH-FEE-separate-a`, first phase) stayed pending in the ledger although the journal holds the successful reply and its receipt (USD 0.00018746496, request `gen-1794729605-8p5bfMGcdaiDQQe89LHu`). No accounting error was logged, so the settlement call returned normally and its appended line is absent from the file. The repository sits in a OneDrive-synced folder with the sync client running; a reverted append is the likely cause but is not proven. `scripts/reconcile_staged_receipts.py` settled that one reservation with the journaled provider cost (append-only; one added ledger line; record in `checks/staged_smoke_receipt_reconciliation.json`). Ledger settled total now equals the journal total exactly; holds are zero. Nothing was set to zero or removed and the journal was not touched.
+
+To avoid a repeat, the remaining paid stages run from a clone outside any synced folder. Post-smoke: `sync_execution_status.py` set `experimental_calls` to 226 (96 closed smoke + 130); pilot readiness is `ready_for_pilot_not_executed`; the audit passes.
+

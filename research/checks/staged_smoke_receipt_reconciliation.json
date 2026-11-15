@@ -1,0 +1,33 @@
+{
+  "classification": "pending_reservation_settled_from_journaled_provider_receipt",
+  "written": true,
+  "settlements": [
+    {
+      "attempt_id": "attempt-e1aad08b76cf4f74b5b4b3d30f80d96d",
+      "request_hash": "37a262a4b2b05b53772af744e361258396b47c6f7aa072874fec81da2468a39b",
+      "reserved_usd": "0.048468209664",
+      "stage": "smoke",
+      "cell_id": "smoke-1100-decision-HIGH-FEE-separate-a",
+      "phase": "first",
+      "attempt": 1,
+      "cost": "0.00018746496",
+      "request_id": "gen-1794729605-8p5bfMGcdaiDQQe89LHu"
+    }
+  ],
+  "ledger_before": {
+    "settled_cost": "0.01696299808",
+    "held": "0.048468209664",
+    "available": "8.934568792256",
+    "pending_attempts": 1,
+    "unknown_cost_attempts": 0,
+    "blocked": false
+  },
+  "ledger_after": {
+    "settled_cost": "0.01715046304",
+    "held": "0",
+    "available": "8.98284953696",
+    "pending_attempts": 0,
+    "unknown_cost_attempts": 0,
+    "blocked": false
+  }
+}
