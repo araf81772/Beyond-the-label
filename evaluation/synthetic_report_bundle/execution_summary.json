@@ -1,0 +1,28 @@
+{
+  "artifact_label": "SYNTHETIC VALIDATION \u2014 NOT EMPIRICAL RESULTS",
+  "attempted_calls": 1152,
+  "confirmed_http_deliveries": null,
+  "continuations": 448,
+  "cost": {
+    "accounting_error_attempts": null,
+    "evidence_kind": "synthetic_fixture_not_billed",
+    "known_provider_spend_usd": null,
+    "nonzero_cost_attempts": null,
+    "scope": "Provider usage evidence only; unknown totals remain null and synthetic usage is not billed evidence",
+    "spend_evidence_complete": null,
+    "total_provider_spend_usd": null,
+    "unknown_cost_attempts": null
+  },
+  "count_definitions": {
+    "attempted_calls": "Journaled attempt starts; do not prove HTTP dispatch",
+    "confirmed_http_deliveries": "No separate transport-delivery census is reconstructed from attempt-start markers",
+    "continuations": "Defined continuation phases, not necessarily dispatched HTTP calls",
+    "permitted_reprompts": "Defined re-prompt phases, not necessarily dispatched HTTP calls",
+    "successful_calls": "Responses accepted by the pinned parser; includes invalid model actions and is synthetic when labelled synthetic"
+  },
+  "evidence_kind": "synthetic",
+  "infrastructure_retries": 0,
+  "invalid_first_actions": 0,
+  "permitted_reprompts": 0,
+  "successful_calls": 1152
+}

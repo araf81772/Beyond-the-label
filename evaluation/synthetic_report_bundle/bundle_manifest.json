@@ -1,0 +1,97 @@
+{
+  "artifact_hash_scope": "All generated files except bundle_manifest.json, avoiding a circular self-hash",
+  "artifact_hashes": {
+    "analysis/analysis.json": "8e505db1a7b1c4bd42ad64d2dd54cd00e04d4666fca1955d8d8d830a46360f33",
+    "analysis/cells.csv": "48424b1ef3c5ef2b5bf087df3c44267376fb0b1781ad692573900d41ec12cb97",
+    "analysis/claim_evidence.csv": "a3a6f4985256dd2f90727ca582acc741e0cb743eeb616dbf6cce099bff3c0ae6",
+    "analysis/conditions.csv": "22f1ddab45851fca722da55261bd113cd1d18a888ee7bc403becbd0e30d39289",
+    "analysis/figures/agent_allocation_vs_oracle.png": "3e9923ee38d79bd8ae18653d7cdb38537889313d66e7d59d8f65da2a1c3a3da0",
+    "analysis/figures/allocation.csv": "1925705f488e8b158fa5238bbf829ea8618b71dee84138518ce5248db2e05233",
+    "analysis/figures/pair_switch_categories.png": "a28624d04d17e19fbe539f2c22176cd523904b2bcc6f2cf9933c7cb56fd80bca",
+    "analysis/matched_trace.json": "3182ec7dbd45421df38fb1dbc3238a2b7e4a162452c4a45f0ade13dbb0bf7594",
+    "analysis/pairs.csv": "a48fc30c043b6c3cfc0a75767b92ac5fe391b25e81647c2cb47af96a01c142ee",
+    "execution_summary.json": "4740fb77bbb290c64b7d00406dbd375c24a20f9ebd275b2882fe97ec40c9213c"
+  },
+  "artifact_label": "SYNTHETIC VALIDATION \u2014 NOT EMPIRICAL RESULTS",
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 314159,
+    "unit": "world"
+  },
+  "completeness": {
+    "all_cells_terminal": true,
+    "all_observations_available": true,
+    "completed_cells": 704,
+    "continuation_missing_cells": 0,
+    "infrastructure_missing_cells": 0,
+    "missing_first_action_or_readback_cells": 0,
+    "missing_reasons": {},
+    "observed_first_action_or_readback_cells": 704,
+    "pending_cells": 0,
+    "planned_cells": 704,
+    "unexecuted_cells": 0,
+    "unresolved_attempt_cells": 0
+  },
+  "empirical_observations": 0,
+  "evidence_kind": "synthetic",
+  "execution_summary": {
+    "artifact_label": "SYNTHETIC VALIDATION \u2014 NOT EMPIRICAL RESULTS",
+    "attempted_calls": 1152,
+    "confirmed_http_deliveries": null,
+    "continuations": 448,
+    "cost": {
+      "accounting_error_attempts": null,
+      "evidence_kind": "synthetic_fixture_not_billed",
+      "known_provider_spend_usd": null,
+      "nonzero_cost_attempts": null,
+      "scope": "Provider usage evidence only; unknown totals remain null and synthetic usage is not billed evidence",
+      "spend_evidence_complete": null,
+      "total_provider_spend_usd": null,
+      "unknown_cost_attempts": null
+    },
+    "count_definitions": {
+      "attempted_calls": "Journaled attempt starts; do not prove HTTP dispatch",
+      "confirmed_http_deliveries": "No separate transport-delivery census is reconstructed from attempt-start markers",
+      "continuations": "Defined continuation phases, not necessarily dispatched HTTP calls",
+      "permitted_reprompts": "Defined re-prompt phases, not necessarily dispatched HTTP calls",
+      "successful_calls": "Responses accepted by the pinned parser; includes invalid model actions and is synthetic when labelled synthetic"
+    },
+    "evidence_kind": "synthetic",
+    "infrastructure_retries": 0,
+    "invalid_first_actions": 0,
+    "permitted_reprompts": 0,
+    "successful_calls": 1152
+  },
+  "freeze_identity": null,
+  "freeze_verification": "not_applicable_synthetic_validation",
+  "human_review_claimed": false,
+  "milestone_6_complete": false,
+  "publication_performed": false,
+  "reproduction": {
+    "arguments": [
+      "--run",
+      "C:\\Users\\tonmo\\OneDrive\\Documents\\ChatGPT\\beyond-the-label\\evaluation\\synthetic_main_load2_preresults",
+      "--output",
+      "C:\\Users\\tonmo\\OneDrive\\Documents\\ChatGPT\\beyond-the-label\\evaluation\\synthetic_report_bundle",
+      "--allow-synthetic"
+    ],
+    "command_template": "python -m beyond_label.finalize --run SOURCE_RUN --output BUNDLE_OUTPUT --allow-synthetic",
+    "module": "beyond_label.finalize",
+    "placeholders": [
+      "SOURCE_RUN",
+      "BUNDLE_OUTPUT"
+    ]
+  },
+  "schema_version": 1,
+  "scope": "Offline artifact packaging only; paper, human review and submission are not claimed",
+  "source_execution_evidence_kind": "synthetic",
+  "source_hashes": {
+    "analysis_manifest.json": "7e84e0cb6a41223bb5b4817dacaefed8e648a918123a65a7ddf176bec9adb6ff",
+    "calls.jsonl": "0a59be4784820f7cc1d3e658fcf1c36168bfaef722712c2a3ef22d36028279e0",
+    "manifest.json": "ff31f17d50af6d58516aefb06df21301e3f0e6ebfa0bbbdb32b79dcfe1d9367a",
+    "scores.csv": "f6142b7842eeeb8a1b4d3a8d000605d1f0745765201daa5304fb8f0e1627d5f9",
+    "usage.csv": "139da8242188e66bb06e714d05d19c8a3aaac83020df3a11972002a8ffd3c08d"
+  },
+  "source_run": "C:\\Users\\tonmo\\OneDrive\\Documents\\ChatGPT\\beyond-the-label\\evaluation\\synthetic_main_load2_preresults",
+  "trace_verification": "raw_journal_integrity_and_derived_outputs_verified"
+}

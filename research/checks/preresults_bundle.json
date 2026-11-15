@@ -1,0 +1,69 @@
+{
+  "classification": "synthetic_offline_bundle_not_empirical",
+  "command": "python -m beyond_label.finalize --run evaluation/synthetic_main_load2_preresults --output evaluation/synthetic_report_bundle --allow-synthetic",
+  "exit_code": 0,
+  "elapsed_seconds": 33.12,
+  "recorded_at_utc": "2026-11-14T21:52:41.273939+00:00",
+  "network_blocked": true,
+  "credentials_removed": true,
+  "source_five_files_unchanged": true,
+  "artifact_hashes_verified": true,
+  "artifact_count": 10,
+  "empirical_observations": 0,
+  "completeness": {
+    "planned_cells": 704,
+    "observed_first_action_or_readback_cells": 704,
+    "completed_cells": 704,
+    "pending_cells": 0,
+    "unexecuted_cells": 0,
+    "unresolved_attempt_cells": 0,
+    "infrastructure_missing_cells": 0,
+    "continuation_missing_cells": 0,
+    "missing_first_action_or_readback_cells": 0,
+    "missing_reasons": {},
+    "all_cells_terminal": true,
+    "all_observations_available": true
+  },
+  "execution_summary": {
+    "artifact_label": "SYNTHETIC VALIDATION \u2014 NOT EMPIRICAL RESULTS",
+    "evidence_kind": "synthetic",
+    "attempted_calls": 1152,
+    "successful_calls": 1152,
+    "infrastructure_retries": 0,
+    "permitted_reprompts": 0,
+    "continuations": 448,
+    "invalid_first_actions": 0,
+    "confirmed_http_deliveries": null,
+    "count_definitions": {
+      "attempted_calls": "Journaled attempt starts; do not prove HTTP dispatch",
+      "successful_calls": "Responses accepted by the pinned parser; includes invalid model actions and is synthetic when labelled synthetic",
+      "confirmed_http_deliveries": "No separate transport-delivery census is reconstructed from attempt-start markers",
+      "permitted_reprompts": "Defined re-prompt phases, not necessarily dispatched HTTP calls",
+      "continuations": "Defined continuation phases, not necessarily dispatched HTTP calls"
+    },
+    "cost": {
+      "evidence_kind": "synthetic_fixture_not_billed",
+      "total_provider_spend_usd": null,
+      "known_provider_spend_usd": null,
+      "spend_evidence_complete": null,
+      "unknown_cost_attempts": null,
+      "accounting_error_attempts": null,
+      "nonzero_cost_attempts": null,
+      "scope": "Provider usage evidence only; unknown totals remain null and synthetic usage is not billed evidence"
+    }
+  },
+  "visual_review": {
+    "reviewer_type": "AI",
+    "figures": [
+      "analysis/figures/agent_allocation_vs_oracle.png",
+      "analysis/figures/pair_switch_categories.png"
+    ],
+    "checks": [
+      "Synthetic labels clearly visible",
+      "Axes and labels readable without overlap",
+      "Oracle references explicitly distinguished",
+      "Pending/missing label does not infer infrastructure cause"
+    ],
+    "passed": true
+  }
+}

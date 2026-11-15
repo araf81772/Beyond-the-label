@@ -14,12 +14,112 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from beyond_label.environment import CredentialLoadError, load_local_credentials
 SOURCE_SHA256 = "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b"
+
+
+def validate_execution_evidence(root: Path, milestones: dict) -> dict:
+    """Reconcile status with retained raw evidence without changing run files.
+
+    experimental_calls means recorded request attempts, not confirmed HTTP
+    deliveries. Pre-dispatch allowance reservations are a different quantity.
+    Synthetic directories never contribute to empirical counts or completion.
+    """
+    from beyond_label.budget import _unique_object
+    from beyond_label.freeze import verify_freeze
+    from beyond_label.run import build_manifest, rebuild_outputs
+
+    root = root.resolve()
+    runs_root = root / "runs"
+    if not runs_root.resolve().is_relative_to(root):
+        raise ValueError("Execution inventory must stay inside the repository")
+    manifests = sorted(runs_root.glob("**/manifest.json"))
+    calls = sorted(runs_root.glob("**/calls.jsonl"))
+    if {p.parent for p in manifests} != {p.parent for p in calls}:
+        raise ValueError("Execution inventory has unmatched manifests or journals")
+    inventory = {"recorded_request_attempts": 0, "successful_calls": 0,
+                 "infrastructure_retries": 0, "empirical_runs": [],
+                 "synthetic_run_directories": [], "freeze": None,
+                 "call_count_scope": "recorded attempt_started events; not confirmed HTTP deliveries"}
+    trace_hashes = set()
+    main_freeze_hashes = set()
+    required = ("manifest.json", "calls.jsonl", "scores.csv", "usage.csv", "analysis_manifest.json")
+    for path in manifests:
+        directory = path.parent
+        if not directory.resolve().is_relative_to(runs_root.resolve()):
+            raise ValueError("Execution evidence escapes repository runs")
+        if any(not (directory / name).is_file()
+               or (directory / name).resolve().parent != directory.resolve() for name in required):
+            raise ValueError("Execution audit requires all five retained run artifacts")
+        raw = {name: (directory / name).read_bytes() for name in required}
+        stored = json.loads(raw["manifest.json"], object_pairs_hook=_unique_object)
+        if not isinstance(stored, dict) or not isinstance(stored.get("run_config"), dict):
+            raise ValueError("Execution inventory requires a wrapped run manifest")
+        kind = stored.get("run_config", {}).get("evidence_kind")
+        relative = directory.relative_to(root).as_posix()
+        if kind not in {"empirical", "synthetic"}:
+            raise ValueError("Execution inventory requires explicit evidence labels")
+        digest = hashlib.sha256(raw["calls.jsonl"]).hexdigest()
+        if kind == "empirical" and raw["calls.jsonl"] and digest in trace_hashes:
+            raise ValueError("Duplicate empirical journal cannot count as another run")
+        with tempfile.TemporaryDirectory(prefix="btl-audit-replay-") as temporary:
+            replay = Path(temporary)
+            for name in ("manifest.json", "calls.jsonl"):
+                (replay / name).write_bytes(raw[name])
+            summary = rebuild_outputs(replay)
+            if any((replay / name).read_bytes() != raw[name]
+                   for name in ("scores.csv", "usage.csv", "analysis_manifest.json")):
+                raise ValueError("Execution outputs disagree with raw-journal replay")
+        if any((directory / name).read_bytes() != data for name, data in raw.items()):
+            raise ValueError("Execution evidence changed during audit")
+        if kind == "synthetic":
+            inventory["synthetic_run_directories"].append(relative)
+            continue
+        trace_hashes.add(digest)
+        dataset = stored["plan"]["dataset"]
+        if dataset == "main":
+            main_freeze_hashes.add(stored["run_config"].get("freeze", {}).get("record_hash"))
+        inventory["empirical_runs"].append({"directory": relative, "dataset": dataset,
+            "raw_trace_sha256": digest,
+            **{key: summary[key] for key in ("attempted_calls", "successful_calls", "infrastructure_retries",
+                "empirical_observations", "planned_cells", "completed_cells", "pending_cells",
+                "first_action_or_readback_missing", "unknown_cost_attempts", "accounting_error_attempts")}})
+        inventory["recorded_request_attempts"] += summary["attempted_calls"]
+        inventory["successful_calls"] += summary["successful_calls"]
+        inventory["infrastructure_retries"] += summary["infrastructure_retries"]
+    claimed = milestones.get("experimental_calls")
+    if type(claimed) is not int or claimed < 0 or claimed != inventory["recorded_request_attempts"]:
+        raise ValueError("Experimental call count disagrees with retained request attempts")
+    record = milestones.get("execution_freeze")
+    if isinstance(record, str):
+        path = (root / record).resolve()
+        if Path(record).is_absolute() or not path.is_relative_to(root):
+            raise ValueError("Freeze record path must stay inside the repository")
+        record = json.loads(path.read_bytes(), object_pairs_hook=_unique_object)
+    if record is not None:
+        if (not isinstance(record, dict)
+                or not {"selected_load", "schedule_seed", "provider_settings"} <= set(record)):
+            raise ValueError("Execution freeze requires a complete verifiable record")
+        plan = build_manifest("main", record["selected_load"], record["schedule_seed"])
+        inventory["freeze"] = verify_freeze(record, plan, record["provider_settings"])
+    if main_freeze_hashes and (record is None or main_freeze_hashes != {record.get("record_hash")}):
+        raise ValueError("Empirical main evidence must match the recorded verified freeze")
+    states = {item["number"]: item["status"] for item in milestones["milestones"]}
+    if states.get(4) == "complete" and inventory["freeze"] is None:
+        raise ValueError("Milestone 4 completion requires a verified execution freeze")
+    if states.get(5) == "complete":
+        main_runs = [entry for entry in inventory["empirical_runs"] if entry["dataset"] == "main"]
+        if (states.get(4) != "complete" or inventory["freeze"] is None
+                or not main_runs or any(entry["pending_cells"] for entry in main_runs)):
+            raise ValueError("Milestone 5 completion requires frozen main evidence without pending cells")
+    if states.get(6) == "complete" and states.get(5) != "complete":
+        raise ValueError("Milestone 6 completion requires completed empirical execution")
+    return inventory
 
 
 def main() -> int:
@@ -82,8 +182,8 @@ def main() -> int:
             checks_recorded = item.get("validation", [])
             check(bool(checks_recorded) and all(c["exit_code"] == 0 for c in checks_recorded),
                   f"milestone {item['number']} has passing acceptance evidence")
-    check(milestones["execution_freeze"] is None, "no invented freeze tag")
-    check(milestones["experimental_calls"] == 0, "no invented experimental calls")
+    execution_inventory = validate_execution_evidence(ROOT, milestones)
+    check(True, "execution status reconciled with retained raw evidence and verified freeze")
 
     baseline = json.loads((ROOT / "research/baseline.json").read_text("utf-8"))
     check(all(value == "absent; not run or passed" for value in baseline["required_experiment_tests"].values()),
@@ -127,6 +227,7 @@ def main() -> int:
         "scope": "audit evidence and source integrity; experiment tests are separately recorded",
         "checks_passed": len(checks), "requirements_mapped": len(rows),
         "files_scanned": len(paths), "source_sha256": SOURCE_SHA256,
+        "execution_inventory": execution_inventory,
         "secret_scan_limit": "Selected token patterns, credential filenames, and checked current environment values; manual diff review also required.",
         "failures": failures,
     }, indent=2))

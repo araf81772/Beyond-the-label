@@ -1,0 +1,37 @@
+{
+  "classification": "SYNTHETIC VALIDATION ONLY \u2014 NOT EMPIRICAL RESULTS",
+  "empirical_observations": 0,
+  "actual_experimental_api_calls": 0,
+  "actual_experimental_api_spend": 0,
+  "planned_cells": 704,
+  "completed_cells": 704,
+  "synthetic_successful_calls": 1152,
+  "synthetic_retries": 0,
+  "synthetic_invalid_first_actions": 0,
+  "synthetic_missing_cells": 0,
+  "resume_issued_no_duplicate_calls": true,
+  "offline_regeneration_byte_identical": true,
+  "raw_trace_preserved": true,
+  "raw_trace_sha256": "0a59be4784820f7cc1d3e658fcf1c36168bfaef722712c2a3ef22d36028279e0",
+  "synthetic_provider": {
+    "model": "synthetic-public-policy-v1",
+    "provider": "synthetic-local",
+    "provider_route": null,
+    "provider_identity_source": "provider",
+    "require_parameters": false,
+    "free_only": false,
+    "temperature": 0.0,
+    "reasoning": {},
+    "max_output_tokens": 512
+  },
+  "figures": [
+    "evaluation\\synthetic_main_load2_preresults\\analysis\\figures\\allocation.csv",
+    "evaluation\\synthetic_main_load2_preresults\\analysis\\figures\\agent_allocation_vs_oracle.png",
+    "evaluation\\synthetic_main_load2_preresults\\analysis\\figures\\pair_switch_categories.png"
+  ],
+  "evidence": {
+    "artifact_label": "SYNTHETIC VALIDATION \u2014 NOT EMPIRICAL RESULTS",
+    "matched_trace_status": "trace_derived",
+    "output": "evaluation\\synthetic_main_load2_preresults\\analysis"
+  }
+}

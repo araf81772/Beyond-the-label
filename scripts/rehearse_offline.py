@@ -88,10 +88,10 @@ def rehearse(output: Path) -> dict:
         "stages": stages,
         "pilot_summary": pilot,
         "remaining_blockers": [
-            "Offline instruction prohibits real calls",
-            "No authorized spending cap or selected empirical model/provider/settings",
-            "Live transport, current provider fields, credentials and rates require verification",
-            "Real smoke/pilot evidence and human-review participation remain absent",
+            "Synthetic fixtures cannot establish real smoke or pilot completion",
+            "Live execution separately requires current authorization and verified provider/account gates",
+            "Actual model/load selection and freeze require retained empirical gate evidence",
+            "This rehearsal supplies no human-review participation or empirical observations",
         ],
     }
     (output / "rehearsal.json").write_text(

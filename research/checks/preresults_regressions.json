@@ -1,0 +1,53 @@
+{
+  "classification": "offline_regression_evidence_not_empirical_results",
+  "recorded_at_utc": "2026-11-14T21:47:27.370881+00:00",
+  "network_inference_calls": 0,
+  "human_review": false,
+  "reviewer_type": "AI",
+  "cycles": [
+    {
+      "area": "execution audit, fixed analysis plan and clean-clone driver",
+      "command": "python -m pytest -q tests/test_execution_audit.py tests/test_analysis_plan.py tests/test_reproduction_driver.py tests/test_analysis.py tests/test_rehearsal_acceptance.py --tb=short",
+      "initial_result": "17 failed, 1 passed; empirical analysis accepted altered resampling choices; credential-isolated driver absent",
+      "first_retest": "50 passed in 8.91s",
+      "additional_regression": "1 failed: synthetic relabel bypass accepted before raw replay",
+      "fix": "Replay all retained runs before evidence-kind separation; reject duplicate empirical journals; reconcile attempts/freezes; enforce fixed empirical seed/count; strip child credentials and retain timeout failure evidence",
+      "final_result": "52 passed in 9.30s",
+      "evidence_source": "subagent command results; full integrated suite recorded separately"
+    },
+    {
+      "area": "offline finalizer",
+      "initial_result": "1 collection error in 0.77s: finalize module absent",
+      "first_retest": "14 passed in 14.48s",
+      "additional_regression": "1 failed: planned-mode freeze wording could imply absence of a freeze elsewhere",
+      "fix": "Record execution_freeze_verified=false as scope of package, without global absence claim",
+      "retest": "14 passed in 13.59s",
+      "independent_review": "AI review identified terminal pre-dispatch failure misclassification and missing packaged call/cost summaries; corrected without changing design",
+      "evidence_source": "subagent command results; subsequent corrective evidence recorded separately",
+      "corrective_regression": "3 failed, 14 deselected in 5.91s",
+      "corrective_fix": "Classify terminal failures before never-started cells; preserve validated execution/cost summary with null unknown costs and synthetic/non-billing labels",
+      "corrective_retest": "3 passed, 14 deselected in 4.89s",
+      "final_retest": "17 passed in 16.93s"
+    },
+    {
+      "area": "partial-run figure wording",
+      "review_finding": "Incomplete pairs can include pending cells, so Infra missing overstated cause",
+      "fix": "Change label to Missing / pending without changing categories or estimands",
+      "command": "python -m pytest -q tests/test_figures.py",
+      "final_result": "3 passed in 10.35s"
+    },
+    {
+      "area": "official-template report builder and Word rendering",
+      "initial_checks": "8 portable report tests passed; Word export exposed malformed nested table cell",
+      "first_regression": "1 failed,7 passed in2.48s: required terminal paragraph missing after guidance removal",
+      "first_fix": "Retain required final paragraph in author container cell",
+      "first_retest": "8 passed in1.62s; Word opened/rendered13 pages with8body pages",
+      "visual_review_findings": "All13 initial pages AI-inspected; numbered references merged in one paragraph and appendix left short final page",
+      "second_regression": "1 failed,8 passed in2.02s",
+      "second_fix": "Parse numbered references as separate blocks; adjust appendix spacing and keep code blocks together",
+      "second_retest": "9 passed in1.43s",
+      "final_visual_review": "pending final v2 export",
+      "credential_or_inference_use": false
+    }
+  ]
+}

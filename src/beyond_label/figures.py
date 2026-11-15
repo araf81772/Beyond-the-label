@@ -82,7 +82,7 @@ def write_figures(analysis: Mapping[str, Any], output: Path | str, *, allow_synt
     plt.close(fig)
 
     fig, axes = plt.subplots(1, 2, figsize=(11, 4.8), sharey=True, layout="constrained")
-    labels = ["Correct\nswitch", "Reverse\nswitch", "Same\ntarget", "No\ncheck", "Invalid", "Infra\nmissing"]
+    labels = ["Correct\nswitch", "Reverse\nswitch", "Same\ntarget", "No\ncheck", "Invalid", "Missing /\npending"]
     for ax, layout in zip(axes, ("separate", "inline")):
         summary = analysis["main_by_layout"][layout]
         counts = [summary["pair_category_counts"][key] for key in PAIR_CATEGORIES] + [summary["missing_worlds"]]

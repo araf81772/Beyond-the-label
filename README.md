@@ -2,126 +2,74 @@
 
 **The Label Survived. Which Case Did the Agent Check?**
 
-Execution checkpoint, 15 November 2026 (Australia/Sydney). Milestones 1–3 are complete within the offline scope and delivered. Milestone 4 has offline-tested real-run infrastructure, but real smoke/pilot and freeze are incomplete. Milestones 5–6 depend on those empirical gates. The repository was empty at intake; the remote's initial Git attributes commit was preserved. No pre-existing experiment code or observations were found.
+“A fixed-report scope-binding swap with audited delivery and enacted verification under changing payoffs.”
 
-Current update: the user authorized free-only execution through milestones 4–6 if the key hard limit is USD 0. The read-only OpenRouter check now authenticates, but reports **zero_hard_limit:false**, with **50 free requests remaining**. No inference request was sent. Both execution flags in [configs/free.yaml](configs/free.yaml) remain disabled. Set the hard spending limit to exactly USD 0 on the same key used by the ignored `.env`, then request a recheck. [Latest check evidence](research/checks/durable_cap_account_preflight.json); [execution details](research/free_execution.md).
+Checkpoint: 15 November 2026, Australia/Sydney. Milestones 1-3 are complete within the offline engineering scope. M4 real smoke/pilot/freeze and M5 main execution have not occurred. Independent M6 analysis/report/reproduction preparation is available; empirical findings and the final paper remain pending. No model inference was made, no execution freeze exists, and synthetic tests are excluded from empirical evidence.
 
-The contribution specified for this project is: “A fixed-report scope-binding swap with audited delivery and enacted verification under changing payoffs.” This is a planned study, not a claim supported by collected results.
+The latest user instruction defers smoke until a budget update. Paid calls remain forbidden. The durable ceiling is still **10 aggregate free inference attempts** across stages, retries, re-prompts and continuations; it cannot complete the required 80 initial smoke cells. The latest historical key check authenticated but did not verify the required USD 0 hard spending limit. Both execution flags remain disabled; this checkpoint performs no account recheck. [Remaining gates and handoff](research/offline_completion.md).
 
-- [Authoritative design](research/protocol.md): byte-for-byte archive of the supplied `final_design.txt`, all 581 lines reviewed. Historical citation claims remain unchanged in the archive; the current independent checks are in [related work](research/related_work.md).
-- [Audit and blockers](research/audit.md), [requirements map](research/requirements.csv), and [decision log](research/decisions.md).
-- [Six-milestone status](research/milestones.json), [runtime baseline](research/baseline.json), and [source provenance](research/source_manifest.json).
-- [Approved NUMERIC amendment and implementation conventions](research/amendments.md).
-- [Oracle derivation](research/oracle_derivation.md) and [analytic reference table](evaluation/oracle_table.csv), neither empirical observations nor human-reviewed results.
+The [pre-results manuscript](report/manuscript.md) names **Tonmoy and Araf**, with affiliations pending. It includes methods, analytic references, NOT RUN results and the required ethical/limitations appendix. The official template has been retrieved and retained. [Report artifacts and reproduction](report/README.md). No H1-H5 human review, author contribution, submission or publication is inferred from the confirmed names.
 
-## Run offline checks and regenerate inputs
+## Design and evidence
 
-From the repository root in PowerShell:
+- [Authoritative design](research/protocol.md): byte-preserved archive of the supplied `final_design.txt`, all 581 lines reviewed. [Source hash and provenance](research/source_manifest.json).
+- [Approved NUMERIC amendment and fixed analysis conventions](research/amendments.md). The archive remains unchanged.
+- [Requirement map](research/requirements.csv), [decisions](research/decisions.md), [exactly six milestone records](research/milestones.json), and [initial audit](research/audit.md).
+- [Oracle derivation](research/oracle_derivation.md) and [analytic table](evaluation/oracle_table.csv). MAIN reference losses are oracle 30, always-commit 50 and random single inspection 45; oracle D is +1.00. These are not model observations.
+- [Verified primary references](research/related_work.md) and [official-template provenance](research/checks/report_preparation_sources.json). Citation verification was AI review, not human H5 review.
+
+The initial audit found no pre-existing experiment implementation or observations in this checkout. The remote's initial Git attributes commit was preserved. Earlier proposal and citation-access statuses remain historical in the decision and check records.
+
+## Setup and offline tests
+
+The project requires Python >=3.11. `requirements.lock` and `research/environment.lock.json` record the tested Python 3.14.7 Windows environment and 32 installed packages. No dependency was downloaded during offline preparation. A same-host clean clone does not establish a fresh installation; offline installation requires compatible wheels:
 
 ```powershell
-python --version
-uv --version
-python scripts/verify_audit.py
+python -m pip install --no-index --find-links PATH_TO_WHEELHOUSE -r requirements.lock
+```
+
+With dependencies installed, run from the repository root:
+
+```powershell
+$env:PYTHONPATH = 'src'
 python -m pytest -q
+python scripts/verify_audit.py
 python -m pip check
-$env:PYTHONPATH = 'src'
-python -m beyond_label.generate --output data
-python -m beyond_label.oracle --output evaluation/oracle_table.csv
 git diff --check
-git status --short
 ```
 
-The audit script checks source integrity, requirement coverage, milestone records, and selected credential patterns without printing secrets. It does **not** replace the experiment test suite. Tests block network socket connections. Detailed acceptance outcomes and repair history are in `research/checks/` and the decision log.
+The suite blocks network connections and substitutes temporary credentials. Tests cover T1-T8, sandbox transitions, post-inspection scoring, provider serialization/retries, usage, hashes, missingness, resume, controls, analysis and evidence packaging. The audit checks source integrity, selected secret patterns and consistency between milestone claims and raw evidence; it does not replace the experiment tests. Historical failed checks and repairs are preserved in `research/checks/` and the decision log.
 
-The initial milestone-1 pytest attempt found no tests; that historical evidence remains intact. Current tests cover T1–T8, world integrity, deterministic rendering, exact oracle values, sandbox transitions, provider payloads/retries, interruption recovery, independent readback prefixes, paired analysis and evidence provenance. Synthetic fixtures and mock usage are excluded from empirical results.
-
-## Synthetic offline pipeline
+## Reproduce without model calls
 
 ```powershell
-python scripts/validate_offline.py --output evaluation/synthetic_main_load2_env
-python scripts/reproduce_offline.py
+python scripts/validate_offline.py --output evaluation/synthetic_main_load2_preresults
+python scripts/rehearse_offline.py --output evaluation/synthetic_m4_preresults
+python -m beyond_label.finalize --planned --output results/planned
+python -m beyond_label.finalize --run evaluation/synthetic_main_load2_preresults --output evaluation/synthetic_report_bundle --allow-synthetic
+python scripts/reproduce_offline.py --output research/checks/preresults_clean_clone.json
 ```
 
-The first command builds provisional manifests for both possible main loads, runs all 704 main-plan cells through a deterministic local fixture, checks immutable traces and duplicate-free resume, and regenerates scores, usage, analysis, figures, a worked matched trace and a numeric evidence map. It makes **zero real provider calls**. Every output is labelled synthetic. The fixture always inspects the first target, so its outcomes are a pipeline check, not evidence about an AI model. The chosen main load remains unset.
+The main fixture exercises 704 cells and at most 1152 planned local calls. Smoke/pilot rehearsal exercises 320 fixture cells and 576 local calls, including load-8 unconditionally for coverage. These fixtures cannot select a real load or model or satisfy the empirical gates. Each run retains `manifest.json`, `calls.jsonl`, `scores.csv`, `usage.csv` and `analysis_manifest.json`; offline replay checks byte-identical regeneration and duplicate-free completed resume.
 
-Each synthetic run contains `manifest.json`, `calls.jsonl`, `scores.csv`, `usage.csv`, and `analysis_manifest.json`, plus labelled analysis artifacts. Its manifest hashes source, prompts, configuration and data inputs; changed inputs block resume/replay. Use a new output directory for a new code version and preserve prior raw traces. A torn or ambiguous interrupted attempt is recorded or blocked explicitly rather than resampled. No valid/invalid decision is resampled, and each decision episode permits at most one exact no-tool re-prompt.
+Choose a new output directory after source hashes change and preserve previous traces. The planned bundle has null empirical statistics and 704 unexecuted cells, not 704 observed infrastructure failures. The finalizer validates a stored main run in a disposable snapshot, preserves original evidence, and packages trace-derived tables, figures, a matched trace and claim-evidence hashes. Synthetic input requires explicit opt-in. For an eventual real run, omit `--allow-synthetic`; packaging itself never marks M6 complete or submits a paper.
 
-The second command tests a clean local Git clone against the same installed environment, without network or package installation; its result is separate from fresh-environment reproducibility. The pinned OpenRouter serializer has only an injected local transport. Public provider-field and pricing documentation has now been reviewed; real delivery, returned metadata, account limits and authentication remain unverified. The live transport and real-run configs are disabled.
+Clean-clone reproduction uses local Git objects and the same installed dependencies, strips known credential variables, performs no package installation and records timeouts as failures. Historical runs tied to earlier inputs need their compatible source snapshot for replay. `evaluation/input_snapshots/` retains the earlier archive; do not rewrite historical data to pass a newer replay check.
 
-Milestone-3 validation evidence remains preserved: [353-test suite](research/checks/milestone3_suite.json), [clean clone](research/checks/clean_clone.json) and [committed input hashes](research/checks/committed_inputs.json). The two earlier synthetic main runs retain their raw traces and original input snapshots. Continuing pre-freeze engineering uses a new synthetic run directory; none of these fixtures supplies empirical evidence.
+## Credentials and execution controls
 
-`requirements.lock` pins 32 installed transitive packages for Python 3.14.7 on Windows; `research/environment.lock.json` records their metadata fingerprints. `python scripts/lock_environment.py` regenerates this offline snapshot. `uv lock --offline` failed because required index/wheel data is absent, so the design's permitted pip+lock alternative is used. `python -m pip check` passes. A fresh isolated package installation is **not verified**; offline reinstall requires a compatible wheelhouse via `python -m pip install --no-index --find-links <wheelhouse> -r requirements.lock`. No dependency was downloaded.
-
-## Offline smoke and pilot rehearsal
+The ignored project-root `.env` can supply `OPENROUTER_API_KEY`. Existing process values take precedence; unrelated variables are ignored and interpolation is disabled. The file is never included in manifests or input snapshots. Presence only can be checked offline:
 
 ```powershell
-python scripts/rehearse_offline.py
-$env:PYTHONPATH = 'src'
-python -m beyond_label.pilot evaluation/synthetic_m4_rehearsal_env/synthetic_pilot_load2 --allow-synthetic
-```
-
-The rehearsal covers four smoke worlds at load-2, all eight pilot worlds, and the four smoke worlds at load-8: 320 fixture cells and 576 successful local fixture calls. Each stage verifies trace-derived scoring, usage, byte-identical regeneration and zero additional calls on completed resume. Load-8 is exercised unconditionally for offline coverage; it is not an actual pilot selection.
-
-The pilot summary verifies the complete plan, raw journal and all derived files before computing the 16 paired MAIN outcomes and 16 NUMERIC outcomes. Altered scores, duplicate events and empirical relabeling fail verification. Invalid observations remain in the denominators; incomplete observations block threshold evaluation. The fixed first-target fixture produces 0/16 fully correct MAIN pairs and 8/16 optimal NUMERIC calls, which exercises the hypothetical floor-rule branch. It cannot decide an actual model change, select a load or authorize a freeze.
-
-Evidence: [rehearsal](evaluation/synthetic_m4_rehearsal/rehearsal.json), [gate regression cycle](research/checks/m4_gate_regression.json), [434-test integration suite](research/checks/m4_suite_final.json), and [renewed main-matrix validation](evaluation/synthetic_main_load2_m4prep/offline_validation.json). The [pre-loader clean-clone check](research/checks/m4_clean_clone.json) also passed all 434 tests; [all committed input hashes](research/checks/m4_committed_inputs.json) match. Necessary execution fields now reject non-finite caps/rates, malformed settings and truthy strings used as verification flags; those field checks do not authenticate real authorization or experimental evidence.
-
-## Execution prerequisites
-
-OpenRouter is specified as the routing service. The [proposed M4 configuration](configs/proposed_m4.yaml) selects `openai/gpt-4.1-mini` through the `openai` route, temperature 0, reasoning omitted, 512 output tokens and concurrency 1. The proposed USD 20 M4 ceiling is **not spending authorization**. Active configs stay disabled; account limits and real compatibility remain unverified. [Readiness and sources](research/execution_readiness.md) records prices, the upstream January 2027 retirement schedule, limitations and remaining work. A local credential loads automatically from the ignored project-root `.env`; presence does not verify authentication or authorize spending. The design's “under US$20” remains a historical estimate. No paid calls were made.
-
-That paid-model proposal is retained as historical planning. The subsequent free-only candidate is `nvidia/nemotron-3.5-super-vl:free`, pinned to `nvidia`/`Nvidia`, with zero request price ceilings. Its settings are retained in a separate disabled configuration. The earlier key rejection is historical. Authentication now succeeds, but the latest read-only check does not verify the USD 0 hard limit required by the user's renewed conditional authorization.
-
-Delivery uses the user-supplied existing repository, [araf81772/Beyond-the-label](https://github.com/araf81772/Beyond-the-label), on `main`. No GitHub repository was created or visibility changed. NUMERIC's information-sufficiency ambiguity was resolved by explicit user approval of amendment A1: retain report facts alongside the prescribed losses.
-
-The user permits free-only inference once the provider-side USD 0 hard limit is verified. Until then, research execution remains offline; Git delivery, read-only account checks and public source verification are authorized. There is no execution freeze, model observation, effect estimate, confidence interval, observed regret, pilot decision, human trace review, or empirical report. Synthetic world inputs and analytic references must not be counted as model results.
-
-
-## Local credential loading
-
-The provider loads known credential names from the project-root `.env` automatically when checking presence, constructing a provider, serializing a request or parsing a response. Existing process values take precedence, including explicit empty values. Other `.env` settings are ignored, interpolation is disabled, and importing a module does not load credentials. The user-authorized local `.env` is Git-ignored and never included in run manifests or input snapshots.
-
-Check presence only, without contacting a provider:
-
-```powershell
-$env:PYTHONPATH = 'src'
 python -m beyond_label.environment
 ```
 
-The command emits booleans and fixed error codes only. Do not print the file or environment values. Both real execution guards remain disabled; a detected key is not a budget, model choice or permission to spend. Tests use temporary fake credentials and cannot read the user's real `.env`.
+Do not print keys or authorization headers. Presence does not verify authentication, quota, a hard limit, budget or permission to spend. [Credential-loading evidence](research/checks/env_presence.json) is historical; [latest account evidence](research/checks/durable_cap_account_preflight.json) reports authentication with `zero_hard_limit:false`.
 
-Adding the loader changes source hashes. The earlier four synthetic runs retain their original bytes and are tied to commit `34c9438`; their 29 original inputs are archived in `evaluation/input_snapshots/34c9438_before_env_loading.zip` without credentials. Current commands use new output directories for future validation instead of rewriting historical traces. The full test suite exercises fresh synthetic runs under the current source.
+The disabled free candidate is OpenRouter `nvidia/nemotron-3.5-super-vl:free`, pinned to route `nvidia` and identity `Nvidia`, temperature 0, reasoning disabled, 512 output tokens, automatic tool choice, parallel tools disabled and concurrency 1. Real wire compatibility and pilot selection remain unverified. [Free execution settings and sources](research/free_execution.md), [configuration](configs/free.yaml).
 
-Credential-loading validation: [453-test suite](research/checks/env_loading_suite_final.json), [safe regression summaries](research/checks/env_loading_regressions.json), and [presence-only check](research/checks/env_presence.json). The key was detected locally; this does not establish online authentication. No paid calls were made.
+`attempts.py` reserves each authorized attempt durably before dispatch, shares the ceiling across stages/restarts, and never refunds a reservation. An interrupted pre-dispatch reservation consumes allowance but is not a confirmed provider call or charge. Never reset `runs/_free_session/attempts.jsonl`. The budget ledger separately preserves known and unknown costs. Paid requests, silent fallback and unverified execution settings are rejected.
 
-## Offline budget, rate and provider safeguards
+The earlier paid-model/configuration proposal, including its suggested USD 20 ceiling, remains **unapproved** planning in [readiness](research/execution_readiness.md). An announced future budget does not authorize spending now. After budget/attempt authorization and required account checks, real smoke and the full pilot must precede the freeze and main run. No main call may start before verified freeze evidence; material post-freeze changes require approval and a new run/freeze.
 
-The current checkpoint passes [607 tests](research/checks/m4_safeguards_suite.json). [Regression evidence](research/checks/m4_safeguards_regressions.json) records failures and repairs for ledger paths, provider identity, response preservation after settlement errors, and rate checks after slow durable writes. All use local fixtures.
-
-```powershell
-python -m pytest -q tests/test_budget.py tests/test_rate_limit.py tests/test_controls.py tests/test_provider.py
-python -m pytest -q
-python scripts/verify_audit.py
-```
-
-The helpers reserve funds and rate capacity for each attempt, retain unknown costs, and preserve returned decisions when local settlement fails. This is historical safeguard evidence. Subsequent free HTTP/runner integration is described below; the current hard-key-limit gate and empirical delivery checks remain unmet. See the [current free execution record](research/free_execution.md); no inference command is enabled.
-
-## Current free-only engineering validation
-
-The stabilized full suite passed [901 tests](research/checks/free_engineering_suite.json); [regression records](research/checks/free_engineering_regressions.json) retain failures and repairs. The HTTP adapter uses local mocks in tests, and the full suite receives no real credentials. Both free execution and account preflight are disabled. Real smoke/pilot/main observations remain absent. Authentication has since succeeded; the current blocker is the unmet USD 0 hard-key-limit condition, recorded in [the account recheck](research/checks/free_account_recheck.json).
-
-The [clean local clone](research/checks/free_clean_clone.json) also passed all 901 tests, audit and clean tracked diff, using the same installed dependencies. [Invocation evidence](research/checks/free_clean_clone_command.json) records credential exclusion and no network. This does not establish a fresh dependency installation or real provider delivery.
-
-The current hard-limit recheck checkpoint also passed [all 901 offline tests](research/checks/free_limit_recheck_suite.json) in 202.03 seconds. [Primary-source verification](research/related_work.md) covers the three requested arXiv versions and official sprint guidelines. Template contents remain inaccessible, and no human citation review or empirical result is claimed.
-
-Latest instruction: at most **10 aggregate free inference attempts**, only after the key hard limit is verified at USD 0. The [new check](research/checks/free_account_recheck_10_call_cap.json) still fails that condition. [Credential-source verification](research/checks/free_key_source_10_call_cap.json) confirms that no inherited variable overrides the ignored project `.env`. Zero inference calls were made. Ten attempts could cover only part of the required 80-cell smoke manifest. Execution remains disabled because the hard-key-limit condition is unmet. The durable aggregate attempt ceiling is now implemented; `max_cells` remains a cell limit.
-
-The latest 10-attempt-limit checkpoint passed [901 offline tests](research/checks/free_10_call_cap_suite.json) in 195.17 seconds. [Validation evidence](research/checks/free_10_call_cap_validation.json) records unchanged experiment inputs, the full smoke-plan size, dependency and audit checks.
-
-## Durable ten-attempt allowance
-
-`src/beyond_label/attempts.py` reserves each of the ten allowed inference attempts durably before the provider logs an attempt start. The shared `runs/_free_session/attempts.jsonl` journal spans stages, restarts and quota days; retries, re-prompts and continuations all consume slots. Claims are never refunded, including a crash before dispatch. Reservation counts are local safety accounting, not empirical call counts or USD costs. Missing/corrupt history blocks execution, and both real entry points require the same capped policy and shared ledger paths.
-
-The latest [key check](research/checks/durable_cap_account_preflight.json) still reports `zero_hard_limit:false`; no inference was made and both execution flags stay disabled. [Regression evidence](research/checks/durable_cap_regressions.json) records a reproduced lower-level bypass and its repair. The authoritative protocol, worlds, payoffs, prompts and interpretation thresholds are unchanged. No execution freeze exists.
-
-Final validation of the durable cap: [949 offline tests passed](research/checks/durable_cap_suite_final.json) in 207.29 seconds, including both reproduced regressions and repairs. [Final checks](research/checks/durable_cap_validation_final.json) verify source integrity, credential exclusion, dependencies and unchanged scientific inputs. No live observations or execution freeze are claimed.
+Routine delivery uses the user-supplied existing repository [araf81772/Beyond-the-label](https://github.com/araf81772/Beyond-the-label), branch `main`. No repository creation, visibility change, force-push, publication or submission is part of this checkpoint.

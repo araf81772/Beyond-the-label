@@ -1,0 +1,31 @@
+{
+  "artifact_hash_scope": "All generated files except bundle_manifest.json, avoiding a circular self-hash",
+  "artifact_hashes": {
+    "planned_status.json": "b40f03b35abb98e7a89b27d97dadf0828cac56a368072a06b8727344145e335d",
+    "status.csv": "22a1e642d5881a2bed11dcd527b92e02085764160a144ee7682f924aec4b1a60"
+  },
+  "artifact_label": "PLANNED ONLY \u2014 NO OBSERVATIONS",
+  "completeness": {
+    "all_cells_terminal": false,
+    "all_observations_available": false,
+    "completed_cells": 0,
+    "infrastructure_missing_cells": 0,
+    "planned_cells": 704,
+    "unexecuted_cells": 704
+  },
+  "empirical_observations": 0,
+  "evidence_kind": "unexecuted",
+  "milestone_6_complete": false,
+  "publication_performed": false,
+  "reproduction": {
+    "arguments": [
+      "--planned",
+      "--output",
+      "C:\\Users\\tonmo\\OneDrive\\Documents\\ChatGPT\\beyond-the-label\\results\\planned"
+    ],
+    "module": "beyond_label.finalize"
+  },
+  "schema_version": 1,
+  "scope": "Offline artifact packaging only; paper, human review and submission are not claimed",
+  "source_hashes": {}
+}

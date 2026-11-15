@@ -1,0 +1,7 @@
+artifact_label,condition,planned_cells,observed_cells,unexecuted_cells,infrastructure_missing_cells,status
+PLANNED ONLY — NO OBSERVATIONS,READBACK,256,0,256,0,unexecuted
+PLANNED ONLY — NO OBSERVATIONS,MAIN,256,0,256,0,unexecuted
+PLANNED ONLY — NO OBSERVATIONS,HIGH-FEE,64,0,64,0,unexecuted
+PLANNED ONLY — NO OBSERVATIONS,HIGH-STAKES,64,0,64,0,unexecuted
+PLANNED ONLY — NO OBSERVATIONS,MASKED,32,0,32,0,unexecuted
+PLANNED ONLY — NO OBSERVATIONS,NUMERIC,32,0,32,0,unexecuted

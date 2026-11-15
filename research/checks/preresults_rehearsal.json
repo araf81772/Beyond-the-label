@@ -1,0 +1,10 @@
+{
+  "classification": "synthetic_offline_rehearsal_not_empirical",
+  "command": "python scripts/rehearse_offline.py --output evaluation/synthetic_m4_preresults",
+  "exit_code": 0,
+  "elapsed_seconds": 60.67,
+  "recorded_at_utc": "2026-11-14T21:50:56.174187+00:00",
+  "credentials_removed": true,
+  "network_blocked": true,
+  "stdout": "{\n  \"classification\": \"SYNTHETIC INFRASTRUCTURE REHEARSAL \\u2014 NOT A REAL SMOKE OR PILOT\",\n  \"stage_count\": 3,\n  \"completed_fixture_cells\": 320,\n  \"successful_fixture_calls\": 576,\n  \"actual_experimental_provider_calls\": 0,\n  \"actual_selected_load\": null,\n  \"freeze_created\": false,\n  \"evidence\": \"evaluation\\\\synthetic_m4_preresults\\\\rehearsal.json\"\n}\n"
+}

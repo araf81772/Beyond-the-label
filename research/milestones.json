@@ -1,7 +1,7 @@
 {
-  "recorded_at_utc": "2026-11-14T13:50:54.974143+00:00",
+  "recorded_at_utc": "2026-11-14T23:52:57.626350+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "Implement durable 10-attempt aggregate attempt cap; recheck key; start free-only M4 only if hard limit USD 0; tests/logs/commit/push; no paid calls",
+  "requested_scope": "Complete independent offline preparation through milestone 6; defer smoke until user budget update; no inference or account recheck; tests, logs, commit and push",
   "execution_freeze": null,
   "experimental_calls": 0,
   "human_participation_observed": false,
@@ -227,7 +227,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "Durable 10-attempt attempt cap implemented; latest authenticated key check still reports zero_hard_limit:false, so no real smoke calls authorized",
+      "reason": "User defers smoke pending budget update; historical zero-hard-limit condition unmet and ten-attempt allowance insufficient for complete smoke",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -246,7 +246,9 @@
         "Guarded manifest execution and empirical reporting with explicit unknown-cost attempts",
         "Quota suspension before new attempts and safe interrupted-continuation resume",
         "Empirical pilot summaries and read-only freeze preparation/verification against retained traces and Git blobs",
-        "Durable 10-attempt attempt cap across all runs/restarts with crash/corruption/concurrent-writer tests and real-entry-point bypass regression"
+        "Durable 10-attempt attempt cap across all runs/restarts with crash/corruption/concurrent-writer tests and real-entry-point bypass regression",
+        "Current-source 320-cell rehearsal with576 fixture calls and immutable replay",
+        "Execution audit reconciles actual trace counts/freeze evidence; paid path remains disabled"
       ],
       "real_smoke_worlds": 0,
       "real_pilot_worlds": 0,
@@ -526,7 +528,8 @@
           "continuations"
         ],
         "cap_readiness": "Implemented: shared append-only hash-linked fsynced integer reservations, no refunds/reset; both real entry points require the fixed 10-attempt policy",
-        "durable_cap_implemented": true
+        "durable_cap_implemented": true,
+        "current_instruction": "Offline preparation only; smoke deferred until budget update"
       },
       "current_checkpoint": {
         "status": "committed_and_pushed_real_execution_blocked",
@@ -577,40 +580,146 @@
           "final_audit_checks": 658,
           "final_status_checkpoint": "This follow-up records observed delivery; its own identity is resolved and verified through Git without a circular self-hash"
         }
+      ],
+      "validation": [
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "994 passed in 279.92s; before final DOCX structural regression; final committed clean-clone suite pending",
+          "evidence": "research/checks/preresults_suite.json"
+        },
+        {
+          "command": "python scripts/validate_offline.py --output evaluation/synthetic_main_load2_preresults",
+          "exit_code": 0,
+          "summary": "704 synthetic cells, 1152 fixture calls, 448 continuations; no missing/invalid/retry outcomes; immutable replay and completed resume passed",
+          "evidence": "research/checks/preresults_pipeline.json"
+        },
+        {
+          "command": "python scripts/rehearse_offline.py --output evaluation/synthetic_m4_preresults",
+          "exit_code": 0,
+          "summary": "320 synthetic cells and576 fixture calls; exact smoke/pilot/load8 matrices; no completed-resume additions",
+          "evidence": "research/checks/preresults_rehearsal.json"
+        },
+        {
+          "command": "python -m beyond_label.finalize --run evaluation/synthetic_main_load2_preresults --output evaluation/synthetic_report_bundle --allow-synthetic",
+          "exit_code": 0,
+          "summary": "Source five files unchanged;10 artifact hashes verified; no empirical observations; both figures visually reviewed by AI",
+          "evidence": "research/checks/preresults_bundle.json"
+        },
+        {
+          "command": "Audit, dependencies, diff, unchanged scientific-input and original/archive equality checks",
+          "exit_code": 0,
+          "summary": "861 checks across274 files at this checkpoint; authoritative original/archive identical; no real runs or freeze",
+          "evidence": "research/checks/preresults_validation.json"
+        }
       ]
     },
     {
       "number": 5,
       "name": "Main execution",
       "status": "blocked",
-      "reason": "Real smoke/pilot and execution freeze absent; hard key-limit condition blocks inference, and the 10-attempt allowance cannot complete required M4 gates",
+      "reason": "No real smoke/pilot, selected load or execution freeze; main not started",
       "empirical_completed_cells": 0,
       "planned_cells": 704,
       "missingness_interpretation": "Not executed; no partial empirical run exists",
-      "minimum_next_action": "Satisfy the hard-key-limit condition, complete real milestone 4 gates and verify the freeze before main execution"
+      "minimum_next_action": "User settles budget and aggregate attempt allowance, then complete real M4 gates and verify execution freeze before any main call",
+      "completed_offline_preparation": [
+        "Current-source full704-cell synthetic execution, trace replay, usage and duplicate-free resume",
+        "Read-only finalization bundle preserving source bytes and explicit missingness classes"
+      ]
     },
     {
       "number": 6,
       "name": "Analysis/report/reproduction",
       "status": "blocked",
-      "reason": "No empirical main traces; independent primary-source verification can proceed, but empirical analysis and an official-template results paper cannot be completed",
+      "reason": "Independent offline pipeline and pre-results draft prepared; no empirical main traces or human H1-H5 reviews, so results and final paper remain pending",
       "completed_offline_preparation": [
         "Analysis algorithms and synthetic tests",
         "Figure/table and matched-trace generation",
         "Numeric claim-evidence generator",
         "Reproduction commands and source-integrity checks",
         "Citation and report prerequisite records",
-        "AI verification of the three requested arXiv identities/selected claims and official sprint guidelines/template link; template contents remain inaccessible"
+        "Official template retrieved and retained with provenance; all three requested primary sources rechecked",
+        "Pre-results manuscript with confirmed author names, analytic references and explicit NOT RUN results",
+        "Trace-verified finalizer with synthetic opt-in, immutable source snapshot and artifact hashes",
+        "Planned-only null statistics package; unexecuted cells distinct from infrastructure failures",
+        "Current-source704-cell synthetic analysis/figure/evidence bundle",
+        "Fixed empirical bootstrap plan enforcement and credential-isolated clean-clone driver"
       ],
       "empirical_estimate": null,
       "empirical_ci95": null,
       "paper_created": false,
       "human_review_observed": false,
-      "minimum_next_action": "Complete milestone 4 and frozen main execution; retrieve readable official template contents for final paper production",
+      "minimum_next_action": "Complete authorized real smoke/pilot and freeze, collect main traces, finalize evidence offline, and complete human review and author affiliations",
       "source_verification": "research/checks/source_verification.json",
       "official_template_link_verified": true,
-      "official_template_contents_verified": false
+      "official_template_contents_verified": true,
+      "source_verification_followup": "research/checks/report_preparation_sources.json",
+      "pre_results_manuscript": "report/manuscript.md",
+      "pre_results_draft_created": true,
+      "validation": [
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "994 passed in 279.92s; before final DOCX structural regression; final committed clean-clone suite pending",
+          "evidence": "research/checks/preresults_suite.json"
+        },
+        {
+          "command": "python scripts/validate_offline.py --output evaluation/synthetic_main_load2_preresults",
+          "exit_code": 0,
+          "summary": "704 synthetic cells, 1152 fixture calls, 448 continuations; no missing/invalid/retry outcomes; immutable replay and completed resume passed",
+          "evidence": "research/checks/preresults_pipeline.json"
+        },
+        {
+          "command": "python scripts/rehearse_offline.py --output evaluation/synthetic_m4_preresults",
+          "exit_code": 0,
+          "summary": "320 synthetic cells and576 fixture calls; exact smoke/pilot/load8 matrices; no completed-resume additions",
+          "evidence": "research/checks/preresults_rehearsal.json"
+        },
+        {
+          "command": "python -m beyond_label.finalize --run evaluation/synthetic_main_load2_preresults --output evaluation/synthetic_report_bundle --allow-synthetic",
+          "exit_code": 0,
+          "summary": "Source five files unchanged;10 artifact hashes verified; no empirical observations; both figures visually reviewed by AI",
+          "evidence": "research/checks/preresults_bundle.json"
+        },
+        {
+          "command": "Audit, dependencies, diff, unchanged scientific-input and original/archive equality checks",
+          "exit_code": 0,
+          "summary": "861 checks across274 files at this checkpoint; authoritative original/archive identical; no real runs or freeze",
+          "evidence": "research/checks/preresults_validation.json"
+        }
+      ],
+      "planned_status_bundle": "results/planned",
+      "synthetic_validation_bundle": "evaluation/synthetic_report_bundle",
+      "pre_results_exports": [
+        "report/pre_results.docx",
+        "report/pre_results.pdf"
+      ],
+      "report_verification": "report/report_manifest.json",
+      "clean_clone_current_version": "pending candidate commit",
+      "official_template_sha256": "21ebc0bcea8f9760c64c9c0eb163bbaaab0a34465722f86e4e3feecf6849de59"
     }
   ],
-  "human_participation_scope": "No H1-H5 oracle/trace/citation review observed; user separately approved NUMERIC amendment A1"
+  "human_participation_scope": "No H1-H5 oracle/trace/citation review observed; user separately approved NUMERIC amendment A1",
+  "authors": {
+    "names": [
+      "Tonmoy",
+      "Araf"
+    ],
+    "affiliations": "pending",
+    "source": "user confirmed names; no review participation inferred"
+  },
+  "offline_preparation_checkpoint": {
+    "status": "validation_and_render_review_in_progress",
+    "commit_reference": "Resolve through Git; no circular self-hash",
+    "push_status": "pending",
+    "no_inference": true,
+    "no_account_recheck": true,
+    "paid_calls_authorized": false,
+    "test_evidence": "research/checks/preresults_suite.json",
+    "regression_evidence": "research/checks/preresults_regressions.json",
+    "pipeline_evidence": "research/checks/preresults_pipeline.json",
+    "rehearsal_evidence": "research/checks/preresults_rehearsal.json",
+    "bundle_evidence": "research/checks/preresults_bundle.json"
+  }
 }

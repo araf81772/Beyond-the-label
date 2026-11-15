@@ -1,15 +1,42 @@
-# Empirical report prerequisites
+# Pre-results report and evidence packaging
 
-No empirical paper, submission PDF, or completed results section exists. This avoids presenting synthetic pipeline fixtures as findings. The official sprint guidelines and their template link have now been located through read-only public research; template contents remain inaccessible through the attempted public fetch. See `research/related_work.md` and `research/checks/source_verification.json` for source identities, supported claims and access limitations.
+The manuscript is a **pre-results draft**, with authors **Tonmoy and Araf** and affiliations pending. No real smoke, pilot or main observations exist. The primary effect, interval, sign test, observed regret, readback/control performance and recognition-action gap are unavailable. Oracle references are analytic, and synthetic fixtures are software checks.
 
-Pending stages, in order:
+`manuscript.md` supplies the scientific text. `official_template.docx` is the immutable export of the official Apart Research template. Its source and hash are recorded in `research/checks/report_preparation_sources.json`; earlier failed public-access attempts remain in the historical verification record. `artifact.md` records template inspection and permitted changes. `scripts/build_report.py` creates the pre-results document; `report_manifest.json` records actual generation and rendering checks. Exports must not be described as submission-ready until empirical evidence, author details and required review are complete.
 
-1. Real smoke/pilot, measured usage and costs, actual human-review disclosure, pilot model/load decisions, and execution freeze (milestone 4).
-2. Frozen real main execution, trace validation and complete/missing denominators (milestone 5).
-3. Offline empirical analysis, trace-derived figures/tables and matched trace, claim-to-evidence mapping, verified citations, official-template paper, appendices, export and reproduction (milestone 6).
+The supplied design remains byte-preserved in `research/protocol.md`. User-approved NUMERIC amendment A1 and fixed analysis conventions A2 are separate in `research/amendments.md`. The draft includes the required **Limitations and Dual-Use / Ethical Considerations** appendix, explicit no-human-review disclosure, AI-use statement and verified primary references. No H1-H5 review, submission or publication is claimed.
 
-Planned contribution: “A fixed-report scope-binding swap with audited delivery and enacted verification under changing payoffs.” This is a study description, not evidence of a demonstrated recognition–action gap. No synthetic effect estimate, confidence interval, model ranking or cost may be substituted for empirical evidence.
+## Offline evidence bundle
 
-Required appendix from the supplied design: **Limitations and Dual-Use / Ethical Considerations**. Human-review participation is currently none observed. Original source and approved NUMERIC amendment remain separate and must both be included in any eventual execution freeze.
+From the repository root:
 
-The latest account check authenticates but fails the user's USD 0 hard-limit condition. No empirical calls were made. M1–M3 engineering is complete; M4 is blocked before smoke, M5 is unstarted without a freeze, and M6 has only offline infrastructure and source-verification preparation. Primary effect, interval, sign test, observed regret, readback/control performance and recognition-action gap are unavailable. Oracle references (MAIN optimal loss 30, always-commit 50, random single check 45; primary D +1.00) are analytic values, not observations. The 704-cell main plan is unexecuted, not a partially sampled empirical run. No human H1–H5 review or paper submission is claimed.
+```powershell
+$env:PYTHONPATH = 'src'
+python -m beyond_label.finalize --planned --output results/planned
+```
+
+Planned mode records 704 unexecuted main cells, zero observed infrastructure misses, and null empirical statistics. It produces no simulated result figures or matched trace. It is not a partially completed run.
+
+For a future real main run:
+
+```powershell
+python -m beyond_label.finalize --run runs/MAIN_RUN_ID --output results/MAIN_RUN_ID
+```
+
+Replace the placeholder with the actual run directory. Finalization validates the five required files and replays raw evidence in a disposable snapshot. It preserves source bytes, enforces the frozen bootstrap plan, and packages derived tables, figures, matched trace, evidence map and artifact hashes. It does not perform inference, create a freeze, submit the paper or mark M6 complete. Partial empirical runs retain their explicit denominators and missingness.
+
+Synthetic validation requires an explicit opt-in and a separate output:
+
+```powershell
+python -m beyond_label.finalize --run evaluation/synthetic_main_load2_preresults --output evaluation/synthetic_report_bundle --allow-synthetic
+```
+
+The main result section must eventually be replaced using verified trace-derived evidence. The markers `BTL_EMPIRICAL_RESULTS_START` and `BTL_EMPIRICAL_RESULTS_END` delimit the pending section. `claim_to_evidence.csv` distinguishes methods, analytic references, external sources and pending empirical claims; the empirical finalizer generates a separate numeric evidence map. Neither file authorizes unsupported prose or automatic publication.
+
+## Remaining gates
+
+1. Settle the budget and attempt allowance, recheck required account conditions, and complete real smoke and pilot with exact threshold decisions.
+2. Create and verify the execution freeze, then collect the frozen main sample.
+3. Finalize stored evidence, populate and review the paper, confirm affiliations and actual human participation, regenerate exports and verify every page and claim.
+
+The current ten-attempt ceiling cannot complete the 80 initial smoke cells. Paid calls remain forbidden; the user's promise of a later budget is not authorization to spend now. See `research/offline_completion.md` for the complete handoff.

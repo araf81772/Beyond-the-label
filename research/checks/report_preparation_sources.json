@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "classification": "AI_source_and_template_verification_not_empirical_results",
+  "recorded_at_utc": "2026-11-14T21:45:41.098636+00:00",
+  "historical_record": "research/checks/source_verification.json",
+  "reviewer": "Codex",
+  "human_h5_review_performed": false,
+  "inference_calls": 0,
+  "account_rechecks": 0,
+  "model_credentials_used": false,
+  "template_access": "read_only_connected_Google_Drive_fetch_and_DOCX_export",
+  "credentials_or_signed_urls_retained": false,
+  "primary_sources_rechecked": [
+    {
+      "url": "https://arxiv.org/html/2608.25553v3",
+      "locations": [
+        "title and author block",
+        "abstract"
+      ],
+      "supported_claim": "Six-memory/two-record verification setting and experimenter-known forced-critical intervention; not a scheduler."
+    },
+    {
+      "url": "https://arxiv.org/html/2609.35155v2",
+      "locations": [
+        "title and author block",
+        "abstract"
+      ],
+      "supported_claim": "Scope-transfer errors with factual support and explicit boundaries; conditional recognition probe."
+    },
+    {
+      "url": "https://arxiv.org/html/2610.34107v1",
+      "locations": [
+        "title and author block",
+        "abstract"
+      ],
+      "supported_claim": "Calibrated reliance benchmark with analytic consequences and heterogeneous response to explicit reliability."
+    }
+  ],
+  "template": {
+    "title": "Apart Research hackathon submission template",
+    "file_id": "17b3JWki-ZkaqdmqGI5d0gof-HwlGuWU9Mc1_klNZXKs",
+    "source_url": "https://docs.google.com/document/d/17b3JWki-ZkaqdmqGI5d0gof-HwlGuWU9Mc1_klNZXKs/copy?usp=sharing",
+    "guidelines_url": "https://apartresearch.com/sprints/ai-x-epistemics-research-sprint-2026-11-13-to-2026-11-15",
+    "local_path": "report/official_template.docx",
+    "sha256": "21ebc0bcea8f9760c64c9c0eb163bbaaab0a34465722f86e4e3feecf6849de59",
+    "size_bytes": 302828,
+    "contents_verified": true,
+    "recommended_main_pages": 4,
+    "guidelines_max_body_pages": 8,
+    "references_appendices_excluded_from_maximum": true,
+    "abstract_words_min": 150,
+    "abstract_words_max": 250,
+    "required_appendix": "Limitations and Dual-Use / Ethical Considerations",
+    "format_verification_record": "report/report_manifest.json"
+  },
+  "limitations": [
+    "Human citation review H5 remains outstanding.",
+    "No exhaustive literature search or novelty proof.",
+    "Author names Tonmoy and Araf are user-confirmed; affiliations pending.",
+    "No submission or publication occurred."
+  ]
+}

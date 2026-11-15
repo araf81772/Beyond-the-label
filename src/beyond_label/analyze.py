@@ -421,6 +421,10 @@ def analyze_run(run_dir: Path | str, *, allow_synthetic: bool = False,
     run_dir = Path(run_dir)
     manifest_path, scores_path = run_dir / "manifest.json", run_dir / "scores.csv"
     stored_manifest = json.loads(manifest_path.read_text("utf-8"))
+    if stored_manifest.get("run_config", {}).get("evidence_kind") == "empirical":
+        if (type(bootstrap_seed) is not int or bootstrap_seed != BOOTSTRAP_SEED
+                or type(n_resamples) is not int or n_resamples != 10000):
+            raise ValueError("Empirical analysis requires frozen bootstrap seed 314159 and 10000 resamples")
     manifest = stored_manifest.get("plan", stored_manifest)
     if stored_manifest.get("run_config", {}).get("evidence_kind") == "synthetic":
         manifest = {**manifest, "evidence_kind": "synthetic"}
