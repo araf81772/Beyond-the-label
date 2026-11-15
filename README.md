@@ -24,7 +24,8 @@ Design: [research/protocol.md](research/protocol.md) (byte-preserved, pre-regist
 |---|---|
 | Offline tests and audit | Passing on branch `v1` (see `research/checks/v1_validation.json`) |
 | Earlier smoke, USD 1 allowance | **Partial and closed.** 54 real observations from DeepSeek V4.1 Flash via OpenRouter/PrimeIntellect on 4 smoke worlds. Smoke is a pipeline check and is never analysed as a result |
-| New smoke, pilot, freeze, main (USD 9 allowance) | **Prepared, not executed.** One command per stage: [research/staged_execution.md](research/staged_execution.md) |
+| New smoke, pilot, load-8 smoke (USD 9 allowance) | **Executed.** Smoke 80/80 cells, pilot 160/160 (15 of 16 MAIN pairs fully correct, 15 of 16 NUMERIC optimal: load-8 selected), load-8 smoke 80/80. 525 calls, USD 0.0696 of USD 9. Smoke is never analysed; the pilot only selects the load |
+| Freeze and main (USD 9 allowance) | **Not run.** Human checks H1/H2 and team decisions D3/D4 are not recorded yet. One command per stage: [research/staged_execution.md](research/staged_execution.md) |
 | Execution freeze | None yet |
 | Main effect, intervals, controls | Not available. Nothing in this repository is a finding about model behaviour |
 

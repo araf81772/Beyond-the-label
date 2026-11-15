@@ -430,3 +430,33 @@ Araf answered "Run load-8 smoke". Because the pilot selected load-8, protocol se
 
 All three freeze gates (smoke load-2, pilot, smoke load-8) are now complete on identical inputs. Cumulative staged spend: USD 0.069583372 of USD 9; 525 of 3,000 attempts reserved. No freeze record or tag exists yet; no main call has been made.
 
+## 2026-11-15 AEDT (late night) — pre-freeze review and open items (Claude, AI review)
+
+Araf asked for an independent multi-agent review (smoke traces, ledger, post-smoke audit and readiness) with no spending, then asked for the changes needed for the final run. This is AI review. It does not substitute for any human check. No model call, stage, freeze, tag, commit or push was made during the review.
+
+**Verified (read-only, on 9594f9a).** Both staged smokes and the pilot are complete with no missing cell, in plan order, each (cell, phase) attempted once, pinned model/provider/settings on every call, no hidden state in model-visible text, derived files rebuilt byte-for-byte from the raw traces, and no hashed input changed since the first staged smoke. Ledger, attempt counter, journals and usage files agree: 525 attempts, USD 0.069583372 known, nothing held, USD 8.930416628 available. A dry run of the freeze checks in a scratch copy passed; no record was written.
+
+**Changes made (none to a hashed input, so the gates stay valid).**
+
+- `scripts/verify_audit.py` now reconciles the staged ledger with the staged journals on a temporary copy (`validate_staged_ledger`). Before this, neither the audit nor the freeze compared them, and the hash chain cannot show a missing last line. `tests/test_staged_ledger_audit.py` covers a lost final settlement line.
+- `research/milestones.json`, `README.md` and `research/staged_execution.md` now state that the three gate stages were executed and that freeze and main were not.
+
+**Corrections to earlier entries.**
+
+- Smoke launches: `runs/_paid_staged_session/preflights.jsonl` holds three smoke `execute` preflights (07:47:58, 07:49:14 and 07:49:43 UTC), not the two described above. Only the third reserved attempts. The cause of the early stop(s), including the untraced `ValueError`, is still unknown; nothing was dispatched or charged by them.
+
+**Protocol deviations and open items the team must decide before the freeze. None is decided here.**
+
+- H1 (hand-computed oracle for the 8 pilot worlds, "before the pilot") was not done before the pilot ran. This is a deviation from the protocol's order. It can still be done late and recorded as late.
+- H2/P2 (both team members read every pilot trace against the parser output) has not been done. The freeze code does not check it.
+- D3 (accept or edit the Section 9 thresholds and the 14-of-16 ceiling rule) and D4 (who does H1–H5) are not recorded. Thresholds can be edited only before the freeze.
+- MASKED and the 512-token cap: the first MASKED reply ended with `finish_reason: length` and no tool call in 4 cells of the load-2 smoke, all 8 MASKED cells of the load-8 smoke and 14 cells of the pilot; no other condition was affected. Each got the single frozen re-prompt and then returned one tool call, as the protocol specifies. At load-8, almost every MASKED first action in main will therefore follow the re-prompt. Changing the cap would change a hashed input and the frozen settings and would require repeating the gates; no change is made. The team should accept this explicitly and report it as a limitation.
+
+**Known code limits left unchanged on purpose** (each is in a hashed input under `src/beyond_label/`; editing it now would invalidate the smoke and pilot as freeze gates):
+
+- `freeze.py` does not require the human checks and identifies a gate run by dataset and load only; `run.py` rebuilds only first and readback requests when validating a journal. The retained runs were checked by hand in this review: order, stage, authorization and continuation requests are correct.
+- `run.py` `_inputs` does not hash `data/plans/*.json` or `data/README.md`. The freeze compares the main plan with a rebuilt plan and with the committed blob.
+- `staged status` creates two git-ignored `.writer.lock` files in the session directory although its docstring says it writes nothing.
+- `latency_seconds` includes the rate limiter's wait and ledger I/O. It must not be reported as provider latency.
+
+Nothing above is a finding about model behaviour.

@@ -1,7 +1,7 @@
 {
   "recorded_at_utc": "2026-11-15T03:50:26.540649+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "CheckM4/M5 readiness; user explicitly authorized only79untouched smoke cells under existing caps, then stop/report beforepilot/main",
+  "requested_scope": "Staged USD 9 allowance (paid-staged-usd9-v1): smoke load-2, pilot and smoke load-8 executed on the user's explicit per-stage requests; pre-freeze AI review done; freeze and main await the team's pre-freeze checks and an explicit request. Earlier scope (79-cell continuation of the closed USD 1 smoke, stop before pilot/main) is historical.",
   "execution_freeze": null,
   "experimental_calls": 621,
   "human_participation_observed": false,
@@ -228,7 +228,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "Authorized79-cell continuation stopped after a continuation timeout because its charge is unknown.53newcells complete,1partial,25untouched,1retained missing. Pilot/load selection/freeze absent; paidpilot/main/freeze support has verified gaps.",
+      "reason": "Staged smoke load-2 (80/80 cells), pilot (160/160; 15/16 MAIN pairs fully correct, 15/16 NUMERIC optimal; load-8 selected) and smoke load-8 (80/80) are complete on identical inputs. No execution freeze record or tag exists. Before the freeze the protocol still needs human check H2/P2 (H1 was not done before the pilot), recorded team decisions D3/D4, and an explicit freeze request. The closed USD 1 smoke stays partial and retained (53 new cells complete, 1 partial, 25 untouched, 1 retained missing).",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -256,10 +256,10 @@
         "Read-only readiness CLI default; inference requires explicit --execute",
         "Explicit selected-endpoint model mapping and exact79-cell continuation preserving one terminal missing row, both historical source versions and all cumulative charges/attempts"
       ],
-      "real_smoke_worlds": 0,
-      "real_pilot_worlds": 0,
+      "real_smoke_worlds": 4,
+      "real_pilot_worlds": 8,
       "freeze_created": false,
-      "minimum_next_action": "Resolve the new timeout cost with provider evidence or an explicitly reviewed conservative-coverage decision before furtherdispatch. Preserve its reserve and partialepisode. Separately implement paidstage/freeze support, resolve the smoke pipeline acceptance mismatch, and obtain pilot authorization before M5.",
+      "minimum_next_action": "Team: do and record H2/P2 on the pilot traces, record the H1 deviation, record D3/D4. Then commit and run `python -m beyond_label.staged freeze --tag <tag>` on explicit request, tag, push the tag. See research/decisions.md (pre-freeze review).",
       "offline_preparation_status": "Partial smoke replay, accounting audit and1634-test offline suite passed; M4 empirical gates remain incomplete and M5 is notready.",
       "offline_validation": [
         {
@@ -807,11 +807,11 @@
       "number": 5,
       "name": "Main execution",
       "status": "blocked",
-      "reason": "No verified execution freeze or pilot/load decision; smoke incomplete after unknown-cost timeout. Paid main/stage accounting and complete frozen reproduction path need implementation/validation.",
+      "reason": "No verified execution freeze yet. The pilot selected load-8 and all three staged gates are complete; main needs the freeze record, a tag visible on origin and a fresh check-ready.",
       "empirical_completed_cells": 0,
       "planned_cells": 704,
       "missingness_interpretation": "Not executed; no partial empirical run exists",
-      "minimum_next_action": "Complete smoke and report, obtain separate pilot/main execution direction, satisfy pilot and freeze gates before any main call",
+      "minimum_next_action": "Complete the pre-freeze human checks and decisions, freeze, push the tag, run check-ready --stage main, then execute main only on explicit request",
       "completed_offline_preparation": [
         "Current-source full704-cell synthetic execution, trace replay, usage and duplicate-free resume",
         "Read-only finalization bundle preserving source bytes and explicit missingness classes",
@@ -1315,7 +1315,8 @@
     "paid_freeze_evidence_supported": false,
     "retained_missing_smoke_acceptance_unresolved": true,
     "human_review_observed": false,
-    "code_changed_during_smoke": false
+    "code_changed_during_smoke": false,
+    "historical_note": "Review of the closed USD 1 smoke state before branch v1. Later staged evidence is in staged_usd9_preparation; fields here (for example pilot_run_exists false) describe that earlier checkpoint only."
   },
   "paid_smoke_authorization_history": [
     {
@@ -1388,8 +1389,49 @@
     "authorization": "research/staged_authorization.json",
     "runbook": "research/staged_execution.md",
     "validation": "research/checks/v1_validation.json",
-    "status": "prepared_not_executed",
-    "stages_executed": [],
-    "note": "Milestone 4 stays blocked until the staged smoke, pilot and freeze are actually run and verified."
+    "status": "smoke_pilot_load8_smoke_executed_freeze_pending",
+    "stages_executed": [
+      {
+        "stage": "smoke",
+        "directory": "runs/staged_smoke_load2",
+        "cells_completed": 80,
+        "cells_planned": 80,
+        "attempts": 130,
+        "known_cost_usd": "0.01715046304",
+        "commit": "ef02bc1"
+      },
+      {
+        "stage": "pilot",
+        "directory": "runs/staged_pilot_load2",
+        "cells_completed": 160,
+        "cells_planned": 160,
+        "attempts": 267,
+        "known_cost_usd": "0.035102096",
+        "commit": "72133dd",
+        "main_pairs_fully_correct": "15/16",
+        "numeric_optimal": "15/16",
+        "selected_load": 8
+      },
+      {
+        "stage": "smoke8",
+        "directory": "runs/staged_smoke_load8",
+        "cells_completed": 80,
+        "cells_planned": 80,
+        "attempts": 128,
+        "known_cost_usd": "0.01733081296",
+        "commit": "9594f9a"
+      }
+    ],
+    "note": "Milestone 4 stays blocked until the freeze is actually written, tagged and verified. Smoke observations are never analysed; pilot observations only select the load. Human checks H1-H5 are not recorded as done.",
+    "ledger": {
+      "attempts_reserved": 525,
+      "attempts_remaining": 2475,
+      "known_cost_usd": "0.069583372",
+      "held_usd": "0",
+      "available_usd": "8.930416628"
+    },
+    "freeze": null,
+    "main_executed": false,
+    "pre_freeze_review": "research/decisions.md, entry 'pre-freeze review (Claude, AI review)'"
   }
 }

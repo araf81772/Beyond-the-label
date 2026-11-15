@@ -354,6 +354,44 @@ def validate_execution_evidence(root: Path, milestones: dict) -> dict:
     return inventory
 
 
+def validate_staged_ledger(root: Path) -> dict | None:
+    """Reconcile the staged USD 9 ledger with the staged journals, offline.
+
+    The ledger hash chain cannot show that its last line is missing. Every
+    journaled provider receipt must therefore appear exactly once in the ledger
+    and every hold must belong to a journaled attempt without a receipt. The
+    check runs on a temporary copy, so the session directory is never written.
+    """
+    from beyond_label.budget import BudgetLedger
+    from beyond_label.gates import STAGED_SESSION, STAGED_STAGES
+    from beyond_label.attempts import ExecutionSuspended
+    from beyond_label.staged import STAGED_CAP, StagedAttemptLimit, reconcile_staged_history
+
+    session = root / STAGED_SESSION
+    directories = [value[2] for value in STAGED_STAGES.values() if (root / value[2] / "manifest.json").is_file()]
+    if not session.exists():
+        if directories:
+            raise ValueError("Staged run evidence exists without its shared ledger")
+        return None
+    with tempfile.TemporaryDirectory(prefix="btl-audit-ledger-") as temporary:
+        copy = Path(temporary).resolve()
+        for relative in directories:
+            (copy / relative).mkdir(parents=True)
+            for name in ("manifest.json", "calls.jsonl"):
+                (copy / relative / name).write_bytes((root / relative / name).read_bytes())
+        (copy / STAGED_SESSION).mkdir(parents=True)
+        for name in ("authorization.json", "budget.jsonl", "attempts.jsonl"):
+            (copy / STAGED_SESSION / name).write_bytes((session / name).read_bytes())
+        try:
+            ledger = BudgetLedger(copy / STAGED_SESSION / "budget.jsonl", STAGED_CAP, "USD")
+            result = reconcile_staged_history(copy, ledger, StagedAttemptLimit(copy / STAGED_SESSION / "attempts.jsonl"))
+            state = ledger.snapshot()
+        except ExecutionSuspended as exc:
+            raise ValueError(f"Staged ledger disagrees with staged journals: {exc}") from None
+    return {**result, "settled_cost_usd": state["settled_cost"], "held_usd": state["held"],
+            "available_usd": state["available"]}
+
+
 def main() -> int:
     # Load silently so the exact local key is included in leak checks; ignored
     # .env contents are never scanned, printed, hashed or copied into evidence.
@@ -416,6 +454,8 @@ def main() -> int:
                   f"milestone {item['number']} has passing acceptance evidence")
     execution_inventory = validate_execution_evidence(ROOT, milestones)
     check(True, "execution status reconciled with retained raw evidence and verified freeze")
+    staged_ledger = validate_staged_ledger(ROOT)
+    check(True, "staged ledger reconciled with staged journals")
 
     baseline = json.loads((ROOT / "research/baseline.json").read_text("utf-8"))
     check(all(value == "absent; not run or passed" for value in baseline["required_experiment_tests"].values()),
@@ -460,6 +500,7 @@ def main() -> int:
         "checks_passed": len(checks), "requirements_mapped": len(rows),
         "files_scanned": len(paths), "source_sha256": SOURCE_SHA256,
         "execution_inventory": execution_inventory,
+        "staged_ledger": staged_ledger,
         "secret_scan_limit": "Selected token patterns, credential filenames, and checked current environment values; manual diff review also required.",
         "failures": failures,
     }, indent=2))

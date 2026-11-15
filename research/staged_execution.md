@@ -1,6 +1,8 @@
 # Staged execution runbook: smoke, pilot, freeze, main
 
-Prepared 15 November 2026 (AEDT) on branch `v1`. **Nothing here has been executed.** Every paid stage starts only when a person runs its `execute` command.
+Prepared 15 November 2026 (AEDT) on branch `v1`. Every paid stage starts only when a person runs its `execute` command.
+
+**State on 15 November 2026 (late):** stages 1–3 (smoke load-2, pilot, smoke load-8) have been executed and committed; the pilot selected load-8. The freeze and main have not been run. Current figures and open pre-freeze items are in [decisions.md](decisions.md).
 
 Authorization: `paid-staged-usd9-v1`, recorded in [staged_authorization.json](staged_authorization.json). Settings: [configs/staged.yaml](../configs/staged.yaml). Code: [staged.py](../src/beyond_label/staged.py). The protocol in [protocol.md](protocol.md) is unchanged.
 
