@@ -1,11 +1,23 @@
 {
   "recorded_at_utc": "2026-11-15T03:50:26.540649+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "Araf reported items 1-4 done (recorded user-attested in research/human_verification.json) and explicitly requested the freeze and the main readiness check. Freeze record written for commit 6f8f94b with local tag btl-freeze-v1; the tag is not yet on origin. Main is not requested and not run.",
+  "requested_scope": "On 16 November 2026 the user assigned themselves H3 lead and Araf H4 lead, then explicitly requested operational fixes, test-fix-test and the final run. Main is authorized under the unchanged USD 9 staged allowance only after required validation and fresh readiness pass. The freeze tag is now verified on origin at 6f8f94b; main has not started. Each member's H3 audit remains required, H3/H4 remain pending and the late D4 assignment is disclosed.",
   "execution_freeze": "research/execution_freeze.json",
   "experimental_calls": 621,
   "human_participation_observed": false,
   "human_verification_record": "research/human_verification.json",
+  "main_launch_preparation": {
+    "recorded_on": "2026-11-16",
+    "user_instruction_verbatim": "me h3, araf h4. so fix all 4 and test fix test and final run",
+    "main_authorized_after_validation_and_readiness": true,
+    "validation_status": "passed_1680_tests_and_integrity_checks",
+    "fresh_main_readiness_status": "ready_for_main_not_executed",
+    "main_started": false,
+    "execution_directory": "C:/Users/tonmo/CodexRuns/beyond-the-label-v1-main-20261116",
+    "original_onedrive_checkout_must_not_execute_main": true,
+    "concurrent_execution_allowed": false,
+    "evidence": "research/checks/main_execution_preparation.json"
+  },
   "human_verification_update_validation": "research/checks/human_verification_update.json",
   "human_checks_user_attested_complete": [
     "H1",
@@ -238,8 +250,8 @@
     {
       "number": 4,
       "name": "Smoke/pilot/freeze",
-      "status": "blocked",
-      "reason": "Execution freeze record research/execution_freeze.json written and verified for commit 6f8f94b3542980f65ba08f56aa3a12bf12c9e41d (load-8, record hash 4feb8fd8...). Local tag btl-freeze-v1 exists; pushing the tag from the cloud session was refused (HTTP 403, session may push branch v1 only), so the tag is not yet visible on origin. Gates: smoke load-2 80/80, pilot 160/160 (15/16 MAIN, 15/16 NUMERIC; load-8), smoke load-8 80/80. H1/H2/H5 user-attested (H1 late); D4 future H3/H4 owners still to be named.",
+      "status": "complete",
+      "reason": "All three staged gates and the immutable load-8 freeze verify. Tag btl-freeze-v1 is published at 6f8f94b3542980f65ba08f56aa3a12bf12c9e41d. The unsynced clone passed 1680 offline tests, integrity/dependency checks and fresh main readiness. D4 leads are assigned with late timing disclosed; H3/H4 work remains pending. See research/checks/main_execution_preparation.json.",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -270,8 +282,8 @@
       "real_smoke_worlds": 4,
       "real_pilot_worlds": 8,
       "freeze_created": true,
-      "minimum_next_action": "From a team clone: git fetch, git tag btl-freeze-v1 6f8f94b3542980f65ba08f56aa3a12bf12c9e41d, git push origin btl-freeze-v1. Then run check-ready --stage main with the OpenRouter key.",
-      "offline_preparation_status": "Historical closed-smoke replay and1634-test validation are retained. The later v1 staged smoke/pilot/load8-smoke collections are complete on unchanged inputs; M4 remains blocked by the remaining D4 record and actual freeze, and M5 remains unrun.",
+      "minimum_next_action": "Preserve the existing freeze and scientific inputs while executing the currently authorized main plan.",
+      "offline_preparation_status": "Current launch validation passed in the unsynced execution clone; historical failed Windows fixture cleanup remains preserved in its own record.",
       "offline_validation": [
         {
           "command": "python -m pytest -q",
@@ -784,6 +796,24 @@
           "exit_code": 0,
           "summary": "1006 passed in217.47s, audit and clean tracked diff in local clone of4c369e1; same installed environment, credentials stripped; no network/package installation. Subsequent report-only spacing change separately passed20 tests.",
           "evidence": "research/checks/preresults_clean_clone.json"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "1680 passed in 733.09s",
+          "evidence": "research/checks/main_execution_preparation.json"
+        },
+        {
+          "command": "python scripts/verify_audit.py",
+          "exit_code": 0,
+          "summary": "1014 checks passed before preparation metadata was added",
+          "evidence": "research/checks/main_execution_preparation.json"
+        },
+        {
+          "command": "python -m beyond_label.staged check-ready --stage main",
+          "exit_code": 0,
+          "summary": "ready_for_main_not_executed; freeze/tag, route, nonreset key limit and budget verified",
+          "evidence": "research/checks/main_execution_preparation.json"
         }
       ],
       "current_paid_smoke_checkpoint": "research/smoke_continuation79.md",
@@ -817,12 +847,12 @@
     {
       "number": 5,
       "name": "Main execution",
-      "status": "blocked",
-      "reason": "Freeze record exists and verifies, but the freeze tag is not on origin and check-ready --stage main has not passed (no OpenRouter key in the cloud session). Main not requested.",
+      "status": "ready",
+      "reason": "Main explicitly authorized; required launch validation and readiness passed in the designated unsynced clone. Main has not started at this preparation checkpoint.",
       "empirical_completed_cells": 0,
       "planned_cells": 704,
       "missingness_interpretation": "Not executed; no partial empirical run exists",
-      "minimum_next_action": "Push the tag, pass check-ready --stage main from a clone outside any synced folder, then execute main only on explicit request",
+      "minimum_next_action": "After required validation and a fresh main readiness check pass, execute the fixed load-8 main plan only from C:/Users/tonmo/CodexRuns/beyond-the-label-v1-main-20261116 under the current user request. Do not dispatch from the original OneDrive checkout or another concurrent copy.",
       "completed_offline_preparation": [
         "Current-source full704-cell synthetic execution, trace replay, usage and duplicate-free resume",
         "Read-only finalization bundle preserving source bytes and explicit missingness classes",
@@ -834,13 +864,13 @@
         "tests_passed": 1381,
         "main_execution_started": false
       },
-      "readiness_evidence": "research/m4_m5_readiness.md"
+      "readiness_evidence": "research/checks/main_execution_preparation.json"
     },
     {
       "number": 6,
       "name": "Analysis/report/reproduction",
       "status": "blocked",
-      "reason": "Historical pre-results artifacts remain preserved. The staged smoke/pilot gates are complete, but freeze/main are unrun, so empirical main conclusions and the final paper remain blocked. H1/H2/H5 are user-attested complete within the recorded scope; H1 was late. H3/H4, final-report citation changes, author affiliations and final reproduction remain outstanding.",
+      "reason": "Historical pre-results artifacts remain preserved. The staged gates and published freeze tag exist, but main is not yet started, so empirical main conclusions and the final paper remain blocked. H1/H2/H5 are user-attested complete; H1 was late. The current user leads H3 and Araf leads H4, assigned after freeze; each member's H3 audit remains required. H3/H4 completion, final-report citation changes, author affiliations and final reproduction remain outstanding.",
       "completed_offline_preparation": [
         "Analysis algorithms and synthetic tests",
         "Figure/table and matched-trace generation",
@@ -860,7 +890,7 @@
       "empirical_ci95": null,
       "paper_created": false,
       "human_review_observed": false,
-      "minimum_next_action": "After a separately authorized freeze and main collection, complete H3, finalize evidence offline, complete H4 and any new-citation H5 checks, confirm affiliations, and verify the final report/reproduction. No main collection is authorized by this documentation update.",
+      "minimum_next_action": "After the currently authorized main collection passes its launch gates and finishes, reconcile evidence and complete each member's H3 audit under the current user's lead. Araf leads H4 before final writing; complete any new-citation H5 checks, confirm affiliations and verify the final report/reproduction. No human completion is inferred from assignment or machine checks.",
       "source_verification": "research/checks/source_verification.json",
       "official_template_link_verified": true,
       "official_template_contents_verified": true,
@@ -946,7 +976,7 @@
       "current_empirical_limitation": "No main observations; partial smoke is excluded from main statistics. Historical pre-results artifacts are not an empirical report."
     }
   ],
-  "human_participation_scope": "H1/H2/H5 completion by the current user and Araf is user-attested in research/human_verification.json, not directly witnessed by Codex. H1 is late; H3/H4 remain pending. Historical observed/review false fields retain their original checkpoint meaning. User separately approved NUMERIC amendment A1.",
+  "human_participation_scope": "H1/H2/H5 completion by the current user and Araf is user-attested in research/human_verification.json, not directly witnessed by Codex. H1 is late. On 16 November the current user assigned themselves H3 lead and Araf H4 lead after freeze; each member's independent H3 requirement remains and H3/H4 are pending. Historical observed/review false fields retain their original checkpoint meaning. User separately approved NUMERIC amendment A1.",
   "authors": {
     "names": [
       "Tonmoy",
@@ -1400,7 +1430,7 @@
     "authorization": "research/staged_authorization.json",
     "runbook": "research/staged_execution.md",
     "validation": "research/checks/v1_validation.json",
-    "status": "freeze_record_written_tag_local_only_main_not_run",
+    "status": "freeze_verified_main_authorized_ready_not_started",
     "stages_executed": [
       {
         "stage": "smoke",
@@ -1433,7 +1463,7 @@
         "commit": "9594f9a"
       }
     ],
-    "note": "Milestone 4 stays blocked until the freeze tag is visible on origin. D4 future H3/H4 owners are still to be named (due after main). Smoke is never analysed; pilot observations only select the load.",
+    "note": "M4 complete: unchanged gates/freeze and published tag verified; 1680 tests and main readiness passed in the unsynced clone. Main authorized but not yet started at this checkpoint. D4 leads assigned late; H3/H4 remain pending. Smoke and pilot stay separate from main findings.",
     "ledger": {
       "attempts_reserved": 525,
       "attempts_remaining": 2475,
@@ -1447,10 +1477,11 @@
       "tag": "btl-freeze-v1",
       "record_hash": "4feb8fd870dc62ffd260b682d1249d6fc70c401d33f98a9a1eb7ce1189ef2081",
       "selected_load": 8,
-      "tag_on_origin": false
+      "tag_on_origin": true
     },
     "main_executed": false,
     "pre_freeze_review": "research/decisions.md, pre-freeze AI review and subsequent human-attestation update",
     "human_verification": "research/human_verification.json"
-  }
+  },
+  "main_preparation_evidence": "research/checks/main_execution_preparation.json"
 }

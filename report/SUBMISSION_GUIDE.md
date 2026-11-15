@@ -78,7 +78,7 @@ Smoke results are a pipeline check and are **not** reported as findings. Pilot r
 
 ## 7. Human checks the protocol asks for (section 10)
 
-The current user confirmed that they and Araf completed H1, H2/P2 and H5. These are **user-attested completions**, recorded in [human_verification.json](../research/human_verification.json); no worksheets, initials or exact completion times were supplied. H1 was completed after the pilot and must remain a disclosed timing deviation. AI checks are recorded separately. H3/H4 remain pending; D4 still needs their explicit responsibility record.
+The current user confirmed that they and Araf completed H1, H2/P2 and H5. These are **user-attested completions**, recorded in [human_verification.json](../research/human_verification.json); no worksheets, initials or exact completion times were supplied. H1 was completed after the pilot and must remain a disclosed timing deviation. AI checks are recorded separately. On 16 November the user assigned themselves H3 lead and Araf H4 lead; this late D4 assignment after freeze is recorded. Each member's independent H3 audit remains required, and H3/H4 remain pending until the work is done.
 
 - [x] H1 (user-attested; late): each person independently hand-computes protocol section 4 and all eight pilot worlds and compares with the oracle. Retain the timing deviation
 - [x] H2/P2 (user-attested): both read every pilot trace against the parser's categories

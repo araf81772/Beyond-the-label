@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "classification": "main_preparation_and_authorization_not_main_results",
+  "recorded_on": "2026-11-16",
+  "client_timezone": "Australia/Sydney",
+  "recorded_by": "Codex (AI); machine validation, not human completion",
+  "status": "ready_not_executed",
+  "user_request_verbatim": "me h3, araf h4. so fix all 4 and test fix test and final run",
+  "execution_directory": "C:/Users/tonmo/CodexRuns/beyond-the-label-v1-main-20261116",
+  "original_checkout_execution_allowed": false,
+  "concurrent_main_execution_allowed": false,
+  "authorization_id": "paid-staged-usd9-v1",
+  "ledger_cap_usd": "9",
+  "maximum_inference_attempts": 3000,
+  "maximum_unknown_cost_holds": 40,
+  "expected_main_cells": 704,
+  "selected_load": 8,
+  "maximum_planned_calls": 1152,
+  "validation_source_commit": "54c6264eac421255db7572702777dbd0c1e46861",
+  "frozen_commit": "6f8f94b3542980f65ba08f56aa3a12bf12c9e41d",
+  "freeze_tag": "btl-freeze-v1",
+  "freeze_record_hash": "4feb8fd870dc62ffd260b682d1249d6fc70c401d33f98a9a1eb7ce1189ef2081",
+  "freeze_file_sha256": "ab1fa4f553be65df5cf14910e6e8bb0e241f50445be04f5ee300542c27e992db",
+  "python_version": "3.14.7",
+  "checks": [
+    {
+      "command": "python -m pytest -q",
+      "exit_code": 0,
+      "result": "1680 passed in 733.09s (0:12:13)",
+      "environment": "Unsynced execution clone; credentials isolated and network prohibited by test fixtures."
+    },
+    {
+      "command": "python scripts/verify_audit.py",
+      "exit_code": 0,
+      "result": "passed, 1014 checks, 487 files scanned; no failures",
+      "scope": "Source/evidence integrity at the validation source commit; audit was run without loading real credentials."
+    },
+    {
+      "command": "python -m pip check",
+      "exit_code": 0,
+      "result": "No broken requirements found"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "result": "clean"
+    },
+    {
+      "command": "git ls-remote --tags origin refs/tags/btl-freeze-v1",
+      "exit_code": 0,
+      "result": "6f8f94b3542980f65ba08f56aa3a12bf12c9e41d"
+    },
+    {
+      "check": "Clone/source/freeze history",
+      "result": "All 50 frozen inputs and all 38 retained run/session files are byte-identical to the source checkout. The clone has full history, the verified GitHub origin, no copied .env, and no main directory before launch."
+    },
+    {
+      "check": "Independent AI review",
+      "result": "No actionable documentation issue; H3 lead current user, H4 lead Araf; each member's independent H3 duty retained; late D4 disclosed; human completion remains pending."
+    }
+  ],
+  "resolved_prior_failures": [
+    {
+      "issue": "Missing freeze tag in local/remote checks",
+      "resolution": "Published and verified btl-freeze-v1 at its exact recorded commit without regenerating or editing the freeze."
+    },
+    {
+      "issue": "OneDrive temporary-copy read-only directory attribute prevented one previous test's cleanup",
+      "resolution": "Fresh unsynced clone; all 1680 unchanged tests pass. No original attributes, tests, code or frozen input was changed."
+    }
+  ],
+  "readiness": {
+    "command": "python -m beyond_label.staged check-ready --stage main",
+    "exit_code": 0,
+    "status": "ready_for_main_not_executed",
+    "ready": true,
+    "freeze_verified": true,
+    "model_route_metadata_verified": true,
+    "key_hard_limit_usd": 10,
+    "key_limit_remaining_usd": 9.917905597,
+    "planned_cells": 704,
+    "already_completed_cells": 0,
+    "inference_calls": 0,
+    "execution_started": false,
+    "staged_reserved_attempts": 525,
+    "staged_remaining_attempts": 2475,
+    "known_settled_usd": "0.069583372",
+    "held_usd": "0",
+    "available_usd": "8.930416628",
+    "next_attempt_upper_bound_usd": "0.048468209664",
+    "credential_handling": "Existing authorized original-project loader supplies known keys to process memory only; no key values or credential files copied, displayed, or recorded."
+  },
+  "pre_main_retained_files": {
+    "runs/_paid_staged_session/attempts.jsonl": {
+      "bytes": 116088,
+      "sha256": "54a041cc40a9f1892872fe7224a4e909bb1608ed8b532a65dc7de26e1ff3e5b3"
+    },
+    "runs/_paid_staged_session/authorization.json": {
+      "bytes": 864,
+      "sha256": "ec54d9173dedc8fffbfc485b6fb10578eb68aef8fe7cf23a5e02e608a1583e4b"
+    },
+    "runs/_paid_staged_session/budget.jsonl": {
+      "bytes": 351851,
+      "sha256": "f7480567399be043596b20c2e95d5779105dcacfa207124be739917280392ecc"
+    },
+    "runs/_paid_staged_session/preflights.jsonl": {
+      "bytes": 3042,
+      "sha256": "042bc85e4e9e4b591a148825013e936779ffb56f82e2903e1477b3dcddc23eab"
+    },
+    "runs/_paid_testing_session/attempts.jsonl": {
+      "bytes": 21286,
+      "sha256": "7a59aa88999209cd1237871955fd5850a41d223c752427487169f779547af969"
+    },
+    "runs/_paid_testing_session/authorization.json": {
+      "bytes": 483,
+      "sha256": "fe187ad8ba20fb919458811e355ba5d53edb8f47d634e3280a16aa29e4630f2a"
+    },
+    "runs/_paid_testing_session/budget.jsonl": {
+      "bytes": 64421,
+      "sha256": "3cf414ed41eaa93ca53fa5875d248c984ef0fd217b41cf07f6144993b97addbf"
+    },
+    "runs/_paid_testing_session/preflights.jsonl": {
+      "bytes": 1668,
+      "sha256": "b5b51504481b3c1a8992d44f79b2e3ff9ea4351392281ab6c2fb654ff6d42a5f"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/analysis_manifest.json": {
+      "bytes": 23677,
+      "sha256": "ffb58862c78feae7ad4c75055101d66a5fed4ea46d62d467aa42f7784f5aa382"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/calls.jsonl": {
+      "bytes": 6740,
+      "sha256": "35c967b3a8154533ce159a807e1f2820b45d2a673436612405888dcbdd6fa442"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/manifest.json": {
+      "bytes": 25626,
+      "sha256": "4f2aedf6c2776f40789f7658317c57b23ff914c5d24920b4f4add4100f517780"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/scores.csv": {
+      "bytes": 10103,
+      "sha256": "5f9dc50f09b968c2406e0fbbccaebff2841a3622bdd8ce12df9947d46386a938"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2/analysis_manifest.json": {
+      "bytes": 23700,
+      "sha256": "cdfe09cb249b056a062848774a034b8ef54daab834824992cc38c4a1da85d856"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2/calls.jsonl": {
+      "bytes": 8997,
+      "sha256": "8518852b1cd3b6406b7a0417b090547083480ff2b4ff02360d179a281a17a899"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2/manifest.json": {
+      "bytes": 26339,
+      "sha256": "ab9fd94b54d54c4cab1381e490990347d7ab13e2cadbd0d4400e4ee08ee90958"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2/scores.csv": {
+      "bytes": 10110,
+      "sha256": "758ab64bd0c800005c83a51c255a4765bbb49b1b8c47ddf87a7218665b4ffce4"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v2/usage.csv": {
+      "bytes": 565,
+      "sha256": "d10d8d2b60520204caf302b525915363ee1bcd356143dbff6a71624df4191cce"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3/analysis_manifest.json": {
+      "bytes": 17619,
+      "sha256": "3d425e1bce7348d3f1115a1e8a112a4d7043a0e08b273799dedbc6f1308ad831"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3/calls.jsonl": {
+      "bytes": 1557385,
+      "sha256": "dce92f5975334f7b9d39e5393955eb85c3a15a36c1b622f545913feea926b277"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3/manifest.json": {
+      "bytes": 31443,
+      "sha256": "b4a55ca19dc521af3de831ff9d2d5bdfa0f341cbc38828b64477d5a86b248791"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3/scores.csv": {
+      "bytes": 11804,
+      "sha256": "4feaa1de11bdbfb94c7c1808c608a2dd2e187bf65fab544aedfc79c258441e7e"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3/usage.csv": {
+      "bytes": 30216,
+      "sha256": "2fee7ed308bcf036cce14f9cdeac6533e6881f4de78b7873e9829b25a5a70b4d"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/usage.csv": {
+      "bytes": 427,
+      "sha256": "a77586cf465966bcc623a32c71534dd194a1392acbd6119729f8bb1e025f8d06"
+    },
+    "runs/staged_pilot_load2/analysis_manifest.json": {
+      "bytes": 28557,
+      "sha256": "c570b33f3fcfa6def9daafb50ff49b73a272f8e2cf6f39555528cf869e56b27f"
+    },
+    "runs/staged_pilot_load2/calls.jsonl": {
+      "bytes": 4432904,
+      "sha256": "878d8a10fa1eb92edc24a86572695315551c0a224c9f491c9a93144ad03c8e9c"
+    },
+    "runs/staged_pilot_load2/manifest.json": {
+      "bytes": 44152,
+      "sha256": "c84121243e5a4580cf4758602ba4391a90bcbf978e4efaffbf9ec4eabc8dc2de"
+    },
+    "runs/staged_pilot_load2/scores.csv": {
+      "bytes": 23462,
+      "sha256": "af8fde132c14a1c657eb406efc942fda8d909f0cd6a73bf1ebaa9c0f3fc1938c"
+    },
+    "runs/staged_pilot_load2/usage.csv": {
+      "bytes": 85650,
+      "sha256": "30cd1d01733c1c7dd2d9ab347bd36ec9f320fee6ac085b7ef919f05f2d5ce7fb"
+    },
+    "runs/staged_smoke_load2/analysis_manifest.json": {
+      "bytes": 14673,
+      "sha256": "557522e221683a4a7781e9efdebbff2a4bdf9cf18d21228960bd296c99d0a8b6"
+    },
+    "runs/staged_smoke_load2/calls.jsonl": {
+      "bytes": 2146089,
+      "sha256": "75a2119dd2cb85ec028eb9d65c3cbaa10bdbbfdb75ed45f8180fb7cba56b7b79"
+    },
+    "runs/staged_smoke_load2/manifest.json": {
+      "bytes": 26724,
+      "sha256": "034e953633c6b02b12794b8f174aa22d085ca7273e00004409dc9ad488e21acd"
+    },
+    "runs/staged_smoke_load2/scores.csv": {
+      "bytes": 11889,
+      "sha256": "44d2a23db8e8424b6f6eb765f241a05e34152f0a7510b8e5b9f3933444de9e1f"
+    },
+    "runs/staged_smoke_load2/usage.csv": {
+      "bytes": 41828,
+      "sha256": "d5314a788129666d8e38c0d9e406454cff72aabd1c5a50a84916bea3aa8840e8"
+    },
+    "runs/staged_smoke_load8/analysis_manifest.json": {
+      "bytes": 14658,
+      "sha256": "7a52f71f64290f372c632702cf3d1c68b01a7b81eb532ab2698efdc809375942"
+    },
+    "runs/staged_smoke_load8/calls.jsonl": {
+      "bytes": 2314458,
+      "sha256": "bf8dfe5c3571baa3238923be369a6cbf7e8b46aefbf560ad79013aa26a00d365"
+    },
+    "runs/staged_smoke_load8/manifest.json": {
+      "bytes": 26725,
+      "sha256": "4e0fe02998aa2db36b001db7c5c6c6695a3b91bf1c1110951a39fc7f5bf22de8"
+    },
+    "runs/staged_smoke_load8/scores.csv": {
+      "bytes": 11784,
+      "sha256": "a27ea6b21e1f9836d067d2a3a30235c5dc6cb3bdab85a7ad9ae1660bd11eb890"
+    },
+    "runs/staged_smoke_load8/usage.csv": {
+      "bytes": 41155,
+      "sha256": "2dd86c013df632284091cebbe971aca8f8126d14761f28655014a1b08ebe2fd3"
+    }
+  },
+  "append_only_during_main": [
+    "runs/_paid_staged_session/attempts.jsonl",
+    "runs/_paid_staged_session/budget.jsonl",
+    "runs/_paid_staged_session/preflights.jsonl"
+  ],
+  "human_review": {
+    "H3_lead": "current user",
+    "H4_lead": "Araf",
+    "H3_status": "pending_main_collection_and_each_members_independent_audit",
+    "H4_status": "pending_final_paper_evidence_review",
+    "late_D4_deviation_retained": true
+  },
+  "limits": "No scientific input, threshold, freeze record, or retained observation changed. Main execution requires the existing guarded CLI and repeats its own live preflight. A readiness pass is not empirical completion."
+}

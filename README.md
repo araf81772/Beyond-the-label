@@ -18,16 +18,16 @@ Provenance metadata can survive a handoff between agents and still change nothin
 
 Design: [research/protocol.md](research/protocol.md) (byte-preserved, pre-registered thresholds in section 9). Oracle: [research/oracle_derivation.md](research/oracle_derivation.md).
 
-## Status on 15 November 2026 (AEDT): no main result yet
+## Status on 16 November 2026 (AEDT): main authorized and ready, not started
 
 | Stage | State |
 |---|---|
-| Offline tests and audit | Audit passed. Current full suite: 1,679 passed, one temporary-directory permission failure; all 3 ledger tests passed in a clean Git snapshot. [Current validation](research/checks/human_verification_update.json); [earlier validation](research/checks/v1_validation.json) |
+| Offline tests and audit | **Passed in the unsynced execution clone:** 1,680 tests; integrity audit and dependency checks; fresh main readiness. The earlier Windows fixture failure remains historical. [Launch validation](research/checks/main_execution_preparation.json) |
 | Earlier smoke, USD 1 allowance | **Partial and closed.** 54 real observations from DeepSeek V4.1 Flash via OpenRouter/PrimeIntellect on 4 smoke worlds. Smoke is a pipeline check and is never analysed as a result |
 | New smoke, pilot, load-8 smoke (USD 9 allowance) | **Executed.** Smoke 80/80 cells, pilot 160/160 (15 of 16 MAIN pairs fully correct, 15 of 16 NUMERIC optimal: load-8 selected), load-8 smoke 80/80. 525 calls, USD 0.0696 of USD 9. Smoke is never analysed; the pilot only selects the load |
-| Human checks and decisions | **H1/H2/H5 complete, user-attested.** H1 was late; thresholds and MASKED limitation accepted unchanged. H3/H4 await main/report; D4 still needs their explicit responsibility record. [Attestation and scope](research/human_verification.json) |
-| Freeze and main (USD 9 allowance) | **Freeze record written; main not run.** The tag `btl-freeze-v1` still has to be pushed to `origin`, then `check-ready --stage main` must pass. Main needs its own explicit request. [Runbook](research/staged_execution.md) |
-| Execution freeze | [research/execution_freeze.json](research/execution_freeze.json): commit `6f8f94b`, load-8, tag `btl-freeze-v1` (local; not yet on `origin`) |
+| Human checks and decisions | **H1/H2/H5 complete, user-attested.** H1 was late; thresholds and MASKED limitation accepted unchanged. D4 leads are now assigned: current user for H3, Araf for H4. Each member's H3 audit remains required; H3/H4 remain pending. The assignment after freeze is disclosed. [Attestation and scope](research/human_verification.json) |
+| Freeze and main (USD 9 allowance) | **Freeze tag delivered; main authorized but not started.** Required validation and fresh main readiness passed; the guarded execute command repeats its own preflight before dispatch. Use only the unsynced execution clone; do not launch from this OneDrive checkout. [Runbook](research/staged_execution.md) |
+| Execution freeze | [research/execution_freeze.json](research/execution_freeze.json): commit `6f8f94b3542980f65ba08f56aa3a12bf12c9e41d`, load-8, tag `btl-freeze-v1`, verified on `origin` |
 | Main effect, intervals, controls | Not available. Nothing in this repository is a finding about model behaviour |
 
 Synthetic fixtures under `evaluation/` exercise the software only. They are labelled synthetic and are excluded from every empirical count.
@@ -58,7 +58,7 @@ python -m beyond_label.staged execute --stage smoke
 
 ## What was done during the sprint
 
-Every commit in this repository is dated 14 or 15 November 2026; the sprint opened on 13 November 2026. The design file is dated Saturday 14 November. The first commit contains only `.gitattributes`; no code predates the sprint. *Team to confirm before submission: whether any idea or draft behind the design predates 13 November, and say so in the report if it does.*
+At the 15 November checkpoint, the repository's commits were dated 14 or 15 November 2026; subsequent work continues on 16 November. The sprint opened on 13 November 2026. The design file is dated Saturday 14 November. The first commit contains only `.gitattributes`; no code predates the sprint. *Team to confirm before submission: whether any idea or draft behind the design predates 13 November, and say so in the report if it does.*
 
 AI assistance: OpenAI Codex wrote most of the code, tests and engineering records under the team's direction. Claude (Anthropic) reviewed the repository against the sprint rules on 15 November and added the staged execution path on branch `v1`. No model judges any experimental decision. The current user reports that they and Araf completed H1, H2/P2 and H5; these are recorded as user-attested, not independently witnessed by an AI. H1's late timing remains a deviation. H3/H4 remain pending. [Human verification record](research/human_verification.json).
 

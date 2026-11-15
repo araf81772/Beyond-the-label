@@ -2,17 +2,22 @@
   "schema_version": 1,
   "classification": "human_completion_reported_by_user_not_independently_observed",
   "recorded_on": "2026-11-15",
+  "last_updated_on": "2026-11-16",
   "client_timezone": "Australia/Sydney",
   "recorded_by": "Codex (AI), transcribing the current user's confirmations",
   "reviewed_branch": "v1",
   "reviewed_commit": "f1954c03807fa0422934b6dacfbbfd504e032772",
-  "reported_reviewers": ["current user", "Araf"],
+  "reported_reviewers": [
+    "current user",
+    "Araf"
+  ],
   "evidence_basis": "Statements in the current conversation. Individual worksheets, initials and exact completion times were not supplied; Codex did not directly witness the human checks.",
   "user_statements_verbatim": [
     "you do then iwe will do again",
     "me and aaf check evert 4 of them. do you thik andthing need to done if not do human check done",
     "we checked H5 too. mark it done and tell me if anything still blocks the freeze. don’t run main yet",
-    "update it in v1"
+    "update it in v1",
+    "me h3, araf h4. so fix all 4 and test fix test and final run"
   ],
   "checks": {
     "H1": {
@@ -28,17 +33,23 @@
     "H3": {
       "status": "pending_main_not_collected",
       "required_role": "Each human team member: 30 fixed-seed action-stratified main traces plus every INVALID and REFUSED trace.",
-      "individual_assignment_confirmation": "not_supplied"
+      "lead": "current user",
+      "assignment_basis": "The user explicitly assigned themselves H3 on 16 November 2026.",
+      "individual_audit_requirement": "The lead coordinates H3. Each team member must still independently audit the required 30 main traces plus every INVALID and REFUSED trace; no individual audit is completed or waived by this assignment."
     },
     "H4": {
       "status": "pending_final_empirical_report",
       "required_role": "Human verification of every final-paper number against its file-and-command evidence.",
-      "named_owner": null
+      "named_owner": "Araf",
+      "assignment_basis": "The current user explicitly assigned Araf H4 on 16 November 2026; completion remains pending."
     },
     "H5": {
       "status": "complete_user_attested",
       "scope": "The three scholarly references and associated claims in report/manuscript.md at the reviewed commit.",
-      "reviewers": ["current user", "Araf"],
+      "reviewers": [
+        "current user",
+        "Araf"
+      ],
       "new_or_changed_citations_require_review": true
     }
   },
@@ -53,9 +64,13 @@
       "threshold_changes_after_freeze_allowed": false
     },
     "D4": {
-      "status": "partially_recorded",
+      "status": "leads_assigned_late_protocol_duties_retained",
       "confirmed": "The current user and Araf report H1/H2/H5 completion. AI assistance is separate from human participation.",
-      "remaining": "Explicitly confirm the future H3 responsibilities and name the H4 owner. H3/H4 completion is due after main, not before freeze."
+      "H3_lead": "current user",
+      "H4_lead": "Araf",
+      "assignment_source": "me h3, araf h4. so fix all 4 and test fix test and final run",
+      "timing_deviation": "The explicit H3/H4 lead assignment was recorded after the pilot and after preparation of the execution freeze. It does not satisfy the original before-pilot D4 timing requirement.",
+      "remaining": "Complete the human work at the protocol's later stages: each team member performs H3 after main, coordinated by the current user; Araf leads H4 before final writing. No completion or individual-audit waiver is inferred."
     },
     "MASKED": {
       "status": "limitation_accepted_existing_settings_retained",
@@ -87,7 +102,7 @@
       "https://arxiv.org/html/2610.34107v1"
     ]
   },
-  "execution_boundary": {
+  "historical_documentation_update_boundary_20261115": {
     "current_update_scope": "Documentation and status only on v1; preserve every experimental input and retained run.",
     "freeze_created": false,
     "main_executed": false,
@@ -96,5 +111,25 @@
       "Finish the D4 responsibility record for H3/H4.",
       "Obtain an explicit freeze request; create and verify the actual freeze record, tag and remote delivery."
     ]
+  },
+  "execution_boundary": {
+    "recorded_on": "2026-11-16",
+    "authorization_source": "me h3, araf h4. so fix all 4 and test fix test and final run",
+    "scope": "Resolve operational prerequisites, test and repair without changing scientific inputs, then execute the frozen load-8 main run under the existing staged allowance only after validation and fresh readiness pass.",
+    "freeze_created": true,
+    "freeze_tag": "btl-freeze-v1",
+    "freeze_commit": "6f8f94b3542980f65ba08f56aa3a12bf12c9e41d",
+    "freeze_tag_on_origin_verified": true,
+    "main_authorized": true,
+    "main_executed": false,
+    "launch_status": "validation_and_readiness_passed_not_executed",
+    "authorized_ledger_cap_usd": "9",
+    "execution_directory": "C:/Users/tonmo/CodexRuns/beyond-the-label-v1-main-20261116",
+    "original_checkout_execution_allowed": false,
+    "concurrent_main_execution_allowed": false,
+    "remaining_before_main": [
+      "Commit and synchronize the reviewed preparation records into the sole execution clone, then dispatch using the guarded staged CLI and its fresh execution preflight."
+    ],
+    "preparation_evidence": "research/checks/main_execution_preparation.json"
   }
 }
