@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "classification": "pre_results_report_not_empirical_findings",
+  "empirical_observations": 0,
+  "empirical_run_started": false,
+  "execution_freeze": null,
+  "pre_results_state": {
+    "experimental_calls": 0,
+    "execution_freeze": null,
+    "milestone_sha256": "314e1a10e9682ff4705eb34ad107343e9bb2e61d25313a896e3696e20622b21d",
+    "run_manifest_sha256": {},
+    "scope": "research/milestones.json, all runs/**/manifest.json and orphan run journals"
+  },
+  "authors": [
+    "Tonmoy",
+    "Araf"
+  ],
+  "affiliations": "pending_confirmation",
+  "human_review_verified": false,
+  "abstract_word_count": 201,
+  "body_word_count_including_tables_and_frontmatter": 2597,
+  "input_sha256": {
+    "report/official_template.docx": "21ebc0bcea8f9760c64c9c0eb163bbaaab0a34465722f86e4e3feecf6849de59",
+    "report/manuscript.md": "9d2899e5f050f62a4ad35d11a734060031f2c503c8600f0f300a09d92d8bbfcb",
+    "report/artifact.md": "489b178775bfc7fac1e3ab4b0a30cf3a0789f563535716d9b6ac0a7c7725f49e",
+    "scripts/build_report.py": "417816eb9da1573e62cc46994ca5e36799d954bc4a6b3f6673107dfdd37fcc40"
+  },
+  "outputs": {
+    "pre_results.docx": "a41ef0407e9e611b3a5a313bb6e64699e7a7308dc115cef0243e6708644a4cbe",
+    "claim_to_evidence.csv": "ec1315eed412b6f56270e3bf780178ad3ec8489d1007d567cfe615479d6f857c",
+    "pre_results.pdf": "72a41207f7292e8be8d0248b62f1f41c785067f46412bb52ee70fa6e88dd2dc0"
+  },
+  "template_parts": [
+    {
+      "path": "word/footnotes.xml",
+      "size": 3461,
+      "sha256": "2c08fe7edac3b13c828dae34ee57d5d9317d4cc822bc416cbead56bfd9874d6a",
+      "policy": "editable"
+    },
+    {
+      "path": "word/_rels/footnotes.xml.rels",
+      "size": 388,
+      "sha256": "32f5e184c8e98de1dab5902a5488e4b556e1563644815e57a279685295359d07",
+      "policy": "preserve_only"
+    },
+    {
+      "path": "word/numbering.xml",
+      "size": 11522,
+      "sha256": "17b764b10bafb4b1ad14856f3fdc493e2199bb6bbe5f9e60f74bcd5753f55795",
+      "policy": "preserve_only"
+    },
+    {
+      "path": "word/settings.xml",
+      "size": 2152,
+      "sha256": "26f2853fde05b88d4b0a9da0bb016d56a896901f60c9272dddf33c3f3fa61e4a",
+      "policy": "preserve_only"
+    },
+    {
+      "path": "word/fontTable.xml",
+      "size": 2045,
+      "sha256": "41f6cd0d5be3467d325ce77d754cf1432b548fab1f478eb0a3aeb896ba206752",
+      "policy": "preserve_only"
+    },
+    {
+      "path": "word/_rels/fontTable.xml.rels",
+      "size": 590,
+      "sha256": "9badf90f7dd1a2e38e307c16f6d2dd7eead417b354beb9154b1f3f51d8bea361",
+      "policy": "preserve_only"
+    },
+    {
+      "path": "word/styles.xml",
+      "size": 6573,
+      "sha256": "bd5c35372725d05aa702c1c55eec0a95138842e5d89450dd810da002caf6d66f",
+      "policy": "preserve_only"
+    },
+    {
+      "path": "word/document.xml",
+      "size": 81477,
+      "sha256": "89b9eefbce3f82caf732b3967d6bc9a69dd268621951c9b949de15dd04484d76",
+      "policy": "editable"
+    },
+    {
+      "path": "word/_rels/document.xml.rels",
+      "size": 1145,
+      "sha256": "a2f6cbe07732bdbe4d2be656ac1f274c0de4eb99db3e39bf11328ab355a84906",
+      "policy": "preserve_only"
+    },
+    {
+      "path": "_rels/.rels",
+      "size": 298,
+      "sha256": "1cc87395d4a229f21c23af406724de12dd9454071925f983e4b648a7b2be8cc5",
+      "policy": "preserve_only"
+    },
+    {
+      "path": "word/fonts/OldStandardTT-regular.ttf",
+      "size": 242700,
+      "sha256": "cf759c9617e8d9a74ccc3fcdc8670a25d1e016e6e4cf55c378e79f70bf45520b",
+      "policy": "preserve_only"
+    },
+    {
+      "path": "word/theme/theme1.xml",
+      "size": 7643,
+      "sha256": "b2295d3198893d2c03f5e584c749a15751b798aefdcd9bee2889f13903d68cb2",
+      "policy": "preserve_only"
+    },
+    {
+      "path": "word/fonts/OldStandardTT-bold.ttf",
+      "size": 260156,
+      "sha256": "fcd2340207253ef61a6a02694b9a43cd54159867518edfd4788b0916f1fc92a3",
+      "policy": "preserve_only"
+    },
+    {
+      "path": "word/fonts/OldStandardTT-italic.ttf",
+      "size": 267016,
+      "sha256": "722168792ee2dda09d07ab6443bdd4743469b86e3d233e5bf8e96e3951afb98c",
+      "policy": "preserve_only"
+    },
+    {
+      "path": "[Content_Types].xml",
+      "size": 1368,
+      "sha256": "d0ae6f5b5cdb2f37a7d642baadd62ae6cd7d35e4be63274f9f43388b6bc90df5",
+      "policy": "preserve_only"
+    }
+  ],
+  "preserved_parts_verified": true,
+  "page_geometry_preserved": true,
+  "template_reference_render": {
+    "renderer": "Microsoft Word COM read-only export",
+    "pages": 5,
+    "visual_review": "AI reviewed all five reference pages"
+  },
+  "render_verification": {
+    "renderer": "Microsoft Word COM; hidden isolated instance; read-only source; Poppler 96 dpi",
+    "canonical_renderer_blocker": "LibreOffice soffice.exe unavailable on PATH",
+    "docx_sha256": "a41ef0407e9e611b3a5a313bb6e64699e7a7308dc115cef0243e6708644a4cbe",
+    "pdf_sha256": "72a41207f7292e8be8d0248b62f1f41c785067f46412bb52ee70fa6e88dd2dc0",
+    "total_pages": 12,
+    "all_pages_visually_reviewed": true,
+    "body_page_limit_verified": true,
+    "page_png_sha256": {
+      "page-01.png": "5bdda1f7762d0baac8f77de1d5e57ca79e0e7abf2213a0d0e825fcd7ab625466",
+      "page-02.png": "34f096d97fe36bc0911e716892a7161f9f8b27dcf2ffd3df0d516790c00c5fbd",
+      "page-03.png": "0ccf45020d2516cbccf8be9aa940d6103ff549f9c7d128ba6cf525c8bc4ab50c",
+      "page-04.png": "d902a57b3038b741581e1fbdc2108a7cdf2558b55661aca3acdb637d26934f7e",
+      "page-05.png": "5713aa4f690bb215952aa8f00bb63c7bee5fcd09407a1c11c48793f12766664f",
+      "page-06.png": "c346542aa24112b00262defddcbc8e2accd794d4639cc6f8abc1ea8dd5baa9a5",
+      "page-07.png": "c2f6dab9b9420c4acb0226c820e6bb2c47b311ab566e27d831652574d0001624",
+      "page-08.png": "b3302c8fc954956b3ded5d81221f14e415c4ad851f7b4142318e47b6939240a0",
+      "page-09.png": "1e8f64bef990069266f59039f160bc861272055045cf83e2e35caa55b6d3db77",
+      "page-10.png": "b626c4022bfe1308fda103a016b81eea4fa868fcec7d0c66d6ab34c48c647bf9",
+      "page-11.png": "9c337f43f30dde2645d23c1cf52b1f8e910fa5e8459372d876d76bc2697e7147",
+      "page-12.png": "b1b62551653fd6138575b8a01b514703543489dca01d7883b83381f602c82dad"
+    },
+    "status": "verified_pre_results_layout_by_AI",
+    "pdf_available": true,
+    "main_body_pages": 8,
+    "reference_pages": [
+      9
+    ],
+    "appendix_pages": [
+      10,
+      11,
+      12
+    ],
+    "reviewed_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "reviewer": "Codex AI visual review; not human H1-H5 review",
+    "reviewed_at_utc": "2026-11-15T00:03:36.104844+00:00",
+    "human_review": false,
+    "render_script_sha256": "8bf93d5740a4aad674124bcf126350c0e06ee7bba6fde555c8dff24231d3c949",
+    "reproduction_code_lines_verified": [
+      "$env:PYTHONPATH = 'src'",
+      "python scripts/verify_audit.py",
+      "python -m pytest -q",
+      "python -m pip check",
+      "git diff --check",
+      "python scripts/validate_offline.py --output evaluation/synthetic_paper",
+      "python -m beyond_label.analyze evaluation/synthetic_paper --allow-synthetic",
+      "python -m beyond_label.figures evaluation/synthetic_paper --allow-synthetic",
+      "python -m beyond_label.evidence evaluation/synthetic_paper --allow-synthetic"
+    ],
+    "observations": [
+      "All12 final PNG pages inspected at native96dpi.",
+      "No clipped text, missing visible glyphs, overlapping objects or broken table cells observed.",
+      "Author names Tonmoy/Araf and pending affiliations visible.",
+      "Analytic table and NOT RUN status table distinguished; continued sample table repeats its header.",
+      "Three references remain separate; command tokens stay intact; LLM disclosure ends on page12.",
+      "Official template archive and preserve-only XML package entries unchanged."
+    ],
+    "iteration_history": [
+      "Canonical renderer unavailable: soffice.exe not found.",
+      "Initial malformed nested table cell corrected with final paragraph; regression passed.",
+      "Merged references corrected and tested; appendix spacing refined to remove two-line trailing page.",
+      "Nested-shell Word export stalled; cancelled task-created hidden Word process retained lock. Only verified owned PID/start-time process was stopped; direct PowerShell script subsequently succeeded."
+    ],
+    "submission_ready": false,
+    "evidence_path": "evaluation/report_qa/final_v5/visual_verification.json",
+    "evidence_sha256": "b6c5f61b0b574f2c6581baa3570533f6b6e36ec3b72424dcbc9d4792d7ff63e0"
+  },
+  "submission_ready": false,
+  "limitations": [
+    "No empirical results, execution freeze, confirmed affiliations or human H1-H5 review.",
+    "DOCX build success does not establish rendered page count or visual correctness.",
+    "The claim map records design, analytic, citation and pending evidence; it is not a main-run result map."
+  ],
+  "regenerate_command": "python scripts/build_report.py"
+}

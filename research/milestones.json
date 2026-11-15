@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-11-14T23:52:57.626350+00:00",
+  "recorded_at_utc": "2026-11-15T00:11:00.484711+00:00",
   "client_timezone": "Australia/Sydney",
   "requested_scope": "Complete independent offline preparation through milestone 6; defer smoke until user budget update; no inference or account recheck; tests, logs, commit and push",
   "execution_freeze": null,
@@ -611,6 +611,12 @@
           "exit_code": 0,
           "summary": "861 checks across274 files at this checkpoint; authoritative original/archive identical; no real runs or freeze",
           "evidence": "research/checks/preresults_validation.json"
+        },
+        {
+          "command": "python scripts/reproduce_offline.py --output research/checks/preresults_clean_clone.json",
+          "exit_code": 0,
+          "summary": "1006 passed in217.47s, audit and clean tracked diff in local clone of4c369e1; same installed environment, credentials stripped; no network/package installation. Subsequent report-only spacing change separately passed20 tests.",
+          "evidence": "research/checks/preresults_clean_clone.json"
         }
       ]
     },
@@ -632,7 +638,7 @@
       "number": 6,
       "name": "Analysis/report/reproduction",
       "status": "blocked",
-      "reason": "Independent offline pipeline and pre-results draft prepared; no empirical main traces or human H1-H5 reviews, so results and final paper remain pending",
+      "reason": "Independent offline analysis, report and reproduction preparation finished for current disabled configuration; real main observations and human H1-H5 reviews absent, so empirical conclusions/final paper remain blocked",
       "completed_offline_preparation": [
         "Analysis algorithms and synthetic tests",
         "Figure/table and matched-trace generation",
@@ -644,7 +650,9 @@
         "Trace-verified finalizer with synthetic opt-in, immutable source snapshot and artifact hashes",
         "Planned-only null statistics package; unexecuted cells distinct from infrastructure failures",
         "Current-source704-cell synthetic analysis/figure/evidence bundle",
-        "Fixed empirical bootstrap plan enforcement and credential-isolated clean-clone driver"
+        "Fixed empirical bootstrap plan enforcement and credential-isolated clean-clone driver",
+        "Official-template DOCX and12-pagePDF exported;8body pages and201word abstract; all pages visually reviewed by AI",
+        "Report source guards reject stale no-run status and unclassified/orphaned execution evidence;20 final report tests pass"
       ],
       "empirical_estimate": null,
       "empirical_ci95": null,
@@ -687,6 +695,24 @@
           "exit_code": 0,
           "summary": "861 checks across274 files at this checkpoint; authoritative original/archive identical; no real runs or freeze",
           "evidence": "research/checks/preresults_validation.json"
+        },
+        {
+          "command": "python -m pytest -q tests/test_report.py",
+          "exit_code": 0,
+          "summary": "20 passed in1.83s against final appendix-spacing source; differs from candidate clone only in a2pt paragraph-spacing adjustment",
+          "evidence": "research/checks/preresults_regressions.json"
+        },
+        {
+          "command": "python scripts/reproduce_offline.py --output research/checks/preresults_clean_clone.json",
+          "exit_code": 0,
+          "summary": "1006 passed in217.47s, audit and clean tracked diff in local clone of4c369e1; same installed environment, credentials stripped; no network/package installation. Subsequent report-only spacing change separately passed20 tests.",
+          "evidence": "research/checks/preresults_clean_clone.json"
+        },
+        {
+          "command": "Report hash, claim-source, audit, diff and dependency checks",
+          "exit_code": 0,
+          "summary": "89 claim rows and all report/PDF/page hashes verified;1038 audit checks at pre-delivery checkpoint; no empirical run or freeze",
+          "evidence": "research/checks/preresults_final_validation.json"
         }
       ],
       "planned_status_bundle": "results/planned",
@@ -696,8 +722,25 @@
         "report/pre_results.pdf"
       ],
       "report_verification": "report/report_manifest.json",
-      "clean_clone_current_version": "pending candidate commit",
-      "official_template_sha256": "21ebc0bcea8f9760c64c9c0eb163bbaaab0a34465722f86e4e3feecf6849de59"
+      "clean_clone_current_version": {
+        "candidate_commit": "4c369e17a526e1f0ac963ff6896fae002ef7449f",
+        "tests": 1006,
+        "passed": true,
+        "fresh_dependency_install": false,
+        "same_host_environment": true,
+        "later_code_change": "Report appendix spacing6pt to4pt only;20 report tests passed in1.83s",
+        "evidence": "research/checks/preresults_clean_clone.json"
+      },
+      "official_template_sha256": "21ebc0bcea8f9760c64c9c0eb163bbaaab0a34465722f86e4e3feecf6849de59",
+      "report_layout_validation": {
+        "total_pages": 12,
+        "body_pages": 8,
+        "abstract_words": 201,
+        "all_pages_visually_reviewed_by_AI": true,
+        "human_review": false,
+        "evidence": "evaluation/report_qa/final_v5/visual_verification.json",
+        "submission_ready": false
+      }
     }
   ],
   "human_participation_scope": "No H1-H5 oracle/trace/citation review observed; user separately approved NUMERIC amendment A1",
@@ -710,7 +753,7 @@
     "source": "user confirmed names; no review participation inferred"
   },
   "offline_preparation_checkpoint": {
-    "status": "validation_and_render_review_in_progress",
+    "status": "offline_preparation_validated_artifact_commit_and_push_pending",
     "commit_reference": "Resolve through Git; no circular self-hash",
     "push_status": "pending",
     "no_inference": true,
@@ -720,6 +763,12 @@
     "regression_evidence": "research/checks/preresults_regressions.json",
     "pipeline_evidence": "research/checks/preresults_pipeline.json",
     "rehearsal_evidence": "research/checks/preresults_rehearsal.json",
-    "bundle_evidence": "research/checks/preresults_bundle.json"
+    "bundle_evidence": "research/checks/preresults_bundle.json",
+    "source_commit": "4c369e17a526e1f0ac963ff6896fae002ef7449f",
+    "report_verification": "report/report_manifest.json",
+    "committed_inputs_evidence": "research/checks/preresults_committed_inputs.json",
+    "clean_clone_evidence": "research/checks/preresults_clean_clone.json",
+    "final_validation_evidence": "research/checks/preresults_final_validation.json",
+    "real_milestones_4_to_6_completed": false
   }
 }

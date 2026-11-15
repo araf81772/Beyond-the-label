@@ -46,8 +46,27 @@
       "second_regression": "1 failed,8 passed in2.02s",
       "second_fix": "Parse numbered references as separate blocks; adjust appendix spacing and keep code blocks together",
       "second_retest": "9 passed in1.43s",
-      "final_visual_review": "pending final v2 export",
-      "credential_or_inference_use": false
+      "final_visual_review": "Final_v5:12 pages,8body pages,201word abstract; all12 pages AI-inspected and9 command lines matched PDF text",
+      "credential_or_inference_use": false,
+      "provenance_regressions": "10 failed/9 passed in3.48s; first repair1 failed/18 passed in2.36s; source mapping correction19 passed in1.78s",
+      "orphan_journal_regression": "1 failed/19 passed in2.50s; guard repair20 passed in2.10s",
+      "final_retest": "20 passed in1.83s after final appendix spacing change",
+      "render_recovery": "Bundled LibreOffice unavailable; hidden read-only Word export used. Nested-shell export stalled; only verified task-owned orphan Word process stopped; direct script succeeded.",
+      "qa_evidence": "evaluation/report_qa/final_v5/visual_verification.json"
+    },
+    {
+      "area": "staged whitespace check",
+      "failed_check": "git diff --cached --check found two Markdown hard-break trailing spaces in new manuscript",
+      "fix": "Remove trailing whitespace without changing parsed report text",
+      "retest": "20 report tests passed in2.73s and staged diff check passed"
+    },
+    {
+      "area": "clean local-clone invocation",
+      "first_invocation": "Elevated invocation interrupted without a completion record; not counted as a passed check",
+      "sandbox_attempt": "Local Git clone failed before pytest: NtCreateDirectoryObject 0xC0000022 in Git shell helper",
+      "preserved_failure": "research/checks/preresults_clean_clone_sandbox_failure.json",
+      "repair": "Retry same offline driver with absolute verified Python/script paths and approved elevated local access",
+      "retest": "Passed: local clone,1006 tests in217.47s,audit and clean tracked diff; same installed environment; no network or package installation"
     }
   ]
 }

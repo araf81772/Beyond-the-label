@@ -197,7 +197,7 @@ def paragraph_from(sample: ET.Element, text: str, *, code=False, bullet=False,
         set_prop(ppr, "spacing", {"before": "0", "after": "80", "line": "240", "lineRule": "auto"})
         set_prop(ppr, "keepLines", {"val": "1"})
     elif ppr.find(tag("pStyle")) is None:
-        set_prop(ppr, "spacing", {"after": "120" if compact else "160", "line": "276", "lineRule": "auto"})
+        set_prop(ppr, "spacing", {"after": "80" if compact else "160", "line": "276", "lineRule": "auto"})
     rpr_source = sample.find("w:r/w:rPr", NS)
     rpr = deepcopy(rpr_source) if rpr_source is not None else ET.Element(tag("rPr"))
     for n in list(rpr):

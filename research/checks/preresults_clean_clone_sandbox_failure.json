@@ -1,0 +1,29 @@
+{
+  "classification": "offline_code_reproduction_not_empirical_execution",
+  "commit": "4c369e17a526e1f0ac963ff6896fae002ef7449f",
+  "recorded_at_utc": "2026-11-15T00:05:32.784439+00:00",
+  "network_used": false,
+  "fresh_dependency_install": false,
+  "same_host_environment": true,
+  "checks": [
+    {
+      "command": [
+        "git",
+        "-c",
+        "core.autocrlf=true",
+        "clone",
+        "--local",
+        "--no-hardlinks",
+        "C:\\Users\\tonmo\\OneDrive\\Documents\\ChatGPT\\beyond-the-label",
+        "C:\\Users\\tonmo\\AppData\\Local\\Packages\\openai.codex_2p2nqsd0c76g0\\AC\\#!sandbox.{46a6d3a6-e145-4f3b-8e70-be2614ba7586}\\Temp\\btl-offline-clone-v27echs_\\repo"
+      ],
+      "exit_code": 128,
+      "stdout": "",
+      "stderr": "Cloning into 'C:\\Users\\tonmo\\AppData\\Local\\Packages\\openai.codex_2p2nqsd0c76g0\\AC\\#!sandbox.{46a6d3a6-e145-4f3b-8e70-be2614ba7586}\\Temp\\btl-offline-clone-v27echs_\\repo'...\n      0 [main] sh (4928) C:\\Program Files\\Git\\usr\\bin\\sh.exe: *** fatal error - NtCreateDirectoryObject(\\BaseNamedObjects\\msys-2.0S5-1888ae32e00d56aa): 0xC0000022\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.",
+      "timed_out": false
+    }
+  ],
+  "child_credentials_removed": true,
+  "subprocess_timeout_seconds": 600,
+  "passed": false
+}

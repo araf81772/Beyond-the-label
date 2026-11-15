@@ -40,3 +40,6 @@ The main result section must eventually be replaced using verified trace-derived
 3. Finalize stored evidence, populate and review the paper, confirm affiliations and actual human participation, regenerate exports and verify every page and claim.
 
 The current ten-attempt ceiling cannot complete the 80 initial smoke cells. Paid calls remain forbidden; the user's promise of a later budget is not authorization to spend now. See `research/offline_completion.md` for the complete handoff.
+
+
+Final pre-results exports: `pre_results.docx` and `pre_results.pdf`. The verified PDF has12 total pages,8 main-body pages and a201-word abstract. All pages were visually reviewed by AI; `evaluation/report_qa/final_v5/visual_verification.json` records the exact file and page hashes. This verifies layout, not empirical or human-review completion. The builder is reproducible with `python scripts/build_report.py`; the Windows PDF/PNG fallback is `& ./scripts/render_report.ps1 -QaDirectory evaluation/report_qa/new_render` using a new QA directory. See `artifact.md` for runtime requirements and the renderer limitation.

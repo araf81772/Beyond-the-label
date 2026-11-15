@@ -24,7 +24,7 @@ Content order: title/authors, abstract, explicit pre-results status, Introductio
 
 The builder records every template ZIP part's name, size and SHA-256 in `report_manifest.json`. Only `word/document.xml` and `word/footnotes.xml` are editable; all other ZIP entry contents must be byte-identical. No template relationship may be removed. The package has no media/header/footer parts; embedded fonts are preserved. ZIP timestamps are fixed for deterministic regeneration. The builder does not contact a provider or read credentials.
 
-Appendix prose uses 6 pt paragraph-after spacing, retaining the same font and line spacing, to reduce trailing-page imbalance. Code blocks are kept together; numbered references remain separate paragraphs. Synthetic example directory names are short enough to retain full command tokens on each line. These content-flow adjustments were prompted by the first actual Word render.
+Appendix prose uses 4 pt paragraph-after spacing, retaining the same font and line spacing, to reduce trailing-page imbalance. Code blocks are kept together; numbered references remain separate paragraphs. Synthetic example directory names are short enough to retain full command tokens on each line. These content-flow adjustments were prompted by the first actual Word render.
 
 Required gates: original template hash; exact preserved-part comparison; section equality; complete manuscript text coverage; no leftover guidance or invented affiliation/research claims; abstract 150–250 words; all actual references resolve to the verified primary-source record; no empirical numbers presented as observations; deterministic DOCX/evidence-map rebuild. PDF page count, body page limit and visual review are only marked verified after real Word export and inspection of every final page. The manifest must distinguish an unrendered draft from a visually verified artifact. No report status constitutes an execution freeze or empirical milestone completion.
 
@@ -47,7 +47,7 @@ The canonical rendering command was attempted and failed because LibreOffice is 
 The retained Windows fallback is repeatable with Microsoft Word installed and local COM access permitted:
 
 ```powershell
-powershell -NoProfile -File scripts/render_report.ps1 -QaDirectory evaluation/report_qa/new_render
+& ./scripts/render_report.ps1 -QaDirectory evaluation/report_qa/new_render
 ```
 
 Use a new QA directory to retain earlier renders. This exports `report/pre_results.pdf` from a hidden, isolated Word instance with the DOCX opened read-only, checks the DOCX hash, and rasterizes every page at 96 dpi. It aborts if the acquired Word instance contains any existing documents; it closes only its own document and application. The default Poppler executable is `C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1112-611-0_26.1112.611.0_x64__3k8sg7r9htsxt/dependencies/native/poppler/Library/bin/pdftoppm.exe`; another local installation can be supplied with `-Poppler`. Sandbox COM access failed with `E_ACCESSDENIED`; the same isolated operation succeeded with approved elevation.
