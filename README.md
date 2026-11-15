@@ -26,8 +26,8 @@ Design: [research/protocol.md](research/protocol.md) (byte-preserved, pre-regist
 | Earlier smoke, USD 1 allowance | **Partial and closed.** 54 real observations from DeepSeek V4.1 Flash via OpenRouter/PrimeIntellect on 4 smoke worlds. Smoke is a pipeline check and is never analysed as a result |
 | New smoke, pilot, load-8 smoke (USD 9 allowance) | **Executed.** Smoke 80/80 cells, pilot 160/160 (15 of 16 MAIN pairs fully correct, 15 of 16 NUMERIC optimal: load-8 selected), load-8 smoke 80/80. 525 calls, USD 0.0696 of USD 9. Smoke is never analysed; the pilot only selects the load |
 | Human checks and decisions | **H1/H2/H5 complete, user-attested.** H1 was late; thresholds and MASKED limitation accepted unchanged. H3/H4 await main/report; D4 still needs their explicit responsibility record. [Attestation and scope](research/human_verification.json) |
-| Freeze and main (USD 9 allowance) | **Not run.** Finish D4 and obtain an explicit freeze request before creating/verifying the freeze and tag. Main remains deferred. [Runbook](research/staged_execution.md) |
-| Execution freeze | None yet |
+| Freeze and main (USD 9 allowance) | **Freeze record written; main not run.** The tag `btl-freeze-v1` still has to be pushed to `origin`, then `check-ready --stage main` must pass. Main needs its own explicit request. [Runbook](research/staged_execution.md) |
+| Execution freeze | [research/execution_freeze.json](research/execution_freeze.json): commit `6f8f94b`, load-8, tag `btl-freeze-v1` (local; not yet on `origin`) |
 | Main effect, intervals, controls | Not available. Nothing in this repository is a finding about model behaviour |
 
 Synthetic fixtures under `evaluation/` exercise the software only. They are labelled synthetic and are excluded from every empirical count.

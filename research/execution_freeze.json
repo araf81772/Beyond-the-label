@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "classification": "prepared_execution_freeze",
+  "prepared_at_utc": "2026-11-15T12:46:41.367126+00:00",
+  "commit": "6f8f94b3542980f65ba08f56aa3a12bf12c9e41d",
+  "tag": "btl-freeze-v1",
+  "input_hashes": {
+    "src/beyond_label/__init__.py": "3af4623913c1c426172c13edf3e62cff2d156edbe256f17f8d2d473a4ac65cc4",
+    "src/beyond_label/analyze.py": "d00dddcbcec31ed15bcf79c934a7a8e219498a8e9b69699670ec9c6b7cd4c6d8",
+    "src/beyond_label/attempts.py": "977d558b562b81fe6322be75d5035a3a1daed7ef6935af5b91cd3ec13e4e68d0",
+    "src/beyond_label/budget.py": "237b6abb3b7b75ffc7fee3d2b6b851d15dbb140dac1b7ca4d0a8a7919ac482d1",
+    "src/beyond_label/capabilities.py": "fd05ce74d8df513e69d2bde664c819ff6c68a1d59cb30106528e633243be5ec7",
+    "src/beyond_label/continuation.py": "124a16cbb9f7f47375c855a3304f8ec5c27d3b8f4620f21b1b9346109ffdb419",
+    "src/beyond_label/continuation79.py": "e3053070ce2aa82c735d11f85cd0b3768e76c0dc55d93f7f6c9d63d7f646c040",
+    "src/beyond_label/controls.py": "a0cb4da0a6e4891583c28587a7353e97038384dd5b479016b37e5b47bb61ddb6",
+    "src/beyond_label/cost_reconciliation.py": "0a19fe9013d6c32f695e9b4b8b345663606306d4ded53baa8c9330a8092c9073",
+    "src/beyond_label/environment.py": "28b503c97a1c10a47e62f27b7875062632cace72486fe740fe55e38938e9870f",
+    "src/beyond_label/evidence.py": "57f116c47475b2c78efa4e3df4c9f5c5ff9de399b3777306c57f3e7bd5b72c8d",
+    "src/beyond_label/figures.py": "cfbf4ce5a22bd23ab5ba55fc20bb94af8e0e807f9feafbdbd94aa14440afe2e2",
+    "src/beyond_label/finalize.py": "66db11e8ae395a853707944ae6c4b57619f6911250c4c06ce70c6090173e6d14",
+    "src/beyond_label/freeze.py": "1a1c80b9dfb5addd84c49a279b8c77969ad0f9e77afa96d9aa4542e3dcbc60c6",
+    "src/beyond_label/gates.py": "1071f2305383951992a8fb0fd9d5dc061f815a3021bccdabe915996ea2c5a9b1",
+    "src/beyond_label/generate.py": "dcab625863737966f36e14ae00063a313e2d6b003d1c31fda2d801dbfeb14491",
+    "src/beyond_label/live.py": "1b62f82bd4a07b56d85425420c78253ed4c529d911ed241b7e15f4dc5fa1b46c",
+    "src/beyond_label/openrouter.py": "7ded87610bab8ec572e6ce53e297f561de8246c253e307c0aa45d65314aa571a",
+    "src/beyond_label/oracle.py": "186930b3e43d922abe60af62f38dddb09c5a4279b5ccf1d9c63594b8ba60bf29",
+    "src/beyond_label/paid_controls.py": "74278acf9a9ed0fb81d871d4bdf47c4c1d057af228fd9364152f1cc515864a02",
+    "src/beyond_label/paid_live.py": "a7919147f9b6610db2282eab0cd2e118b5abf59ca982cdbbcdd4ee520d8f0309",
+    "src/beyond_label/paid_profile.py": "55e70e435253ee04864787ff0d96ed0c6d19fa0cefda9ae6141fa87c186f7dc3",
+    "src/beyond_label/pilot.py": "87a83fe731d7e64227b49c73c6b93d650acc6b05dec01b8bd58ffc62bab24ac6",
+    "src/beyond_label/provider.py": "dfe1426bf61472f1e2256b2daf5cd018e7e23ae844b0dcf3f833b66444c88b67",
+    "src/beyond_label/rate_limit.py": "0201670aa88ac85f4ec05a9f2f60d39faa565c3c090ea7ce20ac1b57debfe7a2",
+    "src/beyond_label/render.py": "8f661b0b8b132f5d62ee1b23e6508688ccb7bb5aab216ddddcb40dec7c94e63e",
+    "src/beyond_label/run.py": "17a562fc25c75fd94d9828924a36ecc2fc4f49be07017966f1cd1ff823c01866",
+    "src/beyond_label/sandbox.py": "8a6ef1e22d34d228e2e2c25ee42d01288e01c1bd436669d49b6a632a6ddb35ed",
+    "src/beyond_label/schemas.py": "afc0a6933fb6cf4cecedd4e611a632265d45aa7d43c567b425d9e3fa12d3c1d6",
+    "src/beyond_label/score.py": "38d973e166b246768b9f848a8dfaaa38e07f7e7c9bd82717d3e9c00a0da7660b",
+    "src/beyond_label/staged.py": "07e8ff297cfbbd5687d9072b1eba435c471b5277fd99093865e57e239cf63247",
+    "prompts/agent_system.txt": "5182b69506d51cedc814c295ebbb0e1be5a884a7dc5c4b987a4c6ef9e04561ce",
+    "prompts/control_masked.txt": "53b73a822dc461cfe6557606a2cb23b97a0793cf6c4760bb7e2bd15ea73e051a",
+    "prompts/control_numeric.txt": "bb275819f92808cbe51eb32126acb5ce63217af05a81d7f4f4026ba00b7b2ff5",
+    "prompts/probe_readback.txt": "1c962a2d0dcb1aae3dc523be0d89272e6fc29b123faf1e4019c82e99267cfcdf",
+    "prompts/reprompt_no_tool.txt": "e7a8dfdf71bb67aa526fd933f478394f77e1468e19f0366569b084838a8b8d4a",
+    "research/protocol.md": "f732a0d815ae7f6f42e9eacb4e311b53ed8187abf9e3c48b79c476dfc202838b",
+    "research/amendments.md": "8f7352f1fba562f4883a36ee4ce6d307dc82216062503c24210dc8a547b31e9d",
+    "configs/free.yaml": "f794bd1af3c7f4f2f4153d2ecaf9e37a178b2cb817551a663ae013cde5c374ad",
+    "configs/main.yaml": "2d21bd225502482cd5b2303d17b0230f220b0991ca8c82ddb8f49bf9c5ae6759",
+    "configs/paid_smoke.yaml": "27346284ecd627bb8f1eb228e1debde3a9e60c46a8f27ce687a0cd6083bfc0c3",
+    "configs/pilot.yaml": "7f6bc8df509bd8387bb206450d3dc4d3b81f14f8e71e4bebad31bfc5f58adfa6",
+    "configs/proposed_m4.yaml": "f8db2bf1be49acf0db0d068fe5be51ab06e29b6de0aea1494004bbb6216a7d19",
+    "configs/staged.yaml": "63f6156c6a2728d3126f5257d5df2002c10f479957d910f75683f7a42ffe2f4a",
+    "data/worlds_main.jsonl": "cb426cda261722bb4f189b9cfda183ab373e1b7473ddd4dcccf2d3d80918e573",
+    "data/worlds_pilot.jsonl": "7988c4ca6e37ec461716a2c115255cd695f23cbc80a49d7aed0ddb47fca9749d",
+    "data/worlds_smoke.jsonl": "0b6535a13db14112e3be88658e464ccb8773f34ae4ab5f0fd591a73b303fd229",
+    "data/manifest.json": "2086a50d2d8fad43b87ae6adfa237e4c1531a6fbbfcfe8256a84c00d7b009183",
+    "pyproject.toml": "80472e3eba1f273612cedbe2fb2f0f9edf7c58f7fbead43eada0e1497934fa29",
+    "requirements.lock": "7d5a34a363a185ecd382c85efe7417ef8fea1ec02ecb53244e99e8780470e5c3"
+  },
+  "main_manifest_path": "data/plans/main_load8.json",
+  "main_manifest_file_sha256": "0034f591f3c943059c3a050a2e0c38be9d839ff03f31214a3d03769ccdd7add2",
+  "main_manifest_hash": "75c71ad8e5755576f5551d1ab8f62b75e4ea63291b8798d4464045a39e8ee2c2",
+  "schedule_seed": 271828,
+  "provider_settings": {
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "provider": "PrimeIntellect",
+    "provider_route": "primeintellect",
+    "provider_identity_source": "openrouter_metadata",
+    "require_parameters": true,
+    "free_only": false,
+    "max_price": {
+      "prompt": 0.04368,
+      "completion": 0.7,
+      "request": 0,
+      "image": 0
+    },
+    "accepted_returned_models": [],
+    "accepted_endpoint_models": [
+      "deepseek/deepseek-v4.1-flash-20261017"
+    ],
+    "temperature": 0.0,
+    "reasoning": {
+      "effort": "none"
+    },
+    "max_output_tokens": 512
+  },
+  "selected_load": 8,
+  "pilot_decision": {
+    "fully_correct_main_pairs": 15,
+    "optimal_numeric_calls": 15,
+    "main_pairs": 16,
+    "numeric_calls": 16,
+    "selected_load": 8,
+    "load8_smoke_required": true
+  },
+  "gate_evidence": {
+    "smoke": {
+      "directory": "runs/staged_smoke_load2",
+      "dataset": "smoke",
+      "load": 2,
+      "files": {
+        "manifest.json": "034e953633c6b02b12794b8f174aa22d085ca7273e00004409dc9ad488e21acd",
+        "calls.jsonl": "75a2119dd2cb85ec028eb9d65c3cbaa10bdbbfdb75ed45f8180fb7cba56b7b79",
+        "scores.csv": "44d2a23db8e8424b6f6eb765f241a05e34152f0a7510b8e5b9f3933444de9e1f",
+        "usage.csv": "d5314a788129666d8e38c0d9e406454cff72aabd1c5a50a84916bea3aa8840e8",
+        "analysis_manifest.json": "557522e221683a4a7781e9efdebbff2a4bdf9cf18d21228960bd296c99d0a8b6"
+      },
+      "run_config_hash": "f187b327e52005276b0ad2f4156c82c86ea8701eff6fa5bd840ad1c7306e0fe5",
+      "plan_hash": "f6b5f5a6e5de4130aecd0212c437dda31be7744570709e8e60fcee714e1f1b81",
+      "schedule_seed": 271828,
+      "provider_settings": {
+        "model": "deepseek/deepseek-v4.1-flash-1017",
+        "provider": "PrimeIntellect",
+        "provider_route": "primeintellect",
+        "provider_identity_source": "openrouter_metadata",
+        "require_parameters": true,
+        "free_only": false,
+        "max_price": {
+          "prompt": 0.04368,
+          "completion": 0.7,
+          "request": 0,
+          "image": 0
+        },
+        "accepted_returned_models": [],
+        "accepted_endpoint_models": [
+          "deepseek/deepseek-v4.1-flash-20261017"
+        ],
+        "temperature": 0.0,
+        "reasoning": {
+          "effort": "none"
+        },
+        "max_output_tokens": 512
+      },
+      "planned_cells": 80,
+      "completed_cells": 80,
+      "invalid_first_actions": 0,
+      "cost_evidence": {
+        "spend_evidence_complete": true,
+        "unknown_cost_attempts": 0,
+        "accounting_error_attempts": 0,
+        "nonzero_cost_attempts": 130,
+        "experimental_provider_spend": 0.01715046304,
+        "known_provider_spend_usd": 0.01715046304
+      }
+    },
+    "pilot": {
+      "directory": "runs/staged_pilot_load2",
+      "dataset": "pilot",
+      "load": 2,
+      "files": {
+        "manifest.json": "c84121243e5a4580cf4758602ba4391a90bcbf978e4efaffbf9ec4eabc8dc2de",
+        "calls.jsonl": "878d8a10fa1eb92edc24a86572695315551c0a224c9f491c9a93144ad03c8e9c",
+        "scores.csv": "af8fde132c14a1c657eb406efc942fda8d909f0cd6a73bf1ebaa9c0f3fc1938c",
+        "usage.csv": "30cd1d01733c1c7dd2d9ab347bd36ec9f320fee6ac085b7ef919f05f2d5ce7fb",
+        "analysis_manifest.json": "c570b33f3fcfa6def9daafb50ff49b73a272f8e2cf6f39555528cf869e56b27f"
+      },
+      "run_config_hash": "a7643cb67a649b6560bfe3d94c3de5476425a558b31dc696cd0786c039fbdc2d",
+      "plan_hash": "9839e01efc10618e6eea909742fe2578c072030413bc0f3ee70c3d59888d388a",
+      "schedule_seed": 271828,
+      "provider_settings": {
+        "model": "deepseek/deepseek-v4.1-flash-1017",
+        "provider": "PrimeIntellect",
+        "provider_route": "primeintellect",
+        "provider_identity_source": "openrouter_metadata",
+        "require_parameters": true,
+        "free_only": false,
+        "max_price": {
+          "prompt": 0.04368,
+          "completion": 0.7,
+          "request": 0,
+          "image": 0
+        },
+        "accepted_returned_models": [],
+        "accepted_endpoint_models": [
+          "deepseek/deepseek-v4.1-flash-20261017"
+        ],
+        "temperature": 0.0,
+        "reasoning": {
+          "effort": "none"
+        },
+        "max_output_tokens": 512
+      },
+      "planned_cells": 160,
+      "completed_cells": 160,
+      "invalid_first_actions": 0,
+      "cost_evidence": {
+        "spend_evidence_complete": true,
+        "unknown_cost_attempts": 0,
+        "accounting_error_attempts": 0,
+        "nonzero_cost_attempts": 267,
+        "experimental_provider_spend": 0.035102096,
+        "known_provider_spend_usd": 0.035102096
+      }
+    },
+    "smoke8": {
+      "directory": "runs/staged_smoke_load8",
+      "dataset": "smoke",
+      "load": 8,
+      "files": {
+        "manifest.json": "4e0fe02998aa2db36b001db7c5c6c6695a3b91bf1c1110951a39fc7f5bf22de8",
+        "calls.jsonl": "bf8dfe5c3571baa3238923be369a6cbf7e8b46aefbf560ad79013aa26a00d365",
+        "scores.csv": "a27ea6b21e1f9836d067d2a3a30235c5dc6cb3bdab85a7ad9ae1660bd11eb890",
+        "usage.csv": "2dd86c013df632284091cebbe971aca8f8126d14761f28655014a1b08ebe2fd3",
+        "analysis_manifest.json": "7a52f71f64290f372c632702cf3d1c68b01a7b81eb532ab2698efdc809375942"
+      },
+      "run_config_hash": "dc97c30dc699f00aa607f187c75d2b759db86443db492ee54a9699897ce0bb2d",
+      "plan_hash": "e750a8849298c867ac93462bbac296f481719f3dd95957faea73cd564da6b789",
+      "schedule_seed": 271828,
+      "provider_settings": {
+        "model": "deepseek/deepseek-v4.1-flash-1017",
+        "provider": "PrimeIntellect",
+        "provider_route": "primeintellect",
+        "provider_identity_source": "openrouter_metadata",
+        "require_parameters": true,
+        "free_only": false,
+        "max_price": {
+          "prompt": 0.04368,
+          "completion": 0.7,
+          "request": 0,
+          "image": 0
+        },
+        "accepted_returned_models": [],
+        "accepted_endpoint_models": [
+          "deepseek/deepseek-v4.1-flash-20261017"
+        ],
+        "temperature": 0.0,
+        "reasoning": {
+          "effort": "none"
+        },
+        "max_output_tokens": 512
+      },
+      "planned_cells": 80,
+      "completed_cells": 80,
+      "invalid_first_actions": 0,
+      "cost_evidence": {
+        "spend_evidence_complete": true,
+        "unknown_cost_attempts": 0,
+        "accounting_error_attempts": 0,
+        "nonzero_cost_attempts": 128,
+        "experimental_provider_spend": 0.01733081296,
+        "known_provider_spend_usd": 0.01733081296
+      }
+    }
+  },
+  "real_smoke_passed": true,
+  "real_pilot_passed": true,
+  "hashes_verified": true,
+  "no_main_calls_before_preparation": true,
+  "main_call_audit_scope": "repository runs/**/manifest.json",
+  "human_review_verified": false,
+  "human_review_scope": "No human H1/H2 participation inferred or recorded.",
+  "tag_delivery_status": "not_created_or_pushed_by_this_function",
+  "record_hash": "4feb8fd870dc62ffd260b682d1249d6fc70c401d33f98a9a1eb7ce1189ef2081"
+}

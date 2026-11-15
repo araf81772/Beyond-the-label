@@ -1,14 +1,21 @@
 {
   "recorded_at_utc": "2026-11-15T03:50:26.540649+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "Documentation update on v1: record user-attested H1/H2/H5 completion, late H1 and D3/D4 timing, unchanged thresholds and accepted MASKED limitation. The three staged gates are complete. D4 future H3/H4 responsibilities remain incomplete; freeze and main await separate explicit requests. Earlier smoke-only boundaries remain historical.",
-  "execution_freeze": null,
+  "requested_scope": "Araf reported items 1-4 done (recorded user-attested in research/human_verification.json) and explicitly requested the freeze and the main readiness check. Freeze record written for commit 6f8f94b with local tag btl-freeze-v1; the tag is not yet on origin. Main is not requested and not run.",
+  "execution_freeze": "research/execution_freeze.json",
   "experimental_calls": 621,
   "human_participation_observed": false,
   "human_verification_record": "research/human_verification.json",
   "human_verification_update_validation": "research/checks/human_verification_update.json",
-  "human_checks_user_attested_complete": ["H1", "H2/P2", "H5"],
-  "human_checks_pending": ["H3", "H4"],
+  "human_checks_user_attested_complete": [
+    "H1",
+    "H2/P2",
+    "H5"
+  ],
+  "human_checks_pending": [
+    "H3",
+    "H4"
+  ],
   "milestones": [
     {
       "number": 1,
@@ -232,7 +239,7 @@
       "number": 4,
       "name": "Smoke/pilot/freeze",
       "status": "blocked",
-      "reason": "Staged smoke load-2 (80/80), pilot (160/160; 15/16 MAIN pairs fully correct and 15/16 NUMERIC optimal; load-8 selected) and smoke load-8 (80/80) are complete on identical inputs. H1/H2/H5 are complete user-attested; H1 was late. D3 and MASKED acceptance are recorded unchanged. D4 future H3/H4 responsibilities remain incomplete. No execution freeze record or tag exists; an explicit freeze request is still required. The closed USD 1 smoke remains partial and preserved.",
+      "reason": "Execution freeze record research/execution_freeze.json written and verified for commit 6f8f94b3542980f65ba08f56aa3a12bf12c9e41d (load-8, record hash 4feb8fd8...). Local tag btl-freeze-v1 exists; pushing the tag from the cloud session was refused (HTTP 403, session may push branch v1 only), so the tag is not yet visible on origin. Gates: smoke load-2 80/80, pilot 160/160 (15/16 MAIN, 15/16 NUMERIC; load-8), smoke load-8 80/80. H1/H2/H5 user-attested (H1 late); D4 future H3/H4 owners still to be named.",
       "completed_offline_preparation": [
         "Exact pilot threshold tests",
         "Fail-closed execution gates",
@@ -262,8 +269,8 @@
       ],
       "real_smoke_worlds": 4,
       "real_pilot_worlds": 8,
-      "freeze_created": false,
-      "minimum_next_action": "Confirm D4 future H3 responsibilities and the H4 owner. On a separate explicit freeze request, verify unchanged gate inputs, create the freeze record and tag, and verify remote delivery. H3/H4 completion is due after main; this documentation update does not authorize freeze or main.",
+      "freeze_created": true,
+      "minimum_next_action": "From a team clone: git fetch, git tag btl-freeze-v1 6f8f94b3542980f65ba08f56aa3a12bf12c9e41d, git push origin btl-freeze-v1. Then run check-ready --stage main with the OpenRouter key.",
       "offline_preparation_status": "Historical closed-smoke replay and1634-test validation are retained. The later v1 staged smoke/pilot/load8-smoke collections are complete on unchanged inputs; M4 remains blocked by the remaining D4 record and actual freeze, and M5 remains unrun.",
       "offline_validation": [
         {
@@ -811,11 +818,11 @@
       "number": 5,
       "name": "Main execution",
       "status": "blocked",
-      "reason": "No verified execution freeze yet. The pilot selected load-8 and all three staged gates are complete; main needs the freeze record, a tag visible on origin and a fresh check-ready.",
+      "reason": "Freeze record exists and verifies, but the freeze tag is not on origin and check-ready --stage main has not passed (no OpenRouter key in the cloud session). Main not requested.",
       "empirical_completed_cells": 0,
       "planned_cells": 704,
       "missingness_interpretation": "Not executed; no partial empirical run exists",
-      "minimum_next_action": "Finish the D4 responsibility record and create/verify a freeze only on explicit request. A later separately requested main execution also requires a fresh readiness check. The user currently says not to run main.",
+      "minimum_next_action": "Push the tag, pass check-ready --stage main from a clone outside any synced folder, then execute main only on explicit request",
       "completed_offline_preparation": [
         "Current-source full704-cell synthetic execution, trace replay, usage and duplicate-free resume",
         "Read-only finalization bundle preserving source bytes and explicit missingness classes",
@@ -1393,7 +1400,7 @@
     "authorization": "research/staged_authorization.json",
     "runbook": "research/staged_execution.md",
     "validation": "research/checks/v1_validation.json",
-    "status": "smoke_pilot_load8_smoke_executed_freeze_pending",
+    "status": "freeze_record_written_tag_local_only_main_not_run",
     "stages_executed": [
       {
         "stage": "smoke",
@@ -1426,7 +1433,7 @@
         "commit": "9594f9a"
       }
     ],
-    "note": "Milestone 4 stays blocked until D4 future responsibilities are recorded and the freeze is explicitly requested, written, tagged and verified. H1/H2/H5 are user-attested complete; H1 was late. D3 and MASKED acceptance are unchanged. H3/H4 completion belongs after main. Smoke is never analysed; pilot observations only select the load.",
+    "note": "Milestone 4 stays blocked until the freeze tag is visible on origin. D4 future H3/H4 owners are still to be named (due after main). Smoke is never analysed; pilot observations only select the load.",
     "ledger": {
       "attempts_reserved": 525,
       "attempts_remaining": 2475,
@@ -1434,7 +1441,14 @@
       "held_usd": "0",
       "available_usd": "8.930416628"
     },
-    "freeze": null,
+    "freeze": {
+      "record": "research/execution_freeze.json",
+      "commit": "6f8f94b3542980f65ba08f56aa3a12bf12c9e41d",
+      "tag": "btl-freeze-v1",
+      "record_hash": "4feb8fd870dc62ffd260b682d1249d6fc70c401d33f98a9a1eb7ce1189ef2081",
+      "selected_load": 8,
+      "tag_on_origin": false
+    },
     "main_executed": false,
     "pre_freeze_review": "research/decisions.md, pre-freeze AI review and subsequent human-attestation update",
     "human_verification": "research/human_verification.json"
