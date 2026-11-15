@@ -1,0 +1,23 @@
+{
+  "classification": "partial_smoke_and_repairs_delivery",
+  "verified_at_utc": "2026-11-15T01:23:01.554973+00:00",
+  "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
+  "branch": "main",
+  "delivered_commit": "88c632fc0bfe9f24700b4b30a217fdb6b53ee1c4",
+  "remote_head_verified": true,
+  "verification_command": "git ls-remote origin refs/heads/main",
+  "full_suite_evidence": "research/checks/paid_smoke_execution_suite.json",
+  "full_suite_tests_passed": 1341,
+  "final_staged_audit_checks_passed": 1170,
+  "original_run_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
+  "recorded_attempts": 1,
+  "successful_calls": 0,
+  "completed_cells": 0,
+  "planned_cells": 80,
+  "unknown_cost_attempts": 1,
+  "unknown_cost_reservation_usd": "0.44084208",
+  "status": "smoke_incomplete_stopped; pilot_and_main_not_started",
+  "followup_note": "Documentation-only follow-up records this observed delivery; resolve its own identity through Git without a circular self-hash.",
+  "documentation_followup_audit_checks_passed": 1167,
+  "documentation_followup_whitespace_passed": true
+}

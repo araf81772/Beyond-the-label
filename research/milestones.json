@@ -585,16 +585,20 @@
         "current_instruction": "Smoke only under the USD1 or 200-attempt stop; preserve consumed allowances; no pilot or main"
       },
       "current_checkpoint": {
-        "status": "partial_smoke_stopped_repairs_validated_delivery_pending",
+        "status": "partial_smoke_stopped_repairs_validated_committed_and_pushed",
         "account_evidence": "research/checks/paid_smoke_ready_preflight.json",
         "test_evidence": "research/checks/paid_smoke_execution_suite.json",
         "verification_evidence": "research/checks/paid_smoke_execution_validation.json",
         "diagnostic_evidence": "research/checks/paid_smoke_failure_audit.json",
         "collection_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
-        "push_status": "pending",
+        "push_status": "succeeded",
         "remote_url": "https://github.com/araf81772/Beyond-the-label.git",
         "branch": "main",
-        "commit_reference": "Resolve final identity through Git; no circular self-hash"
+        "commit_reference": "Resolve final identity through Git; no circular self-hash",
+        "delivered_commit": "88c632fc0bfe9f24700b4b30a217fdb6b53ee1c4",
+        "remote_head_verified": true,
+        "delivery_evidence": "research/checks/paid_smoke_execution_delivery.json",
+        "verification_command": "git ls-remote origin refs/heads/main"
       },
       "checkpoint_history": [
         {
@@ -897,12 +901,12 @@
     "offline_tests_passed": 1341,
     "full_suite_evidence": "research/checks/paid_smoke_execution_suite.json",
     "integrity_evidence": "research/checks/paid_smoke_execution_validation.json",
-    "current_push_status": "pending_partial_run_and_repairs_delivery",
+    "current_push_status": "partial_run_and_repairs_pushed_and_remote_verified",
     "scientific_design_changed": false,
     "human_review": false,
-    "engineering_commit": "516de443bbdad399e07529a071d841aca5d3ca0e",
+    "engineering_commit": "88c632fc0bfe9f24700b4b30a217fdb6b53ee1c4",
     "remote_head_verified": true,
-    "delivery_evidence": "research/checks/paid_smoke_delivery.json",
+    "delivery_evidence": "research/checks/paid_smoke_execution_delivery.json",
     "final_status_commit_reference": "Resolve through Git; no circular self-hash",
     "known_account_usage_usd": 0,
     "unknown_cost_reservation_usd": "0.44084208",
@@ -913,6 +917,7 @@
     "never_attempted_cells": 79,
     "run_directory": "runs/paid_smoke_gpt41mini_20261115",
     "collection_source_commit": "0ad25621f3b730065b1a71b92aafc1fd0a2863a1",
-    "model_provider_changed": false
+    "model_provider_changed": false,
+    "previous_engineering_commit": "516de443bbdad399e07529a071d841aca5d3ca0e"
   }
 }
