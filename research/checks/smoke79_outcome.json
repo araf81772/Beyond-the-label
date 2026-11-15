@@ -1,0 +1,67 @@
+{
+  "classification": "partial_real_smoke79_no_pilot_or_main",
+  "recorded_at_utc": "2026-11-15T03:41:44.096957+00:00",
+  "source_commit": "eebba9de7a9923d2a81d17f7631d41371a35ef5e",
+  "directory": "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3",
+  "artifact_sha256": {
+    "manifest.json": "b4a55ca19dc521af3de831ff9d2d5bdfa0f341cbc38828b64477d5a86b248791",
+    "calls.jsonl": "dce92f5975334f7b9d39e5393955eb85c3a15a36c1b622f545913feea926b277",
+    "scores.csv": "4feaa1de11bdbfb94c7c1808c608a2dd2e187bf65fab544aedfc79c258441e7e",
+    "usage.csv": "2fee7ed308bcf036cce14f9cdeac6533e6881f4de78b7873e9829b25a5a70b4d",
+    "analysis_manifest.json": "3d425e1bce7348d3f1115a1e8a112a4d7043a0e08b273799dedbc6f1308ad831"
+  },
+  "stop_reason": "paid_cost_reconciliation_required",
+  "trigger": {
+    "cell_id": "smoke-1102-decision-HIGH-STAKES-inline-b",
+    "phase": "continuation",
+    "attempt": 1,
+    "reason": "timeout",
+    "retryable": true,
+    "latency_seconds": 46.3298533000052,
+    "request_hash": "e7ec63a59749a42aaa64da2ecafceff08ce890c363b122a839f8033984c1f843"
+  },
+  "new_attempts": 94,
+  "new_accepted_calls": 93,
+  "new_completed_cells": 53,
+  "observed_first_actions_or_readbacks": 54,
+  "retained_terminal_cells": 1,
+  "pending_cells": 26,
+  "untouched_cells": 25,
+  "partial_cells_missing_continuation": 1,
+  "first_action_or_readback_missing": 26,
+  "invalid_first_actions": 0,
+  "infrastructure_retries": 0,
+  "permitted_reprompts": 3,
+  "continuations_attempted": 37,
+  "new_known_cost_usd": "0.01245631104",
+  "cumulative_money": {
+    "cap": "1",
+    "settled_cost": "0.0125113232",
+    "held": "0.489310289664",
+    "available": "0.498178387136",
+    "pending_attempts": 0,
+    "unknown_cost_attempts": 2,
+    "blocked": false
+  },
+  "unknown_cost_hold_breakdown_usd": {
+    "historical_HTTP404": "0.44084208",
+    "new_continuation_timeout": "0.048468209664"
+  },
+  "cumulative_attempts": {
+    "maximum_attempts": 200,
+    "reserved_attempts": 96,
+    "remaining_attempts": 104
+  },
+  "source_inputs_unchanged": true,
+  "prior_ten_run_artifacts_unchanged": true,
+  "retained_cell_redispatched": false,
+  "duplicate_completed_cells": false,
+  "new_account_checks": 1,
+  "smoke_gate_passed": false,
+  "pilot_started": false,
+  "main_started": false,
+  "freeze_created": false,
+  "human_review": false,
+  "actual_total_cost_complete": false,
+  "policy_blocked_despite_balance_available": true
+}

@@ -1,0 +1,67 @@
+{
+  "classification": "offline_real_partial_smoke_replay_and_accounting",
+  "recorded_at_utc": "2026-11-15T03:48:41.324362+00:00",
+  "all_five_files_reproduced_byte_identically": true,
+  "original_files_unchanged": true,
+  "network_blocked": true,
+  "credentials_removed": true,
+  "inference_calls": 0,
+  "account_checks": 0,
+  "current_inputs_match_collection_source": true,
+  "source_commit": "eebba9de7a9923d2a81d17f7631d41371a35ef5e",
+  "artifact_sha256": {
+    "manifest.json": "b4a55ca19dc521af3de831ff9d2d5bdfa0f341cbc38828b64477d5a86b248791",
+    "calls.jsonl": "dce92f5975334f7b9d39e5393955eb85c3a15a36c1b622f545913feea926b277",
+    "scores.csv": "4feaa1de11bdbfb94c7c1808c608a2dd2e187bf65fab544aedfc79c258441e7e",
+    "usage.csv": "2fee7ed308bcf036cce14f9cdeac6533e6881f4de78b7873e9829b25a5a70b4d",
+    "analysis_manifest.json": "3d425e1bce7348d3f1115a1e8a112a4d7043a0e08b273799dedbc6f1308ad831"
+  },
+  "control_sha256": {
+    "authorization.json": "fe187ad8ba20fb919458811e355ba5d53edb8f47d634e3280a16aa29e4630f2a",
+    "budget.jsonl": "3cf414ed41eaa93ca53fa5875d248c984ef0fd217b41cf07f6144993b97addbf",
+    "attempts.jsonl": "7a59aa88999209cd1237871955fd5850a41d223c752427487169f779547af969",
+    "preflights.jsonl": "b5b51504481b3c1a8992d44f79b2e3ff9ea4351392281ab6c2fb654ff6d42a5f"
+  },
+  "historical_control_prefixes": {
+    "authorization.json": {
+      "historical_bytes": 483,
+      "unchanged_prefix": true,
+      "new_bytes": 0
+    },
+    "budget.jsonl": {
+      "historical_bytes": 1556,
+      "unchanged_prefix": true,
+      "new_bytes": 62865
+    },
+    "attempts.jsonl": {
+      "historical_bytes": 713,
+      "unchanged_prefix": true,
+      "new_bytes": 20573
+    },
+    "preflights.jsonl": {
+      "historical_bytes": 1076,
+      "unchanged_prefix": true,
+      "new_bytes": 592
+    }
+  },
+  "counter": {
+    "maximum_attempts": 200,
+    "reserved_attempts": 96,
+    "remaining_attempts": 104
+  },
+  "money": {
+    "cap": "1",
+    "settled_cost": "0.0125113232",
+    "held": "0.489310289664",
+    "available": "0.498178387136",
+    "pending_attempts": 0,
+    "unknown_cost_attempts": 2,
+    "blocked": false
+  },
+  "coverage_policy_still_blocked": "paid_cost_reconciliation_required",
+  "receipt_for_timeout_available": false,
+  "smoke_gate_passed": false,
+  "pilot_main_freeze_absent": true,
+  "independent_reviews": "Two AI agents; no human research review",
+  "reporting_note": "Decimal costs from usage/ledger are authoritative here; stored analysis totals use floating-point arithmetic and remain unchanged."
+}

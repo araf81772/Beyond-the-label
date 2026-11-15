@@ -1,7 +1,10 @@
-# Prepare the 79 untouched smoke cells
+# Prepared79-cell continuation: historical preparation and partial execution
 
-The current user instruction is to repair endpoint identity handling and
-prepare continuation of the 79 untouched smoke cells, with **no paid calls**.
+This document preserves the completed no-call preparation checkpoint. The user
+subsequently authorized the79-cell continuation, which stopped on an unknown-cost
+continuation timeout. See the [current outcome](checks/smoke79_outcome.json) and
+[M4/M5 readiness review](m4_m5_readiness.md). All figures below describing the
+preparation baseline are historical, not current remaining balances.
 The repair passed **1634 offline tests** and is committed and pushed as
 `eebba9de7a9923d2a81d17f7631d41371a35ef5e`. The continuation record is prepared and
 strictly verified against that source and both historical runs. No new inference

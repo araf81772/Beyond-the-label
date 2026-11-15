@@ -1,0 +1,611 @@
+{
+  "evidence_kind": "empirical",
+  "empirical_observations": 54,
+  "experimental_provider_spend": null,
+  "run_config_hash": "f9504c9f6ab383952a302bc2077199b84396d4e45252256c7e0feb3da2aafe48",
+  "planned_cells": 80,
+  "completed_cells": 53,
+  "pending_cells": 26,
+  "first_action_or_readback_missing": 26,
+  "successful_calls": 93,
+  "attempted_calls": 94,
+  "infrastructure_retries": 0,
+  "permitted_reprompts": 3,
+  "continuations": 37,
+  "invalid_first_actions": 0,
+  "missingness": [
+    {
+      "cell_id": "smoke-1100-readback-MAIN-inline-b",
+      "reason": "model_mismatch"
+    },
+    {
+      "cell_id": "smoke-1101-readback-MAIN-separate-a",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1102-readback-MAIN-separate-b",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-FEE-separate-a",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-FEE-separate-a",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MASKED-separate-masked",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-STAKES-separate-a",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-FEE-inline-b",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1103-decision-MAIN-separate-a",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-FEE-inline-b",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-FEE-separate-a",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1102-readback-MAIN-inline-b",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MAIN-separate-b",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-FEE-separate-a",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MASKED-inline-masked",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1101-readback-MAIN-inline-b",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-FEE-separate-b",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1100-readback-MAIN-separate-a",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1101-readback-MAIN-separate-b",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1100-decision-MAIN-separate-a",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-FEE-inline-a",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1100-decision-MASKED-separate-masked",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1100-readback-MAIN-inline-a",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-FEE-separate-b",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-STAKES-separate-a",
+      "reason": "not_executed_yet"
+    },
+    {
+      "cell_id": "smoke-1100-decision-NUMERIC-separate-b",
+      "reason": "not_executed_yet"
+    }
+  ],
+  "cells": [
+    {
+      "cell_id": "smoke-1100-readback-MAIN-inline-b",
+      "status": "retained_terminal",
+      "missing_reason": "model_mismatch",
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-STAKES-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-STAKES-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "invalid:INSPECTION_LIMIT"
+    },
+    {
+      "cell_id": "smoke-1101-readback-MAIN-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1102-readback-MAIN-separate-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1102-readback-MAIN-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1103-readback-MAIN-inline-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-FEE-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MAIN-separate-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1102-decision-MASKED-inline-masked",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-FEE-inline-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1101-decision-NUMERIC-separate-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1103-decision-MASKED-inline-masked",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1100-decision-MAIN-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-STAKES-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1102-decision-MAIN-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MAIN-inline-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-FEE-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1102-decision-NUMERIC-separate-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-STAKES-inline-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-FEE-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1103-readback-MAIN-separate-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-STAKES-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-FEE-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-STAKES-separate-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "invalid:INSPECTION_LIMIT"
+    },
+    {
+      "cell_id": "smoke-1100-decision-NUMERIC-separate-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-FEE-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1102-decision-MAIN-inline-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1103-decision-MAIN-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-STAKES-separate-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "invalid:INSPECTION_LIMIT"
+    },
+    {
+      "cell_id": "smoke-1102-decision-MASKED-separate-masked",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1102-decision-MAIN-separate-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-STAKES-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1100-decision-MAIN-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1100-readback-MAIN-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-STAKES-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1103-decision-MAIN-inline-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1100-decision-MASKED-inline-masked",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1103-readback-MAIN-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-STAKES-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-STAKES-inline-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1103-decision-MASKED-separate-masked",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1103-decision-MAIN-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1102-decision-NUMERIC-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-STAKES-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1100-decision-MAIN-inline-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-STAKES-inline-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1102-decision-MAIN-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MAIN-inline-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-FEE-inline-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1101-decision-NUMERIC-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1103-readback-MAIN-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "not_applicable"
+    },
+    {
+      "cell_id": "smoke-1103-decision-NUMERIC-separate-a",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1103-decision-NUMERIC-separate-b",
+      "status": "completed",
+      "missing_reason": null,
+      "continuation_status": "committed"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-STAKES-inline-b",
+      "status": "pending",
+      "missing_reason": null,
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1101-readback-MAIN-separate-a",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1102-readback-MAIN-separate-b",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-FEE-separate-a",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-FEE-separate-a",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MASKED-separate-masked",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-STAKES-separate-a",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-FEE-inline-b",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1103-decision-MAIN-separate-a",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-FEE-inline-b",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-FEE-separate-a",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1102-readback-MAIN-inline-b",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MAIN-separate-b",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-FEE-separate-a",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1101-decision-MASKED-inline-masked",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1101-readback-MAIN-inline-b",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1103-decision-HIGH-FEE-separate-b",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1100-readback-MAIN-separate-a",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1101-readback-MAIN-separate-b",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1100-decision-MAIN-separate-a",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1101-decision-HIGH-FEE-inline-a",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1100-decision-MASKED-separate-masked",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1100-readback-MAIN-inline-a",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1102-decision-HIGH-FEE-separate-b",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1100-decision-HIGH-STAKES-separate-a",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    },
+    {
+      "cell_id": "smoke-1100-decision-NUMERIC-separate-b",
+      "status": "pending",
+      "missing_reason": "not_executed_yet",
+      "continuation_status": "pending"
+    }
+  ],
+  "retained_terminal_cells": 1,
+  "dispatchable_cells": 79,
+  "spend_evidence_complete": false,
+  "known_provider_spend_usd": 0.012456311040000001,
+  "unknown_cost_attempts": 1,
+  "accounting_error_attempts": 0,
+  "nonzero_cost_attempts": 93
+}

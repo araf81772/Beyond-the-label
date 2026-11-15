@@ -1,0 +1,19 @@
+{
+  "classification": "public_documentation_only_billing_recovery_review",
+  "recorded_at_utc": "2026-11-15T03:50:26.547172+00:00",
+  "sources": [
+    {
+      "url": "https://openrouter.ai/docs/guides/features/logs",
+      "supports": "Logs exposes per-generation IDs, costs and rawJSON; metadata API takes a generationID."
+    },
+    {
+      "url": "https://openrouter.ai/docs/api/api-reference/generations/get-request-&-usage-metadata-for-a-generation",
+      "supports": "GET /api/v1/generation requires query parameterid."
+    }
+  ],
+  "actual_generation_id_for_timeout": null,
+  "actual_timeout_charge_evidence": null,
+  "private_account_queries": 0,
+  "inference_calls": 0,
+  "conclusion": "No documented generation-ID lookup can be performed for this timeout until its identifier is recovered; no zero-cost assumption, receipt invention or hold release."
+}

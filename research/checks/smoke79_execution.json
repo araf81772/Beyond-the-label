@@ -1,0 +1,18 @@
+{
+  "classification": "authorized_real_smoke79_execution_only",
+  "started_at_utc": "2026-11-15T03:24:17.396027+00:00",
+  "finished_at_utc": "2026-11-15T03:36:21.906420+00:00",
+  "elapsed_seconds": 724.51,
+  "command": "PYTHONPATH=src python -m beyond_label.paid_live --execute",
+  "exit_code": 2,
+  "result": {
+    "status": "blocked",
+    "reason": "paid_cost_reconciliation_required"
+  },
+  "stderr_present": false,
+  "stderr_sha256": null,
+  "authorization_record": "research/paid_smoke79_execution_authorization.json",
+  "pilot_started": false,
+  "main_started": false,
+  "cli_exit_zero_is_not_smoke_gate_pass": true
+}

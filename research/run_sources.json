@@ -26,6 +26,16 @@
         "analysis_manifest.json": "cdfe09cb249b056a062848774a034b8ef54daab834824992cc38c4a1da85d856"
       },
       "reason": "Preserve exact collection-version rejection before endpoint metadata repair; terminal readback must never be resampled or rewritten"
+    },
+    "runs/paid_smoke_gpt41mini_20261115/segments/deepseek_primeintellect_v3": {
+      "source_commit": "eebba9de7a9923d2a81d17f7631d41371a35ef5e",
+      "files": {
+        "manifest.json": "b4a55ca19dc521af3de831ff9d2d5bdfa0f341cbc38828b64477d5a86b248791",
+        "calls.jsonl": "dce92f5975334f7b9d39e5393955eb85c3a15a36c1b622f545913feea926b277",
+        "scores.csv": "4feaa1de11bdbfb94c7c1808c608a2dd2e187bf65fab544aedfc79c258441e7e",
+        "usage.csv": "2fee7ed308bcf036cce14f9cdeac6533e6881f4de78b7873e9829b25a5a70b4d",
+        "analysis_manifest.json": "3d425e1bce7348d3f1115a1e8a112a4d7043a0e08b273799dedbc6f1308ad831"
+      }
     }
   }
 }
