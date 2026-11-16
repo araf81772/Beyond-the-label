@@ -1001,6 +1001,12 @@
           "exit_code": 0,
           "summary": "All10artifact hashes,5source hashes,completeness andbootstrap settings match; no trackedsource changes orprovidercalls",
           "evidence": "research/checks/main_clean_clone_reproduction_retest.json"
+        },
+        {
+          "command": "Clean local clone; credential-free Python-network-blocked completed-main finalization",
+          "exit_code": 0,
+          "summary": "All11 artifact hashes,5 source hashes,bootstrap,completeness andcontinuationprovenance identical; no trackedchange orprovidercall",
+          "evidence": "research/checks/main52_clean_clone_reproduction.json"
         }
       ],
       "planned_status_bundle": "results/planned",
@@ -1738,6 +1744,8 @@
       "held_usd": "1.93872838656",
       "available_usd": "6.85893739696"
     },
-    "final_bundle": "results/staged_main_complete"
+    "final_bundle": "results/staged_main_complete",
+    "clean_code_reproduction": "research/checks/main52_clean_clone_reproduction.json",
+    "clean_code_reproduction_passed": true
   }
 }

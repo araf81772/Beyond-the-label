@@ -119,9 +119,11 @@
     "pre_dispatch_audit": "1664 checks passed",
     "independent_accounting_review": "research/checks/main52_accounting_AI_review.json",
     "primary_agent_trace_oracle_review": "research/checks/main52_trace_oracle_AI_review.json",
-    "clean_code_reproduction": "pending",
+    "clean_code_reproduction": "passed: research/checks/main52_clean_clone_reproduction.json",
     "postrun_audit": "research/checks/main52_postrun_audit.json",
-    "postrun_audit_passed": true
+    "postrun_audit_passed": true,
+    "credential_scan": "passed: research/checks/main52_credential_scan.json",
+    "postrun_audit_checks_passed": 1180
   },
   "independent_review_limitations": [
     {

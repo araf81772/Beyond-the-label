@@ -25,7 +25,7 @@ The [completed bundle](../results/staged_main_complete/bundle_manifest.json) is 
 
     python scripts/finalize_main_continuation.py --output BUNDLE_OUTPUT
 
-Clean-code reproduction is recorded separately; human review and submission are not claimed.
+Clean-code reproduction passed from committed source 0501b95c1f6d2a142c589a72627e68979ac22fbd: all 11 artifact hashes, five source hashes, completeness, bootstrap and continuation provenance matched. Credentials were absent, Python networking was blocked, and the clone had no tracked changes. This used the same installed dependencies, not a fresh dependency installation. The post-run audit passed 1,180 checks across 569 files; a separate known-credential-value scan checked 570 tracked files with no findings. See [reproduction evidence](checks/main52_clean_clone_reproduction.json). Human review and submission are not claimed.
 
 ## Scientific result and limits
 
@@ -41,6 +41,6 @@ D3 thresholds, the 14-of-16 load-selection rule and the 12-of-16 floor remain un
 
 ## Remaining submission work
 
-M5 collection is complete. M6 remains pending: each human team member must complete H3 (the current user leads; 30 fixed-seed action-stratified traces plus every INVALID/REFUSED trace), and Araf leads H4 checking final-paper numbers against file/command evidence. H1/H2/H5 remain user-attested work in their documented scope. New or changed citations require review.
+M5 collection is complete. M6 remains pending: each human team member must complete H3 (the current user leads; 30 action-stratified traces using seed 161803 plus every INVALID/REFUSED trace), and Araf leads H4 checking final-paper numbers against file/command evidence. H1/H2/H5 remain user-attested work in their documented scope. New or changed citations require review.
 
 The defensible paper centers the complete, reproducible bounded result and the payoff-sensitive failures, with transparent truncation and operational limitations. Final writing, confirmed affiliations, human checks and final-paper reproduction remain. No publication or submission was performed. No further model calls are needed to finish the approved 52-cell scope.

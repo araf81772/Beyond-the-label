@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "classification": "offline_clean_code_clone_completed_main_reproduction_not_empirical_rerun",
+  "started_at_utc": "2026-11-16T00:14:20.501092+00:00",
+  "source_commit": "0501b95c1f6d2a142c589a72627e68979ac22fbd",
+  "same_host_dependencies": true,
+  "fresh_dependency_install": false,
+  "provider_calls": 0,
+  "credential_environment_names_filtered": true,
+  "python_socket_network_blocked": true,
+  "temporary_clone": "C:\\Users\\tonmo\\AppData\\Local\\Temp\\btl-main52-reproduction-we4ci6u2\\repo",
+  "clone_exit_code": 0,
+  "credential_file_absent": true,
+  "finalize_exit_code": 0,
+  "stdout": "{\n  \"output\": \"C:\\\\Users\\\\tonmo\\\\AppData\\\\Local\\\\Temp\\\\btl-main52-reproduction-we4ci6u2\\\\reproduced_bundle\",\n  \"completeness\": {\n    \"planned_cells\": 704,\n    \"observed_first_action_or_readback_cells\": 704,\n    \"completed_cells\": 704,\n    \"pending_cells\": 0,\n    \"unexecuted_cells\": 0,\n    \"unresolved_attempt_cells\": 0,\n    \"infrastructure_missing_cells\": 0,\n    \"continuation_missing_cells\": 1,\n    \"missing_first_action_or_readback_cells\": 0,\n    \"missing_reasons\": {},\n    \"all_cells_terminal\": true,\n    \"all_observations_available\": false\n  },\n  \"milestone_6_complete\": false,\n  \"publication_performed\": false\n}\n",
+  "stderr": "",
+  "comparisons": {
+    "artifact_hashes": true,
+    "source_hashes": true,
+    "completeness": true,
+    "bootstrap": true,
+    "continuation_provenance": true
+  },
+  "artifact_bytes_match_declared_hashes": true,
+  "tracked_diff_exit_code": 0,
+  "tracked_diff_empty": true,
+  "artifact_count": 11,
+  "bundle_manifest_path_fields_intentionally_different": true,
+  "status": "passed",
+  "finished_at_utc": "2026-11-16T00:15:49.563401+00:00"
+}
