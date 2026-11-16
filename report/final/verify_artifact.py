@@ -69,12 +69,12 @@ def main():
     assert "no preexisting code" in full.lower()
     claims = subprocess.run([sys.executable, str(HERE / "verify_claims.py")], capture_output=True, text=True, check=True)
     claim_result = json.loads(claims.stdout)
-    visual = json.loads((ROOT / "evaluation/final_paper_qa/v2/visual_verification.json").read_text())
+    visual = json.loads((ROOT / "evaluation/final_paper_qa/v3/visual_verification.json").read_text())
     assert visual["docx_sha256"] == sha(HERE / "beyond_the_label.docx")
     assert visual["pdf_sha256"] == sha(pdf)
     assert visual["all_pages_visually_reviewed_by_AI"] is True
     for name, digest in visual["page_png_sha256"].items():
-        assert sha(ROOT / "evaluation/final_paper_qa/v2" / name) == digest
+        assert sha(ROOT / "evaluation/final_paper_qa/v3" / name) == digest
     print(json.dumps({"status": "passed", "scope": "AI artifact verification, not human approval or submission",
           "frozen_input_counts": freeze_counts, "docx_text_checks": content_checks,
           "template_preserved_parts": len(manifest["template_parts_preserved"]),

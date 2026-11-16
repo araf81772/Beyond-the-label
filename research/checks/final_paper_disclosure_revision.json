@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "scope": "AI artifact verification, not human approval or submission",
+  "frozen_input_counts": {
+    "execution_freeze.json": 50,
+    "main_continuation_operational_freeze.json": 84
+  },
+  "docx_text_checks": 176,
+  "template_preserved_parts": 12,
+  "pdf_sha256": "233336c0a2ff426429dc4dafe1725c191c9dad998b93d25e6872e1e1161e1cda",
+  "docx_sha256": "8440ceace1482a9a09ea7fac0ef1cdedb86c78b2f4d2007fd2ede454c3b9af4e",
+  "pdf_bytes": 196500,
+  "total_pages": 11,
+  "body_pages": 7,
+  "abstract_words": 192,
+  "claims": {
+    "status": "passed",
+    "claim_rows": 104,
+    "manuscript_sha256": "8ba0e9ef5297e2376c4b80d5bd5341f8d7ef0d2f5adab0dbc4f393ebbac63389",
+    "map_sha256": "0170412510280784b04168c71cd18e546eda40741cc7e63da55eae5392a81671",
+    "source_files": 26,
+    "scope": "offline numeric evidence check; not human H4 or publication",
+    "unmapped_numeric_paragraphs": 0
+  },
+  "all_pages_visually_reviewed_by_AI": true,
+  "human_final_approval_claimed": false,
+  "scope_note": "Disclosure-only revision; prior full-suite evidence remains historical; focused document/evidence verification rerun."
+}

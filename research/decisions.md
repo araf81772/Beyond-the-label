@@ -584,3 +584,8 @@ Final-paper reproducibility follow-up: Git would normalize newly authored Window
 Final repository regression passed all 1,771 tests in 1,175.05 seconds. The final artifact verifier again passed all 104 claims, 176 document text checks, 134 frozen input hashes and current PDF/render hashes. Full-test, audit, clean-snapshot and artifact records are retained under research/checks/final_paper_*. No experiment call, billing-hold change, submission or final human manuscript approval was inferred. The reviewed package is prepared for authorized origin/v1 delivery.
 
 Final paper delivered as f50deef507651d8850a5c9d011602cea7d775e99 to verified origin/v1; remote SHA equality confirmed. The bounded delivery scan checked all 57 intended files with zero credential findings and zero Git-filter byte differences. Its first strict scan identified only the new audit log local line endings; the local log was normalized to its already-stored LF bytes and the full scan passed. No paper, scientific input or raw data changed in that correction. PDF/DOCX, evidence map, source disclosures and all-page visual QA are retained. The final paper is prepared for author approval and upload; no submission was made.
+
+
+## 2026-11-16 — user-approved concise AI disclosure
+
+The user requested the shorter disclosure without the phrase evidence verification and explicitly requested pushing it. Updated only the disclosure prose and regenerated DOCX/PDF. Scientific content and frozen inputs remain unchanged. Pages1-10 are byte-identical to reviewed v2 renders; page11 was visually inspected. Numeric claims remain verified. Submission has not occurred.

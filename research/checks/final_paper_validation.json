@@ -43,5 +43,6 @@
     "pushed_remote_verified": true,
     "evidence": "research/checks/final_paper_delivery.json"
   },
-  "final_delivery_secret_scan": "passed; 57 intended files, zero findings"
+  "final_delivery_secret_scan": "passed; 57 intended files, zero findings",
+  "superseded_for_current_document_by": "research/checks/final_paper_disclosure_revision.json"
 }

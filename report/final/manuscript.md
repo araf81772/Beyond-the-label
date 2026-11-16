@@ -187,4 +187,4 @@ The analysis tables and figures come from results/staged_main_complete; raw sour
 
 ## LLM Usage Statement
 
-OpenAI Codex assisted implementation, tests, execution controls, analysis checks and evidence verification, including independent AI subagent reviews. Codex drafted this final report under the team's direction. Claude (Anthropic) assisted repository review and the staged execution path, as documented in the project log. Deterministic code scored experimental actions; no LLM judge was used. Human checks remain separately recorded as team-reported completion, with timing and documentation limits disclosed. The authors are responsible for reviewing the final manuscript before submission.
+Codex assisted implementation, testing and report drafting. Claude assisted repository review and staged execution. Experimental outcomes were scored by deterministic code.

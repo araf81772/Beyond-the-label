@@ -1796,6 +1796,7 @@
     "human_attestation": "research/post_main_human_verification.json",
     "final_author_approval_claimed": false,
     "submitted": false,
-    "repository_checks_passed": true
+    "repository_checks_passed": true,
+    "latest_revision": "User-approved concise LLM statement; evaluation/final_paper_qa/v3; no submission performed"
   }
 }
