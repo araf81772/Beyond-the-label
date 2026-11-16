@@ -1,0 +1,19 @@
+{
+  "status": "paper_commit_pushed_and_remote_verified",
+  "verified_at_utc": "2026-11-16T01:11:31.889808+00:00",
+  "artifact_commit": "f50deef507651d8850a5c9d011602cea7d775e99",
+  "branch": "v1",
+  "remote": "https://github.com/araf81772/Beyond-the-label.git",
+  "remote_head_equal_at_verification": true,
+  "final_record_commit": "Resolve through Git; this follow-up records delivery without a circular self-hash.",
+  "docx_sha256": "822aa1ec01570d8c850ef9558838685f73036f41f39e6ac08c34e225699e95cf",
+  "pdf_sha256": "ce420af3fbc53e203b4f9f692400f7cd69d6527e5e5ebfdf33cf783623e59ed7",
+  "tests_passed": 1771,
+  "audit_checks_passed": 1899,
+  "claim_rows_verified": 104,
+  "delivery_scan": "research/checks/final_paper_delivery_scan.json",
+  "new_experiment_calls": 0,
+  "frozen_inputs_changed": 0,
+  "submission_performed": false,
+  "author_final_artifact_approval_claimed": false
+}

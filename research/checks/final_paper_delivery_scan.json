@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "intended_files_scanned": 57,
+  "secret_findings": 0,
+  "git_filter_byte_changes": 0,
+  "credential_values_printed_or_persisted": false,
+  "initial_scan": "Failed the strict working-byte normalization check on final_paper_audit.log only; its unbound local CRLF text was converted to LF and this full delivery scan passed. No scientific input, raw data, manuscript or PDF/DOCX changed.",
+  "scope": "Final paper commit relative to completed empirical baseline"
+}
