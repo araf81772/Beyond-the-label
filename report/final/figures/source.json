@@ -1,0 +1,7 @@
+{
+  "source": "results/staged_main_complete/analysis/figures/allocation.csv",
+  "source_sha256": "279262938ff059c1f19eb5a060b4ff48b76acabb874e016975153681fef8b3e7",
+  "figure_sha256": "5e217a4756aea3d028263e9f2575e84e7910cf4953743356fcdf1cc4dc9e6df3",
+  "builder_sha256": "40cd0c9e72b0f4ef348e1245f385ab751a3c17e39bdf668208b064e70c5cebee",
+  "purpose": "Presentation-only replot of unchanged frozen analysis fractions"
+}

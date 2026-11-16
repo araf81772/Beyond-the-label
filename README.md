@@ -2,7 +2,7 @@
 
 **The Label Survived. Which Case Did the Agent Check?**
 
-Apart Research AI x Epistemics Sprint, November 2026. Track 2 (Trust Infrastructure). Authors: Tonmoy Sarker and Araf Akhter.
+Apart Research AI x Epistemics Sprint, November 2026. Track 2 (Trust Infrastructure). Authors: Tonmoy Sarker, Araf Akhter and Abidur Rahaman (Independent researchers).
 
 ## The question
 
@@ -16,9 +16,21 @@ Provenance metadata can survive a handoff between agents and still change nothin
 4. An exact expected-loss oracle gives the best first action in every cell, so scoring needs no model judge. The scope swap should move the inspection; the oracle's paired effect is +1.00.
 5. Controls separate real scope use from shortcuts: a fee too high to justify checking, an 800-point lot that should be checked whatever its scope, withheld scope labels, and losses stated outright. A separate no-tools readback probe measures whether the agent can read the labels at all.
 
-Design: [research/protocol.md](research/protocol.md) (byte-preserved, pre-registered thresholds in section 9). Oracle: [research/oracle_derivation.md](research/oracle_derivation.md).
+Design: [research/protocol.md](research/protocol.md) (byte-preserved, interpretation thresholds in section 9; timing deviations disclosed). Oracle: [research/oracle_derivation.md](research/oracle_derivation.md).
 
-## Status on 16 November 2026 (AEDT): main stopped at 652/704 cells
+## Current status: completed main and final paper
+
+The main collection is complete: **704/704 terminal cells**, comprising 448 decision episodes and 256 readbacks. The frozen result is **NO_GAP_HERE_UNDER_THESE_CONDITIONS**. Separate-layout D is 0.9375, with a 95% world-bootstrap interval [0.875, 0.984375]. This is a bounded threshold result, not perfect performance or demonstrated equivalence between layouts.
+
+- [Final PDF](report/final/beyond_the_label.pdf) and [editable DOCX](report/final/beyond_the_label.docx): official template, seven body pages, 192-word abstract, required limitations/ethics appendix and accurate AI disclosure.
+- [Completed evidence bundle](results/staged_main_complete/bundle_manifest.json), [paper-specific numeric map](report/final/claim_evidence.csv), and [build/review instructions](report/final/README.md).
+- H1/H2/H5 remain user-attested in their historical scope. H3 is now user-attested for all three authors; Araf-led H4 is user-attested for the completed evidence available at confirmation time. [Post-main attestation](research/post_main_human_verification.json). No initials or human worksheets were invented. Final approval of the newly generated paper remains an author responsibility.
+- The approved 52-cell continuation made 84 accepted calls, with no new unknown charge and no completed-cell resampling. Staged accounting: USD 0.20233421648 known, USD 1.93872838656 still held, USD 6.85893739696 available; 1,645/3,000 attempts. Holds are not receipts.
+- Two invalid first actions, sixteen invalid continuations, one missing continuation and MASKED truncation in 21/32 first replies remain disclosed. All scientific and operational freezes are unchanged. No additional inference or submission was performed for paper preparation.
+
+The stopped 652-cell checkpoint below is retained as history. Its partial conclusion and pending-review statements are superseded by this section and the linked completed evidence.
+
+## Historical checkpoint: main stopped at 652/704 cells
 
 | Stage | State |
 |---|---|
@@ -60,15 +72,15 @@ python -c "from beyond_label.staged import main; raise SystemExit(main())" execu
 
 ## What was done during the sprint
 
-At the 15 November checkpoint, the repository's commits were dated 14 or 15 November 2026; subsequent work continues on 16 November. The sprint opened on 13 November 2026. The design file is dated Saturday 14 November. The first commit contains only `.gitattributes`; no code predates the sprint. *Team to confirm before submission: whether any idea or draft behind the design predates 13 November, and say so in the report if it does.*
+The initial idea and local design draft predated the sprint opening on 13 November 2026; Tonmoy Sarker and Araf Akhter developed them. The user clarified that **no preexisting code is included**. Abidur Rahaman contributed code during the sprint. Sprint work comprised completing and validating the instrument, controlled execution and provenance checks, smoke and pilot stages, the scientific freeze, main collection and its bounded continuation, analysis and reporting. All three authors reviewed the study data. Git commit dates alone were not used to infer when the idea or draft originated. [Confirmed disclosure](report/final/author_metadata.json).
 
-AI assistance: OpenAI Codex wrote most of the code, tests and engineering records under the team's direction. Claude (Anthropic) reviewed the repository against the sprint rules on 15 November and added the staged execution path on branch `v1`. No model judges any experimental decision. The current user reports that they and Araf completed H1, H2/P2 and H5; these are recorded as user-attested, not independently witnessed by an AI. H1's late timing remains a deviation. H3/H4 remain pending. [Human verification record](research/human_verification.json).
+AI assistance: OpenAI Codex assisted implementation, tests, execution controls, evidence verification and final-report drafting. Claude (Anthropic) reviewed the repository and implemented the staged execution path on v1. No LLM judges experimental decisions. Human checks are user-attested and documented separately; the late H1/D3/D4 timing and absent individual worksheets remain disclosed.
 
 ## Repository map
 
 | Path | Contents |
 |---|---|
-| `research/protocol.md`, `research/amendments.md` | Pre-registered design and its one approved amendment |
+| `research/protocol.md`, `research/amendments.md` | Authoritative design and its one approved amendment |
 | `src/beyond_label/` | Worlds, oracle, rendering, sandbox, scoring, analysis, execution controls |
 | `prompts/`, `data/`, `configs/` | Frozen prompts, seeded worlds and plans, pinned settings |
 | `tests/` | Offline tests, including T1-T8 from the protocol |

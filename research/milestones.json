@@ -5,7 +5,7 @@
   "execution_freeze": "research/execution_freeze.json",
   "experimental_calls": 1741,
   "human_participation_observed": false,
-  "human_verification_record": "research/human_verification.json",
+  "human_verification_record": "research/post_main_human_verification.json",
   "main_launch_preparation": {
     "recorded_on": "2026-11-16",
     "user_instruction_verbatim": "me h3, araf h4. so fix all 4 and test fix test and final run",
@@ -28,12 +28,11 @@
   "human_checks_user_attested_complete": [
     "H1",
     "H2/P2",
-    "H5"
-  ],
-  "human_checks_pending": [
     "H3",
-    "H4"
+    "H4_existing_completed_evidence",
+    "H5_existing_citations"
   ],
+  "human_checks_pending": [],
   "milestones": [
     {
       "number": 1,
@@ -911,7 +910,7 @@
       "number": 6,
       "name": "Analysis/report/reproduction",
       "status": "in_progress",
-      "reason": "Completed empirical bundle generated under frozen analysis; human H3/H4, final paper and final-paper reproduction pending.",
+      "reason": "Completed empirical analysis, independent AI checks, final-template PDF/DOCX and deterministic paper reproduction prepared. Human H3 and existing-evidence H4 now user-attested. Final author approval of the newly generated manuscript remains unrecorded; no submission performed.",
       "completed_offline_preparation": [
         "Analysis algorithms and synthetic tests",
         "Figure/table and matched-trace generation",
@@ -932,9 +931,9 @@
         0.875,
         0.984375
       ],
-      "paper_created": false,
+      "paper_created": true,
       "human_review_observed": false,
-      "minimum_next_action": "Each team member completes H3 under current user lead; Araf leads H4; write final paper with bounded no-gap result and preserved limitations.",
+      "minimum_next_action": "All authors review and approve the generated final manuscript, its claims and submission terms before upload; do not rerun collection.",
       "source_verification": "research/checks/source_verification.json",
       "official_template_link_verified": true,
       "official_template_contents_verified": true,
@@ -1007,6 +1006,18 @@
           "exit_code": 0,
           "summary": "All11 artifact hashes,5 source hashes,bootstrap,completeness andcontinuationprovenance identical; no trackedchange orprovidercall",
           "evidence": "research/checks/main52_clean_clone_reproduction.json"
+        },
+        {
+          "command": "python report/final/verify_claims.py; bundled Python report/final/verify_artifact.py; deterministic DOCX rebuild",
+          "exit_code": 0,
+          "summary": "104 claims,26sources,176DOCXtextchecks,50scientific+84operationalinputhashes,all11PDFpagesvisuallyreviewed;7bodypages/192-wordabstract",
+          "evidence": "research/checks/final_paper_validation.json"
+        },
+        {
+          "command": "python -m pytest -q; python scripts/verify_audit.py; git diff --check",
+          "exit_code": 0,
+          "summary": "1771 tests passed; 1899 audit checks across 619 files passed; diff checks passed. Frozen scientific/operational inputs unchanged.",
+          "evidence": "research/checks/final_paper_validation.json"
         }
       ],
       "planned_status_bundle": "results/planned",
@@ -1049,17 +1060,38 @@
         "evidence": "research/checks/main_clean_clone_reproduction_retest.json"
       },
       "completed_empirical_bundle": "results/staged_main_complete",
-      "current_empirical_conclusion": "NO_GAP_HERE_UNDER_THESE_CONDITIONS"
+      "current_empirical_conclusion": "NO_GAP_HERE_UNDER_THESE_CONDITIONS",
+      "final_paper": {
+        "pdf": "report/final/beyond_the_label.pdf",
+        "docx": "report/final/beyond_the_label.docx",
+        "body_pages": 7,
+        "total_pages": 11,
+        "abstract_words": 192,
+        "numeric_claim_rows": 104,
+        "source_files": 26,
+        "all_pages_visually_reviewed_by_AI": true,
+        "deterministic_docx_rebuild": true,
+        "validation": "research/checks/final_paper_validation.json",
+        "human_attestation": "research/post_main_human_verification.json",
+        "final_author_approval_claimed": false,
+        "submitted": false,
+        "repository_checks_passed": true
+      }
     }
   ],
-  "human_participation_scope": "H1/H2/H5 completion by the current user and Araf is user-attested in research/human_verification.json, not directly witnessed by Codex. H1 is late. On 16 November the current user assigned themselves H3 lead and Araf H4 lead after freeze; each member's independent H3 requirement remains and H3/H4 are pending. Historical observed/review false fields retain their original checkpoint meaning. User separately approved NUMERIC amendment A1.",
+  "human_participation_scope": "H1/H2/H5 retain their original user-attested scope and late timing. H3 is user-attested for Tonmoy, Araf and Abidur; Abidur was explicitly confirmed. Araf-led H4 is user-attested for the completed evidence available before final-paper generation. No individual signed worksheets were supplied; AI did not observe the human work. Final approval of the new manuscript is not inferred.",
   "authors": {
     "names": [
-      "Tonmoy",
-      "Araf"
+      "Tonmoy Sarker",
+      "Araf Akhter",
+      "Abidur Rahaman"
     ],
-    "affiliations": "pending",
-    "source": "user confirmed names; no review participation inferred"
+    "affiliations": [
+      "Independent researcher",
+      "Independent researcher",
+      "Independent researcher"
+    ],
+    "source": "report/final/author_metadata.json; user confirmed names, affiliations, contributions and corrected prior-work scope"
   },
   "offline_preparation_checkpoint": {
     "status": "offline_preparation_committed_and_pushed_real_execution_pending",
@@ -1746,6 +1778,24 @@
     },
     "final_bundle": "results/staged_main_complete",
     "clean_code_reproduction": "research/checks/main52_clean_clone_reproduction.json",
-    "clean_code_reproduction_passed": true
+    "clean_code_reproduction_passed": true,
+    "checkpoint_scope": "Collection-completion checkpoint before latest H3/H4 user attestation. Current human status is post_main_human_verification.json; raw evidence remains immutable."
+  },
+  "final_generated_artifact_author_approval": "not_yet_recorded; separate from earlier H4/H5 attestations",
+  "final_paper_preparation": {
+    "pdf": "report/final/beyond_the_label.pdf",
+    "docx": "report/final/beyond_the_label.docx",
+    "body_pages": 7,
+    "total_pages": 11,
+    "abstract_words": 192,
+    "numeric_claim_rows": 104,
+    "source_files": 26,
+    "all_pages_visually_reviewed_by_AI": true,
+    "deterministic_docx_rebuild": true,
+    "validation": "research/checks/final_paper_validation.json",
+    "human_attestation": "research/post_main_human_verification.json",
+    "final_author_approval_claimed": false,
+    "submitted": false,
+    "repository_checks_passed": true
   }
 }

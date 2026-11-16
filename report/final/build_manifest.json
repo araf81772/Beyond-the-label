@@ -1,0 +1,35 @@
+{
+  "classification": "empirical_final_paper",
+  "template_sha256": "21ebc0bcea8f9760c64c9c0eb163bbaaab0a34465722f86e4e3feecf6849de59",
+  "bundle_manifest_sha256": "f1646b3d3e1d024deeb8e66a1dc62fcd8c3fa277d8658faa83d628ca7e580cbe",
+  "manuscript_sha256": "f7d61f11bf1273021c16e237e678134c601ac3e4278935452a2907435cdb4ebc",
+  "metadata_sha256": "f57e0c45cf720f778d847f02cc5daa085d8189016d09097de52fc1400ef1d698",
+  "builder_sha256": "40cd0c9e72b0f4ef348e1245f385ab751a3c17e39bdf668208b064e70c5cebee",
+  "docx_sha256": "822aa1ec01570d8c850ef9558838685f73036f41f39e6ac08c34e225699e95cf",
+  "figure_sha256": "5e217a4756aea3d028263e9f2575e84e7910cf4953743356fcdf1cc4dc9e6df3",
+  "abstract_word_count": 192,
+  "body_word_count_including_frontmatter_tables": 2438,
+  "template_parts_preserved": [
+    "word/footnotes.xml",
+    "word/_rels/footnotes.xml.rels",
+    "word/numbering.xml",
+    "word/settings.xml",
+    "word/fontTable.xml",
+    "word/_rels/fontTable.xml.rels",
+    "word/styles.xml",
+    "_rels/.rels",
+    "word/fonts/OldStandardTT-regular.ttf",
+    "word/theme/theme1.xml",
+    "word/fonts/OldStandardTT-bold.ttf",
+    "word/fonts/OldStandardTT-italic.ttf"
+  ],
+  "template_parts_changed": [
+    "[Content_Types].xml",
+    "word/_rels/document.xml.rels",
+    "word/document.xml"
+  ],
+  "section_xml_preserved": true,
+  "source_artifacts_verified": 11,
+  "visual_review": "requires_current_PDF_and_all_page_review",
+  "human_final_artifact_approval_claimed": false
+}

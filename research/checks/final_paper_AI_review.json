@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "classification": "independent_AI_reviews_not_human_signoff",
+  "recorded_at_utc": "2026-11-16T00:36:04.627184+00:00",
+  "reviewed_commit": "0bc1ceaf199c5bd0ec19de175040662e1a170270",
+  "reviews": {
+    "paper_validity": {
+      "raw_first_actions_checked": 448,
+      "readbacks_checked": 256,
+      "realised_losses_checked": 429,
+      "Fraction_numeric_fields_checked": 1788,
+      "claim_map_entries_checked": 823,
+      "artifact_hashes_checked": 11,
+      "payload_settings_checked": 1080,
+      "independent_bootstrap_resamples": 10000,
+      "independent_bootstrap_seed": 314159,
+      "discrepancies": 0
+    },
+    "paper_evidence": {
+      "scientific_inputs_checked": 50,
+      "operational_inputs_checked": 84,
+      "gate_files_checked": 15,
+      "parent_files_checked": 5,
+      "child_files_checked": 5,
+      "bundle_artifacts_checked": 11,
+      "parent_prefix_bytes_preserved": 17615533,
+      "discrepancies": 0,
+      "human_worksheet_limitation": "No initials or per-reviewer trace_audit.csv supplied; completion is user-attested."
+    },
+    "paper_sources": {
+      "official_page": "https://apartresearch.com/sprints/ai-x-epistemics-research-sprint-2026-11-13-to-2026-11-15",
+      "template_id": "17b3JWki-ZkaqdmqGI5d0gof-HwlGuWU9Mc1_klNZXKs",
+      "template_sha256": "21ebc0bcea8f9760c64c9c0eb163bbaaab0a34465722f86e4e3feecf6849de59",
+      "body_page_maximum": 8,
+      "abstract_words": [
+        150,
+        250
+      ],
+      "deadline_utc": "2026-11-16T11:59:00Z",
+      "required_appendix": "Limitations and Dual-Use / Ethical Considerations",
+      "existing_primary_references_rechecked": 3,
+      "Fan_exact_recognition_percentage": "Not used: text contains unreconciled76.2percent versus281/376.",
+      "Claude_role": "Repository records confirm Araf-authorized v1 engineering and staged execution; disclose alongside Codex drafting.",
+      "prior_work_latest_clarification": "Only the initial idea/local design draft predated the sprint; the user clarified no preexisting code is included. Rules allow disclosed prior work.",
+      "prior_work_rule": "Mark any code you wrote before the sprint as preexisting in the README and the report."
+    },
+    "paper_validity_final_artifact": {
+      "status": "passed",
+      "claim_rows": 104,
+      "hashed_source_files": 26,
+      "DOCX_tables": 4,
+      "DOCX_cells": 100,
+      "prose_heading_command_lines": 76,
+      "scientific_inputs_unchanged": 50,
+      "completed_bundle_artifacts_unchanged": 11,
+      "PDF_pages": 11,
+      "body_pages": 7,
+      "abstract_words": 192,
+      "author_metadata_verified": true,
+      "placeholders_found": 0,
+      "frozen_design_changes": 0,
+      "human_completion_scope": "User-attested only; final artifact approval not inferred."
+    }
+  },
+  "model_calls": 0,
+  "frozen_design_changes": 0
+}

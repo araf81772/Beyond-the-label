@@ -1,4 +1,18 @@
-# Submission guide
+# Current submission package — 16 November 2026
+
+Use [final/beyond_the_label.pdf](final/beyond_the_label.pdf), not the historical pre-results PDF. The editable source, evidence map, verification and reproduction instructions are in [final/README.md](final/README.md). The final PDF has seven body pages, one reference page and three appendix pages; its abstract has 192 words. All three confirmed independent-researcher authors, prior idea/design-draft disclosure, limitations/ethics appendix and Codex/Claude usage statement are included. No preexisting code is included, per the user's clarified statement.
+
+Main collection is complete at 704 terminal cells. Use results/staged_main_complete, not the stopped-parent results/staged_main bundle, for current claims. The bounded frozen classification is NO_GAP_HERE_UNDER_THESE_CONDITIONS. Preserve all failure/missingness and MASKED limitations.
+
+H3 is user-attested for Tonmoy, Araf and Abidur; Araf-led H4 is user-attested for the completed evidence. H1/H2/H5 keep their documented scope. Final author review of this newly generated paper is distinct from those earlier attestations. Existing references were rechecked by AI; no new source was added. A spelling correction restores Bissyandé/Tegawendé in the bibliography. Do not represent AI review as a human check.
+
+Before upload, all named authors should approve this final artifact and the submission license. Upload the PDF through the [official sprint page](https://apartresearch.com/sprints/ai-x-epistemics-research-sprint-2026-11-13-to-2026-11-15), confirm receipt and retain the confirmation. Deadline: 16 November 2026, 11:59 UTC / 22:59 AEDT. This work prepared files; it did not submit them.
+
+The following guide is preserved as its dated pre-results/partial-main checkpoint. Its unchecked boxes and partial counts are historical, not the current package status.
+
+---
+
+# Historical submission guide
 
 Written 15 November 2026 (AEDT) by Claude (AI) after checking the live sprint page that day. This is a checklist and a list of facts. It is **not** report text: the official template strongly encourages the team to write the final report themselves, and a judge may decline to score a report they cannot follow.
 

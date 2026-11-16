@@ -1,0 +1,1 @@
+Canonical documents render_docx.py failed before conversion on 16 November 2026: FileNotFoundError: LibreOffice soffice.exe was not found on PATH. Bundled Windows runtime has no LibreOffice. Use isolated hidden Word COM read-only export; never desktop LibreOffice.

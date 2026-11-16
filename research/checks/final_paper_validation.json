@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "scope": "AI artifact verification, not human approval or submission",
+  "frozen_input_counts": {
+    "execution_freeze.json": 50,
+    "main_continuation_operational_freeze.json": 84
+  },
+  "docx_text_checks": 176,
+  "template_preserved_parts": 12,
+  "pdf_sha256": "ce420af3fbc53e203b4f9f692400f7cd69d6527e5e5ebfdf33cf783623e59ed7",
+  "docx_sha256": "822aa1ec01570d8c850ef9558838685f73036f41f39e6ac08c34e225699e95cf",
+  "pdf_bytes": 196962,
+  "total_pages": 11,
+  "body_pages": 7,
+  "abstract_words": 192,
+  "claims": {
+    "status": "passed",
+    "claim_rows": 104,
+    "manuscript_sha256": "f7d61f11bf1273021c16e237e678134c601ac3e4278935452a2907435cdb4ebc",
+    "map_sha256": "0170412510280784b04168c71cd18e546eda40741cc7e63da55eae5392a81671",
+    "source_files": 26,
+    "scope": "offline numeric evidence check; not human H4 or publication",
+    "unmapped_numeric_paragraphs": 0
+  },
+  "all_pages_visually_reviewed_by_AI": true,
+  "human_final_approval_claimed": false,
+  "deterministic_docx_rebuild": true,
+  "clean_snapshot": "research/checks/final_paper_clean_snapshot.json",
+  "post_run_repository_checks": {
+    "status": "passed",
+    "audit_checks": 1899,
+    "audit_files_scanned": 619,
+    "audit_evidence": "research/checks/final_paper_audit.json",
+    "tests_passed": 1771,
+    "pytest_evidence": "research/checks/final_paper_pytest.json",
+    "git_diff_check": "passed"
+  },
+  "new_experiment_calls": 0,
+  "submission_performed": false,
+  "author_final_approval_claimed": false,
+  "git_delivery": "prepared_for_authorized_origin_v1_delivery"
+}

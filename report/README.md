@@ -1,3 +1,9 @@
+# Final empirical paper
+
+The current submission package is in [final/README.md](final/README.md): [PDF](final/beyond_the_label.pdf), [DOCX](final/beyond_the_label.docx), manuscript, numeric evidence map and offline verification. Earlier pre-results exports below are preserved historical artifacts and must not be submitted.
+
+---
+
 # Pre-results report and evidence packaging
 
 > **Status, 15 November 2026:** the files described below are a dated pre-results artifact. Real smoke observations now exist and the draft's model name is out of date. Do not submit `manuscript.md` or `pre_results.pdf`. Use [SUBMISSION_GUIDE.md](SUBMISSION_GUIDE.md) for the current requirements, the list of stale statements and where each result will come from.

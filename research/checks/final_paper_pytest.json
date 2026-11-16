@@ -1,0 +1,11 @@
+{
+  "command": "python -m pytest -q",
+  "exit_code": 0,
+  "seconds": 1179.99,
+  "credential_environment_stripped": true,
+  "log": "research/checks/final_paper_pytest.log",
+  "status": "passed",
+  "tests_passed": 1771,
+  "pytest_seconds": 1175.05,
+  "summary": "1771 passed in 1175.05s (0:19:35)"
+}

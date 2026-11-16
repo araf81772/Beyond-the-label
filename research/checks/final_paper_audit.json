@@ -1,0 +1,12 @@
+{
+  "command": "python scripts/verify_audit.py",
+  "exit_code": 0,
+  "seconds": 167.13,
+  "credential_environment_stripped": true,
+  "log": "research/checks/final_paper_audit.log",
+  "status": "passed",
+  "checks_passed": 1899,
+  "files_scanned": 619,
+  "failures": [],
+  "local_credential_loading": "Audit may silently populate known values from the ignored project .env for leak detection; values are never printed or persisted."
+}

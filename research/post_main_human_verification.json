@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "classification": "post_main_human_completion_reported_by_user_not_independently_observed",
+  "recorded_at_utc": "2026-11-16T00:36:04.624023+00:00",
+  "recorded_by": "Codex (AI), transcribing current conversation",
+  "source_commit": "0bc1ceaf199c5bd0ec19de175040662e1a170270",
+  "historical_record": "research/human_verification.json",
+  "historical_record_sha256": "982c8877cc73abc5eaaac159128d3e04c87fe08fc75c9b39fb9025d2172beac0",
+  "reviewed_evidence": "results/staged_main_complete",
+  "bundle_manifest_sha256": "f1646b3d3e1d024deeb8e66a1dc62fcd8c3fa277d8658faa83d628ca7e580cbe",
+  "user_statement_verbatim": "we have do  you also check again af exerthing fine weite the final submation ready paper",
+  "quoted_scope": "M5 collection is complete. M6 remains pending: each human team member must complete H3 (the current user leads; 30 action-stratified traces using seed 161803 plus every INVALID/REFUSED trace), and Araf leads H4 checking final-paper numbers against file/command evidence. H1/H2/H5 remain user-attested work in their documented scope. New or changed citations require review.",
+  "reported_reviewers": [
+    "Tonmoy Sarker (current user)",
+    "Araf Akhter",
+    "Abidur Rahaman"
+  ],
+  "checks": {
+    "H3": {
+      "status": "complete_user_attested",
+      "scope": "Each of the three named authors performed the protocol main-trace audit, as reported by the user; Abidur was explicitly confirmed in a supplemental answer.",
+      "lead": "current user",
+      "individual_worksheets_supplied": false,
+      "initials_or_row_level_audit_records_created_by_AI": false,
+      "supplemental_Abidur_confirmation_verbatim": "Yes, Abidur completed that H3 check too",
+      "supplemental_confirmation_scope": "Abidur independently checked 30 action-stratified main traces using seed 161803 plus every INVALID/REFUSED trace."
+    },
+    "H4": {
+      "status": "complete_user_attested_for_existing_completed_evidence",
+      "lead": "Araf",
+      "scope": "Completed main evidence and its file/command numeric map available at confirmation time.",
+      "newly_generated_final_manuscript_review_claimed": false
+    }
+  },
+  "H1_H2_H5": "Prior user attestations retain their historical scope; no new citation or final-artifact review is inferred.",
+  "human_participation_independently_observed": false,
+  "late_H1_D3_D4_deviations_retained": true,
+  "submission_authorized": false,
+  "frozen_files_modified": false,
+  "author_metadata": "report/final/author_metadata.json"
+}

@@ -1,0 +1,23 @@
+{
+  "renderer": "Microsoft Word COM; hidden isolated instance; read-only source; Poppler 120 dpi",
+  "canonical_renderer_blocker": "LibreOffice soffice.exe unavailable on PATH",
+  "docx_sha256": "633b9382d73093d39404b1e9e9be090df54b32b7e4d52af4cc897b9eeae4a83c",
+  "pdf_sha256": "b42aad47320ceeb8e359ae36766acdb2ca925ca3405ffaf345ba263ab3dfb68a",
+  "total_pages": 12,
+  "all_pages_visually_reviewed": false,
+  "body_page_limit_verified": false,
+  "page_png_sha256": {
+    "page-01.png": "a0498f1fb83f0795157f5c10392e08c3c086347709748463cff8f7270f3b50f2",
+    "page-02.png": "a617ea63127633d8ef1441564173906a663299a1d380071a1dd34021cd64b4c6",
+    "page-03.png": "79127a275f25007b79a099f6299c26cb3b20a5ac1efcb1fa329591a5db639af2",
+    "page-04.png": "88d0fb3c2c01614efe54ba953a47ce37bc602099f9e62226c688c09e2081cc62",
+    "page-05.png": "92fee73837cc6f31aad9a43ce25409dab80e66ec0c79c42f204234fd2e0f8e80",
+    "page-06.png": "223a4190f97bdc8f3c836ccdf9bf660b0c17621a6571152f61ec21f50ee1ffdf",
+    "page-07.png": "6776ce516eef5e3db12c9e1a08e6fa65363efe2720abb119ac83ef705f947b40",
+    "page-08.png": "cd1c0f6fe15178d6b806d28512b57c85940e4a5665e8f8471d556dd9602661fd",
+    "page-09.png": "ec2411db0378f055d06f576ff138a5d1418c970c0f74f2fceaf47cd04989ec2d",
+    "page-10.png": "9cdb3dbe50889228e7b3fb16878b743ca5e40bcea2f0613e049339c0ab100e7e",
+    "page-11.png": "2803cb7ca040aaf54c09af2b0105cf4a6266a20f2c10820f80c70e8910db410a",
+    "page-12.png": "989e31d554256ef8cee4678999453d56e103f579249be0f22e297d5310a29f1a"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "authors": [
+    {
+      "name": "Tonmoy Sarker",
+      "affiliation": "Independent researcher"
+    },
+    {
+      "name": "Araf Akhter",
+      "affiliation": "Independent researcher"
+    },
+    {
+      "name": "Abidur Rahaman",
+      "affiliation": "Independent researcher"
+    }
+  ],
+  "names_source": "User supplied exact names on 16 November 2026",
+  "prior_work_exists_user_confirmed": true,
+  "prior_work_disclosure": "The initial idea and local design draft predated the sprint opening on 13 November 2026; Tonmoy Sarker and Araf Akhter developed them. No preexisting code is included in this repository. Abidur Rahaman contributed code during the sprint. Sprint work comprised completing and validating the instrument, controlled execution and provenance checks, smoke and pilot stages, the scientific freeze, main collection and its bounded continuation, analysis and reporting. The earlier idea and draft are acknowledged as prior work. All three authors reviewed the study data.",
+  "contributions": null,
+  "final_artifact_human_approval_claimed": false,
+  "confirmation_verbatim": "Yes, that wording is accurate",
+  "confirmation_scope": "All three authors are independent researchers. Before 13 November, Tonmoy and Araf developed the idea and draft, and Abidur contributed code. All three later reviewed the data.",
+  "prior_work_correction_verbatim": "no code that was the first design deaft in local",
+  "correction_interpretation": "Latest clarification supersedes earlier ambiguous confirmation of pre-sprint code: only the idea/design draft predated the sprint; no preexisting code is included."
+}
