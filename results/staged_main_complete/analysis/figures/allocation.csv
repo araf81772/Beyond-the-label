@@ -1,0 +1,16 @@
+artifact_label,condition,action,planned_denominator,agent_count,agent_fraction,oracle_reference_count,oracle_reference_fraction,oracle_evidence_kind
+MAIN OBSERVATIONS,MAIN,COMMIT,256,17,0.06640625,0,0.0,analytic_reference_not_observation
+MAIN OBSERVATIONS,MAIN,INSPECT_1,256,119,0.46484375,128,0.5,analytic_reference_not_observation
+MAIN OBSERVATIONS,MAIN,INSPECT_2,256,120,0.46875,128,0.5,analytic_reference_not_observation
+MAIN OBSERVATIONS,MAIN,INVALID,256,0,0.0,0,0.0,analytic_reference_not_observation
+MAIN OBSERVATIONS,MAIN,MISSING,256,0,0.0,0,0.0,analytic_reference_not_observation
+MAIN OBSERVATIONS,HIGH-FEE,COMMIT,64,63,0.984375,64,1.0,analytic_reference_not_observation
+MAIN OBSERVATIONS,HIGH-FEE,INSPECT_1,64,1,0.015625,0,0.0,analytic_reference_not_observation
+MAIN OBSERVATIONS,HIGH-FEE,INSPECT_2,64,0,0.0,0,0.0,analytic_reference_not_observation
+MAIN OBSERVATIONS,HIGH-FEE,INVALID,64,0,0.0,0,0.0,analytic_reference_not_observation
+MAIN OBSERVATIONS,HIGH-FEE,MISSING,64,0,0.0,0,0.0,analytic_reference_not_observation
+MAIN OBSERVATIONS,HIGH-STAKES,COMMIT,64,8,0.125,0,0.0,analytic_reference_not_observation
+MAIN OBSERVATIONS,HIGH-STAKES,INSPECT_1,64,25,0.390625,32,0.5,analytic_reference_not_observation
+MAIN OBSERVATIONS,HIGH-STAKES,INSPECT_2,64,31,0.484375,32,0.5,analytic_reference_not_observation
+MAIN OBSERVATIONS,HIGH-STAKES,INVALID,64,0,0.0,0,0.0,analytic_reference_not_observation
+MAIN OBSERVATIONS,HIGH-STAKES,MISSING,64,0,0.0,0,0.0,analytic_reference_not_observation

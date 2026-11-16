@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "classification": "completed_approved_main_continuation_AI_verification_not_human_signoff",
+  "recorded_at_utc": "2026-11-16T00:10:49.152363+00:00",
+  "status": "completed",
+  "execution_evidence": "research/checks/main52_live_execution.json",
+  "readiness_evidence": "research/checks/main52_live_readiness.json",
+  "source_head_at_execution": "baf7cc15f244c932aad19ddcb32e3bc7f3994552",
+  "operational_source_commit": "cc7c81dbfda50aefada5c4e62f1ffd8702601939",
+  "new_cells_completed": 52,
+  "new_attempts": 84,
+  "new_accepted_calls": 84,
+  "new_failed_attempts": 0,
+  "new_unknown_charges": 0,
+  "old_holds_released": 0,
+  "original_completed_cells_resampled": 0,
+  "incremental_known_cost_usd": "0.01057185696",
+  "reconciliation": {
+    "journaled_attempts": 1645,
+    "reserved_attempts": 1645,
+    "known_receipts": 1605,
+    "held_reservations": 40,
+    "source_directory": "continuations/staged_main_52_20261116",
+    "inherited_main_attempts": 1036,
+    "new_main_attempts": 84,
+    "completed_cells": 704,
+    "pending_cells": 0,
+    "settled_cost_usd": "0.20233421648",
+    "held_usd": "1.93872838656",
+    "available_usd": "6.85893739696"
+  },
+  "attempts_remaining": 1355,
+  "completeness": {
+    "all_cells_terminal": true,
+    "all_observations_available": false,
+    "completed_cells": 704,
+    "continuation_missing_cells": 1,
+    "infrastructure_missing_cells": 0,
+    "missing_first_action_or_readback_cells": 0,
+    "missing_reasons": {},
+    "observed_first_action_or_readback_cells": 704,
+    "pending_cells": 0,
+    "planned_cells": 704,
+    "unexecuted_cells": 0,
+    "unresolved_attempt_cells": 0
+  },
+  "all_main_decisions": 448,
+  "all_main_readbacks": 256,
+  "invalid_first_actions": 2,
+  "invalid_continuations": 16,
+  "missing_continuations": 1,
+  "realised_outcomes_available": 429,
+  "MASKED_first_reply_truncation": "21/32",
+  "scientific_design_changed": false,
+  "original_parent_files_unchanged": true,
+  "original_scientific_freeze_unchanged": true,
+  "original_partial_bundle_unchanged": true,
+  "primary_estimate": {
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 314159,
+    "bootstrap_unit": "world",
+    "ci95": [
+      0.875,
+      0.984375
+    ],
+    "interval_method": "percentile_linear_quantile",
+    "mean": 0.9375,
+    "worlds": 64
+  },
+  "inline_estimate": {
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 314159,
+    "bootstrap_unit": "world",
+    "ci95": [
+      0.859375,
+      0.984375
+    ],
+    "interval_method": "percentile_linear_quantile",
+    "mean": 0.921875,
+    "worlds": 64
+  },
+  "layout_interaction": {
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 314159,
+    "bootstrap_unit": "world",
+    "ci95": [
+      -0.109375,
+      0.078125
+    ],
+    "interval_method": "percentile_linear_quantile",
+    "mean": -0.015625,
+    "worlds": 64
+  },
+  "interpretation": {
+    "conclusion": "NO_GAP_HERE_UNDER_THESE_CONDITIONS",
+    "missingness_rule": "Threshold flags use observed denominators; any required-group infrastructure missingness prevents an unconditional conclusion.",
+    "nonsignificance_rule": "A nonsignificant effect is not evidence that the agent ignores scope.",
+    "recognition_action_gap_scope": "Descriptive conditional association; separate readback branches do not establish that recognition caused the decision.",
+    "required_group_missingness": false,
+    "threshold_checks_for_validation": {
+      "gap_found": false,
+      "layout_helps": false,
+      "no_gap_here": true
+    }
+  },
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 314159,
+    "unit": "world"
+  },
+  "final_bundle": "results/staged_main_complete",
+  "artifact_hashes_verified": 11,
+  "figures_visually_reviewed_by_AI": [
+    "agent_allocation_vs_oracle.png",
+    "pair_switch_categories.png"
+  ],
+  "validation": {
+    "full_suite_before_dispatch": "1771 passed in 1051.20s",
+    "pre_dispatch_audit": "1664 checks passed",
+    "independent_accounting_review": "research/checks/main52_accounting_AI_review.json",
+    "primary_agent_trace_oracle_review": "research/checks/main52_trace_oracle_AI_review.json",
+    "clean_code_reproduction": "pending",
+    "postrun_audit": "research/checks/main52_postrun_audit.json",
+    "postrun_audit_passed": true
+  },
+  "independent_review_limitations": [
+    {
+      "agent": "rate_resume_audit",
+      "status": "service_usage_limit_no_completed_postrun_review"
+    },
+    {
+      "agent": "continuation_integrity",
+      "status": "service_usage_limit_no_completed_postrun_trace_review"
+    }
+  ],
+  "human_H3_complete": false,
+  "human_H4_complete": false,
+  "publication_performed": false
+}

@@ -1,0 +1,924 @@
+{
+  "schema_version": 1,
+  "classification": "primary_agent_AI_trace_oracle_review_not_independent_human_review",
+  "recorded_at_utc": "2026-11-16T00:08:43.579894+00:00",
+  "method": "Standalone standard-library raw parsing, strict argument checks and Fraction arithmetic from retained world inputs; no experiment-module imports. Frozen replay/finalizer independently checks full parser and journal.",
+  "summary": {
+    "eligible_cells_checked": 52,
+    "raw_responses_checked": 84,
+    "new_decisions_checked": 34,
+    "new_readbacks_checked": 18,
+    "new_continuations_checked": 30,
+    "expected_numeric_fields_checked": 136,
+    "realised_outcomes_checked": 33,
+    "parent_completed_rows_unchanged": 652,
+    "new_failed_attempts": 0,
+    "discrepancies": 0,
+    "first_reply_MASKED_truncations": 21,
+    "MASKED_planned": 32,
+    "invalid_continuations_all_main": {
+      "invalid:INSPECTION_LIMIT": 16
+    },
+    "historical_missing_continuation_preserved": true
+  },
+  "operational_checks": {
+    "eligible_order_and_unique_completion": "pass",
+    "pending_readback_attempt3": "pass",
+    "remaining_attempt_numbers1": "pass",
+    "84_payloads_and_returned_identities": "pass",
+    "original_terminal_missing_continuation_not_redispatched": "pass"
+  },
+  "pacing_evidence_limitation": "Pacing is bound to tested source and execution context. Journals do not record per-POST wall timestamps, so direct 15-second separation is not independently measured.",
+  "unfinished_independent_reviews": [
+    {
+      "agent": "rate_resume_audit",
+      "status": "service_usage_limit_no_completed_postrun_review"
+    },
+    {
+      "agent": "continuation_integrity",
+      "status": "service_usage_limit_no_completed_postrun_trace_review"
+    }
+  ],
+  "cells": [
+    {
+      "cell_id": "main-2061-readback-MAIN-inline-b",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2012-decision-MAIN-separate-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2019-decision-MAIN-inline-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2002-decision-MAIN-separate-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_2",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2002-decision-HIGH-STAKES-separate-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_2",
+      "continuation_status": "committed",
+      "computed_expected_loss": "100",
+      "computed_oracle_loss": "60"
+    },
+    {
+      "cell_id": "main-2011-readback-MAIN-separate-a",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2061-readback-MAIN-inline-a",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2020-decision-MAIN-inline-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_2",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2014-readback-MAIN-inline-a",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2050-decision-MAIN-separate-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2043-readback-MAIN-separate-b",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2012-decision-HIGH-FEE-inline-b",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "COMMIT",
+      "continuation_status": "not_applicable",
+      "computed_expected_loss": "50",
+      "computed_oracle_loss": "50"
+    },
+    {
+      "cell_id": "main-2004-decision-HIGH-STAKES-inline-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "invalid:INSPECTION_LIMIT",
+      "computed_expected_loss": "60",
+      "computed_oracle_loss": "60"
+    },
+    {
+      "cell_id": "main-2050-decision-MAIN-separate-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_2",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2049-decision-MAIN-inline-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2015-readback-MAIN-inline-a",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2005-readback-MAIN-inline-a",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2047-decision-MAIN-inline-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2025-decision-MAIN-separate-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_2",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2001-decision-HIGH-FEE-inline-a",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "COMMIT",
+      "continuation_status": "not_applicable",
+      "computed_expected_loss": "50",
+      "computed_oracle_loss": "50"
+    },
+    {
+      "cell_id": "main-2055-readback-MAIN-separate-b",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2009-decision-MAIN-inline-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_2",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2010-decision-MAIN-inline-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_2",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2015-readback-MAIN-inline-b",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2018-readback-MAIN-inline-b",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2019-readback-MAIN-separate-b",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2032-decision-MAIN-separate-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2006-decision-HIGH-STAKES-separate-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2048-readback-MAIN-separate-a",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2039-decision-MAIN-separate-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_2",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2004-decision-HIGH-FEE-inline-b",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "COMMIT",
+      "continuation_status": "not_applicable",
+      "computed_expected_loss": "50",
+      "computed_oracle_loss": "50"
+    },
+    {
+      "cell_id": "main-2015-decision-MAIN-separate-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2023-decision-MAIN-separate-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2053-readback-MAIN-inline-b",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2009-readback-MAIN-separate-b",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2024-decision-MAIN-inline-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_2",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2049-decision-MAIN-separate-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2060-decision-MAIN-inline-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2014-decision-MASKED-inline-masked",
+      "raw_responses_checked": 3,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "45",
+      "computed_oracle_loss": "45"
+    },
+    {
+      "cell_id": "main-2010-decision-NUMERIC-separate-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_2",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2045-readback-MAIN-inline-b",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2000-decision-HIGH-STAKES-separate-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "60",
+      "computed_oracle_loss": "60"
+    },
+    {
+      "cell_id": "main-2009-readback-MAIN-inline-b",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2000-decision-MAIN-inline-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_2",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2012-decision-MAIN-inline-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2006-decision-HIGH-FEE-separate-a",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "COMMIT",
+      "continuation_status": "not_applicable",
+      "computed_expected_loss": "50",
+      "computed_oracle_loss": "50"
+    },
+    {
+      "cell_id": "main-2062-decision-MAIN-separate-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2002-readback-MAIN-inline-a",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    },
+    {
+      "cell_id": "main-2025-decision-MAIN-inline-b",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_2",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2005-decision-MAIN-separate-a",
+      "raw_responses_checked": 2,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "30",
+      "computed_oracle_loss": "30"
+    },
+    {
+      "cell_id": "main-2007-decision-MASKED-separate-masked",
+      "raw_responses_checked": 3,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "first-action category",
+        "four Fraction expected-loss/oracle/regret fields",
+        "hidden-state realised outcome or required blank",
+        "continuation transition/status",
+        "inspection state/contradiction where applicable"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass",
+      "category": "INSPECT_1",
+      "continuation_status": "committed",
+      "computed_expected_loss": "45",
+      "computed_oracle_loss": "45"
+    },
+    {
+      "cell_id": "main-2063-readback-MAIN-inline-a",
+      "raw_responses_checked": 1,
+      "wire_and_identity": "pass",
+      "raw_to_parser": "pass",
+      "checks": [
+        "both target configurations and match flags",
+        "correctness score",
+        "required blank decision fields"
+      ],
+      "discrepancies": [],
+      "conclusion": "pass"
+    }
+  ]
+}

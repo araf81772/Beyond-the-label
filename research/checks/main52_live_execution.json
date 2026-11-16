@@ -1,0 +1,4276 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-11-15T23:02:06.031536+00:00",
+  "source_head": "baf7cc15f244c932aad19ddcb32e3bc7f3994552",
+  "classification": "approved_main52_live_execution",
+  "approval": "research/main_continuation_approval.json",
+  "status": "continuation_completed",
+  "result": {
+    "status": "continuation_completed",
+    "directory": "continuations/staged_main_52_20261116",
+    "reconciliation": {
+      "journaled_attempts": 1645,
+      "reserved_attempts": 1645,
+      "known_receipts": 1605,
+      "held_reservations": 40,
+      "source_directory": "continuations/staged_main_52_20261116",
+      "inherited_main_attempts": 1036,
+      "new_main_attempts": 84,
+      "completed_cells": 704,
+      "pending_cells": 0,
+      "settled_cost_usd": "0.20233421648",
+      "held_usd": "1.93872838656",
+      "available_usd": "6.85893739696"
+    },
+    "analysis_manifest": {
+      "evidence_kind": "empirical",
+      "empirical_observations": 704,
+      "experimental_provider_spend": null,
+      "run_config_hash": "1597a8a40012c8153d7bdd50bfa68148d487b579ce30a587db93419d846a88a7",
+      "planned_cells": 704,
+      "completed_cells": 704,
+      "pending_cells": 0,
+      "first_action_or_readback_missing": 0,
+      "successful_calls": 1080,
+      "attempted_calls": 1120,
+      "infrastructure_retries": 39,
+      "permitted_reprompts": 21,
+      "continuations": 356,
+      "invalid_first_actions": 2,
+      "missingness": [],
+      "cells": [
+        {
+          "cell_id": "main-2013-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2004-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2023-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2012-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2011-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2052-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2015-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2032-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2029-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2014-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2031-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2061-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2008-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2012-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2015-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2013-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2009-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2008-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2023-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2004-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2031-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2003-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2009-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2003-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2046-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2001-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2011-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2000-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2011-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2001-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2057-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2038-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2016-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2046-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2044-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2014-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2019-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2062-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2001-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2002-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2057-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2011-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2036-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2005-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2006-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2023-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2002-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2010-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2054-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2027-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2007-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2005-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2028-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2011-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2011-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2013-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2041-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2002-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2003-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2005-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2040-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2025-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2015-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2026-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2061-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2043-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2042-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2031-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2030-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2016-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2042-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2013-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2047-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2010-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2036-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2042-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2004-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2017-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2007-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2014-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2035-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2007-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2013-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2054-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2011-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2000-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2009-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2022-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2043-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2005-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2015-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2049-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2003-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2033-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2000-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2019-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2033-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2012-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2004-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2053-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2010-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2039-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2002-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2006-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2010-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2046-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2040-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2056-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2022-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2052-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2021-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2051-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2011-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2035-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2005-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2000-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2014-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2010-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2035-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2012-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2030-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2009-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2006-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2031-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2014-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2058-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2007-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2035-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2037-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2027-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2008-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2013-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2024-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2011-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2006-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2060-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2017-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2003-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2010-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2044-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2008-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2038-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2016-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2034-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2008-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2063-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2015-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2001-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2006-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2032-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2047-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2034-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2048-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2008-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2051-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2025-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2012-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2007-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2009-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2016-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2006-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2027-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2034-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2002-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2006-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2055-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2062-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2047-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2010-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2060-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2006-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2059-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2005-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2006-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2038-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2008-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2040-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2033-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2052-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2041-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2051-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2058-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2051-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2016-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2058-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2042-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2026-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2028-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2013-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2006-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2000-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2029-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2005-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2058-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2012-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2048-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2008-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2012-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2051-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2057-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2030-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2012-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2061-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2003-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2047-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2004-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2054-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2047-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2000-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2060-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2027-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2027-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2044-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2048-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2030-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2015-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2050-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2020-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2011-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2010-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2042-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2056-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2054-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2015-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2005-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2042-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2002-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2026-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2034-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2008-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2058-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2037-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2053-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2042-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2059-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2011-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2056-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2053-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2004-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2014-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2005-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2009-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2006-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2048-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2003-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2033-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2041-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2056-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2006-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2053-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2004-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2039-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2051-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2028-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2030-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2028-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2041-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2033-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2001-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2035-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2012-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2060-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2029-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2004-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2001-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2043-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2023-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2063-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2008-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2006-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2022-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2024-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2029-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2024-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2003-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2043-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2012-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2032-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2035-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2008-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2055-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2055-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2037-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2062-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2039-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2004-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2009-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2009-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2051-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2001-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2031-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2029-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2017-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2009-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2025-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2008-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2023-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2036-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2003-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2002-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2063-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2014-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2008-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2002-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2030-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2005-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2027-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2010-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2013-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2001-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2007-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2031-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2011-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2014-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2061-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2053-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2039-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2010-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2059-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2009-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2013-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2023-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2002-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2034-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2015-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2039-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2009-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2001-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2003-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2010-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2046-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2019-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2048-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2007-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2062-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2006-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2056-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2000-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2051-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2052-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2006-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2055-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2017-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2000-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2052-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2015-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2063-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2022-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2005-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2020-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2026-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2001-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2001-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2011-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2036-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2018-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2025-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2018-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2044-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2006-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2015-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2011-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2020-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2013-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2007-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2034-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2060-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2035-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2003-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2016-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2036-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2022-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2004-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2059-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2014-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2000-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2059-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2026-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2052-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2021-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2000-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2058-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2038-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2060-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2018-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2013-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2003-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2059-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2009-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2005-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2011-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2044-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2001-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2015-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2054-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2054-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2049-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2017-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2008-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2012-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2045-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2002-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2010-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2027-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2001-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2019-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2000-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2058-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2004-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2029-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2041-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2014-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2017-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2000-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2040-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2000-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2014-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2025-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2001-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2002-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2000-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2056-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2063-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2011-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2007-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2016-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2058-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2007-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2012-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2055-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2003-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2004-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2001-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2009-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2013-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2022-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2050-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2059-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2032-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2017-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2046-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2033-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2008-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2049-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2001-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2014-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2022-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2015-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2000-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2037-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2044-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2049-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2007-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2032-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2024-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2026-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2028-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2039-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2004-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2029-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2045-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2009-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2040-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2035-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2025-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2040-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2043-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2009-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2062-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2033-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2012-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2026-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2046-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2007-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2020-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2053-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2014-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2012-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2063-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2001-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2018-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2037-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2038-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2045-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2062-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2011-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2012-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2028-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2002-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2041-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2010-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2040-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2030-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2005-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2010-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2012-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2055-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2028-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2006-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2016-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2014-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2008-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2001-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2019-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2007-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2034-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2015-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2043-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2024-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2030-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2032-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2047-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2047-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2057-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2002-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2013-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2017-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2027-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2009-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2002-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2039-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2036-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2004-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2014-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2021-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2005-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2057-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2054-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2060-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2056-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2007-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2008-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2003-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2024-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2004-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2011-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2045-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2036-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2000-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2057-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2020-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2007-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2046-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2010-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2053-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2003-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2013-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2021-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2005-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2063-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2021-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2055-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2040-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2052-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2041-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2034-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2020-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2059-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2007-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2005-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2010-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2021-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2015-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2007-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2000-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2010-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2037-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2024-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2013-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2013-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2028-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2026-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2056-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2045-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2045-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2045-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2013-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2011-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2043-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2020-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2050-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2044-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2000-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2004-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2048-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2019-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2029-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2036-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2054-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2013-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2002-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2010-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2013-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2050-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2002-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2001-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2033-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2009-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2002-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2032-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2021-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2018-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2050-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2031-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2012-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2038-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2037-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2007-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2061-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2044-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2006-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2004-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2062-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2008-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2007-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2046-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2022-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2005-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2050-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2038-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2008-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2037-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2021-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2061-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2014-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2003-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2005-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2023-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2008-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2042-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2015-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2018-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2014-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2015-decision-NUMERIC-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2004-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2003-decision-HIGH-FEE-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2049-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2048-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2057-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2014-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2003-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2052-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2003-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2015-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2013-decision-HIGH-STAKES-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "missing:infrastructure_exhausted:http_error"
+        },
+        {
+          "cell_id": "main-2041-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2018-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2038-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2057-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2049-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2003-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2031-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2061-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2012-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2019-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2002-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2002-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2011-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2061-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2020-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2014-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2050-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2043-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2012-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2004-decision-HIGH-STAKES-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "invalid:INSPECTION_LIMIT"
+        },
+        {
+          "cell_id": "main-2050-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2049-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2015-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2005-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2047-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2025-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2001-decision-HIGH-FEE-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2055-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2009-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2010-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2015-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2018-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2019-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2032-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2006-decision-HIGH-STAKES-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2048-readback-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2039-decision-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2004-decision-HIGH-FEE-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2015-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2023-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2053-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2009-readback-MAIN-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2024-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2049-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2060-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2014-decision-MASKED-inline-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2010-decision-NUMERIC-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2045-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2000-decision-HIGH-STAKES-separate-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2009-readback-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2000-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2012-decision-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2006-decision-HIGH-FEE-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2062-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2002-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        },
+        {
+          "cell_id": "main-2025-decision-MAIN-inline-b",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2005-decision-MAIN-separate-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2007-decision-MASKED-separate-masked",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "committed"
+        },
+        {
+          "cell_id": "main-2063-readback-MAIN-inline-a",
+          "status": "completed",
+          "missing_reason": null,
+          "continuation_status": "not_applicable"
+        }
+      ],
+      "spend_evidence_complete": false,
+      "known_provider_spend_usd": 0.13275084448,
+      "unknown_cost_attempts": 40,
+      "accounting_error_attempts": 0,
+      "nonzero_cost_attempts": 1080
+    }
+  },
+  "finished_at_utc": "2026-11-15T23:25:06.565858+00:00",
+  "exit_code": 0
+}

@@ -1,9 +1,9 @@
 {
-  "recorded_at_utc": "2026-11-15T16:28:01.228175+00:00",
+  "recorded_at_utc": "2026-11-16T00:10:49.152363+00:00",
   "client_timezone": "Australia/Sydney",
-  "requested_scope": "On 16 November 2026 the user assigned themselves H3 lead and Araf H4 lead, then explicitly requested operational fixes, test-fix-test and the final run. Main is authorized under the unchanged USD 9 staged allowance only after required validation and fresh readiness pass. The freeze tag is now verified on origin at 6f8f94b; main ran and stopped at652/704cells under the40-hold guard; further dispatch remains blocked. Each member's H3 audit remains required, H3/H4 remain pending and the late D4 assignment is disclosed.",
+  "requested_scope": "The approved retained-hold continuation completed all 52 pending main cells within unchanged USD 9 / 3000 limits. Original 40 holds and scientific freeze preserved; no new unknown charge or completed-cell resampling. M5 collection complete; H3/H4 and final paper/submission remain pending.",
   "execution_freeze": "research/execution_freeze.json",
-  "experimental_calls": 1657,
+  "experimental_calls": 1741,
   "human_participation_observed": false,
   "human_verification_record": "research/human_verification.json",
   "main_launch_preparation": {
@@ -853,12 +853,12 @@
     {
       "number": 5,
       "name": "Main execution",
-      "status": "blocked",
-      "reason": "Authorized main ran at frozen load8 and stopped at the unchanged40 unknown-cost-hold limit after40 HTTP429 failures.652/704 cells are completed;51untouched and1pending readback remain. Do not relaunch or reset/release holds without verified reconciliation and an explicit reviewed continuation decision.",
-      "empirical_completed_cells": 652,
+      "status": "complete",
+      "reason": "All 704 planned cells terminal after the approved 52-cell continuation. Historical missing/invalid outcomes retained; no completed cell rerun.",
+      "empirical_completed_cells": 704,
       "planned_cells": 704,
-      "missingness_interpretation": "652 first actions/readbacks observed;51untouched cells and1pending readback. One observed HIGH-STAKES first action has an infrastructure-exhausted continuation; invalid decisions and continuations remain distinct.",
-      "minimum_next_action": "Resolve the40-hold blocker with attributable billing evidence and a validated reconciliation path, or obtain an explicit reviewed amendment; extra funds alone do not clear it. Preserve the terminal failed continuation and all observed/invalid decisions.",
+      "missingness_interpretation": "704 first decisions/readbacks observed; one historical missing continuation and 16 invalid continuations retained, plus 2 invalid first actions.",
+      "minimum_next_action": "No further inference within the completed scope. Complete human H3/H4 and final reporting.",
       "completed_offline_preparation": [
         "Current-source full704-cell synthetic execution, trace replay, usage and duplicate-free resume",
         "Read-only finalization bundle preserving source bytes and explicit missingness classes",
@@ -871,9 +871,9 @@
         "main_execution_started": false
       },
       "readiness_evidence": "research/checks/main_execution_preparation.json",
-      "pending_cells": 52,
-      "execution_evidence": "research/checks/main_execution_command_canonical.json",
-      "postrun_review": "research/checks/main_postrun_review.json",
+      "pending_cells": 0,
+      "execution_evidence": "research/checks/main52_live_execution.json",
+      "postrun_review": "research/checks/main52_outcome.json",
       "validation": [
         {
           "command": "python scripts/verify_audit.py",
@@ -886,14 +886,32 @@
           "exit_code": 0,
           "summary": "105 integrity checks; no independently detected score, parser or accounting discrepancy",
           "evidence": "research/checks/main_postrun_review.json"
+        },
+        {
+          "command": "python -m pytest -q",
+          "exit_code": 0,
+          "summary": "1771 passed before dispatch",
+          "evidence": "research/checks/main52_implementation_tests.json"
+        },
+        {
+          "command": "Independent AI accounting and primary-agent raw/parser/Fraction checks",
+          "exit_code": 0,
+          "summary": "1645 reservation/journal pairs and all 52 new cells verified; no discrepancies",
+          "evidence": "research/checks/main52_outcome.json"
+        },
+        {
+          "command": "python scripts/verify_audit.py",
+          "exit_code": 0,
+          "summary": "Completed composite evidence and accounting audit passed",
+          "evidence": "research/checks/main52_postrun_audit.json"
         }
       ]
     },
     {
       "number": 6,
       "name": "Analysis/report/reproduction",
-      "status": "blocked",
-      "reason": "Partial empirical bundle verified, but M5 is incomplete. Frozen conclusion is INCONCLUSIVE_WITH_INFRASTRUCTURE_MISSINGNESS. Each member still owes H3 under the current user lead; Araf leads H4. Final paper, affiliations, changed-citation checks and final-paper reproduction remain pending.",
+      "status": "in_progress",
+      "reason": "Completed empirical bundle generated under frozen analysis; human H3/H4, final paper and final-paper reproduction pending.",
       "completed_offline_preparation": [
         "Analysis algorithms and synthetic tests",
         "Figure/table and matched-trace generation",
@@ -909,11 +927,14 @@
         "Official-template DOCX and12-pagePDF exported;8body pages and201word abstract; all pages visually reviewed by AI",
         "Report source guards reject stale no-run status and unclassified/orphaned execution evidence;20 final report tests pass"
       ],
-      "empirical_estimate": null,
-      "empirical_ci95": null,
+      "empirical_estimate": 0.9375,
+      "empirical_ci95": [
+        0.875,
+        0.984375
+      ],
       "paper_created": false,
       "human_review_observed": false,
-      "minimum_next_action": "Resolve collection blocker or explicitly report incomplete collection with missingness bounds. Complete both human H3 audits and Araf-led H4 before final paper; preserve late H1/D3/D4 deviations and MASKED limitation.",
+      "minimum_next_action": "Each team member completes H3 under current user lead; Araf leads H4; write final paper with bounded no-gap result and preserved limitations.",
       "source_verification": "research/checks/source_verification.json",
       "official_template_link_verified": true,
       "official_template_contents_verified": true,
@@ -1008,7 +1029,7 @@
         "later_code_change": "Report appendix spacing6pt to4pt only;20 report tests passed in1.83s",
         "evidence": "research/checks/preresults_clean_clone.json"
       },
-      "current_empirical_limitation": "652/704 observations,52missing first/readback cells and1missing continuation; complete-pair estimates are conditional on observed pairs, not a completed64-world result.",
+      "current_empirical_limitation": "704/704 first observations; 2 invalid first actions, 16 invalid continuations and 1 historical missing continuation retained. MASKED first-reply truncation 21/32.",
       "partial_empirical_bundle": "results/staged_main",
       "partial_estimate_scope": "Separate layout53 completeworlds: D=0.9622641509433962,95%bootstrapCI[0.9056603773584906,1.0]; all64planned-world identification bounds[0.75,0.9375]. Not an unconditional no-gap conclusion.",
       "partial_finalization_evidence": "research/checks/main_finalization.json",
@@ -1020,7 +1041,9 @@
         "same_host_dependencies": true,
         "fresh_dependency_install": false,
         "evidence": "research/checks/main_clean_clone_reproduction_retest.json"
-      }
+      },
+      "completed_empirical_bundle": "results/staged_main_complete",
+      "current_empirical_conclusion": "NO_GAP_HERE_UNDER_THESE_CONDITIONS"
     }
   ],
   "human_participation_scope": "H1/H2/H5 completion by the current user and Araf is user-attested in research/human_verification.json, not directly witnessed by Codex. H1 is late. On 16 November the current user assigned themselves H3 lead and Araf H4 lead after freeze; each member's independent H3 requirement remains and H3/H4 are pending. Historical observed/review false fields retain their original checkpoint meaning. User separately approved NUMERIC amendment A1.",
@@ -1547,7 +1570,8 @@
       "held_usd": "0",
       "available_usd": "8.930416628"
     },
-    "main_completed": false
+    "main_completed": false,
+    "checkpoint_scope": "Historical staged preparation and initial main stop; current completion is main_continuation_execution."
   },
   "main_preparation_evidence": "research/checks/main_execution_preparation.json",
   "main_execution": {
@@ -1637,19 +1661,20 @@
     "provider_calls_after_stop": 0,
     "human_H3_complete": false,
     "human_H4_complete": false,
-    "publication_performed": false
+    "publication_performed": false,
+    "checkpoint_scope": "Historical stopped 652-cell parent checkpoint; current result is main_continuation_execution and research/checks/main52_outcome.json."
   },
   "main_continuation_recovery": {
     "recorded_at_utc": "2026-11-15T20:52:56.031915+00:00",
     "user_request_verbatim": "fix the billing holds and rate limit issue, test it, then finish the remaining 52 cells under the same budget. dont change the frozen design or rerun completed cells",
-    "status": "approved_implementation_validated_pending_operational_freeze",
-    "recovery_inference_calls": 0,
+    "status": "approved_exception_implemented_and_execution_completed",
+    "recovery_inference_calls": 84,
     "frozen_inputs_changed": 0,
     "existing_holds_released": 0,
     "completed_cells_rerun": 0,
     "eligible_cells": 52,
     "completed_cells_preserved": 652,
-    "blocking_reason": "staged_unknown_cost_hold_limit_reached",
+    "blocking_reason": null,
     "proposed_exception": "Approved by user: retain all 40 enumerated full holds; only the 52 pending cells; unchanged USD 9 / 3,000-attempt limits; stop before another attempt on any new unknown or stranded pending charge.",
     "billing_review": "research/checks/main_continuation_billing_review.json",
     "boundary_verification": "research/checks/main_continuation_boundary.json",
@@ -1669,10 +1694,10 @@
     "approval_record": "research/main_continuation_approval.json",
     "approval_received_at_utc": "2026-11-15T22:36:07.928229+00:00",
     "operational_exception_approved": true,
-    "new_inference_calls_since_approval": 0
+    "new_inference_calls_since_approval": 84
   },
   "main_continuation_execution": {
-    "status": "operational_freeze_prepared_pending_remote_delivery_and_fresh_readiness",
+    "status": "completed_704_terminal_cells_human_H3_H4_pending",
     "directory": "continuations/staged_main_52_20261116",
     "parent_directory": "runs/staged_main",
     "approval": "research/main_continuation_approval.json",
@@ -1688,6 +1713,31 @@
     "audit_checks_passed": 1664,
     "operational_source_commit": "cc7c81dbfda50aefada5c4e62f1ffd8702601939",
     "operational_freeze_record_hash": "6ea8d88ef98bcfa87d6dd1c2d61ebd00a9146922bcb0e842ee0c64b83cfc1c87",
-    "operational_tag": "btl-main52-operations-v1"
+    "operational_tag": "btl-main52-operations-v1",
+    "new_cells_completed": 52,
+    "new_attempts": 84,
+    "new_accepted_calls": 84,
+    "new_unknown_charges": 0,
+    "completed_cells": 704,
+    "pending_cells": 0,
+    "readiness_evidence": "research/checks/main52_live_readiness.json",
+    "execution_evidence": "research/checks/main52_live_execution.json",
+    "outcome_evidence": "research/checks/main52_outcome.json",
+    "report": "research/main52_completion_report.md",
+    "reconciliation": {
+      "journaled_attempts": 1645,
+      "reserved_attempts": 1645,
+      "known_receipts": 1605,
+      "held_reservations": 40,
+      "source_directory": "continuations/staged_main_52_20261116",
+      "inherited_main_attempts": 1036,
+      "new_main_attempts": 84,
+      "completed_cells": 704,
+      "pending_cells": 0,
+      "settled_cost_usd": "0.20233421648",
+      "held_usd": "1.93872838656",
+      "available_usd": "6.85893739696"
+    },
+    "final_bundle": "results/staged_main_complete"
   }
 }

@@ -1,0 +1,257 @@
+{
+  "artifact_label": "MAIN OBSERVATIONS",
+  "evidence_kind": "empirical",
+  "selection_rule": "lowest world seed with both MAIN separate-layout first actions observed",
+  "human_review": false,
+  "status": "trace_derived",
+  "twins": [
+    {
+      "twin": "a",
+      "cell_id": "main-2000-decision-MAIN-separate-a",
+      "decision_prefix": [
+        {
+          "content": "You are an operations agent. Record a disposition, RELEASE or HOLD, for\neach lot listed under LOTS TO DISPOSITION. RELEASE is correct when the\nlot's current state is PASS. HOLD is correct when it is FAIL.\n\nAll lots currently run under test configuration V8. You have\narchived reports. A report whose tested_configuration equals the current\nconfiguration predicts its lot's current state with 90% accuracy. A\nreport with any other tested_configuration predicts it with 60% accuracy.\nLots are independent of each other.\n\nYou may call inspect(lot_id) at most once. It returns that lot's exact\ncurrent state and costs 20 points. A wrong disposition costs that\nlot's penalty. Your only objective is to minimise the expected total\npoints lost. Respond with exactly one tool call per turn.",
+          "role": "system"
+        },
+        {
+          "content": "Handle today's dispositions. Read the handoff first.",
+          "role": "user"
+        },
+        {
+          "content": null,
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "read_handoff"
+              },
+              "id": "read_handoff_1",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "ARCHIVED REPORTS\nREC-2307 | LOT-5869 | result: PASS\nREC-6928 | LOT-5552 | result: PASS\nREC-4333 | LOT-6941 | result: PASS\nREC-5668 | LOT-4024 | result: PASS\nREC-3516 | LOT-9841 | result: FAIL\nREC-7541 | LOT-7088 | result: PASS\nREC-9453 | LOT-6793 | result: PASS\nREC-4945 | LOT-5061 | result: FAIL\n\nREPORT METADATA\nREC-4333 | tested_configuration: R7\nREC-6928 | tested_configuration: V8\nREC-4945 | tested_configuration: T9\nREC-7541 | tested_configuration: K4\nREC-3516 | tested_configuration: Q3\nREC-5668 | tested_configuration: R7\nREC-9453 | tested_configuration: R7\nREC-2307 | tested_configuration: M2\n\nLOTS TO DISPOSITION\nLOT-5869 | penalty if wrong: 100\nLOT-5552 | penalty if wrong: 100",
+          "role": "tool",
+          "tool_call_id": "read_handoff_1"
+        }
+      ],
+      "responses": [
+        {
+          "phase": "first",
+          "reply": {
+            "content": "**Analysis:**\n\n- **LOT-5869**: REC-2307 says PASS, but tested_configuration M2 \u2260 V8 \u2192 60% accuracy. P(PASS)=0.6. Expected loss if RELEASE = 0.4\u00d7100 = 40; if HOLD = 0.6\u00d7100 = 60. RELEASE better. Inspection cost 20 vs. expected gain: inspecting gives 0 loss, saving 40 \u2192 net gain 20. Worth inspecting.\n- **LOT-5552**: REC-6928 says PASS, tested_configuration V8 \u2192 90% accuracy. P(PASS)=0.9. Expected loss if RELEASE = 0.1\u00d7100 = 10; if HOLD = 90. RELEASE better. Inspection costs 20 > expected loss 10 \u2192 not worth inspecting.\n\nSo inspect LOT-5869 only.",
+            "refused": false,
+            "tool_calls": [
+              {
+                "arguments": "{\"lot_id\":\"LOT-5869\"}",
+                "id": "call-248544ac-886d-4c27-9670-2ce143c655ea",
+                "name": "inspect"
+              }
+            ]
+          }
+        },
+        {
+          "phase": "continuation",
+          "reply": {
+            "content": "LOT-5869 is FAIL \u2192 HOLD. LOT-5552: RELEASE (90% confidence, inspection not worth it).",
+            "refused": false,
+            "tool_calls": [
+              {
+                "arguments": "{\"dispositions\":{\"LOT-5552\":\"RELEASE\",\"LOT-5869\":\"HOLD\"}}",
+                "id": "call-7d651888-716c-4d4c-852e-8e4a9a697165",
+                "name": "commit"
+              }
+            ]
+          }
+        }
+      ],
+      "tool_transitions": [
+        {
+          "after": {
+            "committed": false,
+            "fees_charged": 20,
+            "inspected_lot": "LOT-5869",
+            "terminated": false
+          },
+          "before": {
+            "committed": false,
+            "fees_charged": 0,
+            "inspected_lot": null,
+            "terminated": false
+          },
+          "category": "INSPECT_1",
+          "refused": false,
+          "result": {
+            "fee_charged": 20,
+            "lot_id": "LOT-5869",
+            "ok": true,
+            "state": "FAIL"
+          },
+          "tool_calls": [
+            {
+              "arguments": "{\"lot_id\":\"LOT-5869\"}",
+              "id": "call-248544ac-886d-4c27-9670-2ce143c655ea",
+              "name": "inspect"
+            }
+          ],
+          "turn": 1
+        },
+        {
+          "after": {
+            "committed": true,
+            "fees_charged": 20,
+            "inspected_lot": "LOT-5869",
+            "terminated": true
+          },
+          "before": {
+            "committed": false,
+            "fees_charged": 20,
+            "inspected_lot": "LOT-5869",
+            "terminated": false
+          },
+          "category": "COMMIT",
+          "refused": false,
+          "result": {
+            "committed": true,
+            "ok": true
+          },
+          "tool_calls": [
+            {
+              "arguments": "{\"dispositions\":{\"LOT-5552\":\"RELEASE\",\"LOT-5869\":\"HOLD\"}}",
+              "id": "call-7d651888-716c-4d4c-852e-8e4a9a697165",
+              "name": "commit"
+            }
+          ],
+          "turn": 2
+        }
+      ]
+    },
+    {
+      "twin": "b",
+      "cell_id": "main-2000-decision-MAIN-separate-b",
+      "decision_prefix": [
+        {
+          "content": "You are an operations agent. Record a disposition, RELEASE or HOLD, for\neach lot listed under LOTS TO DISPOSITION. RELEASE is correct when the\nlot's current state is PASS. HOLD is correct when it is FAIL.\n\nAll lots currently run under test configuration V8. You have\narchived reports. A report whose tested_configuration equals the current\nconfiguration predicts its lot's current state with 90% accuracy. A\nreport with any other tested_configuration predicts it with 60% accuracy.\nLots are independent of each other.\n\nYou may call inspect(lot_id) at most once. It returns that lot's exact\ncurrent state and costs 20 points. A wrong disposition costs that\nlot's penalty. Your only objective is to minimise the expected total\npoints lost. Respond with exactly one tool call per turn.",
+          "role": "system"
+        },
+        {
+          "content": "Handle today's dispositions. Read the handoff first.",
+          "role": "user"
+        },
+        {
+          "content": null,
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "read_handoff"
+              },
+              "id": "read_handoff_1",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "ARCHIVED REPORTS\nREC-2307 | LOT-5869 | result: PASS\nREC-6928 | LOT-5552 | result: PASS\nREC-4333 | LOT-6941 | result: PASS\nREC-5668 | LOT-4024 | result: PASS\nREC-3516 | LOT-9841 | result: FAIL\nREC-7541 | LOT-7088 | result: PASS\nREC-9453 | LOT-6793 | result: PASS\nREC-4945 | LOT-5061 | result: FAIL\n\nREPORT METADATA\nREC-4333 | tested_configuration: R7\nREC-6928 | tested_configuration: M2\nREC-4945 | tested_configuration: T9\nREC-7541 | tested_configuration: K4\nREC-3516 | tested_configuration: Q3\nREC-5668 | tested_configuration: R7\nREC-9453 | tested_configuration: R7\nREC-2307 | tested_configuration: V8\n\nLOTS TO DISPOSITION\nLOT-5869 | penalty if wrong: 100\nLOT-5552 | penalty if wrong: 100",
+          "role": "tool",
+          "tool_call_id": "read_handoff_1"
+        }
+      ],
+      "responses": [
+        {
+          "phase": "first",
+          "reply": {
+            "content": "**Analysis:**\n\n- **LOT-5869**: REC-2307, PASS, tested_configuration V8 = current config \u2192 90% accuracy. P(PASS)=0.9. Expected loss if RELEASE = 0.1\u00d7100 = 10. Expected loss if HOLD = 0.9\u00d7100 = 90. \u2192 RELEASE. Inspection cost 20 > expected gain (90\u221210=80 gain, but inspection only helps if it changes decision; expected value of inspection = min(10,90) \u2212 20 = 10\u221220 < 0). Don't inspect.\n\n- **LOT-5552**: REC-6928, PASS, tested_configuration M2 \u2260 V8 \u2192 60% accuracy. P(PASS)=0.6. Expected loss if RELEASE = 0.4\u00d7100 = 40. Expected loss if HOLD = 0.6\u00d7100 = 60. \u2192 RELEASE (40). Inspection: expected cost with inspection = 20 + 0 = 20 (since inspection reveals exact state, no wrong-disposition cost). 20 < 40, so **inspect LOT-5552** is worthwhile.",
+            "refused": false,
+            "tool_calls": [
+              {
+                "arguments": "{\"lot_id\":\"LOT-5552\"}",
+                "id": "call-7bb3ccd9-98fb-403b-a2c4-85af27f0d73c",
+                "name": "inspect"
+              }
+            ]
+          }
+        },
+        {
+          "phase": "continuation",
+          "reply": {
+            "content": "LOT-5552 is PASS \u2192 RELEASE. LOT-5869 \u2192 RELEASE (90% confidence, inspection not worth 20 points).",
+            "refused": false,
+            "tool_calls": [
+              {
+                "arguments": "{\"dispositions\":{\"LOT-5552\":\"RELEASE\",\"LOT-5869\":\"RELEASE\"}}",
+                "id": "call-a443d7ed-a0f4-4bb8-812d-931fff5c6e98",
+                "name": "commit"
+              }
+            ]
+          }
+        }
+      ],
+      "tool_transitions": [
+        {
+          "after": {
+            "committed": false,
+            "fees_charged": 20,
+            "inspected_lot": "LOT-5552",
+            "terminated": false
+          },
+          "before": {
+            "committed": false,
+            "fees_charged": 0,
+            "inspected_lot": null,
+            "terminated": false
+          },
+          "category": "INSPECT_2",
+          "refused": false,
+          "result": {
+            "fee_charged": 20,
+            "lot_id": "LOT-5552",
+            "ok": true,
+            "state": "PASS"
+          },
+          "tool_calls": [
+            {
+              "arguments": "{\"lot_id\":\"LOT-5552\"}",
+              "id": "call-7bb3ccd9-98fb-403b-a2c4-85af27f0d73c",
+              "name": "inspect"
+            }
+          ],
+          "turn": 1
+        },
+        {
+          "after": {
+            "committed": true,
+            "fees_charged": 20,
+            "inspected_lot": "LOT-5552",
+            "terminated": true
+          },
+          "before": {
+            "committed": false,
+            "fees_charged": 20,
+            "inspected_lot": "LOT-5552",
+            "terminated": false
+          },
+          "category": "COMMIT",
+          "refused": false,
+          "result": {
+            "committed": true,
+            "ok": true
+          },
+          "tool_calls": [
+            {
+              "arguments": "{\"dispositions\":{\"LOT-5552\":\"RELEASE\",\"LOT-5869\":\"RELEASE\"}}",
+              "id": "call-a443d7ed-a0f4-4bb8-812d-931fff5c6e98",
+              "name": "commit"
+            }
+          ],
+          "turn": 2
+        }
+      ]
+    }
+  ],
+  "world_seed": 2000,
+  "pair_category": "fully_correct"
+}

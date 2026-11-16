@@ -1,0 +1,28 @@
+{
+  "artifact_label": "MAIN OBSERVATIONS",
+  "attempted_calls": 1120,
+  "confirmed_http_deliveries": null,
+  "continuations": 356,
+  "cost": {
+    "accounting_error_attempts": 0,
+    "evidence_kind": "provider_usage_cost_usd",
+    "known_provider_spend_usd": 0.13275084448,
+    "nonzero_cost_attempts": 1080,
+    "scope": "Provider usage evidence only; unknown totals remain null and synthetic usage is not billed evidence",
+    "spend_evidence_complete": false,
+    "total_provider_spend_usd": null,
+    "unknown_cost_attempts": 40
+  },
+  "count_definitions": {
+    "attempted_calls": "Journaled attempt starts; do not prove HTTP dispatch",
+    "confirmed_http_deliveries": "No separate transport-delivery census is reconstructed from attempt-start markers",
+    "continuations": "Defined continuation phases, not necessarily dispatched HTTP calls",
+    "permitted_reprompts": "Defined re-prompt phases, not necessarily dispatched HTTP calls",
+    "successful_calls": "Responses accepted by the pinned parser; includes invalid model actions and is synthetic when labelled synthetic"
+  },
+  "evidence_kind": "empirical",
+  "infrastructure_retries": 39,
+  "invalid_first_actions": 2,
+  "permitted_reprompts": 21,
+  "successful_calls": 1080
+}

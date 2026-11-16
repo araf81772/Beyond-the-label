@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-11-15T23:01:08.107144+00:00",
+  "source_head": "baf7cc15f244c932aad19ddcb32e3bc7f3994552",
+  "classification": "fresh_GET_only_readiness_no_inference",
+  "result": {
+    "status": "ready_for_approved_continuation_not_executed",
+    "inference_calls": 0,
+    "reconciliation": {
+      "journaled_attempts": 1561,
+      "reserved_attempts": 1561,
+      "known_receipts": 1521,
+      "held_reservations": 40,
+      "source_directory": "runs/staged_main",
+      "inherited_main_attempts": 1036,
+      "new_main_attempts": 0,
+      "completed_cells": 652,
+      "pending_cells": 52,
+      "settled_cost_usd": "0.19176235952",
+      "held_usd": "1.93872838656",
+      "available_usd": "6.86950925392"
+    },
+    "account": {
+      "key_hard_limit_usd": 10,
+      "key_limit_remaining_usd": 9.795727132,
+      "key_usage_usd": 0.204272868,
+      "key_limit_reset": null,
+      "include_byok_in_limit": false,
+      "budgets": [
+        {
+          "scope": "key_limit",
+          "limit_usd": 10,
+          "spend_usd": 0.204272868,
+          "remaining_usd": 9.795727132,
+          "reset_interval": null,
+          "include_byok": false
+        }
+      ],
+      "effective_budget": {
+        "scope": "key_limit",
+        "limit_usd": 10,
+        "spend_usd": 0.204272868,
+        "remaining_usd": 9.795727132,
+        "reset_interval": null,
+        "include_byok": false
+      }
+    },
+    "operational_freeze_record_hash": "6ea8d88ef98bcfa87d6dd1c2d61ebd00a9146922bcb0e842ee0c64b83cfc1c87"
+  }
+}
